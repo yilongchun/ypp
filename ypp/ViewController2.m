@@ -35,7 +35,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 8;
+    }
+    return 4;
+}
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 55;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
@@ -54,20 +63,29 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.section == 0) {
         cell.textLabel.text = @"动态";
+        cell.imageView.image = [UIImage imageNamed:@"dongtai"];
     }else if(indexPath.section == 1){
         if (indexPath.row == 0) {
             cell.textLabel.text = @"附近活动";
+            cell.imageView.image = [UIImage imageNamed:@"huodong"];
         }else if (indexPath.row == 1){
             cell.textLabel.text = @"附近群组";
+            cell.imageView.image = [UIImage imageNamed:@"IMG_1550_10"];
         }else if (indexPath.row == 2){
             cell.textLabel.text = @"附近的人";
+            cell.imageView.image = [UIImage imageNamed:@"IMG_1550_08"];
         }
     }else{
         cell.textLabel.text = @"游戏";
+        cell.imageView.image = [UIImage imageNamed:@"IMG_1550_06"];
     }
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 /*
