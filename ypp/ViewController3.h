@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ViewController3.h
 //  ypp
 //
 //  Created by haidony on 15/11/4.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
-
+@interface ViewController3 : UIViewController
+@property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
 @end
-

@@ -17,6 +17,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
+        [[UINavigationBar appearance] setBarTintColor:RGBACOLOR(52,170,235,1)];
+    }
+    
     return YES;
 }
 

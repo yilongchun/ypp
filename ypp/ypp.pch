@@ -1,0 +1,19 @@
+//
+//  ypp.pch
+//  ypp
+//
+//  Created by haidony on 15/11/4.
+//  Copyright © 2015年 weyida. All rights reserved.
+//
+
+#ifndef ypp_pch
+#define ypp_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* ypp_pch */
+
+
+#define UD [NSUserDefaults standardUserDefaults]
+#define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
