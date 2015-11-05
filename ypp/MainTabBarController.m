@@ -7,6 +7,7 @@
 //
 
 #import "MainTabBarController.h"
+#import "JYSlideSegmentController.h"
 #import "ViewController1.h"
 #import "ViewController2.h"
 #import "ViewController3.h"
@@ -49,8 +50,7 @@
     UIImage *img5_h = [UIImage imageNamed:@"t4h"];
     
     
-    ViewController1 *vc1 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
-    vc1.title = @"游神";
+    
     ViewController2 *vc2 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
     vc2.title = @"探索";
     ViewController3 *vc3 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController3"];
@@ -61,6 +61,28 @@
     
     CGFloat offset = 7.0;
     CGFloat offset2 = 3.0;
+    
+    
+    NSMutableArray *vcs = [NSMutableArray array];
+    
+    ViewController1 *vc1_1 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+    vc1_1.title = @"智能";
+    [vcs addObject:vc1_1];
+    
+    ViewController1 *vc1_2 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+    vc1_2.title = @"热度";
+    [vcs addObject:vc1_2];
+    
+    ViewController1 *vc1_3 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
+    vc1_3.title = @"新人";
+    [vcs addObject:vc1_3];
+    
+    JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+    slideSegmentController.title = @"游神";
+    slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
+    slideSegmentController.indicatorColor = RGBACOLOR(52,170,235,1);
+    
+    
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1){
         img1 = [img1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -82,8 +104,10 @@
         
         UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:img1 selectedImage:img1_h];
         [item1 setTag:0];
-        vc1.tabBarItem = item1;
-        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        slideSegmentController.tabBarItem = item1;
+        slideSegmentController.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+//        vc1.tabBarItem = item1;
+//        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:img2 selectedImage:img2_h];
         [item2 setTag:1];
@@ -106,8 +130,10 @@
         vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
     }else{
         UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:img1 tag:0];
-        vc1.tabBarItem = item1;
-        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        slideSegmentController.tabBarItem = item1;
+        slideSegmentController.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+//        vc1.tabBarItem = item1;
+//        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:img2 tag:1];
         vc2.tabBarItem = item2;
@@ -126,7 +152,11 @@
         vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
     }
     
-    UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:vc1];
+    
+    
+    
+    UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:slideSegmentController];
+//    UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:vc1];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:vc2];
     UINavigationController *nc3 = [[UINavigationController alloc] initWithRootViewController:vc3];
     UINavigationController *nc4 = [[UINavigationController alloc] initWithRootViewController:vc4];

@@ -17,6 +17,8 @@
 		5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76441BE9D29000C5FD2F /* ViewController3.m */; };
 		5A2A76481BE9D29A00C5FD2F /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76471BE9D29A00C5FD2F /* ViewController4.m */; };
 		5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */; };
+		5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */; };
+		5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662171BEB786A003FEC29 /* UserTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,10 @@
 		5A2A76491BE9D2A400C5FD2F /* ViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController5.h; sourceTree = "<group>"; };
 		5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController5.m; sourceTree = "<group>"; };
 		5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ypp.pch; sourceTree = "<group>"; };
+		5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSlideSegmentController.h; sourceTree = "<group>"; };
+		5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSlideSegmentController.m; sourceTree = "<group>"; };
+		5A6662161BEB786A003FEC29 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
+		5A6662171BEB786A003FEC29 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,8 @@
 				5A2A76291BE9BA7F00C5FD2F /* Main.storyboard */,
 				5A2A763A1BE9C1FA00C5FD2F /* MainTabBarController.h */,
 				5A2A763B1BE9C1FA00C5FD2F /* MainTabBarController.m */,
+				5A6662161BEB786A003FEC29 /* UserTableViewCell.h */,
+				5A6662171BEB786A003FEC29 /* UserTableViewCell.m */,
 				5A2A763D1BE9C53700C5FD2F /* ViewController1.h */,
 				5A2A763E1BE9C53700C5FD2F /* ViewController1.m */,
 				5A2A76401BE9D28400C5FD2F /* ViewController2.h */,
@@ -87,6 +95,8 @@
 				5A2A76471BE9D29A00C5FD2F /* ViewController4.m */,
 				5A2A76491BE9D2A400C5FD2F /* ViewController5.h */,
 				5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */,
+				5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */,
+				5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */,
 				5A2A762C1BE9BA7F00C5FD2F /* Assets.xcassets */,
 				5A2A76311BE9BA7F00C5FD2F /* Info.plist */,
 				5A2A76201BE9BA7F00C5FD2F /* Supporting Files */,
@@ -175,7 +185,9 @@
 			files = (
 				5A2A763F1BE9C53700C5FD2F /* ViewController1.m in Sources */,
 				5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */,
+				5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */,
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,
+				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */,
 				5A2A76421BE9D28400C5FD2F /* ViewController2.m in Sources */,
@@ -325,6 +337,7 @@
 				5A2A76361BE9BA7F00C5FD2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
