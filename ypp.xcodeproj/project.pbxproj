@@ -17,6 +17,12 @@
 		5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76441BE9D29000C5FD2F /* ViewController3.m */; };
 		5A2A76481BE9D29A00C5FD2F /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76471BE9D29A00C5FD2F /* ViewController4.m */; };
 		5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */; };
+		5A5C30F61BF048F30047A016 /* PrepareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30F51BF048F30047A016 /* PrepareViewController.m */; };
+		5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30F81BF059600047A016 /* LoginViewController.m */; };
+		5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30FB1BF06F640047A016 /* Register1ViewController.m */; };
+		5A5C30FF1BF07AD90047A016 /* Register2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30FE1BF07AD90047A016 /* Register2ViewController.m */; };
+		5A5C31021BF07FE60047A016 /* Register3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C31011BF07FE60047A016 /* Register3ViewController.m */; };
+		5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C31041BF085F10047A016 /* ForgetPasswordViewController.m */; };
 		5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */; };
 		5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662171BEB786A003FEC29 /* UserTableViewCell.m */; };
 /* End PBXBuildFile section */
@@ -42,6 +48,18 @@
 		5A2A76491BE9D2A400C5FD2F /* ViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController5.h; sourceTree = "<group>"; };
 		5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController5.m; sourceTree = "<group>"; };
 		5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ypp.pch; sourceTree = "<group>"; };
+		5A5C30F41BF048F30047A016 /* PrepareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareViewController.h; sourceTree = "<group>"; };
+		5A5C30F51BF048F30047A016 /* PrepareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareViewController.m; sourceTree = "<group>"; };
+		5A5C30F71BF059600047A016 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		5A5C30F81BF059600047A016 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		5A5C30FA1BF06F640047A016 /* Register1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register1ViewController.h; sourceTree = "<group>"; };
+		5A5C30FB1BF06F640047A016 /* Register1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register1ViewController.m; sourceTree = "<group>"; };
+		5A5C30FD1BF07AD90047A016 /* Register2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register2ViewController.h; sourceTree = "<group>"; };
+		5A5C30FE1BF07AD90047A016 /* Register2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register2ViewController.m; sourceTree = "<group>"; };
+		5A5C31001BF07FE60047A016 /* Register3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Register3ViewController.h; sourceTree = "<group>"; };
+		5A5C31011BF07FE60047A016 /* Register3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Register3ViewController.m; sourceTree = "<group>"; };
+		5A5C31031BF085F10047A016 /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
+		5A5C31041BF085F10047A016 /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
 		5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JYSlideSegmentController.h; sourceTree = "<group>"; };
 		5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSlideSegmentController.m; sourceTree = "<group>"; };
 		5A6662161BEB786A003FEC29 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
@@ -81,6 +99,18 @@
 				5A2A76231BE9BA7F00C5FD2F /* AppDelegate.h */,
 				5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */,
 				5A2A76291BE9BA7F00C5FD2F /* Main.storyboard */,
+				5A5C30F41BF048F30047A016 /* PrepareViewController.h */,
+				5A5C30F51BF048F30047A016 /* PrepareViewController.m */,
+				5A5C30F71BF059600047A016 /* LoginViewController.h */,
+				5A5C30F81BF059600047A016 /* LoginViewController.m */,
+				5A5C31031BF085F10047A016 /* ForgetPasswordViewController.h */,
+				5A5C31041BF085F10047A016 /* ForgetPasswordViewController.m */,
+				5A5C30FA1BF06F640047A016 /* Register1ViewController.h */,
+				5A5C30FB1BF06F640047A016 /* Register1ViewController.m */,
+				5A5C30FD1BF07AD90047A016 /* Register2ViewController.h */,
+				5A5C30FE1BF07AD90047A016 /* Register2ViewController.m */,
+				5A5C31001BF07FE60047A016 /* Register3ViewController.h */,
+				5A5C31011BF07FE60047A016 /* Register3ViewController.m */,
 				5A2A763A1BE9C1FA00C5FD2F /* MainTabBarController.h */,
 				5A2A763B1BE9C1FA00C5FD2F /* MainTabBarController.m */,
 				5A6662161BEB786A003FEC29 /* UserTableViewCell.h */,
@@ -184,14 +214,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2A763F1BE9C53700C5FD2F /* ViewController1.m in Sources */,
+				5A5C30F61BF048F30047A016 /* PrepareViewController.m in Sources */,
+				5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */,
 				5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */,
 				5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */,
+				5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */,
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,
 				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */,
+				5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */,
 				5A2A76421BE9D28400C5FD2F /* ViewController2.m in Sources */,
 				5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */,
+				5A5C31021BF07FE60047A016 /* Register3ViewController.m in Sources */,
+				5A5C30FF1BF07AD90047A016 /* Register2ViewController.m in Sources */,
 				5A2A76481BE9D29A00C5FD2F /* ViewController4.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

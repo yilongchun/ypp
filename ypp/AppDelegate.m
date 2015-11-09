@@ -19,8 +19,13 @@
     // Override point for customization after application launch.
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        [[UINavigationBar appearance] setBarTintColor:RGBACOLOR(52,170,235,1)];
+        [[UINavigationBar appearance] setBarTintColor:NAVIGATION_BAR_COLOR];
     }
+    
+    UIImage *backImage = [UIImage imageNamed:@"navi_back"];
+    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:[backImage resizableImageWithCapInsets:UIEdgeInsetsMake(0, backImage.size.width, 0, 0)]                                                       forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    
+    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-233, -230) forBarMetrics:UIBarMetricsDefault];
     
     return YES;
 }
