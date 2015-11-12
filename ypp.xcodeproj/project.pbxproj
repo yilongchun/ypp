@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
 		5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A2A76291BE9BA7F00C5FD2F /* Main.storyboard */; };
@@ -25,9 +26,12 @@
 		5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C31041BF085F10047A016 /* ForgetPasswordViewController.m */; };
 		5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */; };
 		5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A6662171BEB786A003FEC29 /* UserTableViewCell.m */; };
+		5ACF77171BF33D470084DCF2 /* MyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ACF77161BF33D470084DCF2 /* MyInfoTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
+		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A2A76211BE9BA7F00C5FD2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5A2A76231BE9BA7F00C5FD2F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -64,6 +68,8 @@
 		5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JYSlideSegmentController.m; sourceTree = "<group>"; };
 		5A6662161BEB786A003FEC29 /* UserTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserTableViewCell.h; sourceTree = "<group>"; };
 		5A6662171BEB786A003FEC29 /* UserTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTableViewCell.m; sourceTree = "<group>"; };
+		5ACF77151BF33D470084DCF2 /* MyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyInfoTableViewCell.h; sourceTree = "<group>"; };
+		5ACF77161BF33D470084DCF2 /* MyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyInfoTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,10 @@
 				5A2A76471BE9D29A00C5FD2F /* ViewController4.m */,
 				5A2A76491BE9D2A400C5FD2F /* ViewController5.h */,
 				5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */,
+				5ACF77151BF33D470084DCF2 /* MyInfoTableViewCell.h */,
+				5ACF77161BF33D470084DCF2 /* MyInfoTableViewCell.m */,
+				5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */,
+				5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */,
 				5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */,
 				5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */,
 				5A2A762C1BE9BA7F00C5FD2F /* Assets.xcassets */,
@@ -174,7 +184,7 @@
 				TargetAttributes = {
 					5A2A761C1BE9BA7F00C5FD2F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = ESX654RQGM;
+						DevelopmentTeam = YVY8NF8R54;
 					};
 				};
 			};
@@ -213,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */,
 				5A2A763F1BE9C53700C5FD2F /* ViewController1.m in Sources */,
 				5A5C30F61BF048F30047A016 /* PrepareViewController.m in Sources */,
 				5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */,
@@ -222,6 +233,7 @@
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,
 				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
+				5ACF77171BF33D470084DCF2 /* MyInfoTableViewCell.m in Sources */,
 				5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */,
 				5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */,
 				5A2A76421BE9D28400C5FD2F /* ViewController2.m in Sources */,
@@ -331,12 +343,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = ypp/ypp.pch;
 				INFOPLIST_FILE = ypp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = weyida.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -345,12 +360,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = ypp/ypp.pch;
 				INFOPLIST_FILE = ypp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = weyida.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

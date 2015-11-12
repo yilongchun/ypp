@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "ForgetPasswordViewController.h"
+#import "MainTabBarController.h"
 
 @interface LoginViewController ()
 
@@ -52,7 +53,17 @@
 }
 
 -(void)done{
-    NSLog(@"done");
+    MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    
+    //UIModalTransitionStyleCoverVertical 从下往上
+    //UIModalTransitionStyleFlipHorizontal 翻转
+    //UIModalTransitionStyleCrossDissolve 渐变
+    //UIModalTransitionStylePartialCurl 翻书
+    [self presentViewController:vc animated:YES completion:^{
+        [self removeFromParentViewController];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
