@@ -20,11 +20,11 @@
     // Do any additional setup after loading the view.
     NSLog(@"viewcontroller1");
     
-    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
-//        self.edgesForExtendedLayout = UIRectEdgeNone;
-        self.automaticallyAdjustsScrollViewInsets = NO;
-        self.extendedLayoutIncludesOpaqueBars = YES;
-    }
+//    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+////        self.edgesForExtendedLayout = UIRectEdgeNone;
+//        self.automaticallyAdjustsScrollViewInsets = NO;
+//        self.extendedLayoutIncludesOpaqueBars = YES;
+//    }
     
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
         [self.mytableview setSeparatorInset:UIEdgeInsetsZero];

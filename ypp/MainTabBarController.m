@@ -34,6 +34,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    self.tabBar.superview.backgroundColor = [UIColor whiteColor];
+    
     UIImage *img1 = [UIImage imageNamed:@"t2.png"];
     UIImage *img1_h = [UIImage imageNamed:@"t2h.png"];
     
@@ -80,7 +82,7 @@
     JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
     slideSegmentController.title = @"游神";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
-    slideSegmentController.indicatorColor = RGBACOLOR(52,170,235,1);
+    slideSegmentController.indicatorColor = NAVIGATION_BAR_COLOR;
     
     
     

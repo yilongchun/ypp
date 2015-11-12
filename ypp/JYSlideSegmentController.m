@@ -42,6 +42,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
     _titleLabel = [[UILabel alloc] initWithFrame:self.contentView.bounds];
     _titleLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
     _titleLabel.textAlignment = NSTextAlignmentCenter;
+      _titleLabel.font = [UIFont boldSystemFontOfSize:16];
   }
   return _titleLabel;
 }
@@ -115,6 +116,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
   // iOS7 set layout
   if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
     self.automaticallyAdjustsScrollViewInsets = NO;
+    self.extendedLayoutIncludesOpaqueBars = YES;
     self.edgesForExtendedLayout = UIRectEdgeNone;
   }
   [self.view addSubview:self.segmentBar];
@@ -323,6 +325,11 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
                                                                                forIndexPath:indexPath];
   UIViewController *vc = self.viewControllers[indexPath.row];
   segmentBarItem.titleLabel.text = vc.title;
+    if (indexPath.row == _selectedIndex) {
+        segmentBarItem.titleLabel.textColor = NAVIGATION_BAR_COLOR;
+    }else{
+        segmentBarItem.titleLabel.textColor = [UIColor grayColor];
+    }
   return segmentBarItem;
 }
 
@@ -363,7 +370,13 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 
     NSInteger index = ceilf(percent * self.viewControllers.count);
     if (index >= 0 && index < self.viewControllers.count) {
-      [self setSelectedIndex:index];
+        NSIndexPath *oldIndexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:0];
+        JYSegmentBarItem *segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:oldIndexPath];
+        segmentBarItem.titleLabel.textColor = [UIColor grayColor];
+        [self setSelectedIndex:index];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:0];
+        segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:indexPath];
+        segmentBarItem.titleLabel.textColor = NAVIGATION_BAR_COLOR;
     }
   }
 }
