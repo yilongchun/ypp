@@ -84,9 +84,38 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 - (void)viewDidLoad
 {
   [super viewDidLoad];
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
+    [leftItem setTintColor:[UIColor whiteColor]];
+    self.navigationItem.leftBarButtonItem = leftItem;
+    
+    
+    
+    
+//    UIButton *gpsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [gpsBtn setTitle:@"全国" forState:UIControlStateNormal];
+//    [gpsBtn setImage:[UIImage imageNamed:@"navi_gps"] forState:UIControlStateNormal];
+//    [gpsBtn addTarget:self action:@selector(quanguo) forControlEvents:UIControlEventTouchUpInside];
+//    [gpsBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    
+//    UIBarButtonItem *lItem = [[UIBarButtonItem alloc] initWithCustomView:gpsBtn];
+//    [lItem setTintColor:[UIColor whiteColor]];
+//    self.navigationItem.leftBarButtonItem = lItem;
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
+    [rightItem setTintColor:[UIColor whiteColor]];
+    self.navigationItem.rightBarButtonItem = rightItem;
 
   [self setupSubviews];
   [self reset];
+}
+
+-(void)quanguo{
+    NSLog(@"全国");
+}
+
+-(void)shaixuan{
+    NSLog(@"筛选");
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -338,8 +367,16 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
   if (indexPath.row < 0 || indexPath.row >= self.viewControllers.count) {
     return;
   }
+    
+    NSIndexPath *oldIndexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:0];
+    JYSegmentBarItem *segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:oldIndexPath];
+    segmentBarItem.titleLabel.textColor = [UIColor grayColor];
+    [self setSelectedIndex:indexPath.row];
+    
+    segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:indexPath];
+    segmentBarItem.titleLabel.textColor = NAVIGATION_BAR_COLOR;
 
-  [self setSelectedIndex:indexPath.row];
+//  [self setSelectedIndex:indexPath.row];
   [self scrollToViewWithIndex:self.selectedIndex animated:NO];
   [self segmentBarScrollToIndex:_selectedIndex animated:YES];
 }

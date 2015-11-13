@@ -18,7 +18,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"viewcontroller1");
     
 //    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 ////        self.edgesForExtendedLayout = UIRectEdgeNone;

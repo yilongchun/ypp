@@ -37,6 +37,12 @@
     [self.mytableview setTableFooterView:v];
     
 //    self.mytableview.contentInset = UIEdgeInsetsMake(-1, 0, 0, 0);
+    
+    
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(qiandao)];
+    [leftItem setTintColor:[UIColor whiteColor]];
+    self.navigationItem.leftBarButtonItem = leftItem;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -177,5 +183,9 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)qiandao{
+    NSLog(@"签到");
+}
 
 @end
