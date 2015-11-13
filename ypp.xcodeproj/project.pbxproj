@@ -18,6 +18,7 @@
 		5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76441BE9D29000C5FD2F /* ViewController3.m */; };
 		5A2A76481BE9D29A00C5FD2F /* ViewController4.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76471BE9D29A00C5FD2F /* ViewController4.m */; };
 		5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */; };
+		5A4F07C41BF6029600C14106 /* FabuyuewanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A4F07C31BF6029600C14106 /* FabuyuewanViewController.m */; };
 		5A5C30F61BF048F30047A016 /* PrepareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30F51BF048F30047A016 /* PrepareViewController.m */; };
 		5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30F81BF059600047A016 /* LoginViewController.m */; };
 		5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5C30FB1BF06F640047A016 /* Register1ViewController.m */; };
@@ -52,6 +53,8 @@
 		5A2A76491BE9D2A400C5FD2F /* ViewController5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController5.h; sourceTree = "<group>"; };
 		5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController5.m; sourceTree = "<group>"; };
 		5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ypp.pch; sourceTree = "<group>"; };
+		5A4F07C21BF6029600C14106 /* FabuyuewanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FabuyuewanViewController.h; sourceTree = "<group>"; };
+		5A4F07C31BF6029600C14106 /* FabuyuewanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FabuyuewanViewController.m; sourceTree = "<group>"; };
 		5A5C30F41BF048F30047A016 /* PrepareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrepareViewController.h; sourceTree = "<group>"; };
 		5A5C30F51BF048F30047A016 /* PrepareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrepareViewController.m; sourceTree = "<group>"; };
 		5A5C30F71BF059600047A016 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 				5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */,
 				5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */,
 				5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */,
+				5A4F07C11BF6029600C14106 /* yuewan */,
 				5A2A762C1BE9BA7F00C5FD2F /* Assets.xcassets */,
 				5A2A76311BE9BA7F00C5FD2F /* Info.plist */,
 				5A2A76201BE9BA7F00C5FD2F /* Supporting Files */,
@@ -151,6 +155,15 @@
 				5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5A4F07C11BF6029600C14106 /* yuewan */ = {
+			isa = PBXGroup;
+			children = (
+				5A4F07C21BF6029600C14106 /* FabuyuewanViewController.h */,
+				5A4F07C31BF6029600C14106 /* FabuyuewanViewController.m */,
+			);
+			path = yuewan;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +248,7 @@
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				5ACF77171BF33D470084DCF2 /* MyInfoTableViewCell.m in Sources */,
 				5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */,
+				5A4F07C41BF6029600C14106 /* FabuyuewanViewController.m in Sources */,
 				5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */,
 				5A2A76421BE9D28400C5FD2F /* ViewController2.m in Sources */,
 				5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */,

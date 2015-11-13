@@ -14,6 +14,8 @@
 #import "ViewController4.h"
 #import "ViewController5.h"
 
+#import "FabuyuewanViewController.h"
+
 @interface MainTabBarController ()
 
 @end
@@ -33,6 +35,8 @@
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1){
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
+    
+    self.delegate = self;
     
     self.tabBar.superview.backgroundColor = [UIColor whiteColor];
     
@@ -160,7 +164,6 @@
     UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:slideSegmentController];
 //    UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:vc1];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:vc2];
-    UINavigationController *nc3 = [[UINavigationController alloc] initWithRootViewController:vc3];
     UINavigationController *nc4 = [[UINavigationController alloc] initWithRootViewController:vc4];
     UINavigationController *nc5 = [[UINavigationController alloc] initWithRootViewController:vc5];
     
@@ -175,7 +178,7 @@
     nc5.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
     
     //    把导航控制器加入到数组
-    NSMutableArray *viewArr_ = [NSMutableArray arrayWithObjects:nc1,nc2,nc3,nc4,nc5, nil];
+    NSMutableArray *viewArr_ = [NSMutableArray arrayWithObjects:nc1,nc2,vc3,nc4,nc5, nil];
     
     
     self.viewControllers = viewArr_;
@@ -187,6 +190,31 @@
 //    }
 }
 
+- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSLog(@"%ld",(long)item.tag);
+    if (item.tag == 2) {
+        //发布约玩
+        FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];
+        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+        nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+        nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:nc animated:YES completion:^{
+            
+        }];
+    }
+}
+
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    NSLog(@"shouldSelectViewController:%@\t%@",tabBarController,viewController);
+    if ([viewController isKindOfClass:[ViewController3 class]]) {
+        return NO;
+    }else{
+        return YES;
+    }
+}
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+    NSLog(@"didSelectViewController:%@\t%@",tabBarController,viewController);
+}
 
 
 - (void)didReceiveMemoryWarning {
