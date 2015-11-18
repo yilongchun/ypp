@@ -36,6 +36,11 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    //去除阴影线
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:1 alpha:1]];
+    
     self.delegate = self;
     
     self.tabBar.superview.backgroundColor = [UIColor whiteColor];
