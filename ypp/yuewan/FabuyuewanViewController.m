@@ -47,6 +47,18 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
     }];
+    
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.5f;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    transition.delegate = self;
+//    [self.navigationController.view.layer addAnimation:transition forKey:nil];
+//    
+//    
+//    
+//    [self.navigationController.view removeFromSuperview];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

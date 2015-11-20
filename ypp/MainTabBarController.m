@@ -206,6 +206,19 @@
         [self presentViewController:nc animated:YES completion:^{
             
         }];
+        
+        
+        
+//        CATransition *transition = [CATransition animation];
+//        transition.duration = 0.5f;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromRight;
+//        transition.delegate = self;
+//        [nc.view.layer addAnimation:transition forKey:nil];
+//        [self.view addSubview:nc.view];
+        
+        
     }
 }
 
