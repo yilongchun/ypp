@@ -10,7 +10,9 @@
 
 @interface Register2ViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITextField *phoneTextField;
-@property (strong, nonatomic) IBOutlet UITextField *checkCodeTextField;
+@property (strong, nonatomic) IBOutlet UITextField *password1TextField;
+@property (strong, nonatomic) IBOutlet UITextField *password2TextField;
+
+@property (strong, nonatomic) NSString *phone;
 
 @end

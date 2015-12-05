@@ -53,6 +53,75 @@
 }
 
 -(void)done{
+    
+    [[IQKeyboardManager sharedManager] resignFirstResponder];
+//    if (self.account.text.length == 0) {
+//        [self showHintInCenter:@"请输入账号"];
+//        return;
+//    }
+//    if (self.password.text.length == 0) {
+//        [self showHintInCenter:@"请输入密码"];
+//        return;
+//    }
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:@"18771790556" forKey:@"phone"];
+    [parameters setValue:@"fanwe" forKey:@"password"];
+    [parameters setValue:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
+    [parameters setValue:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
+    
+    
+    
+    [self showHudInView:self.view hint:@"加载中"];
+    NSString *str = [NSString stringWithFormat:@"%@%@",HOST,API_LOGIN];
+//    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+//    [request setHTTPMethod:@"POST"];
+//    [request setTimeoutInterval:30.0];
+    
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    //方法一：
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    //manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    //注意：默认的Response为json数据
+    //    [manager setResponseSerializer:[AFXMLParserResponseSerializer new]];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//使用这个将得到的是NSData
+    //manager.responseSerializer = [AFJSONResponseSerializer serializer];//使用这个将得到的是JSON
+    
+    
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain; charset=utf-8"];
+    //    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+    
+    
+    //SEND YOUR REQUEST
+    [manager POST:str parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //NSLog(@"JSON: %@", responseObject);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",result);
+//        NSString *str = [responseObject objectForKey:@"KEY 1"];
+//        NSArray *arr = [responseObject objectForKey:@"KEY 2"];
+//        NSDictionary *dic = [responseObject objectForKey:@"KEY 3"];
+        
+        //...
+        [self hideHud];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self hideHud];
+        [self showHint:error.description];
+    }];
+    
+    
+    
+    
+    
+    
     MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
     vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     

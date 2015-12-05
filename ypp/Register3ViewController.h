@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *nameTextField;
 
+@property (strong, nonatomic) NSString *phone;
+@property (strong, nonatomic) NSString *password;
+
 @end

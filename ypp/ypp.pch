@@ -14,6 +14,22 @@
 
 #endif /* ypp_pch */
 
+#define HOST @"http://oa.hcyj.net"
+//发送短信验证码
+#define API_SENDCODE @"app1/index.php?action=getverificationcode"
+//登录
+#define API_LOGIN @"app1/index.php?action=login"
+
+//游神列表
+#define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
+
+
+
+#import "UIViewController+HUD.h"
+#import "AFNetworking.h"
+#import "IQKeyboardManager.h"
+#import "MJRefresh.h"
+
 #ifdef DEBUG
 #define NSLog(...) NSLog(__VA_ARGS__)
 #define DEBugMethod() NSLog(@"%s",__func__)

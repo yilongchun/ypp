@@ -30,7 +30,9 @@
 }
 
 -(void)done{
-    NSLog(@"done");
+    NSLog(@"done %@\t%@\t%@",_phone,_password,_nameTextField.text);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

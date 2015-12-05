@@ -40,9 +40,22 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
-//    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    
+//    536 90
+    
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+
+    UIButton *getCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(10, height- 60, width-20, 50)];
+    [getCodeBtn setTitle:@"发布约单" forState:UIControlStateNormal];
+    [getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [getCodeBtn setBackgroundImage:[UIImage imageNamed:@"blue_btn2"] forState:UIControlStateNormal];
+    getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:19];
+    [getCodeBtn addTarget:self action:@selector(fabu) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:getCodeBtn];
 }
 
+//返回
 -(void)back{
     [self dismissViewControllerAnimated:YES completion:^{
         
@@ -61,25 +74,83 @@
 //    [self.navigationController.view removeFromSuperview];
 }
 
+//发布约玩
+-(void)fabu{
+    NSLog(@"发布约玩");
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 55;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return 6;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+    
+    if (indexPath.row == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        
+        cell.textLabel.text = @"类别";
+        cell.detailTextLabel.text = @"选择游戏";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else if (indexPath.row == 1){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        
+        cell.textLabel.text = @"游神性别";
+        cell.detailTextLabel.text = @"不限";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else if (indexPath.row == 3){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        
+        cell.textLabel.text = @"陪玩地点";
+        cell.detailTextLabel.text = @"选择陪玩地点";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else if (indexPath.row == 4){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        
+        cell.textLabel.text = @"开始时间";
+        cell.detailTextLabel.text = @"选择陪玩时间";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else if (indexPath.row == 5){
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        
+        cell.textLabel.text = @"陪玩时长";
+        cell.detailTextLabel.text = @"选择陪玩时长";
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        return cell;
+    }else{
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+        }
+        return cell;
     }
     
-    cell.textLabel.text = @"类别";
-    cell.detailTextLabel.text = @"选择游戏";
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    return cell;
+    
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
