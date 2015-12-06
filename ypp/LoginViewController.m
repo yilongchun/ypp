@@ -66,13 +66,13 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:@"18771790556" forKey:@"phone"];
-    [parameters setValue:@"fanwe" forKey:@"password"];
-    [parameters setValue:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
-    [parameters setValue:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
+    [parameters setValue:@"123456" forKey:@"password"];
+//    [parameters setValue:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
+//    [parameters setValue:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
     
     
     
-    [self showHudInView:self.view hint:@"加载中"];
+    [self showHudInView:self.view hint:@""];
     NSString *str = [NSString stringWithFormat:@"%@%@",HOST,API_LOGIN];
 //    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
 //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
@@ -83,34 +83,48 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     //方法一：
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    //manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    //    [manager.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    //    [manager.requestSerializer setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
-    //注意：默认的Response为json数据
-    //    [manager setResponseSerializer:[AFXMLParserResponseSerializer new]];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];//使用这个将得到的是NSData
-    //manager.responseSerializer = [AFJSONResponseSerializer serializer];//使用这个将得到的是JSON
-    
-    
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain; charset=utf-8"];
-    //    manager.responseSerializer.acceptableContentTypes = [manager.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
-    
     
     //SEND YOUR REQUEST
     [manager POST:str parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self hideHud];
         //NSLog(@"JSON: %@", responseObject);
         NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",result);
-//        NSString *str = [responseObject objectForKey:@"KEY 1"];
-//        NSArray *arr = [responseObject objectForKey:@"KEY 2"];
-//        NSDictionary *dic = [responseObject objectForKey:@"KEY 3"];
+        NSLog(@"登录%@",result);
         
-        //...
-        [self hideHud];
+//        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                
+                NSDictionary *info = [dic objectForKey:@"message"];
+                NSLog(@"info:\t%@",info);
+                
+                    MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+                    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+                
+                    //UIModalTransitionStyleCoverVertical 从下往上
+                    //UIModalTransitionStyleFlipHorizontal 翻转
+                    //UIModalTransitionStyleCrossDissolve 渐变
+                    //UIModalTransitionStylePartialCurl 翻书
+                    [self presentViewController:vc animated:YES completion:^{
+                        [self removeFromParentViewController];
+                    }];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+        
+        
+        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self hideHud];
@@ -122,16 +136,7 @@
     
     
     
-    MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    
-    //UIModalTransitionStyleCoverVertical 从下往上
-    //UIModalTransitionStyleFlipHorizontal 翻转
-    //UIModalTransitionStyleCrossDissolve 渐变
-    //UIModalTransitionStylePartialCurl 翻书
-    [self presentViewController:vc animated:YES completion:^{
-        [self removeFromParentViewController];
-    }];
+
     
 }
 

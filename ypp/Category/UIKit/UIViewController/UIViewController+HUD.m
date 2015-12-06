@@ -26,6 +26,10 @@ static const void *HttpRequestHUDKey = &HttpRequestHUDKey;
     objc_setAssociatedObject(self, HttpRequestHUDKey, HUD, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
+- (void)showHudInView:(UIView *)view{
+    [self showHudInView:view hint:@""];
+}
+
 - (void)showHudInView:(UIView *)view hint:(NSString *)hint{
     MBProgressHUD *HUD = [[MBProgressHUD alloc] initWithView:view];
     HUD.labelText = hint;

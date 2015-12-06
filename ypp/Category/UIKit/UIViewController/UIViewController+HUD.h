@@ -17,6 +17,8 @@
 
 - (MBProgressHUD *)HUD;
 
+- (void)showHudInView:(UIView *)view;
+
 - (void)showHudInView:(UIView *)view hint:(NSString *)hint;
 
 - (void)hideHud;

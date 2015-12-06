@@ -40,13 +40,15 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
-    [self showHudInView:self.view hint:@"加载中"];
+    dataSource = [NSMutableArray array];
+    
+    [self showHudInView:self.view];
     [self loadData];
 }
 
 -(void)loadData{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    [parameters setObject:[NSNumber numberWithInt:1] forKey:@"page"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"page"];
 //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"near_close"];
 //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"type"];
 //    [parameters setObject:[NSNumber numberWithInt:1] forKey:@"sex"];
@@ -66,28 +68,26 @@
         [_mytableview.mj_header endRefreshing];
         NSLog(@"JSON: %@", operation.responseString);
         
-//        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-//        NSError *error;
-//        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-//        if (dic == nil) {
-//            NSLog(@"json parse failed \r\n");
-//        }else{
-//            NSNumber *status = [dic objectForKey:@"status"];
-//            if ([status intValue] == 200) {
-//                NSDictionary *message = [[dic objectForKey:@"message"] cleanNull];
-//                //                NSString *perishable_token = [message objectForKey:@"perishable_token"];
-//                NSString *single_access_token = [message objectForKey:@"single_access_token"];
-//                NSString *userid = [message objectForKey:@"id"];
-//                [self showHint:@"注册成功"];
-//                [UD setObject:message forKey:LOGINED_USER];
-//                [UD setObject:userid forKey:USER_ID];
-//                [UD setObject:single_access_token forKey:[NSString stringWithFormat:@"%@%@",USER_TOKEN_ID,userid]];
-//                [self performSelector:@selector(toMainView) withObject:nil afterDelay:0.5];
-//            }else if([status intValue] >= 600){
-//                NSString *message = [dic objectForKey:@"message"];
-//                [self showHint:message];
-//            }
-//        }
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                
+                NSArray *array = [dic objectForKey:@"message"];
+                
+                [dataSource removeAllObjects];
+                [dataSource addObjectsFromArray:array];
+                [_mytableview reloadData];
+                
+            }else if([status intValue] >= 600){
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
         [self hideHud];
@@ -106,7 +106,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return [dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -30,6 +30,41 @@
 }
 
 -(void)done{
+    
+    [self showHudInView:self.view];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:_phone forKey:@"phone"];
+    [parameters setObject:_password forKey:@"password"];
+    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"invitecode"];
+    [parameters setObject:_nameTextField.text forKey:@"name"];
+    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"sex"];
+    [parameters setObject:[NSNumber numberWithInt:1988] forKey:@"byear"];
+    [parameters setObject:[NSNumber numberWithInt:11] forKey:@"bmonth"];
+    [parameters setObject:[NSNumber numberWithInt:11] forKey:@"bday"];
+    [parameters setObject:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
+    [parameters setObject:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_REGISTER];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHud];
+       
+        NSLog(@"JSON: %@", operation.responseString);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+        
+    }];
+    
+    
+    
+    
+    
     NSLog(@"done %@\t%@\t%@",_phone,_password,_nameTextField.text);
     
     

@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController1 :  UIViewController
+@interface ViewController1 :  UIViewController{
+    NSMutableArray *dataSource;
+}
 @property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 @end

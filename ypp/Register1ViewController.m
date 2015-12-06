@@ -105,14 +105,27 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self hideHud];
-        [self startTimer];
-        [self showHint:@"验证码已发送"];
+        
         NSLog(@"JSON: %@", operation.responseString);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                [self startTimer];
+                [self showHint:@"验证码已发送"];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
         [self hideHud];
         [self showHint:@"验证码发送失败"];
-        
     }];
 }
 

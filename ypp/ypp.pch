@@ -14,9 +14,11 @@
 
 #endif /* ypp_pch */
 
-#define HOST @"http://oa.hcyj.net"
+#define HOST @"http://oa.hcyj.net/"
 //发送短信验证码
 #define API_SENDCODE @"app1/index.php?action=getverificationcode"
+//注册
+#define API_REGISTER @"app1/index.php?action=register"
 //登录
 #define API_LOGIN @"app1/index.php?action=login"
 
