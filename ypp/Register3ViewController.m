@@ -54,20 +54,26 @@
         [self hideHud];
        
         NSLog(@"JSON: %@", operation.responseString);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
         [self hideHud];
         [self showHint:@"连接失败"];
-        
     }];
-    
-    
-    
-    
-    
-    NSLog(@"done %@\t%@\t%@",_phone,_password,_nameTextField.text);
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
