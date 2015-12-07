@@ -317,6 +317,60 @@
             </objects>
             <point key="canvasLocation" x="1333" y="-506"/>
         </scene>
+        <!--Fabudongtai View Controller-->
+        <scene sceneID="PTY-Db-O1c">
+            <objects>
+                <viewController storyboardIdentifier="FabudongtaiViewController" id="LPs-T0-9kH" customClass="FabudongtaiViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Geo-m2-QD5"/>
+                        <viewControllerLayoutGuide type="bottom" id="u5m-Mq-dib"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sS9-5b-CtD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iZ6-uZ-h8n">
+                                <rect key="frame" x="0.0" y="160" width="320" height="120"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="M7h-Wk-Vp5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="LPs-T0-9kH" id="GTv-Pn-7Ce"/>
+                                </connections>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBC-Ka-ImF">
+                                <rect key="frame" x="110" y="40" width="100" height="100"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="09i-Wq-Kbe"/>
+                                    <constraint firstAttribute="height" constant="100" id="wz6-J8-pIp"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="compose_pic_add"/>
+                                <state key="highlighted" backgroundImage="compose_pic_add_highlighted"/>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="iZ6-uZ-h8n" secondAttribute="trailing" id="4aU-32-MIs"/>
+                            <constraint firstItem="iZ6-uZ-h8n" firstAttribute="leading" secondItem="sS9-5b-CtD" secondAttribute="leading" id="8kF-cH-3oe"/>
+                            <constraint firstItem="jBC-Ka-ImF" firstAttribute="centerX" secondItem="sS9-5b-CtD" secondAttribute="centerX" id="Fn5-CH-ABy"/>
+                            <constraint firstItem="jBC-Ka-ImF" firstAttribute="top" secondItem="Geo-m2-QD5" secondAttribute="bottom" constant="20" id="K6U-s8-TM8"/>
+                            <constraint firstItem="iZ6-uZ-h8n" firstAttribute="top" secondItem="jBC-Ka-ImF" secondAttribute="bottom" constant="20" id="KS0-Vd-WkR"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mytextview" destination="iZ6-uZ-h8n" id="X5G-gE-JyA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="itS-xk-83f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1761" y="-506"/>
+        </scene>
         <!--Fabuyuewan View Controller-->
         <scene sceneID="e3E-Dg-jgS">
             <objects>
@@ -1429,6 +1483,8 @@
     </scenes>
     <resources>
         <image name="avatar_su" width="106" height="106"/>
+        <image name="compose_pic_add" width="70" height="70"/>
+        <image name="compose_pic_add_highlighted" width="70" height="70"/>
         <image name="gallery_default" width="72" height="72"/>
         <image name="hot-icon" width="19" height="19"/>
         <image name="s0" width="320" height="480"/>

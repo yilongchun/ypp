@@ -9,8 +9,11 @@
 #import "ViewController2.h"
 #import "JYSlideSegmentController.h"
 #import "DongtaiViewController.h"
+#import "FabudongtaiViewController.h"
 
-@interface ViewController2 ()
+@interface ViewController2 (){
+    JYSlideSegmentController *slideSegmentController;
+}
 
 @end
 
@@ -108,7 +111,7 @@
         [vcs addObject:vc1_4];
         
         
-        JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+        slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
         slideSegmentController.title = @"动态";
         slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
         slideSegmentController.indicatorColor = RGBA(52,170,235,1);
@@ -116,7 +119,10 @@
         
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(msg)];
         [rightItem setTintColor:[UIColor whiteColor]];
-        slideSegmentController.navigationItem.rightBarButtonItem = rightItem;
+        
+        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(fabu)];
+        [rightItem2 setTintColor:[UIColor whiteColor]];
+        slideSegmentController.navigationItem.rightBarButtonItems = @[rightItem2,rightItem];
         
         [self.navigationController pushViewController:slideSegmentController animated:YES];
         
@@ -127,6 +133,13 @@
 
 -(void)msg{
     DLog(@"");
+}
+
+-(void)fabu{
+    FabudongtaiViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+    [slideSegmentController presentViewController:nc animated:YES completion:nil];
 }
 
 /*

@@ -50,6 +50,8 @@
 		449546E91C156480000C41C2 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546E81C156480000C41C2 /* AccountTableViewController.m */; };
 		449546EC1C156925000C41C2 /* PhoneBindTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546EB1C156925000C41C2 /* PhoneBindTableViewController.m */; };
 		449546EF1C156E93000C41C2 /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546EE1C156E93000C41C2 /* UpdatePhoneViewController.m */; };
+		449546F21C1578F7000C41C2 /* FabudongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F11C1578F7000C41C2 /* FabudongtaiViewController.m */; };
+		449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -216,6 +218,10 @@
 		449546EB1C156925000C41C2 /* PhoneBindTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhoneBindTableViewController.m; path = My/PhoneBindTableViewController.m; sourceTree = "<group>"; };
 		449546ED1C156E93000C41C2 /* UpdatePhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpdatePhoneViewController.h; path = My/UpdatePhoneViewController.h; sourceTree = "<group>"; };
 		449546EE1C156E93000C41C2 /* UpdatePhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpdatePhoneViewController.m; path = My/UpdatePhoneViewController.m; sourceTree = "<group>"; };
+		449546F01C1578F7000C41C2 /* FabudongtaiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FabudongtaiViewController.h; path = Tansuo/FabudongtaiViewController.h; sourceTree = "<group>"; };
+		449546F11C1578F7000C41C2 /* FabudongtaiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FabudongtaiViewController.m; path = Tansuo/FabudongtaiViewController.m; sourceTree = "<group>"; };
+		449546F41C157DFB000C41C2 /* UITextView+PlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+PlaceHolder.h"; sourceTree = "<group>"; };
+		449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -604,6 +610,8 @@
 				444E58D41C15360900D77C63 /* DongtaiViewController.m */,
 				444E58D61C1536B100D77C63 /* DongtaiTableViewCell.h */,
 				444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */,
+				449546F01C1578F7000C41C2 /* FabudongtaiViewController.h */,
+				449546F11C1578F7000C41C2 /* FabudongtaiViewController.m */,
 			);
 			name = Tansuo;
 			sourceTree = "<group>";
@@ -619,6 +627,15 @@
 				449546EE1C156E93000C41C2 /* UpdatePhoneViewController.m */,
 			);
 			name = My;
+			sourceTree = "<group>";
+		};
+		449546F31C157DFB000C41C2 /* UITextView */ = {
+			isa = PBXGroup;
+			children = (
+				449546F41C157DFB000C41C2 /* UITextView+PlaceHolder.h */,
+				449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */,
+			);
+			path = UITextView;
 			sourceTree = "<group>";
 		};
 		5A2A76141BE9BA7E00C5FD2F = {
@@ -950,6 +967,7 @@
 		5A35FAEE1C12B68400427364 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				449546F31C157DFB000C41C2 /* UITextView */,
 				5A35FB601C12B68400427364 /* UIViewController */,
 			);
 			path = UIKit;
@@ -1125,12 +1143,14 @@
 				444E58AB1C15217000D77C63 /* NSDate+Extension.m in Sources */,
 				444E58481C15164F00D77C63 /* Api.m in Sources */,
 				444E58B91C15217000D77C63 /* NSManagedObjectContext+ObjectClear.m in Sources */,
+				449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */,
 				444E58BF1C15217000D77C63 /* NSObject+Runtime.m in Sources */,
 				5A35FB941C12B68400427364 /* IQTitleBarButtonItem.m in Sources */,
 				5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */,
 				444E58A81C15217000D77C63 /* NSBundle+AppIcon.m in Sources */,
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,
 				444E58A71C15217000D77C63 /* NSArray+SafeAccess.m in Sources */,
+				449546F21C1578F7000C41C2 /* FabudongtaiViewController.m in Sources */,
 				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
 				5A35FB821C12B68400427364 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5A35FB841C12B68400427364 /* UIAlertView+AFNetworking.m in Sources */,

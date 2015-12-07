@@ -36,6 +36,13 @@
     //    [self.mytableview registerClass:[UserTableViewCell class] forCellReuseIdentifier:@"cell"];
     
     
+//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(Main_Screen_Width - 80, Main_Screen_Height - 80, 50, 50)];
+//    [btn setTitle:@"+" forState:UIControlStateNormal];
+//    UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
+//    [btn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+//    [self.mytableview addSubview:btn];
+    
+    
     [self showHudInView:self.view];
     [self loadData];
 }
