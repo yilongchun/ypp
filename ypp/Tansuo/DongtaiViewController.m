@@ -11,7 +11,13 @@
 
 @interface DongtaiViewController (){
     int page;
+//    float willEndContentOffsetY;
+//    float endContentOffsetY;
+//    UIButton *addBtn;
+//    CGRect btnFrame;
 }
+
+@property CGPoint offsetY;
 
 @end
 
@@ -36,11 +42,11 @@
     //    [self.mytableview registerClass:[UserTableViewCell class] forCellReuseIdentifier:@"cell"];
     
     
-//    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(Main_Screen_Width - 80, Main_Screen_Height - 80, 50, 50)];
-//    [btn setTitle:@"+" forState:UIControlStateNormal];
+//    addBtn = [[UIButton alloc] initWithFrame:CGRectMake(Main_Screen_Width - 80, self.mytableview.frame.size.height - 80, 50, 50)];
+//    [addBtn setTitle:@"+" forState:UIControlStateNormal];
 //    UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
-//    [btn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-//    [self.mytableview addSubview:btn];
+//    [addBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
+//    [self.mytableview.window addSubview:addBtn];
     
     
     [self showHudInView:self.view];
@@ -160,5 +166,40 @@
     DongtaiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dongtaicell"];
     return cell;
 }
+
+
+//- (void)viewDidAppear:(BOOL)animated
+//{
+//    btnFrame = addBtn.frame;
+//}
+////将要开始拖拽，手指已经放在view上并准备拖动的那一刻
+//- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{    //将要停止前的坐标
+//    
+//    willEndContentOffsetY = scrollView.contentOffset.y;
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    
+//    endContentOffsetY = scrollView.contentOffset.y;
+//    
+//    if (endContentOffsetY < willEndContentOffsetY || endContentOffsetY==0) { //从下往上移动，或移到顶部
+//        
+//        [UIView beginAnimations:nil context:nil];
+//        
+//        addBtn.frame = btnFrame;
+//        
+//        [UIView commitAnimations];
+//        
+//    } else if (endContentOffsetY > willEndContentOffsetY) {//从上往下移动
+//        
+//        [UIView beginAnimations:nil context:nil];
+//        
+//        CGRect tmppingFrame = addBtn.frame;
+//        tmppingFrame.origin.x = -tmppingFrame.size.width;
+//        addBtn.frame = tmppingFrame;
+//        
+//        [UIView commitAnimations];
+//    }
+//}
 
 @end
