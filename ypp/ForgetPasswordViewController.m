@@ -21,7 +21,7 @@
     
     self.title = @"忘记密码";
     
-    [self.view setBackgroundColor:BACKGROUND_COLOR];
+    [self.view setBackgroundColor:RGBA(235,235,235,1)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};

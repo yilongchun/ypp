@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -87,6 +88,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		444E58441C15154C00D77C63 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
+		444E58461C15164F00D77C63 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Api.h; path = Configuration/Api.h; sourceTree = "<group>"; };
+		444E58471C15164F00D77C63 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = Configuration/Api.m; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -258,6 +262,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		444E58401C1514EF00D77C63 /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				444E58461C15164F00D77C63 /* Api.h */,
+				444E58471C15164F00D77C63 /* Api.m */,
+				444E58441C15154C00D77C63 /* ACMacros.h */,
+			);
+			name = Configuration;
+			sourceTree = "<group>";
+		};
 		5A2A76141BE9BA7E00C5FD2F = {
 			isa = PBXGroup;
 			children = (
@@ -312,6 +326,7 @@
 				5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */,
 				5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */,
 				5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */,
+				444E58401C1514EF00D77C63 /* Configuration */,
 				5A35FC111C12C7B200427364 /* Utils */,
 				5A35FA171C12B68400427364 /* lib */,
 				5A35FA901C12B68400427364 /* Category */,
@@ -736,6 +751,7 @@
 				5A35FB7B1C12B68400427364 /* AFHTTPSessionManager.m in Sources */,
 				5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */,
 				5A35FB8A1C12B68400427364 /* IQNSArray+Sort.m in Sources */,
+				444E58481C15164F00D77C63 /* Api.m in Sources */,
 				5A35FB941C12B68400427364 /* IQTitleBarButtonItem.m in Sources */,
 				5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */,
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,

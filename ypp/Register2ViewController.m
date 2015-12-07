@@ -22,7 +22,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"注册(2/3)";
     
-    [self.view setBackgroundColor:BACKGROUND_COLOR];
+    [self.view setBackgroundColor:RGBA(235,235,235,1)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};

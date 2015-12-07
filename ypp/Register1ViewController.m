@@ -32,7 +32,7 @@
     
     self.title = @"注册(1/3)";
     
-    [self.view setBackgroundColor:BACKGROUND_COLOR];
+    [self.view setBackgroundColor:RGBA(235,235,235,1)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
@@ -41,7 +41,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 40, 55)];
     label.text = @"中国";
     label.font = [UIFont boldSystemFontOfSize:18];
-    label.textColor = NAVIGATION_BAR_COLOR;
+    label.textColor = RGBA(52,170,235,1);
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 55)];
     [leftView addSubview:label];
     

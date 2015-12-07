@@ -21,7 +21,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"注册(3/3)";
     
-    [self.view setBackgroundColor:BACKGROUND_COLOR];
+    [self.view setBackgroundColor:RGBA(235,235,235,1)];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = rightItem;
     

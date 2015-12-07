@@ -91,7 +91,7 @@
     JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
     slideSegmentController.title = @"游神";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
-    slideSegmentController.indicatorColor = NAVIGATION_BAR_COLOR;
+    slideSegmentController.indicatorColor = RGBA(52,170,235,1);
     
     
     

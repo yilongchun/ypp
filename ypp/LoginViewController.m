@@ -23,7 +23,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     self.title = @"登录";
     
-    [self.view setBackgroundColor:NAVIGATION_BAR_COLOR];
+    [self.view setBackgroundColor:RGBA(52,170,235,1)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
