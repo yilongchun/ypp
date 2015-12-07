@@ -10,6 +10,7 @@
 #import "MyInfoTableViewCell.h"
 #import "MymoneyTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "AccountTableViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -162,6 +163,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1) {
+        AccountTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountTableViewController"];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = @"账号绑定";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
