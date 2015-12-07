@@ -223,7 +223,7 @@
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-    NSLog(@"shouldSelectViewController:%@\t%@",tabBarController,viewController);
+//    NSLog(@"shouldSelectViewController:%@\t%@",tabBarController,viewController);
     if ([viewController isKindOfClass:[ViewController3 class]]) {
         return NO;
     }else{
@@ -231,7 +231,7 @@
     }
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    NSLog(@"didSelectViewController:%@\t%@",tabBarController,viewController);
+    
 }
 
 

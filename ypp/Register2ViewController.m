@@ -49,6 +49,11 @@
         [_password1TextField becomeFirstResponder];
         return;
     }
+    if (_password1TextField.text.length < 5) {
+        [self showHint:@"密码不能少于6位！"];
+        [_password1TextField becomeFirstResponder];
+        return;
+    }
     if (_password2TextField.text == nil || [_password2TextField.text isEqualToString:@""]) {
         [self showHint:@"请再次输入密码！"];
         [_password2TextField becomeFirstResponder];

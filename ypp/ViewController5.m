@@ -9,8 +9,11 @@
 #import "ViewController5.h"
 #import "MyInfoTableViewCell.h"
 #import "MymoneyTableViewCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface ViewController5 ()
+@interface ViewController5 (){
+    NSDictionary *userinfo;
+}
 
 @end
 
@@ -43,6 +46,8 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(qiandao)];
     [leftItem setTintColor:[UIColor whiteColor]];
     self.navigationItem.leftBarButtonItem = leftItem;
+    
+    userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -86,6 +91,12 @@
         cell2.userImg.layer.borderWidth = 1.5;
         cell2.userImg.layer.borderColor = [UIColor whiteColor].CGColor;
         cell2.userImg.layer.cornerRadius = 5.0;
+        
+        NSString *user_name = [userinfo objectForKey:@"user_name"];
+        NSString *avatar = [userinfo objectForKey:@"avatar"];
+        cell2.usernameLabel.text = user_name;
+        
+        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         return cell2;
         
     }else{
@@ -109,6 +120,10 @@
                 return cell;
             }else{
                 MymoneyTableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+                
+                NSNumber *money = [userinfo objectForKey:@"money"];
+                cell3.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
+                cell3.scoreLabel.text = [userinfo objectForKey:@"score"];
                 return cell3;
             }
         }else if(indexPath.section == 3){
@@ -186,6 +201,45 @@
 
 -(void)qiandao{
     NSLog(@"签到");
+    
+    
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[userinfo objectForKey:@"id"] forKey:@"userid"];
+    
+    [self showHudInView:self.view];
+    NSString *str = [NSString stringWithFormat:@"%@%@",HOST,API_SIGNIN];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:str parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHud];
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"签到%@",result);
+        
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                
+                
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+        [self hideHud];
+        [self showHint:error.description];
+    }];
 }
 
 @end

@@ -30,8 +30,28 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-233, -230) forBarMetrics:UIBarMetricsDefault];
     
+//    NSString *account = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PHONE];
+//    NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PASSWORD];
+    
+    BOOL isLoggedIn;
+    
+//    if (account.length>=3 && password.length>=3) {
+//        isLoggedIn = YES;
+//    }else{
+//        isLoggedIn = NO;
+//    }
+    
+    NSString *storyboardId = isLoggedIn ? @"MainTabBarController" : @"initNc";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+    
+    
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

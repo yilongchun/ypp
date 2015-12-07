@@ -45,6 +45,10 @@
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    
+    self.phoneTextField.text = @"18771790556";
+    self.passwordTextField.text = @"123456";
 }
 
 -(void)toForgetPassword{
@@ -55,47 +59,35 @@
 -(void)done{
     
     [[IQKeyboardManager sharedManager] resignFirstResponder];
-//    if (self.account.text.length == 0) {
-//        [self showHintInCenter:@"请输入账号"];
-//        return;
-//    }
-//    if (self.password.text.length == 0) {
-//        [self showHintInCenter:@"请输入密码"];
-//        return;
-//    }
+    if (_phoneTextField.text.length == 0) {
+        [self showHint:@"请输入账号"];
+        return;
+    }
+    if (_passwordTextField.text.length == 0) {
+        [self showHint:@"请输入密码"];
+        return;
+    }
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:@"18771790556" forKey:@"phone"];
-    [parameters setValue:@"123456" forKey:@"password"];
+    [parameters setValue:_phoneTextField.text forKey:@"phone"];
+    [parameters setValue:_passwordTextField.text forKey:@"password"];
 //    [parameters setValue:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
 //    [parameters setValue:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
     
-    
-    
-    [self showHudInView:self.view hint:@""];
+    [self showHudInView:self.view];
     NSString *str = [NSString stringWithFormat:@"%@%@",HOST,API_LOGIN];
-//    NSURL *url = [NSURL URLWithString:[str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-//    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-//    [request setHTTPMethod:@"POST"];
-//    [request setTimeoutInterval:30.0];
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    
-    //方法一：
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    
-    //SEND YOUR REQUEST
     [manager POST:str parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
         [self hideHud];
         //NSLog(@"JSON: %@", responseObject);
         NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         NSLog(@"登录%@",result);
         
-//        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         if (dic == nil) {
@@ -104,7 +96,12 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
                 
-                NSDictionary *info = [dic objectForKey:@"message"];
+                NSDictionary *info = [[dic objectForKey:@"message"] cleanNull];
+                
+                [[NSUserDefaults standardUserDefaults] setObject:_phoneTextField.text forKey:LOGINED_PHONE];
+                [[NSUserDefaults standardUserDefaults] setObject:_passwordTextField.text forKey:LOGINED_PASSWORD];
+                [[NSUserDefaults standardUserDefaults] setObject:info forKey:LOGINED_USER];
+                
                 NSLog(@"info:\t%@",info);
                 
                     MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
@@ -122,22 +119,11 @@
                 [self showHint:message];
             }
         }
-        
-        
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [self hideHud];
         [self showHint:error.description];
     }];
-    
-    
-    
-    
-    
-    
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
