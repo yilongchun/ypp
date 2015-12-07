@@ -1576,7 +1576,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jcu-MI-yVi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239" y="2030"/>
+            <point key="canvasLocation" x="1239" y="2700"/>
+        </scene>
+        <!--编辑资料-->
+        <scene sceneID="VW3-A7-SPz">
+            <objects>
+                <viewController storyboardIdentifier="EditMyInfoViewController" title="编辑资料" id="my2-Ir-D36" customClass="EditMyInfoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yOE-5A-0dq"/>
+                        <viewControllerLayoutGuide type="bottom" id="oaa-Lf-A2A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="10t-gM-kAb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qvG-oG-izK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1617" y="2700"/>
         </scene>
         <!--账号绑定-->
         <scene sceneID="eSG-XM-Wev">

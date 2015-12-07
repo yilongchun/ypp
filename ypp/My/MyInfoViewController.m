@@ -7,6 +7,7 @@
 //
 
 #import "MyInfoViewController.h"
+#import "EditMyInfoViewController.h"
 
 @interface MyInfoViewController ()
 
@@ -42,6 +43,8 @@
 
 -(void)edit{
     DLog(@"");
+    EditMyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
