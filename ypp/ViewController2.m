@@ -113,8 +113,20 @@
         slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
         slideSegmentController.indicatorColor = RGBA(52,170,235,1);
         slideSegmentController.hidesBottomBarWhenPushed = YES;
+        
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(msg)];
+        [rightItem setTintColor:[UIColor whiteColor]];
+        slideSegmentController.navigationItem.rightBarButtonItem = rightItem;
+        
         [self.navigationController pushViewController:slideSegmentController animated:YES];
+        
+        
+        
     }
+}
+
+-(void)msg{
+    DLog(@"");
 }
 
 /*

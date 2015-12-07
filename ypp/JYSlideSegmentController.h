@@ -49,8 +49,6 @@ extern NSString *const segmentBarItemID;
 @property (nonatomic, weak, readonly) UIViewController *selectedViewController;
 @property (nonatomic, assign, readonly) NSInteger selectedIndex;
 
-@property BOOL showItems;
-
 /**
  *  Custom UI
  */

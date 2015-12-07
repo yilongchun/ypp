@@ -92,7 +92,15 @@
     slideSegmentController.title = @"游神";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
     slideSegmentController.indicatorColor = RGBA(52,170,235,1);
-    slideSegmentController.showItems = YES;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
+    [leftItem setTintColor:[UIColor whiteColor]];
+    slideSegmentController.navigationItem.leftBarButtonItem = leftItem;
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
+    [rightItem setTintColor:[UIColor whiteColor]];
+    slideSegmentController.navigationItem.rightBarButtonItem = rightItem;
+    
     
     
     
@@ -239,6 +247,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)quanguo{
+    NSLog(@"全国");
+}
+
+-(void)shaixuan{
+    NSLog(@"筛选");
 }
 
 /*
