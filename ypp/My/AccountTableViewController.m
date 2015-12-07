@@ -8,6 +8,7 @@
 
 #import "AccountTableViewController.h"
 #import "PhoneBindTableViewController.h"
+#import "AccountBindViewController.h"
 
 @interface AccountTableViewController (){
     NSDictionary *user;
@@ -80,7 +81,8 @@
         PhoneBindTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PhoneBindTableViewController"];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
-        
+        AccountBindViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountBindViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

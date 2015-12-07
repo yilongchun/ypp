@@ -1,25 +1,25 @@
 //
-//  UpdatePhoneViewController.m
+//  AccountBindViewController.m
 //  ypp
 //
 //  Created by Stephen Chin on 15/12/7.
 //  Copyright © 2015年 weyida. All rights reserved.
 //
 
-#import "UpdatePhoneViewController.h"
+#import "AccountBindViewController.h"
 
-@interface UpdatePhoneViewController (){
+@interface AccountBindViewController (){
     NSDictionary *user;
 }
 
 @end
 
-@implementation UpdatePhoneViewController
+@implementation AccountBindViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"修改手机绑定";
+    self.title = @"账号绑定";
     
     UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
     
@@ -32,9 +32,8 @@
     user = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
     
     NSString *mobile = [user objectForKey:@"mobile"];
-    if (![mobile isEqualToString:@""] && mobile.length > 7) {
-        _oldPhoneTextField.text = [NSString stringWithFormat:@"%@****%@",[mobile substringToIndex:3],[mobile substringFromIndex:7]];
-    }
+    _phoneTextField.text = mobile;
+    
 }
 
 - (void)didReceiveMemoryWarning {

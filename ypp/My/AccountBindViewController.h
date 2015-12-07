@@ -1,5 +1,5 @@
 //
-//  UpdatePhoneViewController.h
+//  AccountBindViewController.h
 //  ypp
 //
 //  Created by Stephen Chin on 15/12/7.
@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UpdatePhoneViewController : UIViewController
+@interface AccountBindViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UIButton *getCodeBtn;
 @property (weak, nonatomic) IBOutlet UIButton *submitBtn;
 
-@property (weak, nonatomic) IBOutlet UITextField *oldPhoneTextField;
+@property (weak, nonatomic) IBOutlet UITextField *phoneTextField;
+
 @end
