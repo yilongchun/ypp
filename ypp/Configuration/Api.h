@@ -33,23 +33,22 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define LOGINED_USER @"loginedUser"
 
 #define HOST @"http://oa.hcyj.net/"
+
 //发送短信验证码
 #define API_SENDCODE @"app1/index.php?action=getverificationcode"
 //注册
 #define API_REGISTER @"app1/index.php?action=register"
 //登录
 #define API_LOGIN @"app1/index.php?action=login"
-
 //签到
 #define API_SIGNIN @"app1/index.php?action=signin"
-
 //游神列表
 #define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
+
 //发布动态
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
 //动态列表
 #define API_TOPICLIST @"app1/index.php?action=topiclist"
-
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
 //重新绑定新手机，更换账号

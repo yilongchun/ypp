@@ -7,6 +7,8 @@
 //
 
 #import "ViewController2.h"
+#import "JYSlideSegmentController.h"
+#import "DongtaiViewController.h"
 
 @interface ViewController2 ()
 
@@ -86,6 +88,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        NSMutableArray *vcs = [NSMutableArray array];
+        
+        DongtaiViewController *vc1_1 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
+        vc1_1.title = @"精华";
+        [vcs addObject:vc1_1];
+        
+        DongtaiViewController *vc1_2 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
+        vc1_2.title = @"附近";
+        [vcs addObject:vc1_2];
+        
+        DongtaiViewController *vc1_3 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
+        vc1_3.title = @"关注";
+        [vcs addObject:vc1_3]
+        ;
+        DongtaiViewController *vc1_4 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
+        vc1_4.title = @"我的";
+        [vcs addObject:vc1_4];
+        
+        
+        JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+        slideSegmentController.title = @"动态";
+        slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
+        slideSegmentController.indicatorColor = RGBA(52,170,235,1);
+        slideSegmentController.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:slideSegmentController animated:YES];
+    }
 }
 
 /*

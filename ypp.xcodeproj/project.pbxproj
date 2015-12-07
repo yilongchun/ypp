@@ -45,6 +45,8 @@
 		444E58CA1C15217000D77C63 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A01C15217000D77C63 /* NSTimer+Addition.m */; };
 		444E58CB1C15217000D77C63 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A21C15217000D77C63 /* NSTimer+Blocks.m */; };
 		444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A51C15217000D77C63 /* NSURL+Param.m */; };
+		444E58D51C15360900D77C63 /* DongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58D41C15360900D77C63 /* DongtaiViewController.m */; };
+		444E58D81C1536B100D77C63 /* DongtaiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -201,6 +203,10 @@
 		444E58A21C15217000D77C63 /* NSTimer+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+Blocks.m"; sourceTree = "<group>"; };
 		444E58A41C15217000D77C63 /* NSURL+Param.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Param.h"; sourceTree = "<group>"; };
 		444E58A51C15217000D77C63 /* NSURL+Param.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Param.m"; sourceTree = "<group>"; };
+		444E58D31C15360900D77C63 /* DongtaiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DongtaiViewController.h; path = Tansuo/DongtaiViewController.h; sourceTree = "<group>"; };
+		444E58D41C15360900D77C63 /* DongtaiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongtaiViewController.m; path = Tansuo/DongtaiViewController.m; sourceTree = "<group>"; };
+		444E58D61C1536B100D77C63 /* DongtaiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DongtaiTableViewCell.h; path = Tansuo/DongtaiTableViewCell.h; sourceTree = "<group>"; };
+		444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongtaiTableViewCell.m; path = Tansuo/DongtaiTableViewCell.m; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -582,6 +588,17 @@
 			path = NSURL;
 			sourceTree = "<group>";
 		};
+		444E58CD1C15355300D77C63 /* Tansuo */ = {
+			isa = PBXGroup;
+			children = (
+				444E58D31C15360900D77C63 /* DongtaiViewController.h */,
+				444E58D41C15360900D77C63 /* DongtaiViewController.m */,
+				444E58D61C1536B100D77C63 /* DongtaiTableViewCell.h */,
+				444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */,
+			);
+			name = Tansuo;
+			sourceTree = "<group>";
+		};
 		5A2A76141BE9BA7E00C5FD2F = {
 			isa = PBXGroup;
 			children = (
@@ -624,6 +641,7 @@
 				5A2A763E1BE9C53700C5FD2F /* ViewController1.m */,
 				5A2A76401BE9D28400C5FD2F /* ViewController2.h */,
 				5A2A76411BE9D28400C5FD2F /* ViewController2.m */,
+				444E58CD1C15355300D77C63 /* Tansuo */,
 				5A2A76431BE9D29000C5FD2F /* ViewController3.h */,
 				5A2A76441BE9D29000C5FD2F /* ViewController3.m */,
 				5A2A76461BE9D29A00C5FD2F /* ViewController4.h */,
@@ -1039,6 +1057,7 @@
 				444E58B51C15217000D77C63 /* NSFileManager+Paths.m in Sources */,
 				5A35FBA31C12B68400427364 /* MJRefreshGifHeader.m in Sources */,
 				444E58A91C15217000D77C63 /* NSData+Encrypt.m in Sources */,
+				444E58D81C1536B100D77C63 /* DongtaiTableViewCell.m in Sources */,
 				444E58AC1C15217000D77C63 /* NSDate+TimeAgo.m in Sources */,
 				5A35FB961C12B68400427364 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				5A35FC051C12B68400427364 /* UIViewController+Visible.m in Sources */,
@@ -1106,6 +1125,7 @@
 				5A35FB8D1C12B68400427364 /* IQUIViewController+Additions.m in Sources */,
 				5A35FB881C12B68400427364 /* UIRefreshControl+AFNetworking.m in Sources */,
 				5A35FB811C12B68400427364 /* AFURLSessionManager.m in Sources */,
+				444E58D51C15360900D77C63 /* DongtaiViewController.m in Sources */,
 				444E58C41C15217000D77C63 /* NSString+HXAddtions.m in Sources */,
 				5A4F07C41BF6029600C14106 /* FabuyuewanViewController.m in Sources */,
 				5A35FB951C12B68400427364 /* IQToolbar.m in Sources */,

@@ -92,6 +92,7 @@
     slideSegmentController.title = @"游神";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
     slideSegmentController.indicatorColor = RGBA(52,170,235,1);
+    slideSegmentController.showItems = YES;
     
     
     

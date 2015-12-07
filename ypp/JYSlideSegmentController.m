@@ -85,26 +85,30 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
 {
   [super viewDidLoad];
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
-    [leftItem setTintColor:[UIColor whiteColor]];
-    self.navigationItem.leftBarButtonItem = leftItem;
+    if (_showItems) {
+        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
+        [leftItem setTintColor:[UIColor whiteColor]];
+        self.navigationItem.leftBarButtonItem = leftItem;
+        
+        
+        
+        
+        //    UIButton *gpsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        //    [gpsBtn setTitle:@"全国" forState:UIControlStateNormal];
+        //    [gpsBtn setImage:[UIImage imageNamed:@"navi_gps"] forState:UIControlStateNormal];
+        //    [gpsBtn addTarget:self action:@selector(quanguo) forControlEvents:UIControlEventTouchUpInside];
+        //    [gpsBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        //
+        //    UIBarButtonItem *lItem = [[UIBarButtonItem alloc] initWithCustomView:gpsBtn];
+        //    [lItem setTintColor:[UIColor whiteColor]];
+        //    self.navigationItem.leftBarButtonItem = lItem;
+        
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
+        [rightItem setTintColor:[UIColor whiteColor]];
+        self.navigationItem.rightBarButtonItem = rightItem;
+    }
     
     
-    
-    
-//    UIButton *gpsBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [gpsBtn setTitle:@"全国" forState:UIControlStateNormal];
-//    [gpsBtn setImage:[UIImage imageNamed:@"navi_gps"] forState:UIControlStateNormal];
-//    [gpsBtn addTarget:self action:@selector(quanguo) forControlEvents:UIControlEventTouchUpInside];
-//    [gpsBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    
-//    UIBarButtonItem *lItem = [[UIBarButtonItem alloc] initWithCustomView:gpsBtn];
-//    [lItem setTintColor:[UIColor whiteColor]];
-//    self.navigationItem.leftBarButtonItem = lItem;
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
-    [rightItem setTintColor:[UIColor whiteColor]];
-    self.navigationItem.rightBarButtonItem = rightItem;
 
   [self setupSubviews];
   [self reset];
