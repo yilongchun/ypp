@@ -11,7 +11,7 @@
 #import "MymoneyTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "AccountTableViewController.h"
-
+#import "MyInfoViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -164,6 +164,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 0) {
+        MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     if (indexPath.section == 1) {
         AccountTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountTableViewController"];
         vc.hidesBottomBarWhenPushed = YES;

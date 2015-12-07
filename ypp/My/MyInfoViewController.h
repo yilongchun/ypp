@@ -1,16 +1,15 @@
 //
-//  ViewController5.h
+//  MyInfoViewController.h
 //  ypp
 //
-//  Created by haidony on 15/11/4.
+//  Created by Stephen Chin on 15/12/7.
 //  Copyright © 2015年 weyida. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController5 : UIViewController
+@interface MyInfoViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 
 @end

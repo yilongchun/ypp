@@ -53,6 +53,7 @@
 		449546F21C1578F7000C41C2 /* FabudongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F11C1578F7000C41C2 /* FabudongtaiViewController.m */; };
 		449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */; };
 		449546F91C157FC6000C41C2 /* AccountBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F81C157FC6000C41C2 /* AccountBindViewController.m */; };
+		449546FC1C158329000C41C2 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FB1C158329000C41C2 /* MyInfoViewController.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -225,6 +226,8 @@
 		449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
 		449546F71C157FC6000C41C2 /* AccountBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountBindViewController.h; path = My/AccountBindViewController.h; sourceTree = "<group>"; };
 		449546F81C157FC6000C41C2 /* AccountBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountBindViewController.m; path = My/AccountBindViewController.m; sourceTree = "<group>"; };
+		449546FA1C158329000C41C2 /* MyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyInfoViewController.h; path = My/MyInfoViewController.h; sourceTree = "<group>"; };
+		449546FB1C158329000C41C2 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyInfoViewController.m; path = My/MyInfoViewController.m; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,6 +633,8 @@
 				449546EE1C156E93000C41C2 /* UpdatePhoneViewController.m */,
 				449546F71C157FC6000C41C2 /* AccountBindViewController.h */,
 				449546F81C157FC6000C41C2 /* AccountBindViewController.m */,
+				449546FA1C158329000C41C2 /* MyInfoViewController.h */,
+				449546FB1C158329000C41C2 /* MyInfoViewController.m */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -1120,6 +1125,7 @@
 				5A35FB9A1C12B68400427364 /* MJRefreshComponent.m in Sources */,
 				5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */,
 				5A35FC101C12B7ED00427364 /* MBProgressHUD.m in Sources */,
+				449546FC1C158329000C41C2 /* MyInfoViewController.m in Sources */,
 				5A35FB7E1C12B68400427364 /* AFURLConnectionOperation.m in Sources */,
 				5A35FBA81C12B68400427364 /* UIScrollView+MJExtension.m in Sources */,
 				5A35FC021C12B68400427364 /* UIViewController+DismissKeyboard.m in Sources */,
