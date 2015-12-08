@@ -25,6 +25,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //org_name：szhcyj
 //app_name：yuewanba
 
+#define LOGOUT @"logout"
+
 //已登录账号密码
 #define LOGINED_PHONE @"loginedPhone"
 #define LOGINED_PASSWORD @"loginedPassword"

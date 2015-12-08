@@ -19,6 +19,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logout)
+                                                 name:LOGOUT object:nil];
+    
     [IQKeyboardManager sharedManager].enable = YES;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
@@ -36,11 +40,11 @@
     
     BOOL isLoggedIn;
     
-//    if (account.length>=3 && password.length>=3) {
-//        isLoggedIn = YES;
-//    }else{
-//        isLoggedIn = NO;
-//    }
+    if (account.length>=3 && password.length>=3) {
+        isLoggedIn = YES;
+    }else{
+        isLoggedIn = NO;
+    }
     
     NSString *storyboardId = isLoggedIn ? @"MainTabBarController" : @"initNc";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
@@ -51,6 +55,19 @@
     
     
     return YES;
+}
+
+//退出登录
+-(void)logout{
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PHONE];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PASSWORD];
+    NSString *storyboardId = @"initNc";
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    self.window.rootViewController = vc;
+    
 }
 
 

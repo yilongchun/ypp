@@ -57,10 +57,8 @@
         }];
         [alert addAction:cancel];
         UIAlertAction *comfire = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            NSString *storyboardId = @"initNc";
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
-            self.view.window.rootViewController = vc;
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:LOGOUT object:nil];
         }];
         [alert addAction:comfire];
         [self presentViewController:alert animated:YES completion:^{
