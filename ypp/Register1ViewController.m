@@ -15,6 +15,7 @@
     NSDate *fireTime;
     
     UIButton *getCodeBtn;
+    NSNumber *code;
 }
 
 @end
@@ -56,7 +57,7 @@
     self.checkCodeTextField.layer.borderWidth = 0.4f;
     
     getCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 7, 140, 41)];
-    [getCodeBtn setTitle:@"点击获取验证码" forState:UIControlStateNormal];
+    [getCodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
     [getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
     UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
@@ -117,8 +118,10 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == 200) {
-                [self startTimer];
-                [self showHint:@"验证码已发送"];
+                [self startTime];
+                code = [dic objectForKey:@"code"];
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -146,6 +149,11 @@
         return;
     }
     
+    if (![_checkCodeTextField.text isEqualToString:[NSString stringWithFormat:@"%d",[code intValue]]]) {
+        [self showHint:@"验证码错误，请重新输入!"];
+        return;
+    }
+    
     Register2ViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Register2ViewController"];
     vc.phone = _phoneTextField.text;
     [self.navigationController pushViewController:vc
@@ -158,37 +166,37 @@
 }
 
 #pragma mark - 倒计时
-- (void)startTimer{
-    
-    fireTime = [NSDate dateWithTimeIntervalSinceNow:61];//60秒后时间
-    if (timer != nil) {
-        if ([timer isValid]) {
-            [timer invalidate];
+-(void)startTime{
+    __block int timeout=30; //倒计时时间
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
+    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
+    dispatch_source_set_event_handler(_timer, ^{
+        if(timeout<=0){ //倒计时结束，关闭
+            dispatch_source_cancel(_timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                [getCodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+                getCodeBtn.userInteractionEnabled = YES;
+                getCodeBtn.enabled = YES;
+            });
+        }else{
+            int seconds = timeout % 60;
+            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                //设置界面的按钮显示 根据自己需求设置
+                //NSLog(@"____%@",strTime);
+                [UIView beginAnimations:nil context:nil];
+                [UIView setAnimationDuration:1];
+                [getCodeBtn setTitle:[NSString stringWithFormat:@"%@秒后重新发送",strTime] forState:UIControlStateNormal];
+                [UIView commitAnimations];
+                getCodeBtn.userInteractionEnabled = NO;
+                getCodeBtn.enabled = NO;
+            });
+            timeout--;
         }
-        timer = nil;
-    }
-    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(timerFireMethod:) userInfo:nil repeats:YES];
-    
-}
-
-- (void)timerFireMethod:(NSTimer *)timerBasis{
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *today = [NSDate date];//当前时间
-    unsigned int unitFlags = NSCalendarUnitSecond;
-    NSDateComponents *d = [calendar components:unitFlags fromDate:today toDate:fireTime options:0];//计算时间差
-    //    DLog(@"d:%@",d);
-    if ([d second] > 0) {
-        getCodeBtn.enabled = NO;
-        [getCodeBtn invalidateIntrinsicContentSize];
-        getCodeBtn.alpha = 0.3;
-        [getCodeBtn setTitle:[NSString stringWithFormat:@"%ld秒后重新发送", (long)[d second]] forState:UIControlStateDisabled];
-    }else{
-        [timerBasis invalidate];
-        getCodeBtn.enabled = YES;
-        getCodeBtn.alpha = 1.0;
-        [getCodeBtn setTitle:@"点击获取验证码" forState:UIControlStateNormal];
-        getCodeBtn.enabled = YES;
-    }
+    });
+    dispatch_resume(_timer);
 }
 
 @end

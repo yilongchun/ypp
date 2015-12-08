@@ -7,6 +7,7 @@
 //
 
 #import "PrepareViewController.h"
+#import "LoginViewController.h"
 
 @interface PrepareViewController ()
 
@@ -18,10 +19,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toLogin)
+                                                 name:@"tologin" object:nil];
     
     self.regBtn.layer.masksToBounds = YES;
     self.regBtn.layer.cornerRadius = 8.0f;
+//    UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
+//    [_regBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     
     self.loginBtn.layer.masksToBounds = YES;
     self.loginBtn.layer.cornerRadius = 8.0f;
@@ -43,6 +48,11 @@
 
 -(BOOL)prefersStatusBarHidden{
     return YES;
+}
+
+-(void)toLogin{
+    LoginViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /*

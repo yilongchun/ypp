@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface PrepareViewController : UIViewController
+
 @property (strong, nonatomic) IBOutlet UIButton *regBtn;
 @property (strong, nonatomic) IBOutlet UIButton *loginBtn;
 
