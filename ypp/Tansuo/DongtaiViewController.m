@@ -196,7 +196,7 @@
     NSString *content = [info objectForKey:@"content"];
     NSString *pic = [info objectForKey:@"pic"];
     
-    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
     cell.username.text = user_name;
     if ([sex intValue] == 0) {
         [cell.sexImage setHidden:NO];

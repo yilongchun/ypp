@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FabudongtaiViewController : UIViewController
+@interface FabudongtaiViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *mytextview;
+@property (weak, nonatomic) IBOutlet UIButton *chooseBtn;
+- (IBAction)chooseImage:(id)sender;
 
 @end

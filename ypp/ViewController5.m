@@ -99,12 +99,10 @@
         NSString *avatar = [userinfo objectForKey:@"avatar"];
         cell2.usernameLabel.text = user_name;
         
-        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         return cell2;
         
     }else{
-        
-
         if (indexPath.section == 1) {
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
             

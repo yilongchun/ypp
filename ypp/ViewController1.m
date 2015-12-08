@@ -200,7 +200,7 @@
     NSString *avatar = [info objectForKey:@"avatar"];
     NSNumber *sex = [info objectForKey:@"sex"];
     cell.usernameLabel.text = user_name;
-    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
     if ([sex intValue] == 0) {
         [cell.sexImage setHidden:NO];
         [cell.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];

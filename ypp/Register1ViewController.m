@@ -41,7 +41,7 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 40, 55)];
     label.text = @"中国";
     label.font = [UIFont boldSystemFontOfSize:18];
-    label.textColor = RGBA(52,170,235,1);
+    label.textColor = RGBA(200,22,34,1);
     UIView *leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 80, 55)];
     [leftView addSubview:label];
     

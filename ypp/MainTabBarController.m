@@ -91,7 +91,7 @@
     JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
     slideSegmentController.title = @"游神";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
-    slideSegmentController.indicatorColor = RGBA(52,170,235,1);
+    slideSegmentController.indicatorColor = RGBA(200,22,34,1);
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
     [leftItem setTintColor:[UIColor whiteColor]];

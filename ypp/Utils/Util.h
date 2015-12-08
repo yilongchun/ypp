@@ -12,4 +12,6 @@
 
 +(BOOL) isValidateMobile:(NSString *)mobile;
 
++ (NSMutableURLRequest *)postRequestWithParems:(NSURL *)url image: (UIImage *)image imageName: (NSString *)imagename;
+
 @end

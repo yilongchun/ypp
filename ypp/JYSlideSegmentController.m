@@ -328,7 +328,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
   UIViewController *vc = self.viewControllers[indexPath.row];
   segmentBarItem.titleLabel.text = vc.title;
     if (indexPath.row == _selectedIndex) {
-        segmentBarItem.titleLabel.textColor = RGBA(52,170,235,1);
+        segmentBarItem.titleLabel.textColor = RGBA(200,22,34,1);
     }else{
         segmentBarItem.titleLabel.textColor = [UIColor grayColor];
     }
@@ -347,7 +347,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
     [self setSelectedIndex:indexPath.row];
     
     segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:indexPath];
-    segmentBarItem.titleLabel.textColor = RGBA(52,170,235,1);
+    segmentBarItem.titleLabel.textColor = RGBA(200,22,34,1);
 
 //  [self setSelectedIndex:indexPath.row];
   [self scrollToViewWithIndex:self.selectedIndex animated:NO];
@@ -386,7 +386,7 @@ NSString * const segmentBarItemID = @"JYSegmentBarItem";
         [self setSelectedIndex:index];
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:_selectedIndex inSection:0];
         segmentBarItem = (JYSegmentBarItem *)[self.segmentBar cellForItemAtIndexPath:indexPath];
-        segmentBarItem.titleLabel.textColor = RGBA(52,170,235,1);
+        segmentBarItem.titleLabel.textColor = RGBA(200,22,34,1);
     }
   }
 }

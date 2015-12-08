@@ -22,7 +22,8 @@
     [IQKeyboardManager sharedManager].enable = YES;
     
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
-        [[UINavigationBar appearance] setBarTintColor:RGBA(52,170,235,1)];
+//        [[UINavigationBar appearance] setBarTintColor:RGBA(52,170,235,1)];
+        [[UINavigationBar appearance] setBarTintColor:RGBA(200,22,34,1)];
     }
     
     UIImage *backImage = [UIImage imageNamed:@"navi_back"];
