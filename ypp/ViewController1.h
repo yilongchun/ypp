@@ -10,7 +10,10 @@
 
 @interface ViewController1 :  UIViewController{
     NSMutableArray *dataSource;
+//    CGFloat lastOffsetY;
+//    BOOL isDecelerating;
 }
-@property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
+
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+
 @end

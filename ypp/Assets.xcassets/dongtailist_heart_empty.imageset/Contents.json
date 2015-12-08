@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "phoneBind.png",
+      "filename" : "dongtailist_heart_empty.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "dongtailist_heart_empty@2x.png",
       "scale" : "2x"
     },
     {

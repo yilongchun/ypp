@@ -8,6 +8,7 @@
 
 #import "DongtaiViewController.h"
 #import "DongtaiTableViewCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DongtaiViewController (){
     int page;
@@ -154,16 +155,63 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 456;
+    CGFloat height = 456-18;
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *content = [info objectForKey:@"content"];
+    
+    CGFloat contentWidth = Main_Screen_Width - 20;
+    UIFont *font = [UIFont systemFontOfSize:15];
+    CGSize textSize;
+    if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+        paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+        NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+        NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+        textSize = [content boundingRectWithSize:CGSizeMake(contentWidth, MAXFLOAT)
+                                         options:options
+                                      attributes:attributes
+                                         context:nil].size;
+    } else {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        textSize = [content sizeWithFont:font
+                       constrainedToSize:CGSizeMake(contentWidth, MAXFLOAT)
+                           lineBreakMode:NSLineBreakByWordWrapping];
+#pragma clang diagnostic pop
+        
+    }
+    return height + textSize.height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [dataSource count];
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     DongtaiTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dongtaicell"];
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *avatar = [info objectForKey:@"avatar"];//头像
+    NSString *user_name = [info objectForKey:@"user_name"];
+    NSNumber *sex = [info objectForKey:@"sex"];
+    NSString *content = [info objectForKey:@"content"];
+    NSString *pic = [info objectForKey:@"pic"];
+    
+    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    cell.username.text = user_name;
+    if ([sex intValue] == 0) {
+        [cell.sexImage setHidden:NO];
+        [cell.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];
+    }else if ([sex intValue] == 1){
+        [cell.sexImage setHidden:NO];
+        [cell.sexImage setImage:[UIImage imageNamed:@"usercell_boy"]];
+    }else{
+        [cell.sexImage setHidden:YES];
+    }
+    cell.contentLabel.text = content;
+    if (pic != nil && ![pic isEqualToString:@""]) {
+        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,pic]]];
+    }
+    DLog(@"%@",info);
     return cell;
 }
 

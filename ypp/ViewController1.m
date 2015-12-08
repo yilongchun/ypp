@@ -14,6 +14,8 @@
     int page;
 }
 
+@property (nonatomic) UIEdgeInsets originalInsets;
+
 @end
 
 @implementation ViewController1
@@ -21,6 +23,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    if(self.mytableview){
+        if (self.navigationController.navigationBar.isOpaque){
+            float topInset = self.navigationController.navigationBar.frame.size.height;
+            
+            self.mytableview.contentInset = UIEdgeInsetsMake(topInset + self.mytableview.contentInset.top,
+                                                                         self.mytableview.contentInset.left,
+                                                                         self.mytableview.contentInset.bottom,
+                                                                         self.mytableview.contentInset.right);
+        }
+        self.originalInsets = self.mytableview.contentInset;
+    }
+    
     
 //    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
 ////        self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -211,14 +227,68 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+//#pragma mark
+//#pragma Navigation hide Scroll
+//
+//- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView{
+//    isDecelerating = YES;
+//}
+//
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+//    isDecelerating = NO;
+//}
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    if(self.mytableview != scrollView)
+//        return;
+//    if(scrollView.frame.size.height >= scrollView.contentSize.height)
+//        return;
+//    if(scrollView.contentOffset.y >= -self.navigationController.navigationBar.frame.size.height && scrollView.contentOffset.y <= 0){
+//        DLog(@"1");
+////        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y + [UIApplication sharedApplication].statusBarFrame.size.height,
+////                                                   self.originalInsets.left,
+////                                                   self.originalInsets.bottom, self.originalInsets.right);
+//    }
+//    else if(scrollView.contentOffset.y >= scrollView.contentInset.top){
+//        DLog(@"2");
+//        scrollView.contentInset = UIEdgeInsetsZero;
+//    }
+//    
+//    
+//    if(lastOffsetY < scrollView.contentOffset.y && scrollView.contentOffset.y >= -self.navigationController.navigationBar.frame.size.height){//moving up
+//        
+//        if(self.navigationController.navigationBar.frame.size.height + self.navigationController.navigationBar.frame.origin.y  > 0){//not yet hidden
+//            
+//            float newY = self.navigationController.navigationBar.frame.origin.y - (scrollView.contentOffset.y - lastOffsetY);
+//            if(newY < -self.navigationController.navigationBar.frame.size.height){
+//                newY = -self.navigationController.navigationBar.frame.size.height;
+////                self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,
+////                                                                           newY,
+////                                                                           self.navigationController.navigationBar.frame.size.width,
+////                                                                           self.navigationController.navigationBar.frame.size.height);
+//                DLog(@"3");
+//            }
+//            
+//            
+//        }
+//    }else
+//        if(self.navigationController.navigationBar.frame.origin.y < [UIApplication sharedApplication].statusBarFrame.size.height  &&
+//           (self.mytableview.contentSize.height > self.mytableview.contentOffset.y + self.mytableview.frame.size.height)){//not yet shown
+//            
+//            float newY = self.navigationController.navigationBar.frame.origin.y + (lastOffsetY - scrollView.contentOffset.y);
+//            if(newY > [UIApplication sharedApplication].statusBarFrame.size.height)
+//            {
+////                newY = [UIApplication sharedApplication].statusBarFrame.size.height;
+////                self.navigationController.navigationBar.frame = CGRectMake(self.navigationController.navigationBar.frame.origin.x,
+////                                                                           newY,
+////                                                                           self.navigationController.navigationBar.frame.size.width,
+////                                                                           self.navigationController.navigationBar.frame.size.height);
+//                DLog(@"4");
+//            }
+//            
+//        }
+//    
+//    lastOffsetY = scrollView.contentOffset.y;
+//}
 
 @end

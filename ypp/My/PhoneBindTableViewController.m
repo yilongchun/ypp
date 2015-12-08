@@ -28,8 +28,8 @@
     
     self.title = @"手机绑定";
     
-    UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 10, Main_Screen_Width, 280)];
-    [logoImageView setImage:[UIImage imageNamed:@"phoneBind"]];
+    UIImageView *logoImageView = [[UIImageView alloc]initWithFrame:CGRectMake(30, 10, Main_Screen_Width-30, 280)];
+    [logoImageView setImage:[UIImage imageNamed:@"bind_phone"]];
     logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     
     
