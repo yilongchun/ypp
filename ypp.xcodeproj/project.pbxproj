@@ -56,6 +56,7 @@
 		449546FC1C158329000C41C2 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FB1C158329000C41C2 /* MyInfoViewController.m */; };
 		449546FF1C158977000C41C2 /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FE1C158977000C41C2 /* EditMyInfoViewController.m */; };
 		44E88D921C1687CA007A80E5 /* EditMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */; };
+		44E88DA01C16AD85007A80E5 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -234,6 +235,8 @@
 		449546FE1C158977000C41C2 /* EditMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoViewController.m; path = My/EditMyInfoViewController.m; sourceTree = "<group>"; };
 		44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditMyInfoTableViewCell.h; path = My/EditMyInfoTableViewCell.h; sourceTree = "<group>"; };
 		44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoTableViewCell.m; path = My/EditMyInfoTableViewCell.m; sourceTree = "<group>"; };
+		44E88D9E1C16AD85007A80E5 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
+		44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -645,6 +648,7 @@
 				449546FE1C158977000C41C2 /* EditMyInfoViewController.m */,
 				44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */,
 				44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */,
+				44E88D931C16ACDF007A80E5 /* setting */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -656,6 +660,16 @@
 				449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */,
 			);
 			path = UITextView;
+			sourceTree = "<group>";
+		};
+		44E88D931C16ACDF007A80E5 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				44E88D9E1C16AD85007A80E5 /* SettingTableViewController.h */,
+				44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */,
+			);
+			name = setting;
+			path = My/setting;
 			sourceTree = "<group>";
 		};
 		5A2A76141BE9BA7E00C5FD2F = {
@@ -1196,6 +1210,7 @@
 				5A35FB811C12B68400427364 /* AFURLSessionManager.m in Sources */,
 				444E58D51C15360900D77C63 /* DongtaiViewController.m in Sources */,
 				444E58C41C15217000D77C63 /* NSString+HXAddtions.m in Sources */,
+				44E88DA01C16AD85007A80E5 /* SettingTableViewController.m in Sources */,
 				5A4F07C41BF6029600C14106 /* FabuyuewanViewController.m in Sources */,
 				5A35FB951C12B68400427364 /* IQToolbar.m in Sources */,
 				5A35FC041C12B68400427364 /* UIViewController+RecursiveDescription.m in Sources */,

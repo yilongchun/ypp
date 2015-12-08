@@ -12,6 +12,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "AccountTableViewController.h"
 #import "MyInfoViewController.h"
+#import "SettingTableViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -173,6 +174,12 @@
         AccountTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AccountTableViewController"];
         vc.hidesBottomBarWhenPushed = YES;
         vc.title = @"账号绑定";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.section == 4) {
+        SettingTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingTableViewController"];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.title = @"设置";
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
