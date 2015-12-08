@@ -31,7 +31,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 
 //已登录用户
 #define LOGINED_USER @"loginedUser"
-
+//服务器地址
 #define HOST @"http://oa.hcyj.net/"
 
 //发送短信验证码
@@ -44,11 +44,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SIGNIN @"app1/index.php?action=signin"
 //游神列表
 #define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
+//动态列表
+#define API_TOPICLIST @"app1/index.php?action=topiclist"
 
 //发布动态
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
-//动态列表
-#define API_TOPICLIST @"app1/index.php?action=topiclist"
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
 //重新绑定新手机，更换账号

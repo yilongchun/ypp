@@ -55,6 +55,7 @@
 		449546F91C157FC6000C41C2 /* AccountBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F81C157FC6000C41C2 /* AccountBindViewController.m */; };
 		449546FC1C158329000C41C2 /* MyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FB1C158329000C41C2 /* MyInfoViewController.m */; };
 		449546FF1C158977000C41C2 /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FE1C158977000C41C2 /* EditMyInfoViewController.m */; };
+		44E88D921C1687CA007A80E5 /* EditMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -231,6 +232,8 @@
 		449546FB1C158329000C41C2 /* MyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyInfoViewController.m; path = My/MyInfoViewController.m; sourceTree = "<group>"; };
 		449546FD1C158977000C41C2 /* EditMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditMyInfoViewController.h; path = My/EditMyInfoViewController.h; sourceTree = "<group>"; };
 		449546FE1C158977000C41C2 /* EditMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoViewController.m; path = My/EditMyInfoViewController.m; sourceTree = "<group>"; };
+		44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditMyInfoTableViewCell.h; path = My/EditMyInfoTableViewCell.h; sourceTree = "<group>"; };
+		44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoTableViewCell.m; path = My/EditMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -640,6 +643,8 @@
 				449546FB1C158329000C41C2 /* MyInfoViewController.m */,
 				449546FD1C158977000C41C2 /* EditMyInfoViewController.h */,
 				449546FE1C158977000C41C2 /* EditMyInfoViewController.m */,
+				44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */,
+				44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -1172,6 +1177,7 @@
 				5A35FB821C12B68400427364 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5A35FB841C12B68400427364 /* UIAlertView+AFNetworking.m in Sources */,
 				449546FF1C158977000C41C2 /* EditMyInfoViewController.m in Sources */,
+				44E88D921C1687CA007A80E5 /* EditMyInfoTableViewCell.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				444E58BA1C15217000D77C63 /* NSObject+AddProperty.m in Sources */,
 				5ACF77171BF33D470084DCF2 /* MyInfoTableViewCell.m in Sources */,

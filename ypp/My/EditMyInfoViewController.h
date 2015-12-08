@@ -10,4 +10,6 @@
 
 @interface EditMyInfoViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *mytableview;
+
 @end
