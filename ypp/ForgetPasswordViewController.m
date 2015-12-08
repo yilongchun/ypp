@@ -42,7 +42,8 @@
     UIButton *getCodeBtn = [[UIButton alloc] initWithFrame:CGRectMake(5, 7, 120, 41)];
     [getCodeBtn setTitle:@"获取验证" forState:UIControlStateNormal];
     [getCodeBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [getCodeBtn setBackgroundImage:[UIImage imageNamed:@"money_btn_h"] forState:UIControlStateNormal];
+    UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
+    [getCodeBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     getCodeBtn.titleLabel.font = [UIFont systemFontOfSize:16];
     [getCodeBtn addTarget:self action:@selector(getCode) forControlEvents:UIControlEventTouchUpInside];
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 130, 55)];
