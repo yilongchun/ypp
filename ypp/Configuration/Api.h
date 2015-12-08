@@ -48,11 +48,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
 //动态列表
 #define API_TOPICLIST @"app1/index.php?action=topiclist"
-
 //上传图片
 #define API_UPLOADIMG @"app1/index.php?action=uploadImg"
 //发布动态
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
+
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
 //重新绑定新手机，更换账号
