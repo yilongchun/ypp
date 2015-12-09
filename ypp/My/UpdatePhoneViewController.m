@@ -150,7 +150,7 @@
     
     NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
     [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:_phoneTextField.text forKey:@"Nphone"];
+    [parameters setValue:_phoneTextField.text forKey:@"nphone"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATEPHONE];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
