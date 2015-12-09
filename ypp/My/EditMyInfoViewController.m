@@ -8,6 +8,7 @@
 
 #import "EditMyInfoViewController.h"
 #import "EditMyInfoTableViewCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface EditMyInfoViewController (){
     NSDictionary *userinfo;
@@ -71,10 +72,10 @@
         cell.userImg.layer.cornerRadius = 5.0;
         
 //        NSString *user_name = [userinfo objectForKey:@"user_name"];
-//        NSString *avatar = [userinfo objectForKey:@"avatar"];
+        NSString *avatar = [userinfo objectForKey:@"avatar"];
 //        cell2.usernameLabel.text = user_name;
 //        
-//        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        [cell.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         return cell;
     }else if (indexPath.row == 1){
         UITableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
@@ -101,6 +102,8 @@
         if (cell2 == nil) {
             cell2 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell2"];
             cell2.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            [cell2.textLabel setFont:[UIFont systemFontOfSize:16]];
+            [cell2.detailTextLabel setFont:[UIFont systemFontOfSize:16]];
         }
         switch (indexPath.row) {
             case 2:{
