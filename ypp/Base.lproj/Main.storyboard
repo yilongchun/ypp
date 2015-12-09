@@ -1806,19 +1806,19 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="100" id="Swg-ns-V5g" customClass="EditMyInfoTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="130" id="Swg-ns-V5g" customClass="EditMyInfoTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="130"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Swg-ns-V5g" id="6Y9-A2-1He">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_default" translatesAutoresizingMaskIntoConstraints="NO" id="JTF-IK-cb2">
-                                                    <rect key="frame" x="123" y="12" width="75" height="75"/>
+                                                    <rect key="frame" x="110" y="15" width="100" height="100"/>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="75" id="2Ys-3F-sPC"/>
-                                                        <constraint firstAttribute="height" constant="75" id="ok6-Kj-v6e"/>
+                                                        <constraint firstAttribute="width" constant="100" id="2Ys-3F-sPC"/>
+                                                        <constraint firstAttribute="height" constant="100" id="ok6-Kj-v6e"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>

@@ -217,9 +217,11 @@
 {
     
     if ([[info objectForKey:UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-        choosedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-        [self.chooseBtn setImage:choosedImage forState:UIControlStateNormal];
-//        NSData* data = UIImageJPEGRepresentation(img,0.7f);
+        UIImage *img = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self.chooseBtn setImage:img forState:UIControlStateNormal];
+        NSData *data = UIImageJPEGRepresentation(img,0.7f);
+        choosedImage = [UIImage imageWithData:data];
+        
         //        DLog(@"type:%d",type);
         //[self uploadImage:data];
         

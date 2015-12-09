@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditMyInfoViewController : UIViewController
+@interface EditMyInfoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 
