@@ -54,6 +54,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_UPLOADIMG @"app1/index.php?action=uploadImg"
 //发布动态
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
+//用户详情
+#define API_GETUSERINFO @"app1/index.php?action=getuserinfo"
 
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
@@ -63,8 +65,6 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SETCARD @"app1/index.php?action=setcard"
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
-//用户详情
-#define API_GETUSERINFO @"app1/index.php?action=getuserinfo"
 //设置隐身模式
 #define API_UPDATESTATUS @"app1/index.php?action=updatestatus"
 //增加浏览量(热点)

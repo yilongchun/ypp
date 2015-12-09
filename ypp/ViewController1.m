@@ -203,6 +203,9 @@
     NSNumber *sex = [info objectForKey:@"sex"];
     cell.usernameLabel.text = user_name;
     [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    
+    cell.userimage.layer.masksToBounds = YES;
+    cell.userimage.layer.cornerRadius = 5.0;
     if ([sex intValue] == 0) {
         [cell.sexImage setHidden:NO];
         [cell.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];

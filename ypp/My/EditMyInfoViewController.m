@@ -55,6 +55,8 @@
     }];
     
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
+    
+    [self loadUser];
 }
 
 -(void)loadUser{
@@ -82,6 +84,48 @@
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
                 [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
                 [_mytableview reloadData];
+                
+                
+                NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+                UITableViewCell *cell = [_mytableview cellForRowAtIndexPath:indexpath];
+                for (UIView *view in cell.contentView.subviews) {
+                    if ([view isKindOfClass:[UIImageView class]] || [view isKindOfClass:[UIButton class]]) {
+                        [view removeFromSuperview];
+                    }
+                }
+                
+                NSString *imgs = [userinfo objectForKey:@"imgs"];
+                NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                CGFloat x = 8;
+                CGFloat width = (Main_Screen_Width - 40) / 4;
+                for (int i = 0; i < [imageArr count]; i++) {
+                    
+                    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+                    [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                    imageview.layer.masksToBounds = YES;
+                    imageview.layer.cornerRadius = 5.0;
+                    imageview.tag = i;
+                    imageview.userInteractionEnabled = YES;
+                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
+                    [imageview addGestureRecognizer:tap];
+                    
+                    [cell.contentView addSubview:imageview];
+                    x += width + 8;
+                    DLog(@"添加图片");
+                }
+                
+                if ([imageArr count] < 4) {
+                    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+                    [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+                    [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
+                    [cell.contentView addSubview:btn];
+                    DLog(@"添加按钮");
+                }
+                
+                
+                
+                
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -147,12 +191,33 @@
             [cell3.contentView addSubview:label];
         }
         
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, width, width)];
-        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-        [cell3.contentView addSubview:btn];
-        
-        
+//        NSString *imgs = [userinfo objectForKey:@"imgs"];
+//        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+//        CGFloat x = 8;
+//        for (int i = 0; i < [imageArr count]; i++) {
+//            
+//            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+//            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+//            imageview.layer.masksToBounds = YES;
+//            imageview.layer.cornerRadius = 5.0;
+//            imageview.tag = i;
+//            imageview.userInteractionEnabled = YES;
+//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
+//            [imageview addGestureRecognizer:tap];
+//            
+//            [cell3.contentView addSubview:imageview];
+//            x += width + 8;
+//            DLog(@"添加图片");
+//        }
+//        
+//        if ([imageArr count] < 4) {
+//            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+//            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+//            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+//            [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
+//            [cell3.contentView addSubview:btn];
+//            DLog(@"添加按钮");
+//        }
         return cell3;
     }else{
         UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
@@ -334,9 +399,90 @@
     self.navigationController.navigationBar.translucent = NO;
 }
 
+//删除照片
+-(void)deleteImgs:(UITapGestureRecognizer *)recognizer{
+    
+    
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定要删除照片吗?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        [self showHudInView:self.view];
+        
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+        NSString *imgs = [userinfo objectForKey:@"imgs"];
+        
+        DLog(@"%@",imgs);
+        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:imageArr];
+        DLog(@"%@",arr);
+        [arr removeObjectAtIndex:recognizer.view.tag];
+        
+        if ([arr count] == 0) {
+            [parameters setValue:@"-1" forKey:@"imgs"];
+        }else{
+            DLog(@"%@",arr);
+            NSString *str = [arr componentsJoinedByString:@","];
+            DLog(@"%@",str);
+            [parameters setValue:str forKey:@"imgs"];
+        }
+        
+        
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATEUSER];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self hideHud];
+            
+            NSLog(@"JSON: %@", operation.responseString);
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == 200) {
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"loadUser" object:nil];
+                }else{
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                }
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [self hideHud];
+            [self showHint:@"连接失败"];
+        }];
+        
+    }];
+    
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
 //修改头像
 -(void)updateImage{
     tag = 1;
+    [self showImagePicker];
+}
+//添加照片
+-(void)addImgs{
+    tag = 2;
+    [self showImagePicker];
+}
+
+-(void)showImagePicker{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"用户相册" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -369,12 +515,11 @@
         
     }];
     [alert addAction:cancel];
-    
     [self presentViewController:alert animated:YES completion:^{
         
     }];
 }
-
+//上传图片
 -(void)uploadImage{
     [self showHudInView:self.view];
     
@@ -411,11 +556,29 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:operation];
 }
-
+//保存数据
 -(void)saveData:(NSString *)imagename{
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:imagename forKey:@"avatar"];
+    
+    if (tag == 1) {//修改头像
+        [parameters setValue:imagename forKey:@"avatar"];
+    }else if (tag == 2){//添加照片
+        
+        NSString *imgs = [userinfo objectForKey:@"imgs"];
+        DLog(@"%@",imgs);
+        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        NSMutableArray *arr = [NSMutableArray arrayWithArray:imageArr];
+        DLog(@"%@",arr);
+        [arr addObject:imagename];
+        DLog(@"%@",arr);
+        NSString *str = [arr componentsJoinedByString:@","];
+        DLog(@"%@",str);
+        [parameters setValue:str forKey:@"imgs"];
+        
+    }
+    
+    
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATEUSER];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -462,9 +625,9 @@
          DLog(@"%lu",(unsigned long)data.length);
         choosedImage = [UIImage imageWithData:data];
         
-        if (tag == 1) {
-            [self uploadImage];
-        }
+        
+        [self uploadImage];
+        
         
 //        [self.chooseBtn setImage:choosedImage forState:UIControlStateNormal];
         
