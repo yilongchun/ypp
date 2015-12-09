@@ -9,6 +9,8 @@
 #import "DongtaiViewController.h"
 #import "DongtaiTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "NSDate+Addition.h"
+#import "NSDate+TimeAgo.h"
 
 @interface DongtaiViewController (){
     int page;
@@ -201,9 +203,21 @@
     if ([sex intValue] == 0) {
         [cell.sexImage setHidden:NO];
         [cell.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];
+        NSNumber *byear = [info objectForKey:@"byear"];
+        NSNumber *bmonth = [info objectForKey:@"bmonth"];
+        NSNumber *bday = [info objectForKey:@"bday"];
+        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
     }else if ([sex intValue] == 1){
         [cell.sexImage setHidden:NO];
         [cell.sexImage setImage:[UIImage imageNamed:@"usercell_boy"]];
+        NSNumber *byear = [info objectForKey:@"byear"];
+        NSNumber *bmonth = [info objectForKey:@"bmonth"];
+        NSNumber *bday = [info objectForKey:@"bday"];
+        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
     }else{
         [cell.sexImage setHidden:YES];
     }
@@ -211,7 +225,15 @@
     if (pic != nil && ![pic isEqualToString:@""]) {
         [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,pic]]];
     }
-    DLog(@"%@",info);
+    
+    NSNumber *distance = [info objectForKey:@"distance"];
+    NSString *dis = [NSString stringWithFormat:@"%.2fkm",[distance floatValue] / 1000];
+    
+    NSNumber *update_time = [info objectForKey:@"update_time"];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
+    
+    cell.otherLabel.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
+    
     return cell;
 }
 

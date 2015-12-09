@@ -47,6 +47,8 @@
 		444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A51C15217000D77C63 /* NSURL+Param.m */; };
 		444E58D51C15360900D77C63 /* DongtaiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58D41C15360900D77C63 /* DongtaiViewController.m */; };
 		444E58D81C1536B100D77C63 /* DongtaiTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */; };
+		4482F7F11C17F9E800A7A2D2 /* BirthdayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4482F7EF1C17F9E800A7A2D2 /* BirthdayViewController.m */; };
+		4482F7F21C17F9E800A7A2D2 /* BirthdayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4482F7F01C17F9E800A7A2D2 /* BirthdayViewController.xib */; };
 		449546E91C156480000C41C2 /* AccountTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546E81C156480000C41C2 /* AccountTableViewController.m */; };
 		449546EC1C156925000C41C2 /* PhoneBindTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546EB1C156925000C41C2 /* PhoneBindTableViewController.m */; };
 		449546EF1C156E93000C41C2 /* UpdatePhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546EE1C156E93000C41C2 /* UpdatePhoneViewController.m */; };
@@ -227,6 +229,9 @@
 		444E58D41C15360900D77C63 /* DongtaiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongtaiViewController.m; path = Tansuo/DongtaiViewController.m; sourceTree = "<group>"; };
 		444E58D61C1536B100D77C63 /* DongtaiTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DongtaiTableViewCell.h; path = Tansuo/DongtaiTableViewCell.h; sourceTree = "<group>"; };
 		444E58D71C1536B100D77C63 /* DongtaiTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DongtaiTableViewCell.m; path = Tansuo/DongtaiTableViewCell.m; sourceTree = "<group>"; };
+		4482F7EE1C17F9E800A7A2D2 /* BirthdayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BirthdayViewController.h; path = My/BirthdayViewController.h; sourceTree = "<group>"; };
+		4482F7EF1C17F9E800A7A2D2 /* BirthdayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BirthdayViewController.m; path = My/BirthdayViewController.m; sourceTree = "<group>"; };
+		4482F7F01C17F9E800A7A2D2 /* BirthdayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BirthdayViewController.xib; path = My/BirthdayViewController.xib; sourceTree = "<group>"; };
 		449546E71C156480000C41C2 /* AccountTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountTableViewController.h; path = My/AccountTableViewController.h; sourceTree = "<group>"; };
 		449546E81C156480000C41C2 /* AccountTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountTableViewController.m; path = My/AccountTableViewController.m; sourceTree = "<group>"; };
 		449546EA1C156925000C41C2 /* PhoneBindTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhoneBindTableViewController.h; path = My/PhoneBindTableViewController.h; sourceTree = "<group>"; };
@@ -680,6 +685,9 @@
 				44FB14F11C17C9E7009855DC /* EditMyInfoTextViewController.h */,
 				44FB14F21C17C9E7009855DC /* EditMyInfoTextViewController.m */,
 				44FB14F31C17C9E7009855DC /* EditMyInfoTextViewController.xib */,
+				4482F7EE1C17F9E800A7A2D2 /* BirthdayViewController.h */,
+				4482F7EF1C17F9E800A7A2D2 /* BirthdayViewController.m */,
+				4482F7F01C17F9E800A7A2D2 /* BirthdayViewController.xib */,
 				44E88D931C16ACDF007A80E5 /* setting */,
 			);
 			name = My;
@@ -1169,6 +1177,7 @@
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				44FB14F51C17C9E7009855DC /* EditMyInfoTextViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
+				4482F7F21C17F9E800A7A2D2 /* BirthdayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1244,6 +1253,7 @@
 				444E58BF1C15217000D77C63 /* NSObject+Runtime.m in Sources */,
 				5A35FB941C12B68400427364 /* IQTitleBarButtonItem.m in Sources */,
 				5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */,
+				4482F7F11C17F9E800A7A2D2 /* BirthdayViewController.m in Sources */,
 				444E58A81C15217000D77C63 /* NSBundle+AppIcon.m in Sources */,
 				5A2A763C1BE9C1FA00C5FD2F /* MainTabBarController.m in Sources */,
 				449546F91C157FC6000C41C2 /* AccountBindViewController.m in Sources */,

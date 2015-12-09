@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *numLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *hotImage;
 @property (weak, nonatomic) IBOutlet UILabel *jiedanNumLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ageLabel;
 
 @end

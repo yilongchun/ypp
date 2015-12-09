@@ -11,6 +11,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "EditMyInfoTextViewController.h"
 #import "Util.h"
+#import "BirthdayViewController.h"
+#import "NSDate+Addition.h"
 
 @interface EditMyInfoViewController (){
     NSDictionary *userinfo;
@@ -30,6 +32,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
+    
+    self.title = @"个人信息";
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loadUser)
@@ -171,12 +175,21 @@
                 break;
             case 3:{
                 cell2.textLabel.text = @"年龄";
-                cell2.detailTextLabel.text = @"未填写";
+                NSNumber *byear = [userinfo objectForKey:@"byear"];
+                NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+                NSNumber *bday = [userinfo objectForKey:@"bday"];
+                NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+                NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+                cell2.detailTextLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+//                cell2.detailTextLabel.text = @"未填写";
             }
                 break;
             case 4:{
                 cell2.textLabel.text = @"星座";
-                cell2.detailTextLabel.text = @"未填写";
+                NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+                NSNumber *bday = [userinfo objectForKey:@"bday"];
+                NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+                cell2.detailTextLabel.text = [NSString stringWithFormat:@"%@座",astro];
             }
                 break;
             case 5:{
@@ -248,6 +261,18 @@
             vc.column = @"name";
             NSString *user_name = [userinfo objectForKey:@"user_name"];
             vc.columnValue = user_name;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 3:
+        case 4:{
+            BirthdayViewController *vc = [[BirthdayViewController alloc]init];
+            
+            NSNumber *byear = [userinfo objectForKey:@"byear"];
+            NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+            NSNumber *bday = [userinfo objectForKey:@"bday"];
+            NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+            vc.birthday = birthday;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

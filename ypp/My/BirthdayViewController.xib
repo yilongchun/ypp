@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BirthdayViewController">
+            <connections>
+                <outlet property="agelabel" destination="IXU-jV-5aB" id="uce-KW-WiJ"/>
+                <outlet property="myPicker" destination="YmX-3Z-1KI" id="KyO-hb-8S9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="xingzuoLabel" destination="rAN-Xg-kFp" id="8U9-oh-cWN"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pse-Ev-Erp">
+                    <rect key="frame" x="15" y="15" width="34" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NyL-qe-aIR">
+                    <rect key="frame" x="15" y="67" width="34" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXU-jV-5aB">
+                    <rect key="frame" x="305" y="26" width="0.0" height="0.0"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEj-1w-HZQ">
+                    <rect key="frame" x="10" y="51" width="300" height="1"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="byx-sq-78Y"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey0-mg-gCc">
+                    <rect key="frame" x="10" y="103" width="300" height="1"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="SZZ-eI-gv1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="输入你的出生日期，系统会自动算出年龄和星座。你的出生日期将不会出现在个人资料里，此应用需要你年满12岁。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2h-cU-eZz">
+                    <rect key="frame" x="15" y="119" width="290" height="51"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YmX-3Z-1KI">
+                    <rect key="frame" x="0.0" y="288" width="320" height="216"/>
+                    <animations/>
+                    <date key="date" timeIntervalSinceReferenceDate="471333835.55903602">
+                        <!--2015-12-09 06:03:55 +0000-->
+                    </date>
+                </datePicker>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAN-Xg-kFp">
+                    <rect key="frame" x="305" y="78" width="0.0" height="0.0"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="HEj-1w-HZQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="1ZY-xH-sQn"/>
+                <constraint firstItem="H2h-cU-eZz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="6SY-OD-oRD"/>
+                <constraint firstItem="YmX-3Z-1KI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7lD-in-2BD"/>
+                <constraint firstItem="Pse-Ev-Erp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="BhQ-Zd-Baa"/>
+                <constraint firstItem="NyL-qe-aIR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="HsI-zv-wr6"/>
+                <constraint firstItem="ey0-mg-gCc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="JXi-Aa-Q28"/>
+                <constraint firstAttribute="trailing" secondItem="H2h-cU-eZz" secondAttribute="trailing" constant="15" id="JhD-vR-oon"/>
+                <constraint firstAttribute="bottom" secondItem="YmX-3Z-1KI" secondAttribute="bottom" id="KS9-Gm-Vfn"/>
+                <constraint firstAttribute="trailing" secondItem="ey0-mg-gCc" secondAttribute="trailing" constant="10" id="MdR-VY-IR0"/>
+                <constraint firstAttribute="trailing" secondItem="IXU-jV-5aB" secondAttribute="trailing" constant="15" id="PjN-5U-ZYD"/>
+                <constraint firstAttribute="trailing" secondItem="rAN-Xg-kFp" secondAttribute="trailing" constant="15" id="QfA-LL-8uf"/>
+                <constraint firstAttribute="trailing" secondItem="YmX-3Z-1KI" secondAttribute="trailing" id="Rb2-2O-S44"/>
+                <constraint firstItem="IXU-jV-5aB" firstAttribute="centerY" secondItem="Pse-Ev-Erp" secondAttribute="centerY" id="T7H-QR-6qa"/>
+                <constraint firstItem="NyL-qe-aIR" firstAttribute="top" secondItem="HEj-1w-HZQ" secondAttribute="bottom" constant="15" id="Ulx-2E-JQr"/>
+                <constraint firstItem="H2h-cU-eZz" firstAttribute="top" secondItem="ey0-mg-gCc" secondAttribute="bottom" constant="15" id="VoR-mS-BX6"/>
+                <constraint firstItem="HEj-1w-HZQ" firstAttribute="top" secondItem="Pse-Ev-Erp" secondAttribute="bottom" constant="15" id="ak2-Xs-vhE"/>
+                <constraint firstItem="ey0-mg-gCc" firstAttribute="top" secondItem="NyL-qe-aIR" secondAttribute="bottom" constant="15" id="jKM-AP-WNq"/>
+                <constraint firstAttribute="trailing" secondItem="HEj-1w-HZQ" secondAttribute="trailing" constant="10" id="pyq-rm-Jk2"/>
+                <constraint firstItem="rAN-Xg-kFp" firstAttribute="centerY" secondItem="NyL-qe-aIR" secondAttribute="centerY" id="sXW-gh-bnU"/>
+                <constraint firstItem="Pse-Ev-Erp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="tAs-hB-xdR"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="295" y="270"/>
+        </view>
+    </objects>
+</document>

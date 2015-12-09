@@ -13,6 +13,7 @@
 #import "AccountTableViewController.h"
 #import "MyInfoViewController.h"
 #import "SettingTableViewController.h"
+#import "EditMyInfoViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -198,9 +199,6 @@
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
         }
-        
-        
-        
     }
     
 }
@@ -208,7 +206,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 0) {
-        MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
+//        MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+        
+        EditMyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoViewController"];
         vc.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }

@@ -14,4 +14,6 @@
 
 + (NSMutableURLRequest *)postRequestWithParems:(NSURL *)url image: (UIImage *)image imageName: (NSString *)imagename;
 
++(NSString *)getAstroWithMonth:(int)m day:(int)d;
+
 @end
