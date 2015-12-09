@@ -817,14 +817,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="izN-29-Ek8">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入手机号" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="izN-29-Ek8">
                                 <rect key="frame" x="90" y="71" width="220" height="50"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="S7q-La-Xum"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhv-hn-aDK">
                                 <rect key="frame" x="10" y="121" width="300" height="1"/>
@@ -848,14 +848,14 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-05-dZG">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="iwi-05-dZG">
                                 <rect key="frame" x="90" y="122" width="220" height="50"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="A1o-4m-HrF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="My2-QQ-bP3">
                                 <rect key="frame" x="10" y="172" width="300" height="1"/>
@@ -875,7 +875,7 @@
                                     <constraint firstAttribute="height" constant="50" id="9qg-w8-qfk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jb-a8-Pai">
                                 <rect key="frame" x="170" y="176" width="130" height="44"/>
@@ -885,7 +885,10 @@
                                     <constraint firstAttribute="width" constant="130" id="rw6-kF-MmO"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="获取验证"/>
+                                <state key="normal" title="发送验证码"/>
+                                <connections>
+                                    <action selector="getCode:" destination="3zl-jR-g8G" eventType="touchUpInside" id="Yph-dv-Euh"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7Q-IQ-6l7">
                                 <rect key="frame" x="10" y="223" width="300" height="1"/>
@@ -906,6 +909,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="确认改绑"/>
+                                <connections>
+                                    <action selector="submit:" destination="3zl-jR-g8G" eventType="touchUpInside" id="4PN-Kk-Cmh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -949,8 +955,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="codeTextField" destination="ain-JR-B7J" id="QrO-zI-n7K"/>
                         <outlet property="getCodeBtn" destination="5jb-a8-Pai" id="C1e-Q4-ftW"/>
                         <outlet property="oldPhoneTextField" destination="hcU-t1-MIQ" id="BXH-bV-3h4"/>
+                        <outlet property="passwordTextField" destination="iwi-05-dZG" id="Fvg-PE-1Ee"/>
+                        <outlet property="phoneTextField" destination="izN-29-Ek8" id="Oez-sF-6VX"/>
                         <outlet property="submitBtn" destination="ZSC-sm-teS" id="bDA-Rj-U1l"/>
                     </connections>
                 </viewController>
