@@ -31,6 +31,10 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadUser)
+                                                 name:@"loadUser" object:nil];
+    
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 //    [self.mytableview registerClass:[MyInfoTableViewCell class] forCellReuseIdentifier:@"myimgcell"];
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -44,13 +48,53 @@
     
 //    self.mytableview.contentInset = UIEdgeInsetsMake(-1, 0, 0, 0);
     
-    
+    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadUser];
+    }];
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(qiandao)];
     [leftItem setTintColor:[UIColor whiteColor]];
     self.navigationItem.leftBarButtonItem = leftItem;
     
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
+}
+
+-(void)loadUser{
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [_mytableview.mj_header endRefreshing];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+                [_mytableview reloadData];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [_mytableview.mj_header endRefreshing];
+        [self showHint:@"连接失败"];
+    }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

@@ -65,6 +65,8 @@
 		44FB14E91C17B58A009855DC /* UIView+RGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14DF1C17B58A009855DC /* UIView+RGSize.m */; };
 		44FB14EA1C17B58A009855DC /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14E11C17B58A009855DC /* UIView+Screenshot.m */; };
 		44FB14EB1C17B58A009855DC /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14E31C17B58A009855DC /* UIView+Toast.m */; };
+		44FB14F41C17C9E7009855DC /* EditMyInfoTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14F21C17C9E7009855DC /* EditMyInfoTextViewController.m */; };
+		44FB14F51C17C9E7009855DC /* EditMyInfoTextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44FB14F31C17C9E7009855DC /* EditMyInfoTextViewController.xib */; };
 		5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */; };
 		5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76211BE9BA7F00C5FD2F /* main.m */; };
 		5A2A76251BE9BA7F00C5FD2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A76241BE9BA7F00C5FD2F /* AppDelegate.m */; };
@@ -261,6 +263,9 @@
 		44FB14E11C17B58A009855DC /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
 		44FB14E21C17B58A009855DC /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		44FB14E31C17B58A009855DC /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		44FB14F11C17C9E7009855DC /* EditMyInfoTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditMyInfoTextViewController.h; path = My/EditMyInfoTextViewController.h; sourceTree = "<group>"; };
+		44FB14F21C17C9E7009855DC /* EditMyInfoTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoTextViewController.m; path = My/EditMyInfoTextViewController.m; sourceTree = "<group>"; };
+		44FB14F31C17C9E7009855DC /* EditMyInfoTextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditMyInfoTextViewController.xib; path = My/EditMyInfoTextViewController.xib; sourceTree = "<group>"; };
 		5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell.h; sourceTree = "<group>"; };
 		5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell.m; sourceTree = "<group>"; };
 		5A2A761D1BE9BA7F00C5FD2F /* ypp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ypp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -672,6 +677,9 @@
 				449546FE1C158977000C41C2 /* EditMyInfoViewController.m */,
 				44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */,
 				44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */,
+				44FB14F11C17C9E7009855DC /* EditMyInfoTextViewController.h */,
+				44FB14F21C17C9E7009855DC /* EditMyInfoTextViewController.m */,
+				44FB14F31C17C9E7009855DC /* EditMyInfoTextViewController.xib */,
 				44E88D931C16ACDF007A80E5 /* setting */,
 			);
 			name = My;
@@ -1159,6 +1167,7 @@
 				444E58AE1C15217000D77C63 /* NSDateTimeAgo.bundle in Resources */,
 				5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
+				44FB14F51C17C9E7009855DC /* EditMyInfoTextViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1174,6 +1183,7 @@
 				5A35FB8B1C12B68400427364 /* IQUITextFieldView+Additions.m in Sources */,
 				5A35FB8E1C12B68400427364 /* IQUIWindow+Hierarchy.m in Sources */,
 				5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */,
+				44FB14F41C17C9E7009855DC /* EditMyInfoTextViewController.m in Sources */,
 				444E58C81C15217000D77C63 /* NSString+UUID.m in Sources */,
 				444E58C71C15217000D77C63 /* NSString+UrlEncode.m in Sources */,
 				444E58C31C15217000D77C63 /* NSString+Hash.m in Sources */,

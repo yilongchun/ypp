@@ -63,6 +63,23 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SETCARD @"app1/index.php?action=setcard"
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
+//用户详情
+#define API_GETUSERINFO @"app1/index.php?action=getuserinfo"
+//设置隐身模式
+#define API_UPDATESTATUS @"app1/index.php?action=updatestatus"
+//增加浏览量(热点)
+#define API_HOTCOUNT @"app1/index.php?action=hotcount"
+//申请成为游神
+#define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
+//关注
+#define API_FOCUSUSER @"app1/index.php?action=focususer"
+//动态点赞
+#define API_FAVTOPIC @"app1/index.php?action=favtopic"
+//动态分享
+#define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
+//动态回复
+#define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
+
 
 @interface Api : NSObject
 

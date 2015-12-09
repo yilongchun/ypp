@@ -9,6 +9,7 @@
 #import "EditMyInfoViewController.h"
 #import "EditMyInfoTableViewCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "EditMyInfoTextViewController.h"
 
 @interface EditMyInfoViewController (){
     NSDictionary *userinfo;
@@ -27,6 +28,10 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadUser)
+                                                 name:@"loadUser" object:nil];
+    
     //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
     //    [self.mytableview registerClass:[MyInfoTableViewCell class] forCellReuseIdentifier:@"myimgcell"];
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -38,7 +43,48 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
+    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self loadUser];
+    }];
+    
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
+}
+
+-(void)loadUser{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [_mytableview.mj_header endRefreshing];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == 200) {
+                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+                [_mytableview reloadData];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [_mytableview.mj_header endRefreshing];
+        [self showHint:@"连接失败"];
+    }];
 }
 
 
@@ -108,7 +154,12 @@
         switch (indexPath.row) {
             case 2:{
                 cell2.textLabel.text = @"名字";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *user_name = [userinfo objectForKey:@"user_name"];
+                if ([user_name isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = user_name;
+                }
             }
                 break;
             case 3:{
@@ -123,7 +174,12 @@
                 break;
             case 5:{
                 cell2.textLabel.text = @"个性签名";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *signature = [userinfo objectForKey:@"signature"];
+                if ([signature isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = signature;
+                }
             }
                 break;
             case 6:{
@@ -133,12 +189,22 @@
                 break;
             case 7:{
                 cell2.textLabel.text = @"公司";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *company = [userinfo objectForKey:@"company"];
+                if ([company isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = company;
+                }
             }
                 break;
             case 8:{
                 cell2.textLabel.text = @"学校";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *school = [userinfo objectForKey:@"school"];
+                if ([school isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = school;
+                }
             }
                 break;
             case 9:{
@@ -168,6 +234,47 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    switch (indexPath.row) {
+        case 2:{
+            EditMyInfoTextViewController *vc = [[EditMyInfoTextViewController alloc] init];
+            vc.title = @"名字";
+            vc.column = @"name";
+            NSString *user_name = [userinfo objectForKey:@"user_name"];
+            vc.columnValue = user_name;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 5:{
+            EditMyInfoTextViewController *vc = [[EditMyInfoTextViewController alloc] init];
+            vc.title = @"个性签名";
+            vc.column = @"signature";
+            NSString *signature = [userinfo objectForKey:@"signature"];
+            vc.columnValue = signature;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 7:{
+            EditMyInfoTextViewController *vc = [[EditMyInfoTextViewController alloc] init];
+            vc.title = @"公司";
+            vc.column = @"company";
+            NSString *company = [userinfo objectForKey:@"company"];
+            vc.columnValue = company;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 8:{
+            EditMyInfoTextViewController *vc = [[EditMyInfoTextViewController alloc] init];
+            vc.title = @"学校";
+            vc.column = @"school";
+            NSString *school = [userinfo objectForKey:@"school"];
+            vc.columnValue = school;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -194,6 +301,4 @@
     [self.navigationController.navigationBar setShadowImage:[[UIImage alloc]init]];
     self.navigationController.navigationBar.translucent = NO;
 }
-
-
 @end
