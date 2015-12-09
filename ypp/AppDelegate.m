@@ -40,11 +40,11 @@
     
     BOOL isLoggedIn;
     
-    if (account.length>=3 && password.length>=3) {
-        isLoggedIn = YES;
-    }else{
-        isLoggedIn = NO;
-    }
+//    if (account.length>=3 && password.length>=3) {
+//        isLoggedIn = YES;
+//    }else{
+//        isLoggedIn = NO;
+//    }
     
     NSString *storyboardId = isLoggedIn ? @"MainTabBarController" : @"initNc";
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

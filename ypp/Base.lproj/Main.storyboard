@@ -1403,6 +1403,9 @@
                                 <state key="normal" title="选择性别">
                                     <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="chooseSex:" destination="UWO-xM-xPO" eventType="touchUpInside" id="gC9-yS-Jt6"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="性别选择后不允许修改" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCg-lH-aAW">
                                 <rect key="frame" x="20" y="315" width="140" height="17"/>
@@ -1423,6 +1426,9 @@
                                 <state key="normal" title="1980-01-01">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="chooseBirthday:" destination="UWO-xM-xPO" eventType="touchUpInside" id="ZR1-jk-CIj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zs8-SE-Urn">
                                 <rect key="frame" x="110" y="40" width="100" height="100"/>
@@ -1458,11 +1464,72 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="birthdayBtn" destination="SCv-8H-6aj" id="PwV-iC-7sf"/>
                         <outlet property="chooseBtn" destination="zs8-SE-Urn" id="qqR-am-aAK"/>
+                        <outlet property="myPicker" destination="oIr-3Z-uZI" id="GLc-9Q-Y4L"/>
                         <outlet property="nameTextField" destination="UZe-qG-QL0" id="VYJ-dX-Rlw"/>
+                        <outlet property="pickerBgView" destination="vRi-dj-oqs" id="102-2T-hou"/>
+                        <outlet property="sexBtn" destination="R1q-Ys-XfV" id="nk2-iR-bsS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8eU-5N-Kbj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="vRi-dj-oqs">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-hH-y8m">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="39" id="JdF-A5-78e"/>
+                                <constraint firstAttribute="width" constant="60" id="wFb-fK-j82"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancel:" destination="UWO-xM-xPO" eventType="touchUpInside" id="kuS-pB-est"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqV-BB-cBI">
+                            <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Aep-uD-Sce"/>
+                                <constraint firstAttribute="height" constant="39" id="ZJV-Cu-ciV"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="确定">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ensure:" destination="UWO-xM-xPO" eventType="touchUpInside" id="5Ns-7u-JRj"/>
+                            </connections>
+                        </button>
+                        <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="oIr-3Z-uZI">
+                            <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="216" id="T5T-BT-oku"/>
+                            </constraints>
+                            <date key="date" timeIntervalSinceReferenceDate="457842290.107602">
+                                <!--2015-07-06 02:24:50 +0000-->
+                            </date>
+                        </datePicker>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="oIr-3Z-uZI" secondAttribute="trailing" id="W6a-td-iwv"/>
+                        <constraint firstItem="oIr-3Z-uZI" firstAttribute="leading" secondItem="vRi-dj-oqs" secondAttribute="leading" id="Zhq-YF-tek"/>
+                        <constraint firstItem="MOk-hH-y8m" firstAttribute="leading" secondItem="vRi-dj-oqs" secondAttribute="leading" id="kVA-H1-LAt"/>
+                        <constraint firstItem="IqV-BB-cBI" firstAttribute="top" secondItem="vRi-dj-oqs" secondAttribute="top" id="m2V-dM-te1"/>
+                        <constraint firstItem="MOk-hH-y8m" firstAttribute="top" secondItem="vRi-dj-oqs" secondAttribute="top" id="qkH-CJ-JEg"/>
+                        <constraint firstAttribute="trailing" secondItem="IqV-BB-cBI" secondAttribute="trailing" id="tFS-pm-oeO"/>
+                        <constraint firstItem="oIr-3Z-uZI" firstAttribute="top" secondItem="IqV-BB-cBI" secondAttribute="bottom" id="yzI-o4-V3t"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="-221" y="798"/>
         </scene>

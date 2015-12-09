@@ -9,10 +9,17 @@
 #import "Register3ViewController.h"
 #import "Util.h"
 #import "NSObject+Blocks.h"
+#import "NSDate+Addition.h"
 
 @interface Register3ViewController (){
     UIImage *choosedImage;
+    NSDate *date;
+    int sex;
 }
+
+@property (strong, nonatomic) IBOutlet UIDatePicker *myPicker;
+@property (strong, nonatomic) IBOutlet UIView *pickerBgView;
+@property (strong, nonatomic) UIView *maskView;
 
 @end
 
@@ -31,7 +38,61 @@
     
     self.nameTextField.leftViewMode = UITextFieldViewModeAlways;
     self.nameTextField.leftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 1)];
+    
+    self.myPicker.datePickerMode = UIDatePickerModeDate;
+    [self.myPicker setMaximumDate:[NSDate date]];
+    [self initView];
 }
+
+#pragma mark - init view
+- (void)initView {
+    
+    self.maskView = [[UIView alloc] initWithFrame:kScreen_Frame];
+    self.maskView.backgroundColor = [UIColor blackColor];
+    self.maskView.alpha = 0.3;
+    [self.maskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyPicker)]];
+    
+    self.pickerBgView.width = kScreen_Width;
+}
+
+#pragma mark - private method
+- (void)showMyPicker {
+    [self.view addSubview:self.maskView];
+    [self.view addSubview:self.pickerBgView];
+    self.maskView.alpha = 0.3;
+    self.pickerBgView.top = self.view.height;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.maskView.alpha = 0.3;
+        self.pickerBgView.bottom = self.view.height;
+    }];
+}
+
+- (void)hideMyPicker {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.maskView.alpha = 0;
+        self.pickerBgView.top = self.view.height;
+    } completion:^(BOOL finished) {
+        [self.maskView removeFromSuperview];
+        [self.pickerBgView removeFromSuperview];
+    }];
+}
+
+
+#pragma mark - xib click
+
+- (IBAction)cancel:(id)sender {
+    [self hideMyPicker];
+}
+
+- (IBAction)ensure:(id)sender {
+    date = self.myPicker.date;
+    NSString *dateS = [date dateWithFormat:@"yyyy-MM-dd"];
+    [self.birthdayBtn setTitle:dateS forState:UIControlStateNormal];
+    [self hideMyPicker];
+}
+
+
 
 -(void)save{
     [[IQKeyboardManager sharedManager] resignFirstResponder];
@@ -42,6 +103,14 @@
     }
     if ([_nameTextField.text isEqualToString:@""]) {
         [self showHint:@"请填写名字！"];
+        return;
+    }
+    if ([_sexBtn.currentTitle isEqualToString:@"选择性别"]) {
+        [self showHint:@"请选择性别！"];
+        return;
+    }
+    if (date == nil) {
+        [self showHint:@"请选择生日"];
         return;
     }
     
@@ -89,10 +158,10 @@
     [parameters setObject:_password forKey:@"password"];
     [parameters setObject:[NSNumber numberWithInt:0] forKey:@"invitecode"];
     [parameters setObject:_nameTextField.text forKey:@"name"];
-    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"sex"];
-    [parameters setObject:[NSNumber numberWithInt:1988] forKey:@"byear"];
-    [parameters setObject:[NSNumber numberWithInt:11] forKey:@"bmonth"];
-    [parameters setObject:[NSNumber numberWithInt:11] forKey:@"bday"];
+    [parameters setObject:[NSNumber numberWithInt:sex] forKey:@"sex"];
+    [parameters setObject:[NSNumber numberWithInt:[[date dateWithFormat:@"yyyy"] intValue]] forKey:@"byear"];
+    [parameters setObject:[NSNumber numberWithInt:[[date dateWithFormat:@"MM"] intValue]] forKey:@"bmonth"];
+    [parameters setObject:[NSNumber numberWithInt:[[date dateWithFormat:@"dd"] intValue]] forKey:@"bday"];
     [parameters setObject:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
     [parameters setObject:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
     
@@ -219,4 +288,29 @@
     //    }
 }
 
+- (IBAction)chooseSex:(id)sender {
+    
+    UIAlertController *sexAlert = [UIAlertController alertControllerWithTitle:@"请选择性别" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        sex = 1;
+        [self.sexBtn setTitle:@"男" forState:UIControlStateNormal];
+        [self.sexBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        sex = 0;
+        [self.sexBtn setTitle:@"女" forState:UIControlStateNormal];
+        [self.sexBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    }];
+    [sexAlert addAction:action1];
+    [sexAlert addAction:action2];
+    [self presentViewController:sexAlert animated:YES completion:^{
+        
+    }];
+    
+    
+}
+- (IBAction)chooseBirthday:(id)sender {
+    [self showMyPicker];
+}
 @end
