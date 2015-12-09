@@ -95,37 +95,40 @@
                 }
                 
                 NSString *imgs = [userinfo objectForKey:@"imgs"];
-                NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
                 CGFloat x = 8;
                 CGFloat width = (Main_Screen_Width - 40) / 4;
-                for (int i = 0; i < [imageArr count]; i++) {
-                    
-                    UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-                    [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-                    imageview.layer.masksToBounds = YES;
-                    imageview.layer.cornerRadius = 5.0;
-                    imageview.tag = i;
-                    imageview.userInteractionEnabled = YES;
-                    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
-                    [imageview addGestureRecognizer:tap];
-                    
-                    [cell.contentView addSubview:imageview];
-                    x += width + 8;
-                    DLog(@"添加图片");
-                }
                 
-                if ([imageArr count] < 4) {
+                if ([imgs isEqualToString:@""]) {
                     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
                     [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
                     [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
                     [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
                     [cell.contentView addSubview:btn];
-                    DLog(@"添加按钮");
+                }else{
+                    NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                    
+                    for (int i = 0; i < [imageArr count]; i++) {
+                        
+                        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+                        [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                        imageview.layer.masksToBounds = YES;
+                        imageview.layer.cornerRadius = 5.0;
+                        imageview.tag = i;
+                        imageview.userInteractionEnabled = YES;
+                        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
+                        [imageview addGestureRecognizer:tap];
+                        
+                        [cell.contentView addSubview:imageview];
+                        x += width + 8;
+                    }
+                    if ([imageArr count] < 4) {
+                        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+                        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+                        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+                        [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
+                        [cell.contentView addSubview:btn];
+                    }
                 }
-                
-                
-                
-                
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -564,16 +567,16 @@
     if (tag == 1) {//修改头像
         [parameters setValue:imagename forKey:@"avatar"];
     }else if (tag == 2){//添加照片
-        
         NSString *imgs = [userinfo objectForKey:@"imgs"];
-        DLog(@"%@",imgs);
-        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
-        NSMutableArray *arr = [NSMutableArray arrayWithArray:imageArr];
-        DLog(@"%@",arr);
+        NSMutableArray *arr;
+        if ([imgs isEqualToString:@""]) {
+            arr = [NSMutableArray array];
+        }else{
+            NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            arr = [NSMutableArray arrayWithArray:imageArr];
+        }
         [arr addObject:imagename];
-        DLog(@"%@",arr);
         NSString *str = [arr componentsJoinedByString:@","];
-        DLog(@"%@",str);
         [parameters setValue:str forKey:@"imgs"];
         
     }
