@@ -58,11 +58,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_GETUSERINFO @"app1/index.php?action=getuserinfo"
 //重新绑定新手机，更换账号
 #define API_UPDATEPHONE @"app1/index.php?action=updatephone"
+//绑定会员卡
+#define API_SETCARD @"app1/index.php?action=setcard"
 
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
-//绑定会员卡
-#define API_SETCARD @"app1/index.php?action=setcard"
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
 //设置隐身模式

@@ -123,19 +123,19 @@
     [[IQKeyboardManager sharedManager] resignFirstResponder];
     //验证手机号是否为空
     if (_phoneTextField.text == nil || [_phoneTextField.text isEqualToString:@""]) {
-        [self showHint:@"手机号不能为空！"];
+        [self showHint:@"手机号不能为空"];
         [_phoneTextField becomeFirstResponder];
         return;
     }
     //验证验证码是否为空
     if (_codeTextField.text == nil || [_codeTextField.text isEqualToString:@""]) {
-        [self showHint:@"验证码不能为空！"];
+        [self showHint:@"验证码不能为空"];
         [_codeTextField becomeFirstResponder];
         return;
     }
     
     if (![_codeTextField.text isEqualToString:[NSString stringWithFormat:@"%d",[code intValue]]]) {
-        [self showHint:@"验证码错误，请重新输入!"];
+        [self showHint:@"验证码错误，请重新输入"];
         return;
     }
     

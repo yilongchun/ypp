@@ -78,9 +78,14 @@
         
     }else{
         cell.textLabel.text = @"会员卡";
-        cell.detailTextLabel.text = @"未绑定";
+        
+        NSString *membershipcardnumber = [user objectForKey:@"membershipcardnumber"];
+        if (membershipcardnumber == nil || [membershipcardnumber isEqualToString:@""]) {
+            cell.detailTextLabel.text = @"未绑定";
+        }else{
+            cell.detailTextLabel.text = membershipcardnumber;
+        }
     }
-    
     return cell;
 }
 
