@@ -134,10 +134,10 @@
         return;
     }
     
-//    if (![_codeTextField.text isEqualToString:[NSString stringWithFormat:@"%d",[code intValue]]]) {
-//        [self showHint:@"验证码错误，请重新输入!"];
-//        return;
-//    }
+    if (![_codeTextField.text isEqualToString:[NSString stringWithFormat:@"%d",[code intValue]]]) {
+        [self showHint:@"验证码错误，请重新输入!"];
+        return;
+    }
     
     NSString *password = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_PASSWORD];
     if (![_passwordTextField.text isEqualToString:password]) {
@@ -171,6 +171,9 @@
             if ([status intValue] == 200) {
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
+                [[NSNotificationCenter defaultCenter]
+                 postNotificationName:@"loadUser" object:nil userInfo:[NSDictionary dictionaryWithObject:@"refershPhone" forKey:@"refershPhone"]];
+                
                 [self performBlock:^{
                     [self.navigationController popViewControllerAnimated:YES];
                 } afterDelay:1.5];

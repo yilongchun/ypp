@@ -30,12 +30,12 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //已登录账号密码
 #define LOGINED_PHONE @"loginedPhone"
 #define LOGINED_PASSWORD @"loginedPassword"
-
 //已登录用户
 #define LOGINED_USER @"loginedUser"
+
 //服务器地址
 #define HOST @"http://oa.hcyj.net/"
-//图片文件夹
+//图片文件夹路径
 #define PIC_PATH @"app1/uploads/"
 
 //发送短信验证码
@@ -56,11 +56,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
 //用户详情
 #define API_GETUSERINFO @"app1/index.php?action=getuserinfo"
+//重新绑定新手机，更换账号
+#define API_UPDATEPHONE @"app1/index.php?action=updatephone"
 
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
-//重新绑定新手机，更换账号
-#define API_UPDATEPHONE @"app1/index.php?action=updatephone"
 //绑定会员卡
 #define API_SETCARD @"app1/index.php?action=setcard"
 //绑定YY账号

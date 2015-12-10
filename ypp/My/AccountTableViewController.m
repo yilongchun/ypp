@@ -27,8 +27,17 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(refershPhone)
+                                                 name:@"refershPhone" object:nil];
+    
     user = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
     
+}
+
+-(void)refershPhone{
+    user = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {

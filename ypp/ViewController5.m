@@ -33,7 +33,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(loadUser)
+                                             selector:@selector(loadUser:)
                                                  name:@"loadUser" object:nil];
     
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -50,7 +50,7 @@
 //    self.mytableview.contentInset = UIEdgeInsetsMake(-1, 0, 0, 0);
     
     _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadUser];
+        [self loadUser:nil];
     }];
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"签到" style:UIBarButtonItemStylePlain target:self action:@selector(qiandao)];
@@ -60,7 +60,7 @@
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
 }
 
--(void)loadUser{
+-(void)loadUser:(NSNotification *)text{
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
@@ -86,6 +86,11 @@
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
                 [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
                 [_mytableview reloadData];
+                
+                if ([text.userInfo[@"refershPhone"] isEqualToString:@"refershPhone"]) {
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"refershPhone" object:nil];
+                }
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
