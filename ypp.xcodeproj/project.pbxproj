@@ -59,6 +59,8 @@
 		449546FF1C158977000C41C2 /* EditMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546FE1C158977000C41C2 /* EditMyInfoViewController.m */; };
 		44E88D921C1687CA007A80E5 /* EditMyInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */; };
 		44E88DA01C16AD85007A80E5 /* SettingTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */; };
+		44EEF5E91C19156600050956 /* UserStatusTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44EEF5E71C19156600050956 /* UserStatusTableViewController.m */; };
+		44EEF5EA1C19156600050956 /* UserStatusTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44EEF5E81C19156600050956 /* UserStatusTableViewController.xib */; };
 		44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */; };
 		44FB14E51C17B58A009855DC /* UIView+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D71C17B58A009855DC /* UIView+Debug.m */; };
 		44FB14E61C17B58A009855DC /* UIView+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D91C17B58A009855DC /* UIView+Find.m */; };
@@ -252,6 +254,9 @@
 		44E88D911C1687CA007A80E5 /* EditMyInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoTableViewCell.m; path = My/EditMyInfoTableViewCell.m; sourceTree = "<group>"; };
 		44E88D9E1C16AD85007A80E5 /* SettingTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingTableViewController.h; sourceTree = "<group>"; };
 		44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingTableViewController.m; sourceTree = "<group>"; };
+		44EEF5E61C19156600050956 /* UserStatusTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserStatusTableViewController.h; sourceTree = "<group>"; };
+		44EEF5E71C19156600050956 /* UserStatusTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserStatusTableViewController.m; sourceTree = "<group>"; };
+		44EEF5E81C19156600050956 /* UserStatusTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserStatusTableViewController.xib; sourceTree = "<group>"; };
 		44FB14D41C17B58A009855DC /* UIView+BlockGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlockGesture.h"; sourceTree = "<group>"; };
 		44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlockGesture.m"; sourceTree = "<group>"; };
 		44FB14D61C17B58A009855DC /* UIView+Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Debug.h"; sourceTree = "<group>"; };
@@ -707,6 +712,9 @@
 			children = (
 				44E88D9E1C16AD85007A80E5 /* SettingTableViewController.h */,
 				44E88D9F1C16AD85007A80E5 /* SettingTableViewController.m */,
+				44EEF5E61C19156600050956 /* UserStatusTableViewController.h */,
+				44EEF5E71C19156600050956 /* UserStatusTableViewController.m */,
+				44EEF5E81C19156600050956 /* UserStatusTableViewController.xib */,
 			);
 			name = setting;
 			path = My/setting;
@@ -1175,6 +1183,7 @@
 				444E58AE1C15217000D77C63 /* NSDateTimeAgo.bundle in Resources */,
 				5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
+				44EEF5EA1C19156600050956 /* UserStatusTableViewController.xib in Resources */,
 				44FB14F51C17C9E7009855DC /* EditMyInfoTextViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				4482F7F21C17F9E800A7A2D2 /* BirthdayViewController.xib in Resources */,
@@ -1190,6 +1199,7 @@
 			files = (
 				444E58B41C15217000D77C63 /* NSException+Trace.m in Sources */,
 				5A35FB8B1C12B68400427364 /* IQUITextFieldView+Additions.m in Sources */,
+				44EEF5E91C19156600050956 /* UserStatusTableViewController.m in Sources */,
 				5A35FB8E1C12B68400427364 /* IQUIWindow+Hierarchy.m in Sources */,
 				5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */,
 				44FB14F41C17C9E7009855DC /* EditMyInfoTextViewController.m in Sources */,

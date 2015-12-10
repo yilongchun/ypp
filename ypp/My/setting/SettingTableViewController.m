@@ -7,6 +7,7 @@
 //
 
 #import "SettingTableViewController.h"
+#import "UserStatusTableViewController.h"
 
 @interface SettingTableViewController ()
 
@@ -48,6 +49,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 1) {
+        UserStatusTableViewController *vc = [[UserStatusTableViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     if (indexPath.row == 3) {
         
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"确定退出登录吗?" preferredStyle:UIAlertControllerStyleAlert];
