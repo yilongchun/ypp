@@ -15,8 +15,9 @@
 
 @interface DongtaiDetailViewController ()
 
-@property (strong, nonatomic) IBOutlet UIView *keyboardBackview;
+@property (strong, nonatomic) UIView *keyboardBackview;
 @property (nonatomic, strong) UITextField *mytextfield;
+@property (nonatomic, strong) UIButton *button;
 
 @end
 
@@ -72,16 +73,21 @@
     self.mytextfield.font = [UIFont fontWithName:@"Arial" size:15.0f];
     self.mytextfield.clearButtonMode = UITextFieldViewModeAlways;
     self.mytextfield.returnKeyType = UIReturnKeyDefault;
+    
+    
+    [self.mytextfield addTarget:self action:@selector(textFieldChanged:) forControlEvents:UIControlEventEditingChanged];
+    
     [self.keyboardBackview addSubview:self.mytextfield];
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    button.frame = CGRectMake(Main_Screen_Width - 50, 6, 50, 32);
-    [button setTitle:@"发送" forState:0];
-    [self.keyboardBackview  addSubview:button];
-    button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    [button addTarget:self action:@selector(sendMess) forControlEvents:UIControlEventTouchUpInside];
+    self.button = [UIButton buttonWithType:UIButtonTypeSystem];
+    self.button.frame = CGRectMake(Main_Screen_Width - 50, 6, 50, 32);
+    [self.button setTitle:@"发送" forState:0];
+    [self.keyboardBackview  addSubview:self.button];
+    self.button.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [self.button addTarget:self action:@selector(sendMess) forControlEvents:UIControlEventTouchUpInside];
+    self.button.enabled = NO;
     
     
-    
+    DLog(@"%@",info);
 }
 
 -(void)hideKeyboard{
@@ -177,6 +183,66 @@
 
 -(void)sendMess{
     [self hideKeyboard];
+    
+    if ([self.mytextfield.text isEqualToString:@""]) {
+        [self showHint:@"请输入内容"];
+        return;
+    }
+    
+    [self showHudInView:self.view];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:_mytextfield.text forKey:@"content"];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
+    [parameters setValue:[info objectForKey:@"id"] forKey:@"topicid"];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"user_name"]] forKey:@"username"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHud];
+//        [_mytableview.mj_header endRefreshing];
+//        [_mytableview.mj_footer resetNoMoreData];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                
+//                NSArray *array = [dic objectForKey:@"message"];
+//                
+//                [dataSource removeAllObjects];
+//                [dataSource addObjectsFromArray:array];
+//                [_mytableview reloadData];
+                
+                _mytextfield.text = @"";
+                [_mytableview reloadData];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+
+-(void)textFieldChanged:(UITextField *)textField{
+    if ([textField.text isEqualToString:@""]) {
+        self.button.enabled = NO;
+    }else{
+        self.button.enabled = YES;
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated{
