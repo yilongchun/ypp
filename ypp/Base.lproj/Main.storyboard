@@ -319,6 +319,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="ageLabel" destination="9Qv-sN-LRg" id="3gZ-6X-0eD"/>
                                             <outlet property="bigImage" destination="tup-9r-KUL" id="BeO-L9-vYT"/>
                                             <outlet property="btn1" destination="wLt-w0-ZlH" id="aDw-Fy-QtG"/>
                                             <outlet property="btn2" destination="gYo-90-nIo" id="8Zm-bZ-ACp"/>

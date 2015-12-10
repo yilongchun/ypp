@@ -199,6 +199,8 @@
     NSString *pic = [info objectForKey:@"pic"];
     
     [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    cell.userImage.layer.masksToBounds = YES;
+    cell.userImage.layer.cornerRadius = 5;
     cell.username.text = user_name;
     if ([sex intValue] == 0) {
         [cell.sexImage setHidden:NO];
@@ -234,7 +236,41 @@
     
     cell.otherLabel.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
     
+    
+    cell.btn1.tag = indexPath.row;
+    cell.btn2.tag = indexPath.row;
+    cell.btn3.tag = indexPath.row;
+    cell.btn4.tag = indexPath.row;
+    
+    [cell.btn1 addTarget:self action:@selector(action1:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btn2 addTarget:self action:@selector(action2:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btn3 addTarget:self action:@selector(action3:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btn4 addTarget:self action:@selector(action4:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+    
     return cell;
+}
+//回复
+-(void)action1:(UIButton *)btn{
+    
+}
+//打赏
+-(void)action2:(UIButton *)btn{
+    
+}
+//点赞
+-(void)action3:(UIButton *)btn{
+    DLog(@"tag\t%ld",(long)btn.tag);
+    
+//    [btn setTitle:@"(1)" forState:UIControlStateNormal];
+//    [btn setImage:[UIImage imageNamed:@"dongtailist_heart_full"] forState:UIControlStateNormal];
+}
+//分享
+-(void)action4:(UIButton *)btn{
+    
 }
 
 

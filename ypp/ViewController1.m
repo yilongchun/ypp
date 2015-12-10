@@ -77,7 +77,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
 //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"near_close"];
-//    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    [parameters setObject:[NSNumber numberWithInt:_type] forKey:@"type"];
 //    [parameters setObject:[NSNumber numberWithInt:1] forKey:@"sex"];
 //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"price"];
 //    [parameters setObject:@"" forKey:@"address"];
@@ -131,7 +131,7 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"near_close"];
-    //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"type"];
+    [parameters setObject:[NSNumber numberWithInt:_type] forKey:@"type"];
     //    [parameters setObject:[NSNumber numberWithInt:1] forKey:@"sex"];
     //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"price"];
     //    [parameters setObject:@"" forKey:@"address"];
@@ -235,6 +235,13 @@
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
     
     cell.otherInfo.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
+    
+    NSNumber *hotcount = [info objectForKey:@"hotcount"];
+    if (hotcount != nil) {
+        cell.numLabel.text = [NSString stringWithFormat:@"%d",[hotcount intValue]];
+    }else{
+        cell.numLabel.text = @"0";
+    }
     return cell;
 }
 

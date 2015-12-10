@@ -15,5 +15,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+@property int type;
 
 @end
