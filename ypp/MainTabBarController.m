@@ -37,9 +37,11 @@
     }
     
     //去除阴影线
-    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
-    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
-    [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:0.98 alpha:1]];
+//    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
+//    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
+//    [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:0.98 alpha:1]];
+    
+    [self addCenterButtonWithImage:[UIImage imageNamed:@"yue"] highlightImage:[UIImage imageNamed:@"yue"]];
     
     self.delegate = self;
     
@@ -51,8 +53,8 @@
     UIImage *img2 = [UIImage imageNamed:@"t0.png"];
     UIImage *img2_h = [UIImage imageNamed:@"t0h"];
     
-    UIImage *img3 = [UIImage imageNamed:@"yue.png"];
-    UIImage *img3_h = [UIImage imageNamed:@"yue"];
+    UIImage *img3 = [UIImage imageNamed:@""];
+    UIImage *img3_h = [UIImage imageNamed:@""];
     
     UIImage *img4 = [UIImage imageNamed:@"t3.png"];
     UIImage *img4_h = [UIImage imageNamed:@"t3h"];
@@ -259,6 +261,41 @@
 -(void)shaixuan{
     NSLog(@"筛选");
     
+}
+
+#pragma mark - myaction
+
+// Create a custom UIButton and add it to the center of our tab bar
+-(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
+{
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
+    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
+    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+    
+    CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
+    if (heightDifference < 0)
+        button.center = self.tabBar.center;
+    else
+    {
+        CGPoint center = self.tabBar.center;
+        center.y = center.y - heightDifference/2.0;
+        button.center = center;
+    }
+    [self.view addSubview:button];
+    [button addTarget:self action:@selector(doAction) forControlEvents:UIControlEventTouchUpInside];
+}
+//中间按钮点击事件
+-(void)doAction{
+    //发布约玩
+    FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+    nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+    [self presentViewController:nc animated:YES completion:^{
+        
+    }];
 }
 
 @end
