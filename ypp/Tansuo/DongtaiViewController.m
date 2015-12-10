@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+Addition.h"
 #import "NSDate+TimeAgo.h"
+#import "DongtaiDetailViewController.h"
 
 @interface DongtaiViewController (){
     int page;
@@ -247,15 +248,25 @@
     [cell.btn3 addTarget:self action:@selector(action3:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn4 addTarget:self action:@selector(action4:) forControlEvents:UIControlEventTouchUpInside];
     
+    //点赞数
+    NSNumber *fav_count = [info objectForKey:@"fav_count"];
+    [cell.btn3 setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue]] forState:UIControlStateNormal];
+    [cell.btn3 setImage:[UIImage imageNamed:@"dongtailist_heart_empty"] forState:UIControlStateNormal];
     
     
     
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self showDetail:indexPath.row];
+}
+
 //回复
 -(void)action1:(UIButton *)btn{
-    
+    [self showDetail:btn.tag];
 }
 //打赏
 -(void)action2:(UIButton *)btn{
@@ -263,14 +274,56 @@
 }
 //点赞
 -(void)action3:(UIButton *)btn{
-    DLog(@"tag\t%ld",(long)btn.tag);
     
-//    [btn setTitle:@"(1)" forState:UIControlStateNormal];
-//    [btn setImage:[UIImage imageNamed:@"dongtailist_heart_full"] forState:UIControlStateNormal];
+    NSDictionary *info = [dataSource objectAtIndex:btn.tag];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
+    [parameters setValue:[info objectForKey:@"id"] forKey:@"topicid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_FAVTOPIC];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                
+                NSNumber *fav_count = [info objectForKey:@"fav_count"];
+                [btn setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue] + 1] forState:UIControlStateNormal];
+                [btn setImage:[UIImage imageNamed:@"dongtailist_heart_full"] forState:UIControlStateNormal];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self showHint:@"连接失败"];
+    }];
+
+    
 }
 //分享
 -(void)action4:(UIButton *)btn{
     
+}
+
+-(void)showDetail:(NSInteger)index{
+    NSDictionary *info = [[dataSource objectAtIndex:index] cleanNull];
+    DongtaiDetailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiDetailViewController"];
+    vc.info = info;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 
