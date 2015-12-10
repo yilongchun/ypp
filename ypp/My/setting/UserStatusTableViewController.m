@@ -163,7 +163,7 @@
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
     [parameters setValue:status forKey:@"status"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATESTATUS];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
