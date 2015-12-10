@@ -80,7 +80,7 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
                 [self performBlock:^{

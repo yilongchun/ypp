@@ -99,7 +99,7 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 [self startTime];
                 code = [dic objectForKey:@"code"];
                 NSString *message = [dic objectForKey:@"message"];
@@ -175,7 +175,7 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
                 [[NSNotificationCenter defaultCenter]

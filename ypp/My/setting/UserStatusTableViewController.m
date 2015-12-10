@@ -58,11 +58,12 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 userinfo = [[dic objectForKey:@"message"] cleanNull];
                 [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
                 [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
                 [self.tableView reloadData];
+                [self hideHud];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -97,15 +98,17 @@
         [cell.detailTextLabel setTextColor:[UIColor darkGrayColor]];
     }
     
-    NSString *status = [userinfo objectForKey:@"status"];
+    NSString *userstatus = [userinfo objectForKey:@"userstatus"];
     
     switch (indexPath.row) {
         case 0:{
             cell.textLabel.text = @"对所有人可见";
             [cell.textLabel setTextColor:RGB(98, 194, 237)];
             cell.detailTextLabel.text = @"对所有人显示距离";
-            if (status != nil && [status intValue] == 0) {
+            if (userstatus != nil && [userstatus intValue] == 0) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
             break;
@@ -113,16 +116,20 @@
             cell.textLabel.text = @"对好友可见";
             [cell.textLabel setTextColor:RGB(241, 175, 97)];
             cell.detailTextLabel.text = @"不出现在附近列表，减少陌生人消息";
-            if (status != nil && [status intValue] == 1) {
+            if (userstatus != nil && [userstatus intValue] == 1) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
             break;
         case 2:{
             cell.textLabel.text = @"对所有人隐身";
             cell.detailTextLabel.text = @"隐身模式，关闭距离";
-            if (status != nil && [status intValue] == 2) {
+            if (userstatus != nil && [userstatus intValue] == 2) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            }else{
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
         }
             break;
@@ -136,32 +143,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *status = [userinfo objectForKey:@"status"];
+    NSString *userstatus = [userinfo objectForKey:@"userstatus"];
     
     if (indexPath.row == 0) {
-        if (status != nil && [status intValue] != 0) {
+        if (userstatus != nil && [userstatus intValue] != 0) {
             [self setStatus:@"0"];
         }
     }
     if (indexPath.row == 1) {
-        if (status != nil && [status intValue] != 1) {
+        if (userstatus != nil && [userstatus intValue] != 1) {
             [self setStatus:@"1"];
         }
     }
     if (indexPath.row == 2) {
-        if (status != nil && [status intValue] != 2) {
+        if (userstatus != nil && [userstatus intValue] != 2) {
             [self setStatus:@"2"];
         }
     }
 }
 
--(void)setStatus:(NSString *)status{
+-(void)setStatus:(NSString *)userstatus{
     
     [self showHudInView:self.view];
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:status forKey:@"status"];
+    [parameters setValue:userstatus forKey:@"userstatus"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATESTATUS];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -169,7 +176,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self hideHud];
+        
         NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -177,11 +184,13 @@
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         if (dic == nil) {
             NSLog(@"json parse failed \r\n");
+            [self hideHud];
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 [self loadUser];
             }else{
+                [self hideHud];
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
             }

@@ -80,7 +80,7 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 
                 NSArray *array = [dic objectForKey:@"message"];
                 
@@ -126,7 +126,7 @@
             NSLog(@"json parse failed \r\n");
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == 200) {
+            if ([status intValue] == ResultCodeSuccess) {
                 [_mytableview.mj_footer endRefreshing];
                 NSArray *array = [dic objectForKey:@"message"];
                 [dataSource addObjectsFromArray:array];
