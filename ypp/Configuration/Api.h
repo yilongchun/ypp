@@ -70,9 +70,12 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_STORELIST @"app1/index.php?action=storelist"
 //行业列表
 #define API_HANGYE @"app1/index.php?action=hys"
-
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
+
+//动态回复
+#define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
+
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
 //增加浏览量(热点)
@@ -81,11 +84,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //关注
 #define API_FOCUSUSER @"app1/index.php?action=focususer"
-
 //动态分享
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
-//动态回复
-#define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
 //活动列表
 #define API_EVENTLIST @"app1/index.php?action=eventlist"
 //创建群组
