@@ -302,7 +302,7 @@
 //        button.center = center;
         
         CGPoint center = self.tabBar.center;
-        center.y = self.tabBar.frame.size.height / 2 - (buttonImage.size.height - self.tabBar.frame.size.height)*0.5;
+        center.y = self.tabBar.frame.size.height / 2 - (buttonImage.size.height - self.tabBar.frame.size.height)*0.5 ;
         button.center = center;
     }
     [button addTarget:self action:@selector(doAction) forControlEvents:UIControlEventTouchUpInside];

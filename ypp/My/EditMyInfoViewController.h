@@ -11,5 +11,6 @@
 @interface EditMyInfoViewController : UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+@property (strong, nonatomic) NSDictionary *userinfo;
 
 @end

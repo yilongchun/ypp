@@ -1900,8 +1900,53 @@
                                 <animations/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" textLabel="F71-cE-z2C" detailTextLabel="okc-Hz-YQ9" style="IBUITableViewCellStyleValue1" id="Rrx-fN-h58">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell2" id="KO5-Vw-D8p" customClass="MyInfoTableViewCell2">
                                         <rect key="frame" x="0.0" y="50" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KO5-Vw-D8p" id="8bk-wS-mie">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usercell_girl" translatesAutoresizingMaskIntoConstraints="NO" id="Jxu-i4-Ooc">
+                                                    <rect key="frame" x="15" y="15" width="33" height="14"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckt-Sm-3Nt">
+                                                    <rect key="frame" x="27" y="15" width="21" height="14"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="757-oA-4R8">
+                                                    <rect key="frame" x="58" y="22" width="0.0" height="0.0"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <constraints>
+                                                <constraint firstItem="ckt-Sm-3Nt" firstAttribute="bottom" secondItem="Jxu-i4-Ooc" secondAttribute="bottom" id="1q8-Qx-YnR"/>
+                                                <constraint firstItem="ckt-Sm-3Nt" firstAttribute="leading" secondItem="Jxu-i4-Ooc" secondAttribute="leading" constant="12" id="H0Y-Kb-jPm"/>
+                                                <constraint firstItem="Jxu-i4-Ooc" firstAttribute="leading" secondItem="8bk-wS-mie" secondAttribute="leading" constant="15" id="Kce-mx-F3T"/>
+                                                <constraint firstItem="ckt-Sm-3Nt" firstAttribute="top" secondItem="Jxu-i4-Ooc" secondAttribute="top" id="M7N-Ff-TEM"/>
+                                                <constraint firstAttribute="bottom" secondItem="Jxu-i4-Ooc" secondAttribute="bottom" constant="14" id="aWX-Jc-mcS"/>
+                                                <constraint firstItem="757-oA-4R8" firstAttribute="centerY" secondItem="Jxu-i4-Ooc" secondAttribute="centerY" id="hzH-gg-iiB"/>
+                                                <constraint firstItem="ckt-Sm-3Nt" firstAttribute="trailing" secondItem="Jxu-i4-Ooc" secondAttribute="trailing" id="iAV-lD-gv9"/>
+                                                <constraint firstItem="757-oA-4R8" firstAttribute="leading" secondItem="Jxu-i4-Ooc" secondAttribute="trailing" constant="10" id="r2p-UQ-ddO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <animations/>
+                                        <connections>
+                                            <outlet property="age" destination="ckt-Sm-3Nt" id="FWL-QR-ygc"/>
+                                            <outlet property="sexImage" destination="Jxu-i4-Ooc" id="V6V-39-YNf"/>
+                                            <outlet property="xingzuo" destination="757-oA-4R8" id="QAB-TC-hG0"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell1" textLabel="F71-cE-z2C" detailTextLabel="okc-Hz-YQ9" style="IBUITableViewCellStyleValue1" id="Rrx-fN-h58">
+                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Rrx-fN-h58" id="zis-cL-ixc">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1924,35 +1969,6 @@
                                                 </label>
                                             </subviews>
                                             <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell2" id="KO5-Vw-D8p">
-                                        <rect key="frame" x="0.0" y="94" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KO5-Vw-D8p" id="8bk-wS-mie">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usercell_girl" translatesAutoresizingMaskIntoConstraints="NO" id="Jxu-i4-Ooc">
-                                                    <rect key="frame" x="15" y="15" width="33" height="14"/>
-                                                    <animations/>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星座" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="757-oA-4R8">
-                                                    <rect key="frame" x="58" y="12" width="32" height="20"/>
-                                                    <animations/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <animations/>
-                                            <constraints>
-                                                <constraint firstItem="Jxu-i4-Ooc" firstAttribute="leading" secondItem="8bk-wS-mie" secondAttribute="leading" constant="15" id="Kce-mx-F3T"/>
-                                                <constraint firstItem="757-oA-4R8" firstAttribute="centerY" secondItem="8bk-wS-mie" secondAttribute="centerY" id="PAe-oU-Bdh"/>
-                                                <constraint firstItem="757-oA-4R8" firstAttribute="leading" secondItem="Jxu-i4-Ooc" secondAttribute="trailing" constant="10" id="r2p-UQ-ddO"/>
-                                                <constraint firstItem="Jxu-i4-Ooc" firstAttribute="centerY" secondItem="8bk-wS-mie" secondAttribute="centerY" id="xQj-7u-zG7"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                     </tableViewCell>

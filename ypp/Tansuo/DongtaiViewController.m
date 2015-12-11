@@ -279,7 +279,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:[info objectForKey:@"id"] forKey:@"topicid"];
+    [parameters setValue:[info objectForKey:@"topicid"] forKey:@"topicid"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_FAVTOPIC];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

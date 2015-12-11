@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		44000BF01C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 44000BEF1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m */; };
 		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
 		444E58A61C15217000D77C63 /* NSArray+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584C1C15217000D77C63 /* NSArray+Block.m */; };
 		444E58A71C15217000D77C63 /* NSArray+SafeAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584E1C15217000D77C63 /* NSArray+SafeAccess.m */; };
@@ -153,6 +154,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		44000BEE1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyInfoTableViewCell2.h; path = My/MyInfoTableViewCell2.h; sourceTree = "<group>"; };
+		44000BEF1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyInfoTableViewCell2.m; path = My/MyInfoTableViewCell2.m; sourceTree = "<group>"; };
 		444E58441C15154C00D77C63 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		444E58461C15164F00D77C63 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Api.h; path = Configuration/Api.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		444E58471C15164F00D77C63 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = Configuration/Api.m; sourceTree = "<group>"; };
@@ -693,6 +696,8 @@
 				449546F81C157FC6000C41C2 /* AccountBindViewController.m */,
 				449546FA1C158329000C41C2 /* MyInfoViewController.h */,
 				449546FB1C158329000C41C2 /* MyInfoViewController.m */,
+				44000BEE1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.h */,
+				44000BEF1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m */,
 				449546FD1C158977000C41C2 /* EditMyInfoViewController.h */,
 				449546FE1C158977000C41C2 /* EditMyInfoViewController.m */,
 				44E88D901C1687CA007A80E5 /* EditMyInfoTableViewCell.h */,
@@ -1284,6 +1289,7 @@
 				44FB14E71C17B58A009855DC /* UIView+Frame.m in Sources */,
 				449546F21C1578F7000C41C2 /* FabudongtaiViewController.m in Sources */,
 				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
+				44000BF01C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m in Sources */,
 				5A35FB821C12B68400427364 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				5A35FB841C12B68400427364 /* UIAlertView+AFNetworking.m in Sources */,
 				449546FF1C158977000C41C2 /* EditMyInfoViewController.m in Sources */,

@@ -8,8 +8,15 @@
 
 #import "MyInfoViewController.h"
 #import "EditMyInfoViewController.h"
+#import "Util.h"
+#import "BirthdayViewController.h"
+#import "NSDate+Addition.h"
+#import "MyInfoTableViewCell2.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface MyInfoViewController ()
+@interface MyInfoViewController (){
+    NSDictionary *userinfo;
+}
 
 @end
 
@@ -18,6 +25,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadUser)
+                                                 name:@"loadUser" object:nil];
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStyleDone target:self action:@selector(edit)];
     [rightItem setTintColor:[UIColor whiteColor]];
@@ -39,11 +50,87 @@
     }
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
+    
+//    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [self loadUser];
+//    }];
+    
+    [self loadUser];
+}
+
+-(void)loadUser{
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [_mytableview.mj_header endRefreshing];
+        [self hideHud];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+                [_mytableview reloadData];
+                [self addImages];
+                
+
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+//        [_mytableview.mj_header endRefreshing];
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+
+-(void)addImages{
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+        MyInfoTableViewCell2 *cell = [_mytableview cellForRowAtIndexPath:indexpath];
+        for (UIView *view in cell.contentView.subviews) {
+            if ([view isKindOfClass:[UIImageView class]] && view.tag != 999) {
+                [view removeFromSuperview];
+            }
+        }
+
+        NSString *imgs = [userinfo objectForKey:@"imgs"];
+        CGFloat x = 8;
+        CGFloat width = (Main_Screen_Width - 40) / 4;
+
+        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+
+        for (int i = 0; i < [imageArr count]; i++) {
+
+            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+            imageview.layer.masksToBounds = YES;
+            imageview.layer.cornerRadius = 5.0;
+            [cell.contentView addSubview:imageview];
+            x += width + 8;
+        }
+    
 }
 
 -(void)edit{
-    DLog(@"");
     EditMyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoViewController"];
+    vc.userinfo = userinfo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -60,7 +147,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        return 44;
+        CGFloat width = (Main_Screen_Width - 40) / 4;
+        return 44 + width + 10;
     }
     return 55;
 }
@@ -73,24 +161,103 @@
     if (section == 0) {
         return 1;
     }
-    return 2;
+    return 7;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+        MyInfoTableViewCell2 *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+        
+        
+        NSNumber *sex = [userinfo objectForKey:@"sex"];
+        if (userinfo != nil && [sex intValue] == 0) {
+            [cell2.sexImage setHidden:NO];
+            [cell2.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];
+            NSNumber *byear = [userinfo objectForKey:@"byear"];
+            NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+            NSNumber *bday = [userinfo objectForKey:@"bday"];
+            NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+            NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+            cell2.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+            
+            NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+            cell2.xingzuo.text = [NSString stringWithFormat:@"%@座",astro];;
+        }else if (userinfo != nil && [sex intValue] == 1){
+            [cell2.sexImage setHidden:NO];
+            [cell2.sexImage setImage:[UIImage imageNamed:@"usercell_boy"]];
+            NSNumber *byear = [userinfo objectForKey:@"byear"];
+            NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+            NSNumber *bday = [userinfo objectForKey:@"bday"];
+            NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+            NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+            cell2.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+            
+            NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+            cell2.xingzuo.text = [NSString stringWithFormat:@"%@座",astro];;
+        }else{
+            [cell2.sexImage setHidden:YES];
+        }
+        
+        
         return cell2;
     }
     if (indexPath.section == 1) {
         UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"cell1"];
         
-        if (indexPath.row == 0) {
-            cell1.textLabel.text = @"个性签名";
-            cell1.detailTextLabel.text = @"";
-        }else if (indexPath.row == 1){
-            cell1.textLabel.text = @"行业";
-            cell1.detailTextLabel.text = @"";
+        switch (indexPath.row) {
+            case 0:{
+                cell1.textLabel.text = @"个性签名";
+                NSString *signature = [userinfo objectForKey:@"signature"];
+                if ([signature isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = signature;
+                }
+            }
+                break;
+            case 1:{
+                cell1.textLabel.text = @"行业";
+                cell1.detailTextLabel.text = @"未填写";
+            }
+                break;
+            case 2:{
+                cell1.textLabel.text = @"公司";
+                NSString *company = [userinfo objectForKey:@"company"];
+                if ([company isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = company;
+                }
+            }
+                break;
+            case 3:{
+                cell1.textLabel.text = @"学校";
+                NSString *school = [userinfo objectForKey:@"school"];
+                if ([school isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = school;
+                }
+            }
+                break;
+            case 4:{
+                cell1.textLabel.text = @"城市";
+                cell1.detailTextLabel.text = @"未填写";
+            }
+                break;
+            case 5:{
+                cell1.textLabel.text = @"常玩游戏";
+                cell1.detailTextLabel.text = @"未填写";
+            }
+                break;
+            case 6:{
+                cell1.textLabel.text = @"常去门店";
+                cell1.detailTextLabel.text = @"未填写";
+            }
+                break;
+            default:
+                break;
         }
         return cell1;
     }

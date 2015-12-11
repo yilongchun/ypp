@@ -79,7 +79,16 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
 //动态回复
 #define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
-
+//常玩游戏
+#define API_OFTENPLAYGAMES @"app1/index.php?action=oftenplaygames"
+//门店列表
+#define API_STORELIST @"app1/index.php?action=storelist"
+//活动列表
+#define API_EVENTLIST @"app1/index.php?action=eventlist"
+//创建群组
+#define API_CREATEEVENT @"app1/index.php?action=createevent"
+//附近群组
+#define API_GROUPLIST @"app1/index.php?action=grouplist"
 
 @interface Api : NSObject
 

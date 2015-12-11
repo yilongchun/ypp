@@ -15,7 +15,6 @@
 #import "NSDate+Addition.h"
 
 @interface EditMyInfoViewController (){
-    NSDictionary *userinfo;
     UIImage *choosedImage;
     int tag;//标识 头像1 或者 相册2
 }
@@ -23,6 +22,7 @@
 @end
 
 @implementation EditMyInfoViewController
+@synthesize userinfo;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,13 +50,13 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
-    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self loadUser];
-    }];
+//    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [self loadUser];
+//    }];
     
-    userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
+//    [self loadUser];
     
-    [self loadUser];
+    [self addImages];
 }
 
 -(void)loadUser{
@@ -69,7 +69,7 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [_mytableview.mj_header endRefreshing];
+//        [_mytableview.mj_header endRefreshing];
         NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -81,54 +81,12 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
                 userinfo = [[dic objectForKey:@"message"] cleanNull];
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
-                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+//                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+//                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
                 [_mytableview reloadData];
+                [self addImages];
                 
                 
-                NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
-                UITableViewCell *cell = [_mytableview cellForRowAtIndexPath:indexpath];
-                for (UIView *view in cell.contentView.subviews) {
-                    if ([view isKindOfClass:[UIImageView class]] || [view isKindOfClass:[UIButton class]]) {
-                        [view removeFromSuperview];
-                    }
-                }
-                
-                NSString *imgs = [userinfo objectForKey:@"imgs"];
-                CGFloat x = 8;
-                CGFloat width = (Main_Screen_Width - 40) / 4;
-                
-                if ([imgs isEqualToString:@""]) {
-                    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-                    [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-                    [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-                    [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
-                    [cell.contentView addSubview:btn];
-                }else{
-                    NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
-                    
-                    for (int i = 0; i < [imageArr count]; i++) {
-                        
-                        UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-                        [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-                        imageview.layer.masksToBounds = YES;
-                        imageview.layer.cornerRadius = 5.0;
-                        imageview.tag = i;
-                        imageview.userInteractionEnabled = YES;
-                        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
-                        [imageview addGestureRecognizer:tap];
-                        
-                        [cell.contentView addSubview:imageview];
-                        x += width + 8;
-                    }
-                    if ([imageArr count] < 4) {
-                        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-                        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-                        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-                        [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
-                        [cell.contentView addSubview:btn];
-                    }
-                }
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -136,9 +94,55 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
-        [_mytableview.mj_header endRefreshing];
+//        [_mytableview.mj_header endRefreshing];
         [self showHint:@"连接失败"];
     }];
+}
+
+-(void)addImages{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:1 inSection:0];
+    UITableViewCell *cell = [_mytableview cellForRowAtIndexPath:indexpath];
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[UIImageView class]] || [view isKindOfClass:[UIButton class]]) {
+            [view removeFromSuperview];
+        }
+    }
+    
+    NSString *imgs = [userinfo objectForKey:@"imgs"];
+    CGFloat x = 8;
+    CGFloat width = (Main_Screen_Width - 40) / 4;
+    
+    if ([imgs isEqualToString:@""]) {
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+        [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
+        [cell.contentView addSubview:btn];
+    }else{
+        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        
+        for (int i = 0; i < [imageArr count]; i++) {
+            
+            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+            imageview.layer.masksToBounds = YES;
+            imageview.layer.cornerRadius = 5.0;
+            imageview.tag = i;
+            imageview.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
+            [imageview addGestureRecognizer:tap];
+            
+            [cell.contentView addSubview:imageview];
+            x += width + 8;
+        }
+        if ([imageArr count] < 4) {
+            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
+            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
+            [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
+            [cell.contentView addSubview:btn];
+        }
+    }
 }
 
 
