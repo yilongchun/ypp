@@ -62,6 +62,14 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SETCARD @"app1/index.php?action=setcard"
 //设置隐身模式
 #define API_UPDATESTATUS @"app1/index.php?action=updatestatus"
+//动态点赞
+#define API_FAVTOPIC @"app1/index.php?action=favtopic"
+//常玩游戏
+#define API_OFTENPLAYGAMES @"app1/index.php?action=oftenplaygames"
+//门店列表
+#define API_STORELIST @"app1/index.php?action=storelist"
+//行业列表
+#define API_HANGYE @"app1/index.php?action=hys"
 
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
@@ -73,16 +81,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //关注
 #define API_FOCUSUSER @"app1/index.php?action=focususer"
-//动态点赞
-#define API_FAVTOPIC @"app1/index.php?action=favtopic"
+
 //动态分享
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
 //动态回复
 #define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
-//常玩游戏
-#define API_OFTENPLAYGAMES @"app1/index.php?action=oftenplaygames"
-//门店列表
-#define API_STORELIST @"app1/index.php?action=storelist"
 //活动列表
 #define API_EVENTLIST @"app1/index.php?action=eventlist"
 //创建群组

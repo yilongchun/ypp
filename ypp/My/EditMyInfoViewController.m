@@ -13,6 +13,9 @@
 #import "Util.h"
 #import "BirthdayViewController.h"
 #import "NSDate+Addition.h"
+#import "EditMyInfoGameAndShopTableViewController.h"
+#import "EditAddressViewController.h"
+#import "EditHangyeTableViewController.h"
 
 @interface EditMyInfoViewController (){
     UIImage *choosedImage;
@@ -33,7 +36,7 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    self.title = @"个人信息";
+    self.title = @"编辑资料";
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loadUser)
@@ -60,6 +63,7 @@
 }
 
 -(void)loadUser{
+    
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
     
@@ -153,6 +157,51 @@
     }else if (indexPath.row == 1){
         CGFloat width = (Main_Screen_Width - 40) / 4;
         return 10 + width +10 + 23;
+    }else if (indexPath.row == 5 || indexPath.row == 10 || indexPath.row == 11) {
+        CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+        NSString *content;
+        NSString *defaultValue = @"未填写";
+        NSString *leftString;
+        
+        if (indexPath.row == 5) {
+            leftString = @"个性签名";
+            NSString *signature = [userinfo objectForKey:@"signature"];
+            content = [signature isEqualToString:@""] ? defaultValue : signature;//个性签名
+        }
+        if (indexPath.row == 10) {
+            leftString = @"常玩游戏";
+            NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
+            content = [oftenplaygames isEqualToString:@""] ? defaultValue : oftenplaygames;//常玩游戏
+        }
+        if (indexPath.row == 11) {
+            leftString = @"常去门店";
+            NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
+            content = [oftengotostore isEqualToString:@""] ? defaultValue : oftengotostore;//常去门店
+        }
+        
+        UIFont *font = [UIFont systemFontOfSize:16];
+        CGSize leftTextSize;
+        CGSize textSize;
+        if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+            NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+            paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+            NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+            NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+            
+            leftTextSize = [leftString boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+            textSize = [content boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                    options:options
+                                                 attributes:attributes
+                                                    context:nil].size;
+        }
+        if (textSize.height + 17 +17 > 55) {
+            return textSize.height + 17 + 17;
+        }else{
+            return 55;
+        }
     }
     return 55;
 }
@@ -197,34 +246,6 @@
             label.font = [UIFont systemFontOfSize:15];
             [cell3.contentView addSubview:label];
         }
-        
-//        NSString *imgs = [userinfo objectForKey:@"imgs"];
-//        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
-//        CGFloat x = 8;
-//        for (int i = 0; i < [imageArr count]; i++) {
-//            
-//            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-//            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-//            imageview.layer.masksToBounds = YES;
-//            imageview.layer.cornerRadius = 5.0;
-//            imageview.tag = i;
-//            imageview.userInteractionEnabled = YES;
-//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
-//            [imageview addGestureRecognizer:tap];
-//            
-//            [cell3.contentView addSubview:imageview];
-//            x += width + 8;
-//            DLog(@"添加图片");
-//        }
-//        
-//        if ([imageArr count] < 4) {
-//            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-//            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-//            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-//            [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
-//            [cell3.contentView addSubview:btn];
-//            DLog(@"添加按钮");
-//        }
         return cell3;
     }else{
         UITableViewCell *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
@@ -250,18 +271,21 @@
                 NSNumber *byear = [userinfo objectForKey:@"byear"];
                 NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
                 NSNumber *bday = [userinfo objectForKey:@"bday"];
-                NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
-                NSInteger age = [NSDate ageWithDateOfBirth:birthday];
-                cell2.detailTextLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
-//                cell2.detailTextLabel.text = @"未填写";
+                if (byear != nil) {
+                    NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+                    NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+                    cell2.detailTextLabel.text = [NSString stringWithFormat:@"%ld岁",(long)age];
+                }
             }
                 break;
             case 4:{
                 cell2.textLabel.text = @"星座";
                 NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
                 NSNumber *bday = [userinfo objectForKey:@"bday"];
-                NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
-                cell2.detailTextLabel.text = [NSString stringWithFormat:@"%@座",astro];
+                if (bmonth != nil) {
+                    NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+                    cell2.detailTextLabel.text = [NSString stringWithFormat:@"%@座",astro];
+                }
             }
                 break;
             case 5:{
@@ -272,11 +296,18 @@
                 }else{
                     cell2.detailTextLabel.text = signature;
                 }
+                cell2.detailTextLabel.numberOfLines = 0;
+                cell2.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             case 6:{
                 cell2.textLabel.text = @"行业";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *industry = [userinfo objectForKey:@"industry"];
+                if ([industry isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = industry;
+                }
             }
                 break;
             case 7:{
@@ -301,17 +332,37 @@
                 break;
             case 9:{
                 cell2.textLabel.text = @"城市";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *city = [userinfo objectForKey:@"city"];
+                if ([city isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = city;
+                }
             }
                 break;
             case 10:{
                 cell2.textLabel.text = @"常玩游戏";
-                cell2.detailTextLabel.text = @"未填写";
+                
+                NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
+                if ([oftenplaygames isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = oftenplaygames;
+                }
+                cell2.detailTextLabel.numberOfLines = 0;
+                cell2.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             case 11:{
                 cell2.textLabel.text = @"常去门店";
-                cell2.detailTextLabel.text = @"未填写";
+                NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
+                if ([oftengotostore isEqualToString:@""]) {
+                    cell2.detailTextLabel.text = @"未填写";
+                }else{
+                    cell2.detailTextLabel.text = oftengotostore;
+                }
+                cell2.detailTextLabel.numberOfLines = 0;
+                cell2.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             default:
@@ -357,6 +408,12 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;
+        case 6:{
+            EditHangyeTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditHangyeTableViewController"];
+            vc.userinfo = userinfo;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
         case 7:{
             EditMyInfoTextViewController *vc = [[EditMyInfoTextViewController alloc] init];
             vc.title = @"公司";
@@ -372,6 +429,27 @@
             vc.column = @"school";
             NSString *school = [userinfo objectForKey:@"school"];
             vc.columnValue = school;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 9:{
+            EditAddressViewController *vc = [[EditAddressViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 10:{
+            EditMyInfoGameAndShopTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoGameAndShopTableViewController"];
+            vc.title = @"常玩游戏";
+            vc.type = 1;
+            vc.userinfo = userinfo;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case 11:{
+            EditMyInfoGameAndShopTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoGameAndShopTableViewController"];
+            vc.title = @"常去门店";
+            vc.type = 2;
+            vc.userinfo = userinfo;
             [self.navigationController pushViewController:vc animated:YES];
         }
             break;

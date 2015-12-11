@@ -59,6 +59,7 @@
 }
 
 -(void)loadUser{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     [self showHudInView:self.view];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
@@ -71,6 +72,7 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        [_mytableview.mj_header endRefreshing];
         [self hideHud];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
         NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -113,18 +115,20 @@
         NSString *imgs = [userinfo objectForKey:@"imgs"];
         CGFloat x = 8;
         CGFloat width = (Main_Screen_Width - 40) / 4;
-
-        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
-
-        for (int i = 0; i < [imageArr count]; i++) {
-
-            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-            imageview.layer.masksToBounds = YES;
-            imageview.layer.cornerRadius = 5.0;
-            [cell.contentView addSubview:imageview];
-            x += width + 8;
+        if (![imgs isEqualToString:@""]) {
+            NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            
+            for (int i = 0; i < [imageArr count]; i++) {
+                
+                UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+                [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                imageview.layer.masksToBounds = YES;
+                imageview.layer.cornerRadius = 5.0;
+                [cell.contentView addSubview:imageview];
+                x += width + 8;
+            }
         }
+    
     
 }
 
@@ -147,9 +151,65 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat width = (Main_Screen_Width - 40) / 4;
-        return 44 + width + 10;
+        
+        NSString *imgs = [userinfo objectForKey:@"imgs"];
+        
+        if (userinfo != nil && ![imgs isEqualToString:@""]) {
+            CGFloat width = (Main_Screen_Width - 40) / 4;
+            return 44 + width + 10;
+        }else{
+            return 44;
+        }
+        
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 6) {
+            CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;
+            NSString *content;
+            NSString *defaultValue = @"未填写";
+            NSString *leftString;
+            
+            if (indexPath.row == 0) {
+                leftString = @"个性签名";
+                NSString *signature = [userinfo objectForKey:@"signature"];
+                content = [signature isEqualToString:@""] ? defaultValue : signature;//个性签名
+            }
+            if (indexPath.row == 5) {
+                leftString = @"常玩游戏";
+                NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
+                content = [oftenplaygames isEqualToString:@""] ? defaultValue : oftenplaygames;//常玩游戏
+            }
+            if (indexPath.row == 6) {
+                leftString = @"常去门店";
+                NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
+                content = [oftengotostore isEqualToString:@""] ? defaultValue : oftengotostore;//常去门店
+            }
+            
+            UIFont *font = [UIFont systemFontOfSize:16];
+            CGSize leftTextSize;
+            CGSize textSize;
+            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                
+                leftTextSize = [leftString boundingRectWithSize:CGSizeMake(MAXFLOAT, MAXFLOAT)
+                                                        options:options
+                                                     attributes:attributes
+                                                        context:nil].size;
+                textSize = [content boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+            }
+            if (textSize.height + 17 +17 > 55) {
+                return textSize.height + 17 + 17;
+            }else{
+                return 55;
+            }
+        }
     }
+    
     return 55;
 }
 
@@ -214,11 +274,18 @@
                 }else{
                     cell1.detailTextLabel.text = signature;
                 }
+                cell1.detailTextLabel.numberOfLines = 0;
+                cell1.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             case 1:{
                 cell1.textLabel.text = @"行业";
-                cell1.detailTextLabel.text = @"未填写";
+                NSString *industry = [userinfo objectForKey:@"industry"];
+                if ([industry isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = industry;
+                }
             }
                 break;
             case 2:{
@@ -243,17 +310,36 @@
                 break;
             case 4:{
                 cell1.textLabel.text = @"城市";
-                cell1.detailTextLabel.text = @"未填写";
+                NSString *city = [userinfo objectForKey:@"city"];
+                if ([city isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = city;
+                }
             }
                 break;
             case 5:{
                 cell1.textLabel.text = @"常玩游戏";
-                cell1.detailTextLabel.text = @"未填写";
+                NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
+                if ([oftenplaygames isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = oftenplaygames;
+                }
+                cell1.detailTextLabel.numberOfLines = 0;
+                cell1.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             case 6:{
                 cell1.textLabel.text = @"常去门店";
-                cell1.detailTextLabel.text = @"未填写";
+                NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
+                if ([oftengotostore isEqualToString:@""]) {
+                    cell1.detailTextLabel.text = @"未填写";
+                }else{
+                    cell1.detailTextLabel.text = oftengotostore;
+                }
+                cell1.detailTextLabel.numberOfLines = 0;
+                cell1.detailTextLabel.textAlignment = NSTextAlignmentLeft;
             }
                 break;
             default:

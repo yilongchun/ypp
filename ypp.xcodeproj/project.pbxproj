@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		44000BF01C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 44000BEF1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m */; };
+		44000BF31C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44000BF21C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.m */; };
+		44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44000BF41C1AA49E00DF8FC4 /* Address.plist */; };
+		44000BF91C1AA5DA00DF8FC4 /* EditAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44000BF71C1AA5DA00DF8FC4 /* EditAddressViewController.m */; };
+		44000BFA1C1AA5DA00DF8FC4 /* EditAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44000BF81C1AA5DA00DF8FC4 /* EditAddressViewController.xib */; };
+		44000BFD1C1AB8F400DF8FC4 /* EditHangyeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44000BFC1C1AB8F400DF8FC4 /* EditHangyeTableViewController.m */; };
 		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
 		444E58A61C15217000D77C63 /* NSArray+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584C1C15217000D77C63 /* NSArray+Block.m */; };
 		444E58A71C15217000D77C63 /* NSArray+SafeAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584E1C15217000D77C63 /* NSArray+SafeAccess.m */; };
@@ -156,6 +161,14 @@
 /* Begin PBXFileReference section */
 		44000BEE1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyInfoTableViewCell2.h; path = My/MyInfoTableViewCell2.h; sourceTree = "<group>"; };
 		44000BEF1C1A6C8100DF8FC4 /* MyInfoTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyInfoTableViewCell2.m; path = My/MyInfoTableViewCell2.m; sourceTree = "<group>"; };
+		44000BF11C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditMyInfoGameAndShopTableViewController.h; path = My/EditMyInfoGameAndShopTableViewController.h; sourceTree = "<group>"; };
+		44000BF21C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditMyInfoGameAndShopTableViewController.m; path = My/EditMyInfoGameAndShopTableViewController.m; sourceTree = "<group>"; };
+		44000BF41C1AA49E00DF8FC4 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
+		44000BF61C1AA5DA00DF8FC4 /* EditAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditAddressViewController.h; path = My/EditAddressViewController.h; sourceTree = "<group>"; };
+		44000BF71C1AA5DA00DF8FC4 /* EditAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditAddressViewController.m; path = My/EditAddressViewController.m; sourceTree = "<group>"; };
+		44000BF81C1AA5DA00DF8FC4 /* EditAddressViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EditAddressViewController.xib; path = My/EditAddressViewController.xib; sourceTree = "<group>"; };
+		44000BFB1C1AB8F400DF8FC4 /* EditHangyeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditHangyeTableViewController.h; path = My/EditHangyeTableViewController.h; sourceTree = "<group>"; };
+		44000BFC1C1AB8F400DF8FC4 /* EditHangyeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditHangyeTableViewController.m; path = My/EditHangyeTableViewController.m; sourceTree = "<group>"; };
 		444E58441C15154C00D77C63 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		444E58461C15164F00D77C63 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Api.h; path = Configuration/Api.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		444E58471C15164F00D77C63 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = Configuration/Api.m; sourceTree = "<group>"; };
@@ -705,9 +718,16 @@
 				44FB14F11C17C9E7009855DC /* EditMyInfoTextViewController.h */,
 				44FB14F21C17C9E7009855DC /* EditMyInfoTextViewController.m */,
 				44FB14F31C17C9E7009855DC /* EditMyInfoTextViewController.xib */,
+				44000BF61C1AA5DA00DF8FC4 /* EditAddressViewController.h */,
+				44000BF71C1AA5DA00DF8FC4 /* EditAddressViewController.m */,
+				44000BF81C1AA5DA00DF8FC4 /* EditAddressViewController.xib */,
 				4482F7EE1C17F9E800A7A2D2 /* BirthdayViewController.h */,
 				4482F7EF1C17F9E800A7A2D2 /* BirthdayViewController.m */,
 				4482F7F01C17F9E800A7A2D2 /* BirthdayViewController.xib */,
+				44000BFB1C1AB8F400DF8FC4 /* EditHangyeTableViewController.h */,
+				44000BFC1C1AB8F400DF8FC4 /* EditHangyeTableViewController.m */,
+				44000BF11C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.h */,
+				44000BF21C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.m */,
 				44E88D931C16ACDF007A80E5 /* setting */,
 			);
 			name = My;
@@ -829,6 +849,7 @@
 		5A2A76201BE9BA7F00C5FD2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				44000BF41C1AA49E00DF8FC4 /* Address.plist */,
 				5A2A76211BE9BA7F00C5FD2F /* main.m */,
 				5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */,
 			);
@@ -1197,9 +1218,11 @@
 				5A2A762D1BE9BA7F00C5FD2F /* Assets.xcassets in Resources */,
 				444E58AE1C15217000D77C63 /* NSDateTimeAgo.bundle in Resources */,
 				5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */,
+				44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				44EEF5EA1C19156600050956 /* UserStatusTableViewController.xib in Resources */,
 				44FB14F51C17C9E7009855DC /* EditMyInfoTextViewController.xib in Resources */,
+				44000BFA1C1AA5DA00DF8FC4 /* EditAddressViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				4482F7F21C17F9E800A7A2D2 /* BirthdayViewController.xib in Resources */,
 			);
@@ -1305,6 +1328,7 @@
 				444E58BD1C15217000D77C63 /* NSObject+Blocks.m in Sources */,
 				5A35FB981C12B68400427364 /* MJRefreshAutoFooter.m in Sources */,
 				444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */,
+				44000BF31C1A751500DF8FC4 /* EditMyInfoGameAndShopTableViewController.m in Sources */,
 				5A2A764B1BE9D2A400C5FD2F /* ViewController5.m in Sources */,
 				5A35FB791C12B68400427364 /* AFHTTPRequestOperation.m in Sources */,
 				5A35FBA01C12B68400427364 /* MJRefreshBackGifFooter.m in Sources */,
@@ -1312,6 +1336,7 @@
 				5A35FB881C12B68400427364 /* UIRefreshControl+AFNetworking.m in Sources */,
 				5A35FB811C12B68400427364 /* AFURLSessionManager.m in Sources */,
 				444E58D51C15360900D77C63 /* DongtaiViewController.m in Sources */,
+				44000BF91C1AA5DA00DF8FC4 /* EditAddressViewController.m in Sources */,
 				444E58C41C15217000D77C63 /* NSString+HXAddtions.m in Sources */,
 				44E88DA01C16AD85007A80E5 /* SettingTableViewController.m in Sources */,
 				5A4F07C41BF6029600C14106 /* FabuyuewanViewController.m in Sources */,
@@ -1329,6 +1354,7 @@
 				5A2A76421BE9D28400C5FD2F /* ViewController2.m in Sources */,
 				5A35FB8F1C12B68400427364 /* IQKeyboardManager.m in Sources */,
 				5A2A76451BE9D29000C5FD2F /* ViewController3.m in Sources */,
+				44000BFD1C1AB8F400DF8FC4 /* EditHangyeTableViewController.m in Sources */,
 				5A35FBA91C12B68400427364 /* UIScrollView+MJRefresh.m in Sources */,
 				5A5C31021BF07FE60047A016 /* Register3ViewController.m in Sources */,
 				5A5C30FF1BF07AD90047A016 /* Register2ViewController.m in Sources */,

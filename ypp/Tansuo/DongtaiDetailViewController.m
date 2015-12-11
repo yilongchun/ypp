@@ -194,8 +194,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:_mytextfield.text forKey:@"content"];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:[info objectForKey:@"topicid"] forKey:@"topicid"];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"user_name"]] forKey:@"username"];
+    [parameters setValue:[info objectForKey:@"topicid"] forKey:@"topicid"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
