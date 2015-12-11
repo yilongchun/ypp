@@ -41,8 +41,25 @@
 //    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
 //    [[UITabBar appearance] setBackgroundColor:[UIColor colorWithWhite:0.98 alpha:1]];
     
+    
+    CGRect rect = CGRectMake(0, 0, Main_Screen_Width, 1);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context,
+                                   RGB(191, 2, 20).CGColor);
+    CGContextFillRect(context, rect);
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+//    UIImage *imgs = [[UIImage imageNamed:@"blue_btn2"] stretchableImageWithLeftCapWidth:10 topCapHeight:10];
+    
+    [self.tabBar setShadowImage:img];
+    [self.tabBar setBackgroundImage:[[UIImage alloc]init]];
+    
     [self addCenterButtonWithImage:[UIImage imageNamed:@"yue"] highlightImage:[UIImage imageNamed:@"yue"]];
     
+//    self.tabBar.tintColor = UIColorFromRGB(0xf39168);
+//    self.tabBar.translucent = YES;
     self.delegate = self;
     
     self.tabBar.superview.backgroundColor = [UIColor whiteColor];
@@ -268,23 +285,29 @@
 // Create a custom UIButton and add it to the center of our tab bar
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
 {
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
     button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
     button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
+//    [button setBackgroundImage:highlightImage forState:UIControlStateHighlighted];
     
     CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
     if (heightDifference < 0)
         button.center = self.tabBar.center;
     else
     {
+        
+//        CGPoint center = self.tabBar.center;
+//        center.y = center.y - heightDifference/2.0;
+//        button.center = center;
+        
         CGPoint center = self.tabBar.center;
-        center.y = center.y - heightDifference/2.0;
+        center.y = self.tabBar.frame.size.height / 2 - (buttonImage.size.height - self.tabBar.frame.size.height)*0.5;
         button.center = center;
     }
-    [self.view addSubview:button];
     [button addTarget:self action:@selector(doAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.tabBar addSubview:button];
+    
 }
 //中间按钮点击事件
 -(void)doAction{
