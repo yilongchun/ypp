@@ -171,12 +171,16 @@
         if (indexPath.row == 10) {
             leftString = @"常玩游戏";
             NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
-            content = [oftenplaygames isEqualToString:@""] ? defaultValue : oftenplaygames;//常玩游戏
+            NSArray *gameArr = [oftenplaygames componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            NSString *games = [gameArr componentsJoinedByString:@"\n"];
+            content = [oftenplaygames isEqualToString:@""] ? defaultValue : games;//常玩游戏
         }
         if (indexPath.row == 11) {
             leftString = @"常去门店";
             NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
-            content = [oftengotostore isEqualToString:@""] ? defaultValue : oftengotostore;//常去门店
+            NSArray *storeArr = [oftengotostore componentsSeparatedByString:NSLocalizedString(@",", nil)];
+            NSString *stores = [storeArr componentsJoinedByString:@"\n"];
+            content = [oftengotostore isEqualToString:@""] ? defaultValue : stores;//常去门店
         }
         
         UIFont *font = [UIFont systemFontOfSize:16];
@@ -344,10 +348,12 @@
                 cell2.textLabel.text = @"常玩游戏";
                 
                 NSString *oftenplaygames = [userinfo objectForKey:@"oftenplaygames"];
+                NSArray *gameArr = [oftenplaygames componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                NSString *games = [gameArr componentsJoinedByString:@"\n"];
                 if ([oftenplaygames isEqualToString:@""]) {
                     cell2.detailTextLabel.text = @"未填写";
                 }else{
-                    cell2.detailTextLabel.text = oftenplaygames;
+                    cell2.detailTextLabel.text = games;
                 }
                 cell2.detailTextLabel.numberOfLines = 0;
                 cell2.detailTextLabel.textAlignment = NSTextAlignmentLeft;
@@ -356,10 +362,12 @@
             case 11:{
                 cell2.textLabel.text = @"常去门店";
                 NSString *oftengotostore = [userinfo objectForKey:@"oftengotostore"];
+                NSArray *storeArr = [oftengotostore componentsSeparatedByString:NSLocalizedString(@",", nil)];
+                NSString *stores = [storeArr componentsJoinedByString:@"\n"];
                 if ([oftengotostore isEqualToString:@""]) {
                     cell2.detailTextLabel.text = @"未填写";
                 }else{
-                    cell2.detailTextLabel.text = oftengotostore;
+                    cell2.detailTextLabel.text = stores;
                 }
                 cell2.detailTextLabel.numberOfLines = 0;
                 cell2.detailTextLabel.textAlignment = NSTextAlignmentLeft;
