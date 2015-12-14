@@ -167,7 +167,7 @@
     }
     cell.contentLabel.text = content;
     if (pic != nil && ![pic isEqualToString:@""]) {
-        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,pic]]];
+        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]]  placeholderImage:nil];
     }
     
     NSNumber *distance = [info objectForKey:@"distance"];

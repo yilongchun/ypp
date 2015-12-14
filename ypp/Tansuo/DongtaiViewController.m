@@ -61,7 +61,12 @@
     page = 1;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:self.type forKey:@"type"];
     
+    if ([self.type isEqualToString:@"4"]) {
+        NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+        [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+    }
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -108,7 +113,12 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:self.type forKey:@"type"];
     
+    if ([self.type isEqualToString:@"4"]) {
+        NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+        [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+    }
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -226,7 +236,7 @@
     }
     cell.contentLabel.text = content;
     if (pic != nil && ![pic isEqualToString:@""]) {
-        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,pic]]];
+        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]] placeholderImage:nil];
     }
     
     NSNumber *distance = [info objectForKey:@"distance"];

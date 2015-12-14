@@ -13,5 +13,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *sexImage;
 @property (weak, nonatomic) IBOutlet UILabel *xingzuo;
 @property (weak, nonatomic) IBOutlet UILabel *age;
+@property (weak, nonatomic) IBOutlet UILabel *otherLabel;
 
 @end

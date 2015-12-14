@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "NSDate+Addition.h"
 #import "NSDate+TimeAgo.h"
+#import "PlayerViewController.h"
 
 @interface ViewController1 (){
     int page;
@@ -232,10 +233,8 @@
     
     NSNumber *distance = [info objectForKey:@"distance"];
     NSString *dis = [NSString stringWithFormat:@"%.2fkm",[distance floatValue] / 1000];
-    
     NSNumber *update_time = [info objectForKey:@"update_time"];
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
-    
     cell.otherInfo.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
     
     NSNumber *hotcount = [info objectForKey:@"hotcount"];
@@ -249,6 +248,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    PlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
+    vc.hidesBottomBarWhenPushed = YES;
+    vc.userid = [info objectForKey:@"id"];
+    vc.title = [info objectForKey:@"user_name"];
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -13,15 +13,47 @@
 
 @interface FabudongtaiViewController (){
     UIImage *choosedImage;
+    CLLocationCoordinate2D coordinate;
 }
 
 @end
 
 @implementation FabudongtaiViewController
+@synthesize locationmanager;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    locationmanager = [[CLLocationManager alloc]init];
+    //设置精度
+    /*
+     kCLLocationAccuracyBest
+     kCLLocationAccuracyNearestTenMeters
+     kCLLocationAccuracyHundredMeters
+     kCLLocationAccuracyHundredMeters
+     kCLLocationAccuracyKilometer
+     kCLLocationAccuracyThreeKilometers
+     */
+    
+    
+    //判断用户定位服务是否开启
+    if ([CLLocationManager locationServicesEnabled]) {
+        //设置定位的精度
+        [locationmanager setDesiredAccuracy:kCLLocationAccuracyBestForNavigation];
+        //实现协议
+        locationmanager.delegate = self;
+        NSLog(@"开始定位");
+        //开始定位
+        [locationmanager startUpdatingLocation];
+        [locationmanager requestAlwaysAuthorization];
+    }else
+    {//不能定位用户的位置
+                         //1.提醒用户检查当前的网络状况
+                        //2.提醒用户打开定位开关
+        DLog(@"未打开定位");
+    }
+
     
     self.title = @"动态发布";
     
@@ -112,8 +144,8 @@
     [parameters setValue:user_name forKey:@"username"];//发布人名称
     [parameters setValue:picname forKey:@"pic"];//图片名称
     [parameters setValue:_mytextview.text forKey:@"content"];//内容
-//    [parameters setValue:[NSNumber numberWithFloat:0.] forKey:@"xpoint"];
-//    [parameters setValue:[NSNumber numberWithFloat:0.] forKey:@"ypoint"];
+    [parameters setObject:[NSNumber numberWithFloat:coordinate.latitude] forKey:@"xpoint"];
+    [parameters setObject:[NSNumber numberWithFloat:coordinate.longitude] forKey:@"ypoint"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_SEVEDYNAMIC];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -123,7 +155,7 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self hideHud];
         
-//        NSLog(@"JSON: %@", operation.responseString);
+        NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
@@ -253,5 +285,20 @@
     //        NSLog(@"返回");
     //        return;
     //    }
+}
+
+#pragma mark locationManager delegate
+
+// 6.0 以上调用这个函数
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *newLocation = locations[0];
+    coordinate = newLocation.coordinate;
+    NSLog(@"经度：%f,纬度：%f",coordinate.longitude,coordinate.latitude);
+    [manager stopUpdatingLocation];
+}
+
+// 错误信息
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"error:%@",error);
 }
 @end

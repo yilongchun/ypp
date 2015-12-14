@@ -15,8 +15,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
     ResultCodePasswordError = 412,//密码错误
     ResultCodeUserNameNotFound = 413,//用户名不存在
     ResultCodePhoneIsRegistered = 422,//手机号码已经注册
-    ResultCodeNoData = 431,//无数据
-    ResultCodeFail = 431//无数据
+    ResultCodeNoData = 571,//无数据
+    ResultCodeFail = 431//
 };
 
 //环信相关参数：

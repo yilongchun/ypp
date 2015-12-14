@@ -13,5 +13,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+@property (strong, nonatomic) NSString *type;
 
 @end

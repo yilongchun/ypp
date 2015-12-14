@@ -1,0 +1,320 @@
+//
+//  PlayerViewController.m
+//  ypp
+//
+//  Created by Stephen Chin on 15/12/14.
+//  Copyright © 2015年 weyida. All rights reserved.
+//
+
+#import "PlayerViewController.h"
+#import "Util.h"
+#import "BirthdayViewController.h"
+#import "NSDate+Addition.h"
+#import "MyInfoTableViewCell2.h"
+#import "UIImageView+AFNetworking.h"
+#import "NSDate+TimeAgo.h"
+#import "QianmingTableViewCell.h"
+#import "PlayerDongtaiTableViewCell.h"
+#import "PlayerTableViewCell4.h"
+
+@interface PlayerViewController (){
+    NSDictionary *userinfo;
+}
+
+@end
+
+@implementation PlayerViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
+    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
+    [self.mytableview setTableFooterView:v];
+    
+    [self loadData];
+}
+
+-(void)loadData{
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:self.userid forKey:@"userid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        [_mytableview.mj_header endRefreshing];
+        [self hideHud];
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                userinfo = [[dic objectForKey:@"message"] cleanNull];
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+                [_mytableview reloadData];
+                [self addImages];
+                
+                
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        //        [_mytableview.mj_header endRefreshing];
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+
+-(void)addImages{
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+    MyInfoTableViewCell2 *cell = [_mytableview cellForRowAtIndexPath:indexpath];
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[UIImageView class]] && view.tag != 999) {
+            [view removeFromSuperview];
+        }
+    }
+    
+    NSString *imgs = [userinfo objectForKey:@"imgs"];
+    CGFloat x = 8;
+    CGFloat width = (Main_Screen_Width - 40) / 4;
+    if (![imgs isEqualToString:@""]) {
+        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+        
+        for (int i = 0; i < [imageArr count]; i++) {
+            
+            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
+            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+            imageview.layer.masksToBounds = YES;
+            imageview.layer.cornerRadius = 5.0;
+            [cell.contentView addSubview:imageview];
+            x += width + 8;
+        }
+    }
+    
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 0.1;
+    }
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        
+        NSString *imgs = [userinfo objectForKey:@"imgs"];
+        
+        if (userinfo != nil && ![imgs isEqualToString:@""]) {
+            CGFloat width = (Main_Screen_Width - 40) / 4;
+            return 44 + width + 10;
+        }else{
+            return 44;
+        }
+        
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            CGFloat width = [UIScreen mainScreen].bounds.size.width - 90 - 15;
+            NSString *content;
+            NSString *defaultValue = @"未填写";
+            
+            NSString *signature = [userinfo objectForKey:@"signature"];
+            content = [signature isEqualToString:@""] ? defaultValue : signature;//个性签名
+            
+            UIFont *font = [UIFont systemFontOfSize:16];
+            CGSize leftTextSize;
+            CGSize textSize;
+            if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
+                NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+                paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+                NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+                NSStringDrawingOptions options = NSStringDrawingUsesLineFragmentOrigin;
+                
+                textSize = [content boundingRectWithSize:CGSizeMake(width - leftTextSize.width, MAXFLOAT)
+                                                 options:options
+                                              attributes:attributes
+                                                 context:nil].size;
+            }
+            if (textSize.height + 12 +13 > 55) {
+                return textSize.height + 12 + 13;
+            }else{
+                return 55;
+            }
+        }else if (indexPath.row == 1){
+            return 148;
+        }
+    }
+    
+    return 55;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 1;
+    }else if (section == 1) {
+        return 2;
+    }else if (section == 2) {
+        return 4;
+    }
+    return 0;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0) {
+        MyInfoTableViewCell2 *cell2 = [tableView dequeueReusableCellWithIdentifier:@"cell2"];
+        
+        
+        NSNumber *sex = [userinfo objectForKey:@"sex"];
+        if (userinfo != nil && [sex intValue] == 0) {
+            [cell2.sexImage setHidden:NO];
+            [cell2.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];
+            NSNumber *byear = [userinfo objectForKey:@"byear"];
+            NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+            NSNumber *bday = [userinfo objectForKey:@"bday"];
+            NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+            NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+            cell2.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+            
+            NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+            cell2.xingzuo.text = [NSString stringWithFormat:@"%@座",astro];;
+        }else if (userinfo != nil && [sex intValue] == 1){
+            [cell2.sexImage setHidden:NO];
+            [cell2.sexImage setImage:[UIImage imageNamed:@"usercell_boy"]];
+            NSNumber *byear = [userinfo objectForKey:@"byear"];
+            NSNumber *bmonth = [userinfo objectForKey:@"bmonth"];
+            NSNumber *bday = [userinfo objectForKey:@"bday"];
+            NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+            NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+            cell2.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+            
+            NSString *astro = [Util getAstroWithMonth:[bmonth intValue] day:[bday intValue]];
+            cell2.xingzuo.text = [NSString stringWithFormat:@"%@座",astro];;
+        }else{
+            [cell2.sexImage setHidden:YES];
+        }
+        
+        if (userinfo != nil) {
+            NSNumber *distance = [userinfo objectForKey:@"distance"];
+            NSString *dis = [NSString stringWithFormat:@"%.2fkm",[distance floatValue] / 1000];
+            NSNumber *update_time = [userinfo objectForKey:@"update_time"];
+            NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
+            cell2.otherLabel.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
+        }
+        return cell2;
+    }
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            QianmingTableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            NSString *signature = [userinfo objectForKey:@"signature"];
+            if ([signature isEqualToString:@""]) {
+                cell1.contentLabel.text = @"未填写";
+            }else{
+                cell1.contentLabel.text = signature;
+            }
+            cell1.contentLabel.numberOfLines = 0;
+            cell1.contentLabel.textAlignment = NSTextAlignmentLeft;
+            
+            return cell1;
+        }else if (indexPath.row == 1){
+            PlayerDongtaiTableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+            cell3.userImg.layer.masksToBounds = YES;
+            cell3.userImg.layer.cornerRadius = 5;
+            return cell3;
+        }
+        
+    }
+    if (indexPath.section == 2) {
+        PlayerTableViewCell4 *cell4 = [tableView dequeueReusableCellWithIdentifier:@"cell4"];
+        
+        switch (indexPath.row) {
+            case 0:{
+                cell4.leftLabel.text = @"行业";
+                NSString *industry = [userinfo objectForKey:@"industry"];
+                cell4.rightLabel.text = industry;
+            }
+                break;
+            case 1:{
+                cell4.leftLabel.text = @"公司";
+                NSString *company = [userinfo objectForKey:@"company"];
+                cell4.rightLabel.text = company;
+            }
+                break;
+            case 2:{
+                cell4.leftLabel.text = @"学校";
+                NSString *school = [userinfo objectForKey:@"school"];
+                cell4.rightLabel.text = school;
+            }
+                break;
+            case 3:{
+                cell4.leftLabel.text = @"城市";
+                NSString *city = [userinfo objectForKey:@"city"];
+                cell4.rightLabel.text = city;
+            }
+            default:
+                break;
+        }
+        return cell4;
+        
+        
+    }
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
+    }
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+}
+
+@end

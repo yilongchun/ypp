@@ -96,18 +96,22 @@
         
         DongtaiViewController *vc1_1 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
         vc1_1.title = @"精华";
+        vc1_1.type = @"1";
         [vcs addObject:vc1_1];
         
         DongtaiViewController *vc1_2 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
         vc1_2.title = @"附近";
+        vc1_2.type = @"2";
         [vcs addObject:vc1_2];
         
         DongtaiViewController *vc1_3 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
         vc1_3.title = @"关注";
+        vc1_3.type = @"3";
         [vcs addObject:vc1_3]
         ;
         DongtaiViewController *vc1_4 = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
         vc1_4.title = @"我的";
+        vc1_4.type = @"4";
         [vcs addObject:vc1_4];
         
         
