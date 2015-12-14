@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--探索-->
+        <!--广场-->
         <scene sceneID="WL8-W3-vcQ">
             <objects>
-                <viewController storyboardIdentifier="ViewController2" title="探索" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ak9-nD-E8y" customClass="ViewController2" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController2" title="广场" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ak9-nD-E8y" customClass="ViewController2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZJK-hf-VYO"/>
                         <viewControllerLayoutGuide type="bottom" id="YVA-bU-j1F"/>

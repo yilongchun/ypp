@@ -82,7 +82,7 @@
     
     
     ViewController2 *vc2 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController2"];
-    vc2.title = @"探索";
+    vc2.title = @"广场";
     ViewController3 *vc3 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController3"];
     ViewController4 *vc4 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController4"];
     vc4.title = @"消息";
