@@ -186,7 +186,7 @@
                 return cell;
             }else if(indexPath.row == 1){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                cell.textLabel.text = @"申请游神";
+                cell.textLabel.text = @"申请陪练";
                 cell.imageView.image = [UIImage imageNamed:@"sGod"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;

@@ -46,7 +46,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_LOGIN @"app1/index.php?action=login"
 //签到
 #define API_SIGNIN @"app1/index.php?action=signin"
-//游神列表
+//陪练列表
 #define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
 //动态列表
 #define API_TOPICLIST @"app1/index.php?action=topiclist"
@@ -80,7 +80,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SETYY @"app1/index.php?action=setyy"
 //增加浏览量(热点)
 #define API_HOTCOUNT @"app1/index.php?action=hotcount"
-//申请成为游神
+//申请成为陪练
 #define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //关注
 #define API_FOCUSUSER @"app1/index.php?action=focususer"

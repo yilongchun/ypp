@@ -106,7 +106,7 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         }
         
-        cell.textLabel.text = @"游神性别";
+        cell.textLabel.text = @"陪练性别";
         cell.detailTextLabel.text = @"不限";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
@@ -116,8 +116,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         }
         
-        cell.textLabel.text = @"陪玩地点";
-        cell.detailTextLabel.text = @"选择陪玩地点";
+        cell.textLabel.text = @"陪练地点";
+        cell.detailTextLabel.text = @"选择陪练地点";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }else if (indexPath.row == 4){
@@ -127,7 +127,7 @@
         }
         
         cell.textLabel.text = @"开始时间";
-        cell.detailTextLabel.text = @"选择陪玩时间";
+        cell.detailTextLabel.text = @"选择陪练时间";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }else if (indexPath.row == 5){
@@ -136,8 +136,8 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         }
         
-        cell.textLabel.text = @"陪玩时长";
-        cell.detailTextLabel.text = @"选择陪玩时长";
+        cell.textLabel.text = @"陪练时长";
+        cell.detailTextLabel.text = @"选择陪练时长";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         return cell;
     }else{

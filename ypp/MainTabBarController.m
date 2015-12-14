@@ -96,7 +96,7 @@
     NSMutableArray *vcs = [NSMutableArray array];
     
     ViewController1 *vc1_1 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
-    vc1_1.title = @"智能";
+    vc1_1.title = @"精选";
     vc1_1.type = 0;
     [vcs addObject:vc1_1];
     
@@ -111,7 +111,7 @@
     [vcs addObject:vc1_3];
     
     JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
-    slideSegmentController.title = @"游神";
+    slideSegmentController.title = @"陪练";
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
     slideSegmentController.indicatorColor = RGBA(200,22,34,1);
     
@@ -227,7 +227,6 @@
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSLog(@"%ld",(long)item.tag);
     if (item.tag == 2) {
         //发布约玩
         FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];

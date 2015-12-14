@@ -248,6 +248,10 @@
     [cell.btn3 addTarget:self action:@selector(action3:) forControlEvents:UIControlEventTouchUpInside];
     [cell.btn4 addTarget:self action:@selector(action4:) forControlEvents:UIControlEventTouchUpInside];
     
+    //评论数
+    NSNumber *relay_count = [info objectForKey:@"reply_count"];
+    [cell.btn1 setTitle:[NSString stringWithFormat:@"(%d)",[relay_count intValue]] forState:UIControlStateNormal];
+    
     //点赞数
     NSNumber *fav_count = [info objectForKey:@"fav_count"];
     [cell.btn3 setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue]] forState:UIControlStateNormal];

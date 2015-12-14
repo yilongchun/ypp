@@ -197,7 +197,7 @@
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"user_name"]] forKey:@"username"];
     [parameters setValue:[info objectForKey:@"topicid"] forKey:@"topicid"];
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_INSERT_TOPIC_REPLY];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

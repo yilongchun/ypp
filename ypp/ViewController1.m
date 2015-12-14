@@ -80,6 +80,8 @@
     [parameters setObject:[NSNumber numberWithInt:_type] forKey:@"type"];
 //    [parameters setObject:[NSNumber numberWithInt:1] forKey:@"sex"];
 //    [parameters setObject:[NSNumber numberWithInt:0] forKey:@"price"];
+    [parameters setObject:[NSNumber numberWithFloat:31.624108] forKey:@"xpoint"];
+    [parameters setObject:[NSNumber numberWithFloat:115.415695] forKey:@"ypoint"];
 //    [parameters setObject:@"" forKey:@"address"];
 //    [parameters setObject:@"" forKey:@"gameid"];
 //    [parameters setObject:@"" forKey:"distance"];
