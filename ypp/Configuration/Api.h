@@ -72,9 +72,18 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_HANGYE @"app1/index.php?action=hys"
 //编辑资料
 #define API_UPDATEUSER @"app1/index.php?action=saveuser"
-
 //动态回复
 #define API_INSERT_TOPIC_REPLY @"app1/index.php?action=insert_topic_reply"
+//动态赞列表
+#define API_FAVTOPIC_LIST @"app1/index.php?action=favtopic_list"
+
+
+//动态回复列表
+#define API_TOPIC_REPLY_LIST @"app1/index.php?action=topic_reply_list"
+
+//根据用户ID获取动态topiclistByuser  参数：userid、type（0 获取最新一条,1获取所有并分页）、page（页数，默认1）
+//type ：陪玩详情页面调用0，点击动态进入动态列表，type传值为1
+
 
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"

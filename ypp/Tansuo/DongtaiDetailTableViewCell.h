@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *bigImage;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *ageLabel;
+@property (weak, nonatomic) IBOutlet UILabel *bottomLabel;
 
 @end

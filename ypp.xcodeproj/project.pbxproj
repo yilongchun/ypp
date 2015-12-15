@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44000BF41C1AA49E00DF8FC4 /* Address.plist */; };
+		4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */; };
 		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
 		444E58A61C15217000D77C63 /* NSArray+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584C1C15217000D77C63 /* NSArray+Block.m */; };
 		444E58A71C15217000D77C63 /* NSArray+SafeAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584E1C15217000D77C63 /* NSArray+SafeAccess.m */; };
@@ -166,6 +167,8 @@
 
 /* Begin PBXFileReference section */
 		44000BF41C1AA49E00DF8FC4 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
+		4403CF361C1FBD5C00C2CA46 /* PinglunTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinglunTableViewCell.h; sourceTree = "<group>"; };
+		4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinglunTableViewCell.m; sourceTree = "<group>"; };
 		444E58441C15154C00D77C63 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		444E58461C15164F00D77C63 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Api.h; path = Configuration/Api.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		444E58471C15164F00D77C63 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = Configuration/Api.m; sourceTree = "<group>"; };
@@ -730,6 +733,8 @@
 				44F029EA1C1E97D000EF9218 /* DongtaiDetailViewController.m */,
 				44F029EB1C1E97D000EF9218 /* DongtaiTableViewCell.h */,
 				44F029EC1C1E97D000EF9218 /* DongtaiTableViewCell.m */,
+				4403CF361C1FBD5C00C2CA46 /* PinglunTableViewCell.h */,
+				4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */,
 				44F029ED1C1E97D000EF9218 /* DongtaiViewController.h */,
 				44F029EE1C1E97D000EF9218 /* DongtaiViewController.m */,
 				44F029EF1C1E97D000EF9218 /* FabudongtaiViewController.h */,
@@ -1328,6 +1333,7 @@
 				5A35FB991C12B68400427364 /* MJRefreshBackFooter.m in Sources */,
 				5A35FB851C12B68400427364 /* UIButton+AFNetworking.m in Sources */,
 				44F02A1C1C1E97F100EF9218 /* BirthdayViewController.m in Sources */,
+				4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */,
 				444E58CA1C15217000D77C63 /* NSTimer+Addition.m in Sources */,
 				5A35FB831C12B68400427364 /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				444E58B11C15217000D77C63 /* NSDictionary+JSONString.m in Sources */,

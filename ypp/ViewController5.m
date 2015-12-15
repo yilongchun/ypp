@@ -213,6 +213,7 @@
     if (indexPath.section == 0) {
         MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
         vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"];
         [self.navigationController pushViewController:vc animated:YES];
         
 //        EditMyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditMyInfoViewController"];

@@ -62,7 +62,7 @@
     self.navigationItem.rightBarButtonItem.enabled = NO;
     [self showHudInView:self.view];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
+    [parameters setValue:_userid forKey:@"userid"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GETUSERINFO];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

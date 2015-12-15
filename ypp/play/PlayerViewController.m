@@ -19,6 +19,9 @@
 
 @interface PlayerViewController (){
     NSDictionary *userinfo;
+    UIButton *guanzhuBtn;
+    UIButton *chatBtn;
+    UIButton *yueBtn;
 }
 
 @end
@@ -44,6 +47,8 @@
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
+    
+    
     
     [self loadData];
 }
@@ -74,11 +79,11 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
                 userinfo = [[dic objectForKey:@"message"] cleanNull];
-                [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
-                [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
+                NSString *username = [userinfo objectForKey:@"user_name"];
+                self.title = username;
                 [_mytableview reloadData];
                 [self addImages];
-                
+                [self addBottomBtn];
                 
             }else{
                 NSString *message = [dic objectForKey:@"message"];
@@ -92,7 +97,7 @@
         [self showHint:@"连接失败"];
     }];
 }
-
+//添加头部图片
 -(void)addImages{
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
     MyInfoTableViewCell2 *cell = [_mytableview cellForRowAtIndexPath:indexpath];
@@ -118,8 +123,35 @@
             x += width + 8;
         }
     }
+}
+//添加底部按钮
+-(void)addBottomBtn{
+    guanzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [guanzhuBtn setFrame:CGRectMake(0, Main_Screen_Height - 50 - 64, 60, 50)];
+    guanzhuBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+    guanzhuBtn.layer.borderWidth = 1;
+    [guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+    guanzhuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [guanzhuBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    [self.view addSubview:guanzhuBtn];
     
+    chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [chatBtn setFrame:CGRectMake(59, Main_Screen_Height - 50 - 64, 60, 50)];
+    chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+    chatBtn.layer.borderWidth = 1;
+    [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
+    chatBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    [self.view addSubview:chatBtn];
     
+    yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [yueBtn setFrame:CGRectMake(118, Main_Screen_Height - 50 - 64, Main_Screen_Width - 118, 50)];
+    yueBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+    yueBtn.layer.borderWidth = 1;
+    [yueBtn setTitle:@"约TA" forState:UIControlStateNormal];
+    yueBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+    [yueBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    [self.view addSubview:yueBtn];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -257,6 +289,11 @@
             PlayerDongtaiTableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
             cell3.userImg.layer.masksToBounds = YES;
             cell3.userImg.layer.cornerRadius = 5;
+            
+            
+            NSString *topic_count = [userinfo objectForKey:@"topic_count"];
+            cell3.numLabel.text = topic_count;
+            
             return cell3;
         }
         

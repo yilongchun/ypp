@@ -11,5 +11,6 @@
 @interface MyInfoViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+@property (strong, nonatomic) NSString *userid;
 
 @end
