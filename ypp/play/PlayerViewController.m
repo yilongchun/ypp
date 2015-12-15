@@ -22,6 +22,8 @@
     UIButton *guanzhuBtn;
     UIButton *chatBtn;
     UIButton *yueBtn;
+    
+    NSDictionary *dongtaiDic;
 }
 
 @end
@@ -51,6 +53,7 @@
     
     
     [self loadData];
+    [self loadDongtai];
 }
 
 -(void)loadData{
@@ -131,8 +134,18 @@
     guanzhuBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
     guanzhuBtn.layer.borderWidth = 1;
     [guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-    guanzhuBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    guanzhuBtn.titleLabel.font = [UIFont systemFontOfSize:13];
     [guanzhuBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    
+    
+    [guanzhuBtn setImage:[UIImage imageNamed:@"big_add"] forState:UIControlStateNormal];
+    
+    
+    guanzhuBtn.imageEdgeInsets = UIEdgeInsetsMake(-15, 0, 0, -27);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+    guanzhuBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+    guanzhuBtn.titleEdgeInsets = UIEdgeInsetsMake(5, -25, -22, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+    
+    
     [self.view addSubview:guanzhuBtn];
     
     chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -140,8 +153,15 @@
     chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
     chatBtn.layer.borderWidth = 1;
     [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
-    chatBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    
+    [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+    
+    chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+    chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+    chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+    
     [self.view addSubview:chatBtn];
     
     yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -149,10 +169,54 @@
     yueBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
     yueBtn.layer.borderWidth = 1;
     [yueBtn setTitle:@"约TA" forState:UIControlStateNormal];
-    yueBtn.titleLabel.font = [UIFont systemFontOfSize:16];
-    [yueBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+    yueBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    [yueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [yueBtn setBackgroundColor:RGBA(200,22,34,1)];
     [self.view addSubview:yueBtn];
 }
+//加载最新一条动态
+-(void)loadDongtai{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:self.userid forKey:@"userid"];
+    [parameters setValue:[NSNumber numberWithInt:0] forKey:@"type"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST_BY_USER];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                NSArray *arr = [dic objectForKey:@"message"];
+                if ([arr count] > 0) {
+                    dongtaiDic = [arr objectAtIndex:0];
+                    NSIndexSet *sets = [NSIndexSet indexSetWithIndex:1];
+                    [_mytableview reloadSections:sets withRowAnimation:UITableViewRowAnimationFade];
+                }
+            }else{
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+
+#pragma mark - uitableview delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
@@ -186,7 +250,7 @@
             NSString *signature = [userinfo objectForKey:@"signature"];
             content = [signature isEqualToString:@""] ? defaultValue : signature;//个性签名
             
-            UIFont *font = [UIFont systemFontOfSize:16];
+            UIFont *font = [UIFont systemFontOfSize:15];
             CGSize leftTextSize;
             CGSize textSize;
             if ([NSString instancesRespondToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
@@ -221,6 +285,9 @@
     if (section == 0) {
         return 1;
     }else if (section == 1) {
+        if (dongtaiDic == nil) {
+            return 1;
+        }
         return 2;
     }else if (section == 2) {
         return 4;
@@ -294,9 +361,21 @@
             NSString *topic_count = [userinfo objectForKey:@"topic_count"];
             cell3.numLabel.text = topic_count;
             
+            NSString *content = [dongtaiDic objectForKey:@"content"];
+            
+            NSString *pic = [dongtaiDic objectForKey:@"pic"];
+            
+            [cell3.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+            cell3.contentLabel.text = content;
+            
+            NSNumber *create_time = [dongtaiDic objectForKey:@"create_time"];
+            NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[create_time doubleValue]];
+            cell3.otherLabel.text = [NSString stringWithFormat:@"%@",[confromTimesp timeAgo]];
+
+            
+            
             return cell3;
         }
-        
     }
     if (indexPath.section == 2) {
         PlayerTableViewCell4 *cell4 = [tableView dequeueReusableCellWithIdentifier:@"cell4"];

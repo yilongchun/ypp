@@ -1414,7 +1414,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="个人签名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-G5-Kk5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="个人签名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7NT-G5-Kk5">
                                                     <rect key="frame" x="15" y="12" width="60" height="18"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
@@ -1460,7 +1460,6 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Ch-uw-vwp">
                                                     <rect key="frame" x="90" y="12" width="120" height="120"/>
                                                     <animations/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="120" id="Lby-6V-ICc"/>
                                                         <constraint firstAttribute="height" constant="120" id="gYS-lj-ryy"/>
@@ -1483,6 +1482,9 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="860.10km|11-26" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CjD-1r-1lS">
                                                     <rect key="frame" x="218" y="116" width="98" height="16"/>
                                                     <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="VQj-Ou-3lQ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1500,7 +1502,7 @@
                                                 <constraint firstItem="ngx-r7-1nR" firstAttribute="leading" secondItem="9Ch-uw-vwp" secondAttribute="trailing" constant="8" id="aYn-tO-FKh"/>
                                                 <constraint firstAttribute="trailing" secondItem="ngx-r7-1nR" secondAttribute="trailing" constant="8" id="gmc-Hn-vos"/>
                                                 <constraint firstItem="ngx-r7-1nR" firstAttribute="top" secondItem="w4k-F5-ERa" secondAttribute="top" constant="12" id="pv4-ME-vTJ"/>
-                                                <constraint firstItem="CjD-1r-1lS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ngx-r7-1nR" secondAttribute="bottom" constant="12" id="v4i-7f-Fhg"/>
+                                                <constraint firstItem="CjD-1r-1lS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ngx-r7-1nR" secondAttribute="bottom" constant="3" id="v4i-7f-Fhg"/>
                                                 <constraint firstItem="MrK-TC-zWF" firstAttribute="top" secondItem="W6W-4U-sgD" secondAttribute="bottom" constant="5" id="y2P-R5-kmn"/>
                                             </constraints>
                                         </tableViewCellContentView>

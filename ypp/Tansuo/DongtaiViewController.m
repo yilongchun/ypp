@@ -263,9 +263,11 @@
     [cell.btn1 setTitle:[NSString stringWithFormat:@"(%d)",[relay_count intValue]] forState:UIControlStateNormal];
     
     //点赞数
-    NSNumber *fav_count = [info objectForKey:@"fav_count"];
+//    NSNumber *fav_count = [info objectForKey:@"fav_count"];
+    NSNumber *fav_count = [info objectForKey:@"topic_fav_count"];
     [cell.btn3 setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue]] forState:UIControlStateNormal];
     [cell.btn3 setImage:[UIImage imageNamed:@"dongtailist_heart_empty"] forState:UIControlStateNormal];
+    DLog(@"%d",[fav_count intValue]);
     
     
     
