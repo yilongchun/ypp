@@ -31,6 +31,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        self.extendedLayoutIncludesOpaqueBars = YES;
+    }
+    
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
@@ -61,14 +67,22 @@
     page = 1;
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:self.type forKey:@"type"];
     
-//    if ([self.type isEqualToString:@"4"]) {
+    NSString *urlString;
+    
+    if ([self.type isEqualToString:@"5"]) {
+        [parameters setValue:@"1" forKey:@"type"];
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST_BY_USER];
+        [parameters setValue:self.dongtaiUserId forKey:@"userid"];
+    }else{
+        [parameters setValue:self.type forKey:@"type"];
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
         NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
         [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
-//    }
+    }
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
+    
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -112,15 +126,22 @@
     page++;
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
-    [parameters setValue:self.type forKey:@"type"];
     
-//    if ([self.type isEqualToString:@"4"]) {
+    NSString *urlString;
+    
+    if ([self.type isEqualToString:@"5"]) {
+        [parameters setValue:@"1" forKey:@"type"];
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST_BY_USER];
+        [parameters setValue:self.dongtaiUserId forKey:@"userid"];
+    }else{
+        [parameters setValue:self.type forKey:@"type"];
+        urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
         NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
         [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
-//    }
+    }
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_TOPICLIST];
+    
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];

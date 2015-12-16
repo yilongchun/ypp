@@ -14,5 +14,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 @property (strong, nonatomic) NSString *type;
+@property (strong, nonatomic) NSString *dongtaiUserId;//查询个人动态专用
 
 @end

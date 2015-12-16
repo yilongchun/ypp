@@ -16,6 +16,7 @@
 #import "QianmingTableViewCell.h"
 #import "PlayerDongtaiTableViewCell.h"
 #import "PlayerTableViewCell4.h"
+#import "DongtaiViewController.h"
 
 @interface PlayerViewController (){
     NSDictionary *userinfo;
@@ -504,6 +505,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.section == 1) {
+        if (indexPath.row == 1) {
+            
+            DongtaiViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"DongtaiViewController"];
+            vc.title = self.title;
+            vc.type = @"5";
+            vc.dongtaiUserId = [userinfo objectForKey:@"id"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {
