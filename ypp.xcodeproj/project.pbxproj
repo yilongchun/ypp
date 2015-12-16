@@ -50,6 +50,7 @@
 		449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */; };
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
+		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
 		44F029E51C1E97AC00EF9218 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E41C1E97AC00EF9218 /* PlayerViewController.m */; };
 		44F029F11C1E97D000EF9218 /* DongtaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E81C1E97D000EF9218 /* DongtaiDetailTableViewCell.m */; };
 		44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029EA1C1E97D000EF9218 /* DongtaiDetailViewController.m */; };
@@ -252,6 +253,7 @@
 		44E972AA1C20F6DD0014E301 /* XieyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieyiViewController.h; sourceTree = "<group>"; };
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
+		44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon1024x1024.png; sourceTree = "<group>"; };
 		44F029E31C1E97AC00EF9218 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		44F029E41C1E97AC00EF9218 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		44F029E71C1E97D000EF9218 /* DongtaiDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -917,6 +919,7 @@
 				44000BF41C1AA49E00DF8FC4 /* Address.plist */,
 				5A2A76211BE9BA7F00C5FD2F /* main.m */,
 				5A2A764C1BE9DD0C00C5FD2F /* ypp.pch */,
+				44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 				44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
+				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44F02A241C1E97F100EF9218 /* EditMyInfoTextViewController.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
