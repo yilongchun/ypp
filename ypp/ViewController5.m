@@ -230,6 +230,7 @@
     if (indexPath.section == 3) {
         if (indexPath.row == 1) {
             XieyiViewController *vc = [[XieyiViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

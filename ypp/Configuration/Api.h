@@ -82,8 +82,6 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_FOCUSUSER @"app1/index.php?action=focususer"
 //是否已经关注了用户
 #define API_IS_FOCUSUSER @"app1/index.php?action=isfocususer"
-
-
 //查询用户动态
 //参数：userid、type（0 获取最新一条,1获取所有并分页）、page（页数，默认1）
 //type ：陪玩详情页面调用0，点击动态进入动态列表，type传值为1
@@ -96,6 +94,10 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_GETURL @"app1/index.php?action=geturl"
 
 
+//优惠券列表
+#define API_YOUHUI_LIST @"app1/index.php?action=youhuilist"
+//充值列表
+#define API_RECHARGE_LIST @"app1/index.php?action=rechargelist"
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
 //增加浏览量(热点)
@@ -104,6 +106,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //动态分享
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
+//创建活动
+#define API_CREATE_EVENT @"app1/index.php?action=createevent"
 //活动列表
 #define API_EVENTLIST @"app1/index.php?action=eventlist"
 //创建群组

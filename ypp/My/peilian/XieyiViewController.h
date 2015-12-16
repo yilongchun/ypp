@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface XieyiViewController : UIViewController
+@interface XieyiViewController : UIViewController<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *mywebview;
 @property (weak, nonatomic) IBOutlet UIButton *agreeBtn;

@@ -21,6 +21,9 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="518"/>
                     <animations/>
                     <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="7Sy-EX-bRQ"/>
+                    </connections>
                 </webView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fyc-X9-hfG">
                     <rect key="frame" x="0.0" y="518" width="320" height="50"/>
@@ -28,6 +31,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="3d4-6g-Z67"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="同意"/>
                     <connections>
                         <action selector="agree:" destination="-1" eventType="touchUpInside" id="QOM-B1-KxI"/>
