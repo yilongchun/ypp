@@ -51,6 +51,8 @@
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
+		44E972B91C213CDA0014E301 /* ApplyPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */; };
+		44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */; };
 		44F029E51C1E97AC00EF9218 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E41C1E97AC00EF9218 /* PlayerViewController.m */; };
 		44F029F11C1E97D000EF9218 /* DongtaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E81C1E97D000EF9218 /* DongtaiDetailTableViewCell.m */; };
 		44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029EA1C1E97D000EF9218 /* DongtaiDetailViewController.m */; };
@@ -254,6 +256,9 @@
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
 		44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon1024x1024.png; sourceTree = "<group>"; };
+		44E972B61C213CDA0014E301 /* ApplyPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyPlayerTableViewController.h; sourceTree = "<group>"; };
+		44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyPlayerTableViewController.m; sourceTree = "<group>"; };
+		44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyPlayerTableViewController.xib; sourceTree = "<group>"; };
 		44F029E31C1E97AC00EF9218 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		44F029E41C1E97AC00EF9218 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		44F029E71C1E97D000EF9218 /* DongtaiDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -722,6 +727,9 @@
 				44E972AA1C20F6DD0014E301 /* XieyiViewController.h */,
 				44E972AB1C20F6DD0014E301 /* XieyiViewController.m */,
 				44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */,
+				44E972B61C213CDA0014E301 /* ApplyPlayerTableViewController.h */,
+				44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */,
+				44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */,
 			);
 			path = peilian;
 			sourceTree = "<group>";
@@ -1291,6 +1299,7 @@
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
 				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
+				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44F02A241C1E97F100EF9218 /* EditMyInfoTextViewController.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
@@ -1401,6 +1410,7 @@
 				5A35FB891C12B68400427364 /* UIWebView+AFNetworking.m in Sources */,
 				44F029F41C1E97D000EF9218 /* DongtaiViewController.m in Sources */,
 				444E58BD1C15217000D77C63 /* NSObject+Blocks.m in Sources */,
+				44E972B91C213CDA0014E301 /* ApplyPlayerTableViewController.m in Sources */,
 				5A35FB981C12B68400427364 /* MJRefreshAutoFooter.m in Sources */,
 				444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */,
 				44F029F31C1E97D000EF9218 /* DongtaiTableViewCell.m in Sources */,

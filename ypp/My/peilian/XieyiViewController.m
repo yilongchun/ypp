@@ -7,6 +7,7 @@
 //
 
 #import "XieyiViewController.h"
+#import "ApplyPlayerTableViewController.h"
 
 @interface XieyiViewController ()
 
@@ -110,6 +111,8 @@
 */
 
 - (IBAction)agree:(id)sender {
+    ApplyPlayerTableViewController *vc = [[ApplyPlayerTableViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
@@ -117,7 +120,7 @@
     DLog(@"finished");
     
 }
-
+//滑动到底部
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGPoint contentOffsetPoint = _mywebview.scrollView.contentOffset;
     CGRect frame = _mywebview.scrollView.frame;
