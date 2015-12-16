@@ -90,7 +90,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 
 
 //获取文字说明的url
-//type（0用户协议 1游神协议 2帮助说明 ）
+//type（0用户协议 1游神协议 2帮助说明 3用户帮助）
 #define API_GETURL @"app1/index.php?action=geturl"
 
 

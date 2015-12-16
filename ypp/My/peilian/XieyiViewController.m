@@ -82,6 +82,8 @@
             if ([status intValue] == ResultCodeSuccess) {
                 NSString *url = [dic objectForKey:@"message"];
                 [self.mywebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,url]]]];
+                
+                
             }else{
                 [self hideHud];
                 NSString *message = [dic objectForKey:@"message"];

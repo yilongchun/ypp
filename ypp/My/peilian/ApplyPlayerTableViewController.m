@@ -7,11 +7,32 @@
 //
 
 #import "ApplyPlayerTableViewController.h"
+#import "TextViewController.h"
 
 #define Image_msg @"点击更换图片，共4张，需要包含游戏名，游戏区，角色，等级等信息"
 
 @interface ApplyPlayerTableViewController (){
     NSMutableArray *chosedImages;
+    
+    NSString *gameid;//游戏id
+    NSString *gamename;//游戏名称
+    NSString *cityid;   //陪玩城市
+    NSString *cityname;   //陪玩城市
+    NSString *storeid;   //默认地点（选择城市下的门店）
+    NSString *storename;  //默认地点（选择城市下的门店）
+    NSNumber *pirce;   //陪玩单价
+    NSString *tag;  //标签
+    NSString *showphone;  //是否显示联系方式   0 1
+    NSString *phone;  //如果是，联系方式 手机号码
+    
+    //申请证明----------------------------
+    NSString *gameareaid;    //游戏区（和游戏有关，字典表）
+    NSString *gameareaname;  //游戏区（和游戏有关，字典表）
+    NSString *rolename; //角色 文字描述
+    NSString *danname; //段位 文字描述
+    NSString *strengths;   //擅长位置 文字描述
+    NSString *level; //等级 文字描述
+    NSString *pics; //4张图片（游戏名、游戏区、角色、等级  ） ，逗号隔开
 }
 
 @end
@@ -45,7 +66,7 @@
     UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
     [applyBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
     [applyBtn setFrame:CGRectMake(15, 10, Main_Screen_Width - 30, 50)];
-    
+    [applyBtn addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
     UIView *tableFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Main_Screen_Width, 70)];
     [tableFootView addSubview:applyBtn];
     tableFootView.backgroundColor = [UIColor whiteColor];
@@ -53,53 +74,38 @@
     
     chosedImages = [NSMutableArray array];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setValue:)
+                                                 name:@"setValue" object:nil];
+    
 }
 
--(void)addImages{
-    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:5 inSection:1];
-    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexpath];
-    for (UIView *view in cell.contentView.subviews) {
-        if ([view isKindOfClass:[UIImageView class]] || [view isKindOfClass:[UIButton class]]) {
-            [view removeFromSuperview];
-        }
+- (void)setValue:(NSNotification *)text{
+    NSLog(@"column:%@",text.userInfo[@"column"]);
+    NSLog(@"columnValue:%@",text.userInfo[@"columnValue"]);
+    NSLog(@"－－－－－接收到通知------");
+    
+    NSString *column = text.userInfo[@"column"];
+    NSString *columnValue = text.userInfo[@"columnValue"];
+    if ([column isEqualToString:@"tag"]) {//标签
+        tag = columnValue;
     }
-    
-    
-    CGFloat x = 8;
-    CGFloat width = (Main_Screen_Width - 40) / 4;
-    
-    if ([chosedImages count] == 0) {
-        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-        [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-        [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
-        [cell.contentView addSubview:btn];
-    }else{
-        
-        
-        for (int i = 0; i < [chosedImages count]; i++) {
-            
-            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-            [imageview setImage:[chosedImages objectAtIndex:i]];
-            imageview.layer.masksToBounds = YES;
-            imageview.layer.cornerRadius = 5.0;
-            imageview.tag = i;
-            imageview.userInteractionEnabled = YES;
-//            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(deleteImgs:)];
-//            [imageview addGestureRecognizer:tap];
-            
-            [cell.contentView addSubview:imageview];
-            x += width + 8;
-        }
-        if ([chosedImages count] < 4) {
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add"] forState:UIControlStateNormal];
-            [btn setBackgroundImage:[UIImage imageNamed:@"compose_pic_add_highlighted"] forState:UIControlStateHighlighted];
-            [btn addTarget:self action:@selector(addImgs) forControlEvents:UIControlEventTouchUpInside];
-            [cell.contentView addSubview:btn];
-        }
+    if ([column isEqualToString:@"phone"]) {//显示号码
+        phone = columnValue;
     }
-//    [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationFade];
+    if ([column isEqualToString:@"rolename"]) {//角色
+        rolename = columnValue;
+    }
+    if ([column isEqualToString:@"danname"]) {//段位
+        danname = columnValue;
+    }
+    if ([column isEqualToString:@"strengths"]) {//擅长位置
+        strengths = columnValue;
+    }
+    if ([column isEqualToString:@"level"]) {//等级
+        level = columnValue;
+    }
+    [self.tableView reloadData];
 }
 
 //添加照片
@@ -161,6 +167,46 @@
     [alert addAction:action1];
     [alert addAction:action2];
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+//申请陪练
+-(void)save{
+    
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];//申请人id
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"user_name"] forKey:@"username"];//申请人名称
+    
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_DARENSUBMIT];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+//    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        NSLog(@"JSON: %@", operation.responseString);
+//        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSError *error;
+//        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+//        if (dic == nil) {
+//            [self hideHud];
+//            NSLog(@"json parse failed \r\n");
+//        }else{
+//            NSNumber *status = [dic objectForKey:@"status"];
+//            if ([status intValue] == ResultCodeSuccess) {
+//                
+//            }else{
+//                [self hideHud];
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+//            }
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"发生错误！%@",error);
+//        [self hideHud];
+//        [self showHint:@"连接失败"];
+//    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -274,7 +320,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 6;
+        return 7;
     }
     return 6;
 }
@@ -349,7 +395,7 @@
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.font = [UIFont systemFontOfSize:16];
     }
@@ -363,16 +409,21 @@
                 cell.textLabel.text = @"陪玩城市";
                 break;
             case 2:
-                cell.textLabel.text = @"陪玩单价";
+                cell.textLabel.text = @"陪玩地点";
                 break;
             case 3:
-                cell.textLabel.text = @"标签(选填)";
+                cell.textLabel.text = @"陪玩单价";
                 break;
             case 4:
-                cell.textLabel.text = @"联系方式";//显示手机号码 不显示手机号码
+                cell.textLabel.text = @"标签(选填)";
+                cell.detailTextLabel.text = tag;
                 break;
             case 5:
+                cell.textLabel.text = @"联系方式";//显示手机号码 不显示手机号码
+                break;
+            case 6:
                 cell.textLabel.text = @"显示号码";
+                cell.detailTextLabel.text = phone;
                 break;
             default:
                 break;
@@ -384,15 +435,19 @@
                 break;
             case 1:
                 cell.textLabel.text = @"角色";
+                cell.detailTextLabel.text = rolename;
                 break;
             case 2:
                 cell.textLabel.text = @"段位(选填)";
+                cell.detailTextLabel.text = danname;
                 break;
             case 3:
                 cell.textLabel.text = @"擅长位置(选填)";
+                cell.detailTextLabel.text = strengths;
                 break;
             case 4:
                 cell.textLabel.text = @"等级";
+                cell.detailTextLabel.text = level;
                 break;
             case 5:{
             }
@@ -419,6 +474,65 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {//游戏列表
+            
+        }
+        if (indexPath.row == 1) {//城市选择
+            
+        }
+        if (indexPath.row == 2) {//地点选择
+            
+        }
+        if (indexPath.row == 3) {//单价弹出 选择
+            
+        }
+        if (indexPath.row == 4) {//标签 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"标签";
+            vc.column = @"tag";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 5) {//联系方式 选择
+            
+        }
+        if (indexPath.row == 6) {//显示号码 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"显示号码";
+            vc.column = @"phone";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    if (indexPath.section == 1) {
+        if (indexPath.row == 0) {//游戏区 选择
+            
+        }
+        if (indexPath.row == 1) {//角色 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"角色";
+            vc.column = @"rolename";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 2) {//段位 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"段位(选填)";
+            vc.column = @"danname";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 3) {//擅长位置 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"擅长位置(选填)";
+            vc.column = @"strengths";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+        if (indexPath.row == 4) {//等级 文本域
+            TextViewController *vc = [[TextViewController alloc] init];
+            vc.title = @"等级";
+            vc.column = @"level";
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 

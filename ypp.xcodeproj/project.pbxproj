@@ -53,6 +53,10 @@
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
 		44E972B91C213CDA0014E301 /* ApplyPlayerTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */; };
 		44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */; };
+		44E972C31C2160420014E301 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972C11C2160420014E301 /* TextViewController.m */; };
+		44E972C41C2160420014E301 /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972C21C2160420014E301 /* TextViewController.xib */; };
+		44E972C81C216C440014E301 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972C61C216C440014E301 /* HelpViewController.m */; };
+		44E972C91C216C440014E301 /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972C71C216C440014E301 /* HelpViewController.xib */; };
 		44F029E51C1E97AC00EF9218 /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E41C1E97AC00EF9218 /* PlayerViewController.m */; };
 		44F029F11C1E97D000EF9218 /* DongtaiDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029E81C1E97D000EF9218 /* DongtaiDetailTableViewCell.m */; };
 		44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F029EA1C1E97D000EF9218 /* DongtaiDetailViewController.m */; };
@@ -259,6 +263,12 @@
 		44E972B61C213CDA0014E301 /* ApplyPlayerTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyPlayerTableViewController.h; sourceTree = "<group>"; };
 		44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyPlayerTableViewController.m; sourceTree = "<group>"; };
 		44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyPlayerTableViewController.xib; sourceTree = "<group>"; };
+		44E972C01C2160420014E301 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
+		44E972C11C2160420014E301 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
+		44E972C21C2160420014E301 /* TextViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TextViewController.xib; sourceTree = "<group>"; };
+		44E972C51C216C440014E301 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		44E972C61C216C440014E301 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
+		44E972C71C216C440014E301 /* HelpViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
 		44F029E31C1E97AC00EF9218 /* PlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
 		44F029E41C1E97AC00EF9218 /* PlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 		44F029E71C1E97D000EF9218 /* DongtaiDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DongtaiDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -730,6 +740,9 @@
 				44E972B61C213CDA0014E301 /* ApplyPlayerTableViewController.h */,
 				44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */,
 				44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */,
+				44E972C01C2160420014E301 /* TextViewController.h */,
+				44E972C11C2160420014E301 /* TextViewController.m */,
+				44E972C21C2160420014E301 /* TextViewController.xib */,
 			);
 			path = peilian;
 			sourceTree = "<group>";
@@ -802,6 +815,9 @@
 				44F02A121C1E97F100EF9218 /* setting */,
 				44F02A181C1E97F100EF9218 /* UpdatePhoneViewController.h */,
 				44F02A191C1E97F100EF9218 /* UpdatePhoneViewController.m */,
+				44E972C51C216C440014E301 /* HelpViewController.h */,
+				44E972C61C216C440014E301 /* HelpViewController.m */,
+				44E972C71C216C440014E301 /* HelpViewController.xib */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -1302,8 +1318,10 @@
 				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44F02A241C1E97F100EF9218 /* EditMyInfoTextViewController.xib in Resources */,
+				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
+				44E972C41C2160420014E301 /* TextViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1321,6 +1339,7 @@
 				5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */,
 				444E58C81C15217000D77C63 /* NSString+UUID.m in Sources */,
 				444E58C71C15217000D77C63 /* NSString+UrlEncode.m in Sources */,
+				44E972C81C216C440014E301 /* HelpViewController.m in Sources */,
 				444E58C31C15217000D77C63 /* NSString+Hash.m in Sources */,
 				44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */,
 				444E58B51C15217000D77C63 /* NSFileManager+Paths.m in Sources */,
@@ -1428,6 +1447,7 @@
 				5A35FB801C12B68400427364 /* AFURLResponseSerialization.m in Sources */,
 				444E58AA1C15217000D77C63 /* NSDate+Addition.m in Sources */,
 				444E58C21C15217000D77C63 /* NSString+Emoji.m in Sources */,
+				44E972C31C2160420014E301 /* TextViewController.m in Sources */,
 				44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */,
 				5A35FB7F1C12B68400427364 /* AFURLRequestSerialization.m in Sources */,
 				5A5C30F91BF059600047A016 /* LoginViewController.m in Sources */,

@@ -15,6 +15,7 @@
 #import "SettingTableViewController.h"
 #import "EditMyInfoViewController.h"
 #import "XieyiViewController.h"
+#import "HelpViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -254,7 +255,10 @@
             vc.title = @"设置";
             [self.navigationController pushViewController:vc animated:YES];
         }else{
-            
+            HelpViewController *vc = [[HelpViewController alloc] init];
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.title = @"用户帮助";
+            [self.navigationController pushViewController:vc animated:YES];
         }
         
     }
