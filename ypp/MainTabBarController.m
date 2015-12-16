@@ -16,7 +16,9 @@
 
 #import "FabuyuewanViewController.h"
 
-@interface MainTabBarController ()
+@interface MainTabBarController (){
+    UIViewController *tempvc;
+}
 
 @end
 
@@ -219,6 +221,7 @@
     
     self.viewControllers = viewArr_;
     self.selectedIndex = 0;
+    tempvc = nc1;
     
 //    CGFloat offset = 7.0;
 //    for (UITabBarItem *item in self.tabBar.items) {
@@ -230,12 +233,15 @@
     if (item.tag == 2) {
         //发布约玩
         FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];
-        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-        nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
-        nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-        [self presentViewController:nc animated:YES completion:^{
-            
-        }];
+        vc.hidesBottomBarWhenPushed = YES;
+        [((UINavigationController *)tempvc) pushViewController:vc animated:YES];
+        
+//        UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+//        nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+//        nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//        [self presentViewController:nc animated:YES completion:^{
+//            
+//        }];
         
         
         
@@ -257,11 +263,13 @@
     if ([viewController isKindOfClass:[ViewController3 class]]) {
         return NO;
     }else{
+        tempvc = viewController;
         return YES;
+        
     }
 }
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    
+    DLog(@"123");
 }
 
 
@@ -304,20 +312,20 @@
         center.y = self.tabBar.frame.size.height / 2 - (buttonImage.size.height - self.tabBar.frame.size.height)*0.5 ;
         button.center = center;
     }
-    [button addTarget:self action:@selector(doAction) forControlEvents:UIControlEventTouchUpInside];
+//    [button addTarget:self action:@selector(doAction) forControlEvents:UIControlEventTouchUpInside];
     [self.tabBar addSubview:button];
     
 }
-//中间按钮点击事件
--(void)doAction{
-    //发布约玩
-    FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
-    nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    [self presentViewController:nc animated:YES completion:^{
-        
-    }];
-}
+////中间按钮点击事件
+//-(void)doAction{
+//    //发布约玩
+//    FabuyuewanViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabuyuewanViewController"];
+//    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
+//    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+//    nc.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+//    [self presentViewController:nc animated:YES completion:^{
+//        
+//    }];
+//}
 
 @end

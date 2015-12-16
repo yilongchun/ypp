@@ -20,10 +20,10 @@
     
     self.title = @"我要约玩";
     
-    UIImage *backImage = [UIImage imageNamed:@"navi_back"];
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(back)];
-    [leftItem setTintColor:[UIColor whiteColor]];
-    self.navigationItem.leftBarButtonItem = leftItem;
+//    UIImage *backImage = [UIImage imageNamed:@"navi_back"];
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithImage:backImage style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+//    [leftItem setTintColor:[UIColor whiteColor]];
+//    self.navigationItem.leftBarButtonItem = leftItem;
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         //        self.edgesForExtendedLayout = UIRectEdgeNone;

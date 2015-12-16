@@ -1741,8 +1741,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-vu-SFJ">
-                                <rect key="frame" x="115" y="-18" width="90" height="98"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yu" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-vu-SFJ">
+                                <rect key="frame" x="121" y="33" width="79" height="47"/>
                                 <animations/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5r7-c6-8Ho">
@@ -2717,13 +2717,13 @@
         <image name="dt_dashang" width="14" height="18"/>
         <image name="gallery_default" width="72" height="72"/>
         <image name="hot-icon" width="19" height="19"/>
-        <image name="logo" width="90" height="98"/>
         <image name="s0" width="320" height="480"/>
         <image name="t0" width="80" height="50"/>
         <image name="t2" width="80" height="50"/>
         <image name="t3" width="80" height="50"/>
         <image name="t4" width="80" height="50"/>
         <image name="usercell_girl" width="33" height="14"/>
+        <image name="yu" width="79" height="47"/>
         <image name="yue" width="64" height="64"/>
     </resources>
 </document>
