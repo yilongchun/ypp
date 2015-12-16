@@ -54,6 +54,7 @@
     
     [self loadData];
     [self loadDongtai];
+    [self loadGuanzhu];
 }
 
 -(void)loadData{
@@ -86,7 +87,7 @@
                 self.title = username;
                 [_mytableview reloadData];
                 [self addImages];
-                [self addBottomBtn];
+                
                 
             }else{
                 NSString *message = [dic objectForKey:@"message"];
@@ -128,40 +129,50 @@
     }
 }
 //添加底部按钮
--(void)addBottomBtn{
-    guanzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [guanzhuBtn setFrame:CGRectMake(0, Main_Screen_Height - 50 - 64, 60, 50)];
-    guanzhuBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
-    guanzhuBtn.layer.borderWidth = 1;
-    [guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
-    guanzhuBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [guanzhuBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+-(void)addBottomBtn:(BOOL)flag{
     
+    if (guanzhuBtn != nil) {
+        [guanzhuBtn removeFromSuperview];
+    }
+    if (chatBtn != nil) {
+        [chatBtn removeFromSuperview];
+    }
+    if (yueBtn != nil) {
+        [yueBtn removeFromSuperview];
+    }
     
-    [guanzhuBtn setImage:[UIImage imageNamed:@"big_add"] forState:UIControlStateNormal];
-    
-    
-    guanzhuBtn.imageEdgeInsets = UIEdgeInsetsMake(-15, 0, 0, -27);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
-    guanzhuBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
-    guanzhuBtn.titleEdgeInsets = UIEdgeInsetsMake(5, -25, -22, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
-    
-    
-    [self.view addSubview:guanzhuBtn];
+    CGFloat x = 0;
+    CGFloat width = 60;
+    if (flag) {//已关注
+        width = 120;
+    }else{//未关注
+        guanzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [guanzhuBtn setFrame:CGRectMake(0, Main_Screen_Height - 50 - 64, 60, 50)];
+        guanzhuBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+        guanzhuBtn.layer.borderWidth = 1;
+        [guanzhuBtn setTitle:@"关注" forState:UIControlStateNormal];
+        guanzhuBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [guanzhuBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+        [guanzhuBtn setImage:[UIImage imageNamed:@"big_add"] forState:UIControlStateNormal];
+        guanzhuBtn.imageEdgeInsets = UIEdgeInsetsMake(-15, 0, 0, -27);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+        guanzhuBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+        guanzhuBtn.titleEdgeInsets = UIEdgeInsetsMake(5, -25, -22, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+        [guanzhuBtn addTarget:self action:@selector(guanzhu) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:guanzhuBtn];
+        x = 59;
+    }
     
     chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [chatBtn setFrame:CGRectMake(59, Main_Screen_Height - 50 - 64, 60, 50)];
+    [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, width, 50)];
     chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
     chatBtn.layer.borderWidth = 1;
     [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
     chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
     [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
-    
     [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
-    
     chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
     chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
     chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
-    
     [self.view addSubview:chatBtn];
     
     yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -204,6 +215,83 @@
                     NSIndexSet *sets = [NSIndexSet indexSetWithIndex:1];
                     [_mytableview reloadSections:sets withRowAnimation:UITableViewRowAnimationFade];
                 }
+            }else{
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+
+//查询关注状态
+-(void)loadGuanzhu{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"fuserid"];
+    [parameters setValue:self.userid forKey:@"fduserid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_IS_FOCUSUSER];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                [self addBottomBtn:YES];
+            }else{
+                [self addBottomBtn:NO];
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self showHint:@"连接失败"];
+    }];
+}
+
+//关注用户
+-(void)guanzhu{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"fuserid"];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"user_name"] forKey:@"fusername"];
+    [parameters setValue:self.userid forKey:@"fduserid"];
+    [parameters setValue:[userinfo objectForKey:@"user_name"] forKey:@"fdusername"];
+    
+    [self showHudInView:self.view];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_FOCUSUSER];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self hideHud];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                [self loadGuanzhu];
             }else{
 //                NSString *message = [dic objectForKey:@"message"];
 //                [self showHint:message];

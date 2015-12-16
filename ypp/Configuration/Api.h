@@ -78,6 +78,10 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_FAVTOPIC_LIST @"app1/index.php?action=favtopic_list"
 //动态回复列表
 #define API_TOPIC_REPLY_LIST @"app1/index.php?action=topic_reply_list"
+//关注
+#define API_FOCUSUSER @"app1/index.php?action=focususer"
+//是否已经关注了用户
+#define API_IS_FOCUSUSER @"app1/index.php?action=isfocususer"
 
 
 //查询用户动态
@@ -86,14 +90,18 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_TOPICLIST_BY_USER @"app1/index.php?action=topiclistByuser"
 
 
+
+//获取文字说明的url
+//type（0用户协议 1游神协议 2帮助说明 ）
+#define API_GETURL @"app1/index.php?action=geturl"
+
+
 //绑定YY账号
 #define API_SETYY @"app1/index.php?action=setyy"
 //增加浏览量(热点)
 #define API_HOTCOUNT @"app1/index.php?action=hotcount"
 //申请成为陪练
 #define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
-//关注
-#define API_FOCUSUSER @"app1/index.php?action=focususer"
 //动态分享
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
 //活动列表

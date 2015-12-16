@@ -14,6 +14,7 @@
 #import "MyInfoViewController.h"
 #import "SettingTableViewController.h"
 #import "EditMyInfoViewController.h"
+#import "XieyiViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -225,6 +226,12 @@
         vc.hidesBottomBarWhenPushed = YES;
         vc.title = @"账号绑定";
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.section == 3) {
+        if (indexPath.row == 1) {
+            XieyiViewController *vc = [[XieyiViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     if (indexPath.section == 4) {
         SettingTableViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"SettingTableViewController"];
