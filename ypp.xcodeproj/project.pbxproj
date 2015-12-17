@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44000BF41C1AA49E00DF8FC4 /* Address.plist */; };
 		4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */; };
+		4435CF041C22ADF000B1E7C9 /* ApplyResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */; };
+		4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */; };
 		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
 		444E58A61C15217000D77C63 /* NSArray+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584C1C15217000D77C63 /* NSArray+Block.m */; };
 		444E58A71C15217000D77C63 /* NSArray+SafeAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E584E1C15217000D77C63 /* NSArray+SafeAccess.m */; };
@@ -48,6 +50,10 @@
 		444E58CB1C15217000D77C63 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A21C15217000D77C63 /* NSTimer+Blocks.m */; };
 		444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A51C15217000D77C63 /* NSURL+Param.m */; };
 		449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */; };
+		44E19CA31C22445800E00B0F /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA11C22445800E00B0F /* TagViewController.m */; };
+		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
+		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
+		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
@@ -178,6 +184,9 @@
 		44000BF41C1AA49E00DF8FC4 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
 		4403CF361C1FBD5C00C2CA46 /* PinglunTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinglunTableViewCell.h; sourceTree = "<group>"; };
 		4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinglunTableViewCell.m; sourceTree = "<group>"; };
+		4435CF011C22ADF000B1E7C9 /* ApplyResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyResultViewController.h; sourceTree = "<group>"; };
+		4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyResultViewController.m; sourceTree = "<group>"; };
+		4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyResultViewController.xib; sourceTree = "<group>"; };
 		444E58441C15154C00D77C63 /* ACMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ACMacros.h; sourceTree = "<group>"; };
 		444E58461C15164F00D77C63 /* Api.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = Api.h; path = Configuration/Api.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		444E58471C15164F00D77C63 /* Api.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Api.m; path = Configuration/Api.m; sourceTree = "<group>"; };
@@ -256,6 +265,12 @@
 		444E58A51C15217000D77C63 /* NSURL+Param.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Param.m"; sourceTree = "<group>"; };
 		449546F41C157DFB000C41C2 /* UITextView+PlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+PlaceHolder.h"; sourceTree = "<group>"; };
 		449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
+		44E19CA01C22445800E00B0F /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
+		44E19CA11C22445800E00B0F /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
+		44E19CA21C22445800E00B0F /* TagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewController.xib; sourceTree = "<group>"; };
+		44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAndShopTableViewController.h; sourceTree = "<group>"; };
+		44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAndShopTableViewController.m; sourceTree = "<group>"; };
+		44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameAndShopTableViewController.xib; sourceTree = "<group>"; };
 		44E972AA1C20F6DD0014E301 /* XieyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieyiViewController.h; sourceTree = "<group>"; };
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
@@ -740,9 +755,18 @@
 				44E972B61C213CDA0014E301 /* ApplyPlayerTableViewController.h */,
 				44E972B71C213CDA0014E301 /* ApplyPlayerTableViewController.m */,
 				44E972B81C213CDA0014E301 /* ApplyPlayerTableViewController.xib */,
+				44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */,
+				44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */,
+				44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */,
 				44E972C01C2160420014E301 /* TextViewController.h */,
 				44E972C11C2160420014E301 /* TextViewController.m */,
 				44E972C21C2160420014E301 /* TextViewController.xib */,
+				44E19CA01C22445800E00B0F /* TagViewController.h */,
+				44E19CA11C22445800E00B0F /* TagViewController.m */,
+				44E19CA21C22445800E00B0F /* TagViewController.xib */,
+				4435CF011C22ADF000B1E7C9 /* ApplyResultViewController.h */,
+				4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */,
+				4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */,
 			);
 			path = peilian;
 			sourceTree = "<group>";
@@ -1310,9 +1334,12 @@
 				5A2A762D1BE9BA7F00C5FD2F /* Assets.xcassets in Resources */,
 				44F02A1F1C1E97F100EF9218 /* EditAddressViewController.xib in Resources */,
 				444E58AE1C15217000D77C63 /* NSDateTimeAgo.bundle in Resources */,
+				44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */,
+				44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */,
 				5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */,
 				44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
+				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
 				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
 				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
@@ -1357,6 +1384,7 @@
 				5A35FB9E1C12B68400427364 /* MJRefreshAutoNormalFooter.m in Sources */,
 				5A2A763F1BE9C53700C5FD2F /* ViewController1.m in Sources */,
 				5A35FBAA1C12B68400427364 /* UIView+MJExtension.m in Sources */,
+				44E19CA31C22445800E00B0F /* TagViewController.m in Sources */,
 				444E58C61C15217000D77C63 /* NSString+Trims.m in Sources */,
 				44F02A261C1E97F100EF9218 /* MyInfoTableViewCell2.m in Sources */,
 				444E58CB1C15217000D77C63 /* NSTimer+Blocks.m in Sources */,
@@ -1369,6 +1397,7 @@
 				5A5C31051BF085F10047A016 /* ForgetPasswordViewController.m in Sources */,
 				5A35FC101C12B7ED00427364 /* MBProgressHUD.m in Sources */,
 				5A35FB7E1C12B68400427364 /* AFURLConnectionOperation.m in Sources */,
+				44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */,
 				5A35FBA81C12B68400427364 /* UIScrollView+MJExtension.m in Sources */,
 				5A35FC021C12B68400427364 /* UIViewController+DismissKeyboard.m in Sources */,
 				5A35FB7D1C12B68400427364 /* AFSecurityPolicy.m in Sources */,
@@ -1460,6 +1489,7 @@
 				5A35FBA91C12B68400427364 /* UIScrollView+MJRefresh.m in Sources */,
 				5A5C31021BF07FE60047A016 /* Register3ViewController.m in Sources */,
 				5A5C30FF1BF07AD90047A016 /* Register2ViewController.m in Sources */,
+				4435CF041C22ADF000B1E7C9 /* ApplyResultViewController.m in Sources */,
 				5A35FB9F1C12B68400427364 /* MJRefreshAutoStateFooter.m in Sources */,
 				5A35FBA21C12B68400427364 /* MJRefreshBackStateFooter.m in Sources */,
 				44F02A231C1E97F100EF9218 /* EditMyInfoTextViewController.m in Sources */,

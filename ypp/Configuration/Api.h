@@ -86,9 +86,10 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //参数：userid、type（0 获取最新一条,1获取所有并分页）、page（页数，默认1）
 //type ：陪玩详情页面调用0，点击动态进入动态列表，type传值为1
 #define API_TOPICLIST_BY_USER @"app1/index.php?action=topiclistByuser"
-
-
-
+//根据游戏ID查询游戏区 参数gameid
+#define API_GAMEAREAS_BY_ID @"app1/index.php?action=gameareasByID"
+//申请成为陪练
+#define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //获取文字说明的url
 //type（0用户协议 1游神协议 2帮助说明 3用户帮助）
 #define API_GETURL @"app1/index.php?action=geturl"
@@ -102,8 +103,6 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_SETYY @"app1/index.php?action=setyy"
 //增加浏览量(热点)
 #define API_HOTCOUNT @"app1/index.php?action=hotcount"
-//申请成为陪练
-#define API_DARENSUBMIT @"app1/index.php?action=darensubmit"
 //动态分享
 #define API_RELAYTOPIC @"app1/index.php?action=relaytopic"
 //创建活动

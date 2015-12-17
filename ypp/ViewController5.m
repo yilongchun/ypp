@@ -16,6 +16,7 @@
 #import "EditMyInfoViewController.h"
 #import "XieyiViewController.h"
 #import "HelpViewController.h"
+#import "ApplyResultViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -60,6 +61,8 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
+    
+    [self loadUser:nil];
 }
 
 -(void)loadUser:(NSNotification *)text{
@@ -192,9 +195,19 @@
                 return cell;
             }else if(indexPath.row == 1){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-                cell.textLabel.text = @"申请陪练";
+                
                 cell.imageView.image = [UIImage imageNamed:@"sGod"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                
+                
+                NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
+                if ([is_daren isEqualToString:@"2"]) {//审核通过
+                    cell.textLabel.text = @"我是陪练";
+                }else{
+                    cell.textLabel.text = @"申请陪练";
+                }
+                
+                
                 return cell;
             }else{
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
@@ -243,9 +256,29 @@
     }
     if (indexPath.section == 3) {
         if (indexPath.row == 1) {
-            XieyiViewController *vc = [[XieyiViewController alloc] init];
-            vc.hidesBottomBarWhenPushed = YES;
-            [self.navigationController pushViewController:vc animated:YES];
+            
+            NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
+            
+            if ([is_daren isEqualToString:@"0"]) {
+                XieyiViewController *vc = [[XieyiViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            if ([is_daren isEqualToString:@"1"]) {//审核中
+                DLog(@"审核中");
+                ApplyResultViewController *vc = [[ApplyResultViewController alloc] init];
+                vc.title = @"申请陪练";
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            if ([is_daren isEqualToString:@"2"]) {//审核通过
+                DLog(@"审核通过");
+            }
+            if ([is_daren isEqualToString:@"3"]) {//审核不通过
+                
+            }
+            
+            
         }
     }
     if (indexPath.section == 4) {

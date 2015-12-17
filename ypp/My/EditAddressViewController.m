@@ -62,54 +62,71 @@
 //}
 
 -(void)save{
-    [self showHudInView:self.view];
     
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
-    [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
-    
-    NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
-    NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
-    NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
-    NSString *value = [NSString stringWithFormat:@"%@ %@ %@",province,city,town];
-    
-    [parameters setValue:value forKey:@"city"];
-    
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATEUSER];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [self hideHud];
+    if (self.type == 1) {
+        NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+        NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
+        NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
+        NSString *value = [NSString stringWithFormat:@"%@ %@ %@",province,city,town];
         
-        NSLog(@"JSON: %@", operation.responseString);
+        //添加 字典，将label的值通过key值设置传递
+        NSDictionary *dict =[[NSDictionary alloc] initWithObjectsAndKeys:_column,@"column",value,@"columnValue", nil];
+        //创建通知
+        NSNotification *notification =[NSNotification notificationWithName:@"setValue" object:nil userInfo:dict];
+        //通过通知中心发送通知
+        [[NSNotificationCenter defaultCenter] postNotification:notification];
         
-        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
-        NSError *error;
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (dic == nil) {
-            NSLog(@"json parse failed \r\n");
-        }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == ResultCodeSuccess) {
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-                [self performBlock:^{
-                    [[NSNotificationCenter defaultCenter]
-                     postNotificationName:@"loadUser" object:nil];
-                    [self.navigationController popViewControllerAnimated:YES];
-                } afterDelay:1.5];
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        [self showHudInView:self.view];
+        
+        NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+        NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+        [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
+        
+        NSString *province = [provinceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+        NSString *city = [cityArray objectAtIndex:[self.myPicker selectedRowInComponent:1]];
+        NSString *town = [townArray objectAtIndex:[self.myPicker selectedRowInComponent:2]];
+        NSString *value = [NSString stringWithFormat:@"%@ %@ %@",province,city,town];
+        
+        [parameters setValue:value forKey:@"city"];
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_UPDATEUSER];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self hideHud];
+            
+            NSLog(@"JSON: %@", operation.responseString);
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dic == nil) {
+                NSLog(@"json parse failed \r\n");
             }else{
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
+                NSNumber *status = [dic objectForKey:@"status"];
+                if ([status intValue] == ResultCodeSuccess) {
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                    [self performBlock:^{
+                        [[NSNotificationCenter defaultCenter]
+                         postNotificationName:@"loadUser" object:nil];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } afterDelay:1.5];
+                }else{
+                    NSString *message = [dic objectForKey:@"message"];
+                    [self showHint:message];
+                }
             }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
-        [self hideHud];
-        [self showHint:@"连接失败"];
-    }];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [self hideHud];
+            [self showHint:@"连接失败"];
+        }];
+    }
 }
 
 #pragma mark - UIPicker Delegate

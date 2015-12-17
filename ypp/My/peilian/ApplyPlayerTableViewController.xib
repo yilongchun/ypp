@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ApplyPlayerTableViewController">
             <connections>
+                <outlet property="myPicker" destination="Nex-ED-lMG" id="Gpm-Rn-zZl"/>
+                <outlet property="pickerBgView" destination="DMW-6f-M20" id="hdp-xa-B9M"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,5 +24,64 @@
             </connections>
             <point key="canvasLocation" x="295" y="299"/>
         </tableView>
+        <view contentMode="scaleToFill" id="DMW-6f-M20">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r17-oK-8n3">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="LAS-BZ-qzd"/>
+                        <constraint firstAttribute="height" constant="39" id="Xsn-bU-b1b"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="eGC-wd-Yqb"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKU-o4-OH0">
+                    <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="khW-5c-2jF"/>
+                        <constraint firstAttribute="width" constant="60" id="oQm-YW-J2J"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="确定">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="ensure:" destination="-1" eventType="touchUpInside" id="71f-Yw-9Cx"/>
+                    </connections>
+                </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nex-ED-lMG">
+                    <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                    <animations/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="qCx-Zh-uYv"/>
+                        <outlet property="delegate" destination="-1" id="txv-3Z-m91"/>
+                    </connections>
+                </pickerView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Nex-ED-lMG" firstAttribute="leading" secondItem="DMW-6f-M20" secondAttribute="leading" id="5dL-Kt-58h"/>
+                <constraint firstAttribute="bottom" secondItem="Nex-ED-lMG" secondAttribute="bottom" id="Bxi-Qt-Qzs"/>
+                <constraint firstItem="r17-oK-8n3" firstAttribute="leading" secondItem="DMW-6f-M20" secondAttribute="leading" id="U0o-ki-Lb5"/>
+                <constraint firstItem="NKU-o4-OH0" firstAttribute="top" secondItem="DMW-6f-M20" secondAttribute="top" id="WYL-bk-5AF"/>
+                <constraint firstItem="r17-oK-8n3" firstAttribute="top" secondItem="DMW-6f-M20" secondAttribute="top" id="XQH-fs-uQf"/>
+                <constraint firstAttribute="trailing" secondItem="NKU-o4-OH0" secondAttribute="trailing" id="g93-aZ-wGh"/>
+                <constraint firstItem="Nex-ED-lMG" firstAttribute="top" secondItem="NKU-o4-OH0" secondAttribute="bottom" id="pPZ-f3-Z2u"/>
+                <constraint firstAttribute="trailing" secondItem="Nex-ED-lMG" secondAttribute="trailing" id="s81-eR-DMk"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="698" y="383.5"/>
+        </view>
     </objects>
 </document>
