@@ -732,6 +732,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-bX-agY">
+                                                    <rect key="frame" x="105" y="17" width="34" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_default" translatesAutoresizingMaskIntoConstraints="NO" id="Erx-ZL-xMz">
                                                     <rect key="frame" x="15" y="12" width="75" height="75"/>
                                                     <animations/>
@@ -740,18 +746,23 @@
                                                         <constraint firstAttribute="height" constant="75" id="xeI-MD-aHL"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nz0-bX-agY">
-                                                    <rect key="frame" x="105" y="61" width="34" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkG-p8-1tJ">
+                                                    <rect key="frame" x="105" y="43" width="36" height="17"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="Nz0-bX-agY" firstAttribute="bottom" secondItem="Erx-ZL-xMz" secondAttribute="bottom" constant="-5" id="1B4-hd-1Pu"/>
+                                                <constraint firstItem="rkG-p8-1tJ" firstAttribute="leading" secondItem="Erx-ZL-xMz" secondAttribute="trailing" constant="15" id="8mj-Rj-8mv"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rkG-p8-1tJ" secondAttribute="trailing" id="DO9-G3-ehp"/>
+                                                <constraint firstItem="rkG-p8-1tJ" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="Erx-ZL-xMz" secondAttribute="bottom" id="DuQ-9C-tJi"/>
                                                 <constraint firstItem="Erx-ZL-xMz" firstAttribute="centerY" secondItem="w86-qi-DQ5" secondAttribute="centerY" id="DxV-hH-gdN"/>
+                                                <constraint firstItem="Nz0-bX-agY" firstAttribute="top" secondItem="Erx-ZL-xMz" secondAttribute="top" constant="5" id="EaC-ki-hAf"/>
                                                 <constraint firstItem="Nz0-bX-agY" firstAttribute="leading" secondItem="Erx-ZL-xMz" secondAttribute="trailing" constant="15" id="Eol-p0-l7p"/>
+                                                <constraint firstItem="rkG-p8-1tJ" firstAttribute="top" secondItem="Nz0-bX-agY" secondAttribute="bottom" constant="5" id="EzA-Jz-gkc"/>
                                                 <constraint firstItem="Erx-ZL-xMz" firstAttribute="leading" secondItem="w86-qi-DQ5" secondAttribute="leading" constant="15" id="LIN-mp-yaw"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -760,6 +771,7 @@
                                         <connections>
                                             <outlet property="userImg" destination="Erx-ZL-xMz" id="ZeZ-eU-RhU"/>
                                             <outlet property="usernameLabel" destination="Nz0-bX-agY" id="P9M-FO-wCX"/>
+                                            <outlet property="userqianmingLabel" destination="rkG-p8-1tJ" id="SCl-pL-fd1"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="FIn-Go-kAb" detailTextLabel="15a-aH-XpR" rowHeight="55" style="IBUITableViewCellStyleValue1" id="wXc-3w-DRN">

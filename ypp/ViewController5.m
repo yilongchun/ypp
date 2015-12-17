@@ -156,8 +156,9 @@
         
         NSString *user_name = [userinfo objectForKey:@"user_name"];
         NSString *avatar = [userinfo objectForKey:@"avatar"];
+        NSString *signature = [userinfo objectForKey:@"signature"];
         cell2.usernameLabel.text = user_name;
-        
+        cell2.userqianmingLabel.text = signature;
         [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         return cell2;
         
@@ -277,8 +278,6 @@
             if ([is_daren isEqualToString:@"3"]) {//审核不通过
                 
             }
-            
-            
         }
     }
     if (indexPath.section == 4) {

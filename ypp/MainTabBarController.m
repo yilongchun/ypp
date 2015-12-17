@@ -117,13 +117,13 @@
     slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
     slideSegmentController.indicatorColor = RGBA(200,22,34,1);
     
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
-    [leftItem setTintColor:[UIColor whiteColor]];
-    slideSegmentController.navigationItem.leftBarButtonItem = leftItem;
-    
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
-    [rightItem setTintColor:[UIColor whiteColor]];
-    slideSegmentController.navigationItem.rightBarButtonItem = rightItem;
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:@"全国" style:UIBarButtonItemStylePlain target:self action:@selector(quanguo)];
+//    [leftItem setTintColor:[UIColor whiteColor]];
+//    slideSegmentController.navigationItem.leftBarButtonItem = leftItem;
+//    
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"筛选" style:UIBarButtonItemStylePlain target:self action:@selector(shaixuan)];
+//    [rightItem setTintColor:[UIColor whiteColor]];
+//    slideSegmentController.navigationItem.rightBarButtonItem = rightItem;
     
     
     
