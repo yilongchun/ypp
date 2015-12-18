@@ -54,6 +54,9 @@
 		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
 		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
 		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
+		44E6E1031C23951900F36349 /* MymoneyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */; };
+		44E6E1081C239CDA00F36349 /* YouhuiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */; };
+		44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */; };
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
@@ -271,6 +274,11 @@
 		44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAndShopTableViewController.h; sourceTree = "<group>"; };
 		44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAndShopTableViewController.m; sourceTree = "<group>"; };
 		44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameAndShopTableViewController.xib; sourceTree = "<group>"; };
+		44E6E1011C23951900F36349 /* MymoneyTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell2.h; sourceTree = "<group>"; };
+		44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell2.m; sourceTree = "<group>"; };
+		44E6E1051C239CDA00F36349 /* YouhuiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouhuiListViewController.h; sourceTree = "<group>"; };
+		44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouhuiListViewController.m; sourceTree = "<group>"; };
+		44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YouhuiListViewController.xib; sourceTree = "<group>"; };
 		44E972AA1C20F6DD0014E301 /* XieyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieyiViewController.h; sourceTree = "<group>"; };
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
@@ -746,6 +754,16 @@
 			path = UITextView;
 			sourceTree = "<group>";
 		};
+		44E6E1041C239C8A00F36349 /* youhui */ = {
+			isa = PBXGroup;
+			children = (
+				44E6E1051C239CDA00F36349 /* YouhuiListViewController.h */,
+				44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */,
+				44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */,
+			);
+			path = youhui;
+			sourceTree = "<group>";
+		};
 		44E972A91C20F6B70014E301 /* peilian */ = {
 			isa = PBXGroup;
 			children = (
@@ -835,6 +853,7 @@
 				44F02A0F1C1E97F100EF9218 /* MyInfoViewController.m */,
 				44F02A101C1E97F100EF9218 /* PhoneBindTableViewController.h */,
 				44F02A111C1E97F100EF9218 /* PhoneBindTableViewController.m */,
+				44E6E1041C239C8A00F36349 /* youhui */,
 				44E972A91C20F6B70014E301 /* peilian */,
 				44F02A121C1E97F100EF9218 /* setting */,
 				44F02A181C1E97F100EF9218 /* UpdatePhoneViewController.h */,
@@ -947,6 +966,8 @@
 				5ACF77161BF33D470084DCF2 /* MyInfoTableViewCell.m */,
 				5A11ECBE1BF454A800EA2BB1 /* MymoneyTableViewCell.h */,
 				5A11ECBF1BF454A800EA2BB1 /* MymoneyTableViewCell.m */,
+				44E6E1011C23951900F36349 /* MymoneyTableViewCell2.h */,
+				44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */,
 				5A6662131BEB45B9003FEC29 /* JYSlideSegmentController.h */,
 				5A6662141BEB45B9003FEC29 /* JYSlideSegmentController.m */,
 				5A4F07C11BF6029600C14106 /* yuewan */,
@@ -1340,6 +1361,7 @@
 				44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
+				44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
 				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
 				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
@@ -1368,6 +1390,7 @@
 				444E58C71C15217000D77C63 /* NSString+UrlEncode.m in Sources */,
 				44E972C81C216C440014E301 /* HelpViewController.m in Sources */,
 				444E58C31C15217000D77C63 /* NSString+Hash.m in Sources */,
+				44E6E1081C239CDA00F36349 /* YouhuiListViewController.m in Sources */,
 				44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */,
 				444E58B51C15217000D77C63 /* NSFileManager+Paths.m in Sources */,
 				44F02A271C1E97F100EF9218 /* MyInfoViewController.m in Sources */,
@@ -1476,6 +1499,7 @@
 				5A35FB801C12B68400427364 /* AFURLResponseSerialization.m in Sources */,
 				444E58AA1C15217000D77C63 /* NSDate+Addition.m in Sources */,
 				444E58C21C15217000D77C63 /* NSString+Emoji.m in Sources */,
+				44E6E1031C23951900F36349 /* MymoneyTableViewCell2.m in Sources */,
 				44E972C31C2160420014E301 /* TextViewController.m in Sources */,
 				44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */,
 				5A35FB7F1C12B68400427364 /* AFURLRequestSerialization.m in Sources */,

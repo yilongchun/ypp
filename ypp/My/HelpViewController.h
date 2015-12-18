@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HelpViewController : UIViewController
+@interface HelpViewController : UIViewController<UIWebViewDelegate,UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIWebView *mywebview;
 

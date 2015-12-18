@@ -28,6 +28,8 @@
     // Do any additional setup after loading the view.
     
     
+    
+    
     if(self.mytableview){
         if (self.navigationController.navigationBar.isOpaque){
             float topInset = self.navigationController.navigationBar.frame.size.height;

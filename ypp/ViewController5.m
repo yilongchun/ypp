@@ -9,6 +9,7 @@
 #import "ViewController5.h"
 #import "MyInfoTableViewCell.h"
 #import "MymoneyTableViewCell.h"
+#import "MymoneyTableViewCell2.h"
 #import "UIImageView+AFNetworking.h"
 #import "AccountTableViewController.h"
 #import "MyInfoViewController.h"
@@ -17,10 +18,13 @@
 #import "XieyiViewController.h"
 #import "HelpViewController.h"
 #import "ApplyResultViewController.h"
+#import "YouhuiListViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
 }
+
+@property int lastPosition;
 
 @end
 
@@ -34,6 +38,8 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
+    
+//    self.navigationController.hidesBarsOnSwipe = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loadUser:)
@@ -108,6 +114,8 @@
     }];
 }
 
+#pragma mark - tableview delegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 10;
@@ -180,12 +188,50 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }else{
-                MymoneyTableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+                UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYouhui)];
+                UITapGestureRecognizer *tap3_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYouhui)];
                 
-                NSNumber *money = [userinfo objectForKey:@"money"];
-                cell3.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
-                cell3.scoreLabel.text = [userinfo objectForKey:@"score"];
-                return cell3;
+                
+                NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
+                if ([is_daren isEqualToString:@"2"]) {//审核通过
+                    MymoneyTableViewCell2 *cell4 = [tableView dequeueReusableCellWithIdentifier:@"cell4"];
+                    NSNumber *money = [userinfo objectForKey:@"money"];
+                    cell4.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
+                    cell4.scoreLabel.text = [userinfo objectForKey:@"score"];
+                    
+                    cell4.moneyLabel.userInteractionEnabled = YES;
+                    cell4.moneyLabel2.userInteractionEnabled = YES;
+                    cell4.scoreLabel.userInteractionEnabled = YES;
+                    cell4.scoreLabel2.userInteractionEnabled = YES;
+                    cell4.youhuiquanLabel.userInteractionEnabled = YES;
+                    cell4.youhuiquanLabel2.userInteractionEnabled = YES;
+                    cell4.peilianLabel.userInteractionEnabled = YES;
+                    cell4.peilianLabel2.userInteractionEnabled = YES;
+                    
+                    
+                    [cell4.youhuiquanLabel addGestureRecognizer:tap3];
+                    [cell4.youhuiquanLabel2 addGestureRecognizer:tap3_2];
+                    
+                    return cell4;
+                }else{
+                    MymoneyTableViewCell *cell3 = [tableView dequeueReusableCellWithIdentifier:@"cell3"];
+                    NSNumber *money = [userinfo objectForKey:@"money"];
+                    cell3.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
+                    cell3.scoreLabel.text = [userinfo objectForKey:@"score"];
+                    
+                    cell3.moneyLabel.userInteractionEnabled = YES;
+                    cell3.moneyLabel2.userInteractionEnabled = YES;
+                    cell3.scoreLabel.userInteractionEnabled = YES;
+                    cell3.scoreLabel2.userInteractionEnabled = YES;
+                    cell3.youhuiquanLabel.userInteractionEnabled = YES;
+                    cell3.youhuiquanLabel2.userInteractionEnabled = YES;
+                    
+                    
+                    [cell3.youhuiquanLabel addGestureRecognizer:tap3];
+                    [cell3.youhuiquanLabel2 addGestureRecognizer:tap3_2];
+                    
+                    return cell3;
+                }
             }
         }else if(indexPath.section == 3){
             if (indexPath.row == 0) {
@@ -331,6 +377,25 @@
 }
 */
 
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    int currentPostion = scrollView.contentOffset.y;
+//    if (currentPostion - _lastPosition > 20  && currentPostion > 0) {        //这个地方加上 currentPostion > 0 即可）
+//        _lastPosition = currentPostion;
+//        NSLog(@"ScrollUp now");
+//        [self.navigationController setNavigationBarHidden:YES animated:YES];
+//    }
+//    else if ((_lastPosition - currentPostion > 20) && (currentPostion  <= scrollView.contentSize.height-scrollView.bounds.size.height-20) ) //这个地方加上后边那个即可，也不知道为什么，再减20才行
+//    {
+//        _lastPosition = currentPostion;
+//        NSLog(@"ScrollDown now");
+//        [self.navigationController setNavigationBarHidden:NO animated:YES];
+//        
+//    }
+//}
+
+#pragma mark -
+
 -(void)qiandao{
     NSLog(@"签到");
     
@@ -372,6 +437,15 @@
         [self hideHud];
         [self showHint:error.description];
     }];
+}
+
+/**
+ *  查看优惠劵
+ */
+-(void)showYouhui{
+    YouhuiListViewController *vc = [[YouhuiListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end
