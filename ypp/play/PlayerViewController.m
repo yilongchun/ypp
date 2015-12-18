@@ -292,6 +292,7 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
+                [self showHint:@"关注成功"];
                 [self loadGuanzhu];
             }else{
 //                NSString *message = [dic objectForKey:@"message"];

@@ -55,6 +55,7 @@
     [dataSource addObject:@"1"];
     [dataSource addObject:@"1"];
     [dataSource addObject:@"1"];
+    
     [self showHudInView:self.view];
     [self loadData];
     
