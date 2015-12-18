@@ -59,6 +59,8 @@
 		44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */; };
 		44E6E10D1C23B2D800F36349 /* LishiYouhuiListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */; };
 		44E6E10E1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */; };
+		44E6E1121C23BB2A00F36349 /* YouhuijuanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1101C23BB2A00F36349 /* YouhuijuanTableViewCell.m */; };
+		44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E1111C23BB2A00F36349 /* YouhuijuanTableViewCell.xib */; };
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
@@ -284,6 +286,9 @@
 		44E6E10A1C23B2D800F36349 /* LishiYouhuiListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LishiYouhuiListTableViewController.h; sourceTree = "<group>"; };
 		44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LishiYouhuiListTableViewController.m; sourceTree = "<group>"; };
 		44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LishiYouhuiListTableViewController.xib; sourceTree = "<group>"; };
+		44E6E10F1C23BB2A00F36349 /* YouhuijuanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouhuijuanTableViewCell.h; sourceTree = "<group>"; };
+		44E6E1101C23BB2A00F36349 /* YouhuijuanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouhuijuanTableViewCell.m; sourceTree = "<group>"; };
+		44E6E1111C23BB2A00F36349 /* YouhuijuanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YouhuijuanTableViewCell.xib; sourceTree = "<group>"; };
 		44E972AA1C20F6DD0014E301 /* XieyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieyiViewController.h; sourceTree = "<group>"; };
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
@@ -768,6 +773,9 @@
 				44E6E10A1C23B2D800F36349 /* LishiYouhuiListTableViewController.h */,
 				44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */,
 				44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */,
+				44E6E10F1C23BB2A00F36349 /* YouhuijuanTableViewCell.h */,
+				44E6E1101C23BB2A00F36349 /* YouhuijuanTableViewCell.m */,
+				44E6E1111C23BB2A00F36349 /* YouhuijuanTableViewCell.xib */,
 			);
 			path = youhui;
 			sourceTree = "<group>";
@@ -1377,6 +1385,7 @@
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44F02A241C1E97F100EF9218 /* EditMyInfoTextViewController.xib in Resources */,
 				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
+				44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
 				44E972C41C2160420014E301 /* TextViewController.xib in Resources */,
@@ -1481,6 +1490,7 @@
 				44FB14E71C17B58A009855DC /* UIView+Frame.m in Sources */,
 				5A6662151BEB45B9003FEC29 /* JYSlideSegmentController.m in Sources */,
 				5A35FB821C12B68400427364 /* AFNetworkActivityIndicatorManager.m in Sources */,
+				44E6E1121C23BB2A00F36349 /* YouhuijuanTableViewCell.m in Sources */,
 				5A35FB841C12B68400427364 /* UIAlertView+AFNetworking.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				44FB14EA1C17B58A009855DC /* UIView+Screenshot.m in Sources */,

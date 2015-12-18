@@ -13,5 +13,6 @@
 @property (strong, nonatomic) IBOutlet UIImageView *userImg;
 @property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userqianmingLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *darenImage;
 
 @end

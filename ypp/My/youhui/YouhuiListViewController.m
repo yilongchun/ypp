@@ -8,6 +8,7 @@
 
 #import "YouhuiListViewController.h"
 #import "LishiYouhuiListTableViewController.h"
+#import "YouhuijuanTableViewCell.h"
 
 @interface YouhuiListViewController (){
     NSMutableArray *dataSource;
@@ -24,6 +25,7 @@
     self.title = @"我的优惠劵";
     
     dataSource = [NSMutableArray array];
+    
     
     //请输入正确的兑换码
     UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
@@ -50,7 +52,9 @@
         [self loadData];
     }];
     
-    
+    [dataSource addObject:@"1"];
+    [dataSource addObject:@"1"];
+    [dataSource addObject:@"1"];
     [self showHudInView:self.view];
     [self loadData];
     
@@ -100,8 +104,6 @@
                         [self loadMore];
                     }];
                 }
-                
-                
                 [_mytableview reloadData];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
@@ -172,7 +174,7 @@
     if (indexPath.row == [dataSource count]) {
         return 30;
     }
-    return 55;
+    return 80;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -185,20 +187,34 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-    }
+    
     
     if (indexPath.row == [dataSource count]) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        }
+        
         cell.textLabel.text = @"历史优惠劵";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    }else{
+        
+        
+        static NSString *CellIdentifier = @"youhuijuancell";
+        YouhuijuanTableViewCell *cell = (YouhuijuanTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        if (cell == nil){
+            cell= (YouhuijuanTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"YouhuijuanTableViewCell" owner:self options:nil]  lastObject];
+        }
+        
+        return cell;
     }
-    return cell;
+    
 }
 
 #pragma mark - Table view delegate

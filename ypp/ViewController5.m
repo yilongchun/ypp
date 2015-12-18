@@ -168,6 +168,14 @@
         cell2.usernameLabel.text = user_name;
         cell2.userqianmingLabel.text = signature;
         [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        
+        NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
+        if ([is_daren isEqualToString:@"2"]) {//审核通过
+            [cell2.darenImage setHidden:NO];
+        }else{
+            [cell2.darenImage setHidden:YES];
+        }
+        
         return cell2;
         
     }else{

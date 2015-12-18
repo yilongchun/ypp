@@ -753,6 +753,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sGod" translatesAutoresizingMaskIntoConstraints="NO" id="csr-qe-7UU">
+                                                    <rect key="frame" x="147" y="20" width="15" height="15"/>
+                                                    <animations/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="15" id="WVR-2e-IJY"/>
+                                                        <constraint firstAttribute="height" constant="15" id="ioX-mW-TDY"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <animations/>
                                             <constraints>
@@ -764,11 +772,14 @@
                                                 <constraint firstItem="Nz0-bX-agY" firstAttribute="leading" secondItem="Erx-ZL-xMz" secondAttribute="trailing" constant="15" id="Eol-p0-l7p"/>
                                                 <constraint firstItem="rkG-p8-1tJ" firstAttribute="top" secondItem="Nz0-bX-agY" secondAttribute="bottom" constant="5" id="EzA-Jz-gkc"/>
                                                 <constraint firstItem="Erx-ZL-xMz" firstAttribute="leading" secondItem="w86-qi-DQ5" secondAttribute="leading" constant="15" id="LIN-mp-yaw"/>
+                                                <constraint firstItem="csr-qe-7UU" firstAttribute="centerY" secondItem="Nz0-bX-agY" secondAttribute="centerY" id="jSm-Hm-sae"/>
+                                                <constraint firstItem="csr-qe-7UU" firstAttribute="leading" secondItem="Nz0-bX-agY" secondAttribute="trailing" constant="8" id="ulp-rc-rFx"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
+                                            <outlet property="darenImage" destination="csr-qe-7UU" id="nQh-7d-KpT"/>
                                             <outlet property="userImg" destination="Erx-ZL-xMz" id="ZeZ-eU-RhU"/>
                                             <outlet property="usernameLabel" destination="Nz0-bX-agY" id="P9M-FO-wCX"/>
                                             <outlet property="userqianmingLabel" destination="rkG-p8-1tJ" id="SCl-pL-fd1"/>
@@ -2841,6 +2852,7 @@
         <image name="gallery_default" width="72" height="72"/>
         <image name="hot-icon" width="19" height="19"/>
         <image name="s0" width="320" height="480"/>
+        <image name="sGod" width="26" height="26"/>
         <image name="t0" width="80" height="50"/>
         <image name="t2" width="80" height="50"/>
         <image name="t3" width="80" height="50"/>

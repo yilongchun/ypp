@@ -7,6 +7,7 @@
 //
 
 #import "LishiYouhuiListTableViewController.h"
+#import "YouhuijuanTableViewCell.h"
 
 @interface LishiYouhuiListTableViewController (){
     NSMutableArray *dataSource;
@@ -43,6 +44,9 @@
         [self loadData];
     }];
     
+    [dataSource addObject:@"1"];
+    [dataSource addObject:@"1"];
+    [dataSource addObject:@"1"];
     
     [self showHudInView:self.view];
     [self loadData];
@@ -156,6 +160,10 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 80;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -166,10 +174,24 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    static NSString *CellIdentifier = @"youhuijuancell";
+    YouhuijuanTableViewCell *cell = (YouhuijuanTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil){
+        cell= (YouhuijuanTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"YouhuijuanTableViewCell" owner:self options:nil]  lastObject];
     }
+    
+    [cell.imageStatus setImage:[UIImage imageNamed:@"Invalid"]];;
+//    cell.moneyLeftLabel.textColor = [UIColor lightGrayColor];
+//    cell.moneyLabel.textColor = [UIColor lightGrayColor];
+//    cell.youhuijuanLabel.textColor = [UIColor lightGrayColor];
+//    cell.dateLabel.textColor = [UIColor lightGrayColor];
+//    cell.xianzhiLabel.textColor = [UIColor lightGrayColor];
+    
+    cell.moneyLeftLabel.textColor = RGB(210, 210, 210);
+    cell.moneyLabel.textColor = RGB(210, 210, 210);
+    cell.youhuijuanLabel.textColor = RGB(210, 210, 210);
+    cell.dateLabel.textColor = RGB(210, 210, 210);
+    cell.xianzhiLabel.textColor = RGB(210, 210, 210);
     
     return cell;
 }

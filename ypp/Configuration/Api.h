@@ -93,10 +93,10 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //获取文字说明的url
 //type（0用户协议 1游神协议 2帮助说明 3用户帮助）
 #define API_GETURL @"app1/index.php?action=geturl"
-
-
 //优惠券列表
 #define API_YOUHUI_LIST @"app1/index.php?action=youhuilist"
+
+
 //充值列表
 #define API_RECHARGE_LIST @"app1/index.php?action=rechargelist"
 //绑定YY账号
