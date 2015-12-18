@@ -57,6 +57,8 @@
 		44E6E1031C23951900F36349 /* MymoneyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */; };
 		44E6E1081C239CDA00F36349 /* YouhuiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */; };
 		44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */; };
+		44E6E10D1C23B2D800F36349 /* LishiYouhuiListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */; };
+		44E6E10E1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */; };
 		44E972AD1C20F6DD0014E301 /* XieyiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E972AB1C20F6DD0014E301 /* XieyiViewController.m */; };
 		44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */; };
 		44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 44E972AF1C21177E0014E301 /* AppIcon1024x1024.png */; };
@@ -279,6 +281,9 @@
 		44E6E1051C239CDA00F36349 /* YouhuiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouhuiListViewController.h; sourceTree = "<group>"; };
 		44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YouhuiListViewController.m; sourceTree = "<group>"; };
 		44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YouhuiListViewController.xib; sourceTree = "<group>"; };
+		44E6E10A1C23B2D800F36349 /* LishiYouhuiListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LishiYouhuiListTableViewController.h; sourceTree = "<group>"; };
+		44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LishiYouhuiListTableViewController.m; sourceTree = "<group>"; };
+		44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LishiYouhuiListTableViewController.xib; sourceTree = "<group>"; };
 		44E972AA1C20F6DD0014E301 /* XieyiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XieyiViewController.h; sourceTree = "<group>"; };
 		44E972AB1C20F6DD0014E301 /* XieyiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XieyiViewController.m; sourceTree = "<group>"; };
 		44E972AC1C20F6DD0014E301 /* XieyiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XieyiViewController.xib; sourceTree = "<group>"; };
@@ -760,6 +765,9 @@
 				44E6E1051C239CDA00F36349 /* YouhuiListViewController.h */,
 				44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */,
 				44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */,
+				44E6E10A1C23B2D800F36349 /* LishiYouhuiListTableViewController.h */,
+				44E6E10B1C23B2D800F36349 /* LishiYouhuiListTableViewController.m */,
+				44E6E10C1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib */,
 			);
 			path = youhui;
 			sourceTree = "<group>";
@@ -1362,6 +1370,7 @@
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
 				44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */,
+				44E6E10E1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
 				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
 				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
@@ -1383,6 +1392,7 @@
 			files = (
 				444E58B41C15217000D77C63 /* NSException+Trace.m in Sources */,
 				5A35FB8B1C12B68400427364 /* IQUITextFieldView+Additions.m in Sources */,
+				44E6E10D1C23B2D800F36349 /* LishiYouhuiListTableViewController.m in Sources */,
 				5A35FB8E1C12B68400427364 /* IQUIWindow+Hierarchy.m in Sources */,
 				44F02A221C1E97F100EF9218 /* EditMyInfoTableViewCell.m in Sources */,
 				5A11ECC01BF454A800EA2BB1 /* MymoneyTableViewCell.m in Sources */,

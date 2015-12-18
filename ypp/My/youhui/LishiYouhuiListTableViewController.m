@@ -1,35 +1,28 @@
 //
-//  YouhuiListViewController.m
+//  LishiYouhuiListTableViewController.m
 //  ypp
 //
 //  Created by Stephen Chin on 15/12/18.
 //  Copyright © 2015年 weyida. All rights reserved.
 //
 
-#import "YouhuiListViewController.h"
 #import "LishiYouhuiListTableViewController.h"
 
-@interface YouhuiListViewController (){
+@interface LishiYouhuiListTableViewController (){
     NSMutableArray *dataSource;
     int page;
 }
 
 @end
 
-@implementation YouhuiListViewController
+@implementation LishiYouhuiListTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.title = @"我的优惠劵";
+    
+    self.title = @"历史优惠劵";
     
     dataSource = [NSMutableArray array];
-    
-    //请输入正确的兑换码
-    UIImage *backgroundImage = [[UIImage imageNamed:@"blue_btn2"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 10, 10, 10) resizingMode:UIImageResizingModeStretch];
-    [_duiBtn setBackgroundImage:backgroundImage forState:UIControlStateNormal];
-    [_duiBtn addTarget:self action:@selector(duihuan) forControlEvents:UIControlEventTouchUpInside];
-    
     
     if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -37,32 +30,22 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
+    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     }
-    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
+    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     }
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
-    [self.mytableview setTableFooterView:v];
+    [self.tableView setTableFooterView:v];
     
-    _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadData];
     }];
     
     
     [self showHudInView:self.view];
     [self loadData];
-    
-}
-
-/**
- * 兑换
- */
--(void)duihuan{
-    [[IQKeyboardManager sharedManager] resignFirstResponder];
-    [self showHint:@"请输入正确的兑换码"];
-    return;
 }
 
 -(void)loadData{
@@ -71,7 +54,7 @@
     
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSString stringWithFormat:@"%@",[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"]] forKey:@"userid"];
-    [parameters setValue:@"0" forKey:@"type"];//type（0 可用的,1历史所有并分页）
+    [parameters setValue:@"1" forKey:@"type"];//type（0 可用的,1历史所有并分页）
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -79,8 +62,8 @@
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [_mytableview.mj_header endRefreshing];
-        [_mytableview.mj_footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         [self hideHud];
         NSLog(@"JSON: %@", operation.responseString);
         
@@ -96,13 +79,13 @@
                 NSArray *message = [dic objectForKey:@"message"];
                 if ([message count] > 0) {
                     dataSource = [NSMutableArray arrayWithArray:message];
-                    _mytableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+                    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
                         [self loadMore];
                     }];
                 }
                 
                 
-                [_mytableview reloadData];
+                [self.tableView reloadData];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
@@ -110,8 +93,8 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
-        [_mytableview.mj_header endRefreshing];
-        [_mytableview.mj_footer resetNoMoreData];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer resetNoMoreData];
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
@@ -133,7 +116,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self hideHud];
-        [_mytableview.mj_footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
@@ -147,11 +130,11 @@
                 
                 NSArray *array = [dic objectForKey:@"message"];
                 [dataSource addObjectsFromArray:array];
-                [_mytableview reloadData];
+                [self.tableView reloadData];
             }else{
                 if ([status intValue] == ResultCodeNoData) {
                     page--;
-                    [_mytableview.mj_footer endRefreshingWithNoMoreData];
+                    [self.tableView.mj_footer endRefreshingWithNoMoreData];
                 }else{
                     NSString *message = [dic objectForKey:@"message"];
                     [self showHint:message];
@@ -160,27 +143,25 @@
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"发生错误！%@",error);
-        [_mytableview.mj_footer endRefreshing];
+        [self.tableView.mj_footer endRefreshing];
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
 }
 
-#pragma mark - Table view data source
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == [dataSource count]) {
-        return 30;
-    }
-    return 55;
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [dataSource count] + 1;
+    return [dataSource count];
 }
 
 
@@ -190,24 +171,68 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
     
-    if (indexPath.row == [dataSource count]) {
-        cell.textLabel.text = @"历史优惠劵";
-        cell.textLabel.textAlignment = NSTextAlignmentCenter;
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.textLabel.textColor = [UIColor darkGrayColor];
-        cell.backgroundColor = [UIColor clearColor];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    }
     return cell;
 }
 
+
+/*
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+*/
+
+/*
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }   
+}
+*/
+
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+}
+*/
+
+/*
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+*/
+
+/*
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == [dataSource count]) {
-        LishiYouhuiListTableViewController *vc = [[LishiYouhuiListTableViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Navigation logic may go here, for example:
+    // Create the next view controller.
+    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:<#@"Nib name"#> bundle:nil];
+    
+    // Pass the selected object to the new view controller.
+    
+    // Push the view controller.
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
+*/
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
