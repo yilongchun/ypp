@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */ = {isa = PBXBuildFile; fileRef = 44000BF41C1AA49E00DF8FC4 /* Address.plist */; };
+		4401E0791C278BC500A48051 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4401E0771C278BC500A48051 /* WebViewController.m */; };
+		4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4401E0781C278BC500A48051 /* WebViewController.xib */; };
 		4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */; };
 		4435CF041C22ADF000B1E7C9 /* ApplyResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */; };
 		4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */; };
@@ -189,6 +191,9 @@
 
 /* Begin PBXFileReference section */
 		44000BF41C1AA49E00DF8FC4 /* Address.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Address.plist; sourceTree = "<group>"; };
+		4401E0761C278BC500A48051 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		4401E0771C278BC500A48051 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		4401E0781C278BC500A48051 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		4403CF361C1FBD5C00C2CA46 /* PinglunTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinglunTableViewCell.h; sourceTree = "<group>"; };
 		4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinglunTableViewCell.m; sourceTree = "<group>"; };
 		4435CF011C22ADF000B1E7C9 /* ApplyResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyResultViewController.h; sourceTree = "<group>"; };
@@ -869,6 +874,9 @@
 				44F02A0F1C1E97F100EF9218 /* MyInfoViewController.m */,
 				44F02A101C1E97F100EF9218 /* PhoneBindTableViewController.h */,
 				44F02A111C1E97F100EF9218 /* PhoneBindTableViewController.m */,
+				4401E0761C278BC500A48051 /* WebViewController.h */,
+				4401E0771C278BC500A48051 /* WebViewController.m */,
+				4401E0781C278BC500A48051 /* WebViewController.xib */,
 				44E6E1041C239C8A00F36349 /* youhui */,
 				44E972A91C20F6B70014E301 /* peilian */,
 				44F02A121C1E97F100EF9218 /* setting */,
@@ -1387,6 +1395,7 @@
 				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
 				44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
+				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
 				44E972C41C2160420014E301 /* TextViewController.xib in Resources */,
 			);
@@ -1418,6 +1427,7 @@
 				44F02A1E1C1E97F100EF9218 /* EditAddressViewController.m in Sources */,
 				444E58A91C15217000D77C63 /* NSData+Encrypt.m in Sources */,
 				444E58AC1C15217000D77C63 /* NSDate+TimeAgo.m in Sources */,
+				4401E0791C278BC500A48051 /* WebViewController.m in Sources */,
 				44FB14E51C17B58A009855DC /* UIView+Debug.m in Sources */,
 				44F02A2F1C1E9E3500EF9218 /* QianmingTableViewCell.m in Sources */,
 				5A35FB961C12B68400427364 /* IQUIView+IQKeyboardToolbar.m in Sources */,

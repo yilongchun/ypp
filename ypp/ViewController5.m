@@ -19,6 +19,7 @@
 #import "HelpViewController.h"
 #import "ApplyResultViewController.h"
 #import "YouhuiListViewController.h"
+#import "WebViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -124,6 +125,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if(section == 4){
+        return 10;
+    }
     return 5;
 }
 
@@ -146,7 +150,7 @@
     }else if (section == 2) {
         return 2;
     }else if(section == 3){
-        return 3;
+        return 5;
     }else{
         return 2;
     }
@@ -242,13 +246,25 @@
                 }
             }
         }else if(indexPath.section == 3){
-            if (indexPath.row == 0) {
+            if(indexPath.row == 0){
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell.textLabel.text = @"我的直播";
+//                cell.imageView.image = [UIImage imageNamed:@"zhanzuo"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                return cell;
+            }else if(indexPath.row == 1){
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+                cell.textLabel.text = @"我的视频";
+//                cell.imageView.image = [UIImage imageNamed:@"zhanzuo"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                return cell;
+            }else if (indexPath.row == 2) {
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 cell.textLabel.text = @"订单中心";
                 cell.imageView.image = [UIImage imageNamed:@"xiaofei"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
-            }else if(indexPath.row == 1){
+            }else if(indexPath.row == 3){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 
                 cell.imageView.image = [UIImage imageNamed:@"sGod"];
@@ -264,7 +280,7 @@
                 
                 
                 return cell;
-            }else{
+            }else if(indexPath.row == 4){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 cell.textLabel.text = @"即时占座";
                 cell.imageView.image = [UIImage imageNamed:@"zhanzuo"];
@@ -288,6 +304,7 @@
             
         }
     }
+    return nil;
     
 }
 
@@ -310,7 +327,19 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     if (indexPath.section == 3) {
-        if (indexPath.row == 1) {
+        if (indexPath.row == 0) {
+            WebViewController *vc = [[WebViewController alloc] init];
+            vc.url = @"http://www.huya.com/xuanlv";
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.title = @"我的直播";
+            [self.navigationController pushViewController:vc animated:YES];
+        }else if (indexPath.row == 1){
+            WebViewController *vc = [[WebViewController alloc] init];
+            vc.url = @"http://v.huya.com/play/213949.html#vfrom=huyaweb";
+            vc.hidesBottomBarWhenPushed = YES;
+            vc.title = @"我的视频";
+            [self.navigationController pushViewController:vc animated:YES];
+        }if (indexPath.row == 3) {
             
             NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
             
