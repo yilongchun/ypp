@@ -24,6 +24,8 @@
     UIButton *chatBtn;
     UIButton *yueBtn;
     
+    UIScrollView *topImageScrollView;
+    
     NSDictionary *dongtaiDic;
 }
 
@@ -111,23 +113,46 @@
             [view removeFromSuperview];
         }
     }
-    
+    topImageScrollView = nil;
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
     NSString *imgs = [userinfo objectForKey:@"imgs"];
+    
     CGFloat x = 8;
     CGFloat width = (Main_Screen_Width - 40) / 4;
-    if (![imgs isEqualToString:@""]) {
-        NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
-        
-        for (int i = 0; i < [imageArr count]; i++) {
+    
+    NSMutableArray *imageArr = [NSMutableArray array];
+    
+    if (avatar != nil && ![avatar isEqualToString:@""]) {
+        [imageArr addObject:avatar];
+    }
+    if (imgs != nil && ![imgs isEqualToString:@""]) {
+        [imageArr addObjectsFromArray:[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)]];
+    }
+    if ([imageArr count] != 0) {
+        if (topImageScrollView == nil) {
+            topImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, Main_Screen_Width, width)];
+            topImageScrollView.showsHorizontalScrollIndicator = NO;
+            [cell.contentView addSubview:topImageScrollView];
             
-            UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-            [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-            imageview.layer.masksToBounds = YES;
-            imageview.layer.cornerRadius = 5.0;
-            [cell.contentView addSubview:imageview];
-            x += width + 8;
+            
+            CGFloat scrollviewWidth = 0;
+            for (int i = 0; i < [imageArr count]; i++) {
+                
+                UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, width, width)];
+                [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                imageview.layer.masksToBounds = YES;
+                imageview.layer.cornerRadius = 5.0;
+                [topImageScrollView addSubview:imageview];
+                scrollviewWidth = x + width + 8;
+                x += width + 8;
+                
+            }
+            [topImageScrollView setContentSize:CGSizeMake(scrollviewWidth, width)];
         }
     }
+    
+    
+    
 }
 //添加底部按钮
 -(void)addBottomBtn:(BOOL)flag{
@@ -322,9 +347,19 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         
+        
+        NSString *avatar = [userinfo objectForKey:@"avatar"];
         NSString *imgs = [userinfo objectForKey:@"imgs"];
         
-        if (userinfo != nil && ![imgs isEqualToString:@""]) {
+        NSMutableArray *imageArr = [NSMutableArray array];
+        
+        if (avatar != nil && ![avatar isEqualToString:@""]) {
+            [imageArr addObject:avatar];
+        }
+        if (imgs != nil && ![imgs isEqualToString:@""]) {
+            [imageArr addObjectsFromArray:[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)]];
+        }
+        if ([imageArr count] != 0) {
             CGFloat width = (Main_Screen_Width - 40) / 4;
             return 44 + width + 10;
         }else{
@@ -426,7 +461,12 @@
             NSNumber *update_time = [userinfo objectForKey:@"update_time"];
             NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
             cell2.otherLabel.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
+        
         }
+        
+        
+        
+        
         return cell2;
     }
     if (indexPath.section == 1) {
@@ -455,7 +495,7 @@
             
             NSString *pic = [dongtaiDic objectForKey:@"pic"];
             
-            [cell3.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+            [cell3.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
             cell3.contentLabel.text = content;
             
             NSNumber *create_time = [dongtaiDic objectForKey:@"create_time"];

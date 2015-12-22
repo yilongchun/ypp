@@ -277,7 +277,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == 0) {
-        CGFloat height = 470 - 18;
+        CGFloat height = 570 - 18;
         
         NSString *content = [info objectForKey:@"content"];
         
@@ -361,7 +361,7 @@
         NSString *content = [info objectForKey:@"content"];
         NSString *pic = [info objectForKey:@"pic"];
         
-        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         cell.userImage.layer.masksToBounds = YES;
         cell.userImage.layer.cornerRadius = 5;
         
@@ -393,7 +393,7 @@
         }
         cell.contentLabel.text = content;
         if (pic != nil && ![pic isEqualToString:@""]) {
-            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]]  placeholderImage:nil];
+            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]]  placeholderImage:nil];
         }
         
         NSNumber *distance = [info objectForKey:@"distance"];
@@ -441,7 +441,7 @@
                     NSDictionary *user = [zanArr objectAtIndex:i];
                     NSString *avatar = [user objectForKey:@"avatar"];
                     UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, 50, 50)];
-                    [userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                    [userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
                     userImage.layer.masksToBounds = YES;
                     userImage.layer.cornerRadius = 5;
                     userImage.tag = i;
@@ -476,7 +476,7 @@
         NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[create_time doubleValue]];
         cell.nameLabel.text = username;
         cell.contentLabel.text = content;
-        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         cell.userImage.layer.masksToBounds = YES;
         cell.userImage.layer.cornerRadius = 5;
         cell.userImage.tag = indexPath.row - 1;

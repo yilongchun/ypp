@@ -189,7 +189,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat height = 456-18;
+    CGFloat height = 556-18;
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
     NSString *content = [info objectForKey:@"content"];
     
@@ -230,7 +230,7 @@
     NSString *content = [info objectForKey:@"content"];
     NSString *pic = [info objectForKey:@"pic"];
     
-    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
     cell.userImage.layer.masksToBounds = YES;
     cell.userImage.layer.cornerRadius = 5;
     cell.username.text = user_name;
@@ -257,7 +257,7 @@
     }
     cell.contentLabel.text = content;
     if (pic != nil && ![pic isEqualToString:@""]) {
-        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,pic]] placeholderImage:nil];
+        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]] placeholderImage:nil];
     }
     
     NSNumber *distance = [info objectForKey:@"distance"];

@@ -35,8 +35,15 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 
 //服务器地址
 #define HOST @"http://oa.hcyj.net/"
-//图片文件夹路径
-#define PIC_PATH @"app1/uploads/"
+////图片文件夹路径
+//#define PIC_PATH @"app1/uploads/"
+
+//获取上传图片token
+#define PHOTO_UPTOKEN_URL @"app1/upload_token.php"
+//上传文件
+#define QINIU_UPLOAD @"http://upload.qiniu.com/"
+//图片路径
+#define QINIU_IMAGE_URL @"http://7xpcmr.com1.z0.glb.clouddn.com/"
 
 //发送短信验证码
 #define API_SENDCODE @"app1/index.php?action=getverificationcode"
@@ -50,8 +57,8 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_YOUSHENLIST @"app1/index.php?action=vipuserlist"
 //动态列表
 #define API_TOPICLIST @"app1/index.php?action=topiclist"
-//上传图片
-#define API_UPLOADIMG @"app1/index.php?action=uploadImg"
+////上传图片
+//#define API_UPLOADIMG @"app1/index.php?action=uploadImg"
 //发布动态
 #define API_SEVEDYNAMIC @"app1/index.php?action=savedynamic"
 //用户详情

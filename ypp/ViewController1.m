@@ -207,7 +207,7 @@
     NSString *avatar = [info objectForKey:@"avatar"];
     NSNumber *sex = [info objectForKey:@"sex"];
     cell.usernameLabel.text = user_name;
-    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
     
     cell.userimage.layer.masksToBounds = YES;
     cell.userimage.layer.cornerRadius = 5.0;

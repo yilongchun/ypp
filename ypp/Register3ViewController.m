@@ -116,39 +116,60 @@
     
     [self showHudInView:self.view];
     
-    UInt64 recordTime = [[NSDate date] timeIntervalSince1970]*1000*1000;
-    //[fileNamesArray addObject:[NSString stringWithFormat:@"%llu.jpg",recordTime]];
-    
-    NSString *imagename = [NSString stringWithFormat:@"%llu.jpg",recordTime];
-    NSMutableURLRequest *request = [Util postRequestWithParems:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",HOST,API_UPLOADIMG]] image:choosedImage imageName:imagename];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"JSON: %@", operation.responseString);
-        
+    NSData *data = UIImageJPEGRepresentation(choosedImage, 1.0);
+    [self getToken:data];
+}
+
+//七牛上传图片
+/**************************************/
+//上传第一步
+-(void)getToken:(NSData *)data{
+    [self showHudInView:self.view];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,PHOTO_UPTOKEN_URL];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"token: %@", operation.responseString);
+        NSString *token = [NSString stringWithFormat:@"%@",[operation responseString]];
+        [self uploadImage:token imageData:data];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+}
+//上传第二步
+-(void)uploadImage:(NSString *)token imageData:(NSData *)data{
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:token forKey:@"token"];
+    NSString *urlString = [NSString stringWithFormat:@"%@",QINIU_UPLOAD];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:data name:@"file" fileName:@"1.png" mimeType:@"image/png"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSLog(@"JSON: %@", operation.responseString);
+        DLog(@"上传图片 第二步 带上 token 上传文件 成功");
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
         NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
         if (dic == nil) {
             NSLog(@"json parse failed \r\n");
         }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == ResultCodeSuccess) {
-                //保存数据
-                [self saveData:imagename];
-            }else{
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-            }
+            NSString *key = [dic objectForKey:@"key"];
+            DLog(@"key:%@",key);
+            [self saveData:key];
         }
-        
-    }failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",[error localizedDescription]);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        DLog(@"上传图片 第二步 带上 token 上传文件 失败");
         [self hideHud];
-        [self showHint:@"上传失败"];
+        [self showHint:@"连接失败"];
     }];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [queue addOperation:operation];
 }
 
 -(void)saveData:(NSString *)picname{

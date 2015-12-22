@@ -16,6 +16,7 @@
 
 @interface MyInfoViewController (){
     NSDictionary *userinfo;
+    UIScrollView *topImageScrollView;
 }
 
 @end
@@ -104,30 +105,51 @@
 }
 
 -(void)addImages{
-        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
-        MyInfoTableViewCell2 *cell = [_mytableview cellForRowAtIndexPath:indexpath];
-        for (UIView *view in cell.contentView.subviews) {
-            if ([view isKindOfClass:[UIImageView class]] && view.tag != 999) {
-                [view removeFromSuperview];
-            }
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:0];
+    MyInfoTableViewCell2 *cell = [_mytableview cellForRowAtIndexPath:indexpath];
+    for (UIView *view in cell.contentView.subviews) {
+        if ([view isKindOfClass:[UIImageView class]] && view.tag != 999) {
+            [view removeFromSuperview];
         }
+    }
+    topImageScrollView = nil;
 
-        NSString *imgs = [userinfo objectForKey:@"imgs"];
-        CGFloat x = 8;
-        CGFloat width = (Main_Screen_Width - 40) / 4;
-        if (![imgs isEqualToString:@""]) {
-            NSArray *imageArr =[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *imgs = [userinfo objectForKey:@"imgs"];
+    
+    CGFloat x = 8;
+    CGFloat width = (Main_Screen_Width - 40) / 4;
+    
+    NSMutableArray *imageArr = [NSMutableArray array];
+    
+    if (avatar != nil && ![avatar isEqualToString:@""]) {
+        [imageArr addObject:avatar];
+    }
+    if (imgs != nil && ![imgs isEqualToString:@""]) {
+        [imageArr addObjectsFromArray:[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)]];
+    }
+    if ([imageArr count] != 0) {
+        if (topImageScrollView == nil) {
+            topImageScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 10, Main_Screen_Width, width)];
+            topImageScrollView.showsHorizontalScrollIndicator = NO;
+            [cell.contentView addSubview:topImageScrollView];
             
+            
+            CGFloat scrollviewWidth = 0;
             for (int i = 0; i < [imageArr count]; i++) {
                 
-                UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 10, width, width)];
-                [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+                UIImageView *imageview = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, width, width)];
+                [imageview setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[imageArr objectAtIndex:i]]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
                 imageview.layer.masksToBounds = YES;
                 imageview.layer.cornerRadius = 5.0;
-                [cell.contentView addSubview:imageview];
+                [topImageScrollView addSubview:imageview];
+                scrollviewWidth = x + width + 8;
                 x += width + 8;
+                
             }
+            [topImageScrollView setContentSize:CGSizeMake(scrollviewWidth, width)];
         }
+    }
     
     
 }
@@ -151,16 +173,23 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        
+        NSString *avatar = [userinfo objectForKey:@"avatar"];
         NSString *imgs = [userinfo objectForKey:@"imgs"];
         
-        if (userinfo != nil && ![imgs isEqualToString:@""]) {
+        NSMutableArray *imageArr = [NSMutableArray array];
+        
+        if (avatar != nil && ![avatar isEqualToString:@""]) {
+            [imageArr addObject:avatar];
+        }
+        if (imgs != nil && ![imgs isEqualToString:@""]) {
+            [imageArr addObjectsFromArray:[imgs componentsSeparatedByString:NSLocalizedString(@",", nil)]];
+        }
+        if ([imageArr count] != 0) {
             CGFloat width = (Main_Screen_Width - 40) / 4;
             return 44 + width + 10;
         }else{
             return 44;
         }
-        
     }else if (indexPath.section == 1){
         if (indexPath.row == 0 || indexPath.row == 5 || indexPath.row == 6) {
             CGFloat width = [UIScreen mainScreen].bounds.size.width - 15 - 10 - 33;

@@ -171,7 +171,7 @@
         NSString *signature = [userinfo objectForKey:@"signature"];
         cell2.usernameLabel.text = user_name;
         cell2.userqianmingLabel.text = signature;
-        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",HOST,PIC_PATH,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        [cell2.userImg setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         
         NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
         if ([is_daren isEqualToString:@"2"]) {//审核通过
@@ -249,13 +249,13 @@
             if(indexPath.row == 0){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 cell.textLabel.text = @"我的直播";
-//                cell.imageView.image = [UIImage imageNamed:@"zhanzuo"];
+                cell.imageView.image = [UIImage imageNamed:@"yyline"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }else if(indexPath.row == 1){
                 UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
                 cell.textLabel.text = @"我的视频";
-//                cell.imageView.image = [UIImage imageNamed:@"zhanzuo"];
+                cell.imageView.image = [UIImage imageNamed:@"yyvedio"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }else if (indexPath.row == 2) {
