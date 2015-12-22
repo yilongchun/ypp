@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIView+RGSize.h"
 
 @interface FabuyuewanViewController : UIViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
+
+@property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
+@property (strong, nonatomic) IBOutlet UIView *pickerBgView;
+@property (strong, nonatomic) UIView *maskView;
+
 
 @end

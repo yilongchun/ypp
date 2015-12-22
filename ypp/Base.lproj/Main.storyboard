@@ -677,10 +677,68 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="myPicker" destination="2FJ-Cb-XM3" id="y9O-DL-SL9"/>
                         <outlet property="mytableview" destination="Dkn-YU-YMs" id="HCf-GZ-8uo"/>
+                        <outlet property="pickerBgView" destination="T3O-so-Cor" id="ufn-YT-9Et"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5C-UK-kv8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="T3O-so-Cor">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h6o-an-pQN">
+                            <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="vQN-WK-pTn"/>
+                                <constraint firstAttribute="height" constant="39" id="y5D-fu-u8b"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="取消">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="cancel:" destination="0he-lP-niS" eventType="touchUpInside" id="ySm-tQ-3BS"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dux-Dw-UUl">
+                            <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="DtL-1l-Nn9"/>
+                                <constraint firstAttribute="height" constant="39" id="t5a-sa-brh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <state key="normal" title="确定">
+                                <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="ensure:" destination="0he-lP-niS" eventType="touchUpInside" id="s5s-L2-4VG"/>
+                            </connections>
+                        </button>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2FJ-Cb-XM3">
+                            <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                            <animations/>
+                            <connections>
+                                <outlet property="dataSource" destination="0he-lP-niS" id="2hm-M5-5Ag"/>
+                                <outlet property="delegate" destination="0he-lP-niS" id="dg2-Kv-UPC"/>
+                            </connections>
+                        </pickerView>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="dux-Dw-UUl" secondAttribute="trailing" id="1fK-OI-fRx"/>
+                        <constraint firstAttribute="bottom" secondItem="2FJ-Cb-XM3" secondAttribute="bottom" id="5ne-9k-D5h"/>
+                        <constraint firstItem="h6o-an-pQN" firstAttribute="leading" secondItem="T3O-so-Cor" secondAttribute="leading" id="6DP-FI-il7"/>
+                        <constraint firstItem="2FJ-Cb-XM3" firstAttribute="leading" secondItem="T3O-so-Cor" secondAttribute="leading" id="IRu-Md-WiD"/>
+                        <constraint firstItem="h6o-an-pQN" firstAttribute="top" secondItem="T3O-so-Cor" secondAttribute="top" id="SVf-Cl-OXv"/>
+                        <constraint firstAttribute="trailing" secondItem="2FJ-Cb-XM3" secondAttribute="trailing" id="aHH-GP-yRe"/>
+                        <constraint firstItem="dux-Dw-UUl" firstAttribute="top" secondItem="T3O-so-Cor" secondAttribute="top" id="bWq-10-hZU"/>
+                        <constraint firstItem="2FJ-Cb-XM3" firstAttribute="top" secondItem="dux-Dw-UUl" secondAttribute="bottom" id="cVz-hJ-BQg"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="1333" y="120"/>
         </scene>
