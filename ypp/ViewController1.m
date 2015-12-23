@@ -12,6 +12,7 @@
 #import "NSDate+Addition.h"
 #import "NSDate+TimeAgo.h"
 #import "PlayerViewController.h"
+#import "MyInfoViewController.h"
 
 @interface ViewController1 (){
     int page;
@@ -252,12 +253,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-    PlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
-    vc.hidesBottomBarWhenPushed = YES;
-    vc.userid = [info objectForKey:@"id"];
-    vc.title = [info objectForKey:@"user_name"];
-    [self.navigationController pushViewController:vc animated:YES];
+    NSString *userid = [info objectForKey:@"id"];
+    NSString *loginedUserId = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"];
     
+    if ([userid isEqualToString:loginedUserId]) {//是自己
+        MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
+        vc.userid = userid;
+        vc.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }else{
+        PlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.userid = [info objectForKey:@"id"];
+        vc.title = [info objectForKey:@"user_name"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

@@ -333,9 +333,13 @@
     }];
 }
 
-//约她
+/**
+ * 约她
+ */
+
 -(void)yueta{
     YueTaViewController *vc = [[YueTaViewController alloc] init];
+    vc.userinfo = userinfo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

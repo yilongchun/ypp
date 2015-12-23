@@ -7,7 +7,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YueTaViewController">
             <connections>
+                <outlet property="myPicker" destination="Cqj-33-PTO" id="Uer-Ei-VXV"/>
                 <outlet property="mytableview" destination="1dA-ER-oLb" id="O7p-pH-JjA"/>
+                <outlet property="pickerBgView" destination="sFf-m2-fVK" id="br8-Hx-QZv"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,6 +36,65 @@
                 <constraint firstItem="1dA-ER-oLb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fp4-ij-xv3"/>
             </constraints>
             <point key="canvasLocation" x="281" y="288"/>
+        </view>
+        <view contentMode="scaleToFill" id="sFf-m2-fVK">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="255"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZe-Ib-4Lm">
+                    <rect key="frame" x="0.0" y="0.0" width="60" height="39"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="G8N-dE-rB7"/>
+                        <constraint firstAttribute="width" constant="60" id="t8q-4d-Zyx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="取消">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cancel:" destination="-1" eventType="touchUpInside" id="xGd-ik-Otr"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkB-Ve-idX">
+                    <rect key="frame" x="260" y="0.0" width="60" height="39"/>
+                    <animations/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="1lI-8b-dky"/>
+                        <constraint firstAttribute="width" constant="60" id="WJ7-nC-hM8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <state key="normal" title="确定">
+                        <color key="titleShadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="ensure:" destination="-1" eventType="touchUpInside" id="Jyp-3d-ez1"/>
+                    </connections>
+                </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cqj-33-PTO">
+                    <rect key="frame" x="0.0" y="39" width="320" height="216"/>
+                    <animations/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GTo-FD-MR6"/>
+                        <outlet property="delegate" destination="-1" id="91F-s3-esL"/>
+                    </connections>
+                </pickerView>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="lkB-Ve-idX" secondAttribute="trailing" id="8ft-mo-keL"/>
+                <constraint firstAttribute="bottom" secondItem="Cqj-33-PTO" secondAttribute="bottom" id="9pw-gb-7w4"/>
+                <constraint firstItem="gZe-Ib-4Lm" firstAttribute="leading" secondItem="sFf-m2-fVK" secondAttribute="leading" id="Big-bL-v5m"/>
+                <constraint firstItem="Cqj-33-PTO" firstAttribute="leading" secondItem="sFf-m2-fVK" secondAttribute="leading" id="HdX-Gz-BYK"/>
+                <constraint firstItem="Cqj-33-PTO" firstAttribute="top" secondItem="lkB-Ve-idX" secondAttribute="bottom" id="IXk-dK-DHR"/>
+                <constraint firstItem="gZe-Ib-4Lm" firstAttribute="top" secondItem="sFf-m2-fVK" secondAttribute="top" id="OVY-qz-RAS"/>
+                <constraint firstAttribute="trailing" secondItem="Cqj-33-PTO" secondAttribute="trailing" id="Ogj-zP-X8T"/>
+                <constraint firstItem="lkB-Ve-idX" firstAttribute="top" secondItem="sFf-m2-fVK" secondAttribute="top" id="kcG-dA-JKO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="744" y="287.5"/>
         </view>
     </objects>
 </document>
