@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="yuetacell" rowHeight="130" id="KGk-i7-Jjw" customClass="YueTaTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="130"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="129"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_default" translatesAutoresizingMaskIntoConstraints="NO" id="OG0-dV-bIS">
+                        <rect key="frame" x="115" y="8" width="90" height="90"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="H6e-RA-r7P"/>
+                            <constraint firstAttribute="height" constant="90" id="fqV-3g-dkh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小婉熊" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oi3-ct-0Cy">
+                        <rect key="frame" x="135" y="103" width="51" height="21"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="sGod" translatesAutoresizingMaskIntoConstraints="NO" id="7xz-cH-C9f">
+                        <rect key="frame" x="115" y="106" width="15" height="15"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="idi-ki-FQm"/>
+                            <constraint firstAttribute="width" constant="15" id="rgd-wM-QP4"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="Oi3-ct-0Cy" firstAttribute="centerY" secondItem="7xz-cH-C9f" secondAttribute="centerY" id="5Lz-46-b0G"/>
+                    <constraint firstItem="OG0-dV-bIS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="DPD-zl-WI1"/>
+                    <constraint firstItem="Oi3-ct-0Cy" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="bEI-0u-Rh9"/>
+                    <constraint firstItem="Oi3-ct-0Cy" firstAttribute="leading" secondItem="7xz-cH-C9f" secondAttribute="trailing" constant="5" id="f91-B1-ACs"/>
+                    <constraint firstItem="Oi3-ct-0Cy" firstAttribute="top" secondItem="OG0-dV-bIS" secondAttribute="bottom" constant="5" id="koZ-tQ-5Eh"/>
+                    <constraint firstItem="OG0-dV-bIS" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="l3A-6E-zH3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <connections>
+                <outlet property="darenImage" destination="7xz-cH-C9f" id="OwW-bw-Y8O"/>
+                <outlet property="userImage" destination="OG0-dV-bIS" id="tZ9-CE-MPU"/>
+                <outlet property="usernameLabel" destination="Oi3-ct-0Cy" id="AGF-eh-aHB"/>
+            </connections>
+            <point key="canvasLocation" x="281" y="336"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="gallery_default" width="72" height="72"/>
+        <image name="sGod" width="26" height="26"/>
+    </resources>
+</document>

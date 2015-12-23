@@ -17,6 +17,7 @@
 #import "PlayerDongtaiTableViewCell.h"
 #import "PlayerTableViewCell4.h"
 #import "DongtaiViewController.h"
+#import "YueTaViewController.h"
 
 @interface PlayerViewController (){
     NSDictionary *userinfo;
@@ -209,6 +210,7 @@
     yueBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
     [yueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [yueBtn setBackgroundColor:RGBA(200,22,34,1)];
+    [yueBtn addTarget:self action:@selector(yueta) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:yueBtn];
 }
 //加载最新一条动态
@@ -329,6 +331,12 @@
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
+}
+
+//约她
+-(void)yueta{
+    YueTaViewController *vc = [[YueTaViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - uitableview delegate

@@ -48,12 +48,14 @@
 
 -(void)showAddBtn{
     [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
     addBtn.frame = btnFrame;
     [UIView commitAnimations];
 }
 
 -(void)hideAddBtn{
     [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1];
     CGRect tmppingFrame = addBtn.frame;
     tmppingFrame.origin.y = 1000;
     addBtn.frame = tmppingFrame;
@@ -149,13 +151,14 @@
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"消息" style:UIBarButtonItemStylePlain target:self action:@selector(msg)];
         [rightItem setTintColor:[UIColor whiteColor]];
         
-        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(fabu)];
-        [rightItem2 setTintColor:[UIColor whiteColor]];
-        slideSegmentController.navigationItem.rightBarButtonItems = @[rightItem2,rightItem];
+//        UIBarButtonItem *rightItem2 = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(fabu)];
+//        [rightItem2 setTintColor:[UIColor whiteColor]];
+        slideSegmentController.navigationItem.rightBarButtonItems = @[rightItem];
         
         addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [addBtn setImage:[UIImage imageNamed:@"createGroup"] forState:UIControlStateNormal];
-        [addBtn setFrame:CGRectMake(Main_Screen_Width - 80, Main_Screen_Height - 140, 60, 60)];
+        [addBtn setFrame:CGRectMake(Main_Screen_Width - 70, Main_Screen_Height - 130, 60, 60)];
+        [addBtn addTarget:self action:@selector(fabu) forControlEvents:UIControlEventTouchUpInside];
         [slideSegmentController.view addSubview:addBtn];
         btnFrame = addBtn.frame;
         [self.navigationController pushViewController:slideSegmentController animated:YES];

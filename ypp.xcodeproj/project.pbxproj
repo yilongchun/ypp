@@ -56,6 +56,10 @@
 		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
 		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
 		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
+		44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */; };
+		44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */; };
+		44E679F41C2A4E0300A510E6 /* YueTaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679F21C2A4E0300A510E6 /* YueTaTableViewCell.m */; };
+		44E679F51C2A4E0300A510E6 /* YueTaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679F31C2A4E0300A510E6 /* YueTaTableViewCell.xib */; };
 		44E6E1031C23951900F36349 /* MymoneyTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */; };
 		44E6E1081C239CDA00F36349 /* YouhuiListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E6E1061C239CDA00F36349 /* YouhuiListViewController.m */; };
 		44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E6E1071C239CDA00F36349 /* YouhuiListViewController.xib */; };
@@ -283,6 +287,12 @@
 		44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAndShopTableViewController.h; sourceTree = "<group>"; };
 		44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAndShopTableViewController.m; sourceTree = "<group>"; };
 		44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameAndShopTableViewController.xib; sourceTree = "<group>"; };
+		44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaViewController.h; sourceTree = "<group>"; };
+		44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaViewController.m; sourceTree = "<group>"; };
+		44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YueTaViewController.xib; sourceTree = "<group>"; };
+		44E679F11C2A4E0300A510E6 /* YueTaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaTableViewCell.h; sourceTree = "<group>"; };
+		44E679F21C2A4E0300A510E6 /* YueTaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaTableViewCell.m; sourceTree = "<group>"; };
+		44E679F31C2A4E0300A510E6 /* YueTaTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YueTaTableViewCell.xib; sourceTree = "<group>"; };
 		44E6E1011C23951900F36349 /* MymoneyTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MymoneyTableViewCell2.h; sourceTree = "<group>"; };
 		44E6E1021C23951900F36349 /* MymoneyTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MymoneyTableViewCell2.m; sourceTree = "<group>"; };
 		44E6E1051C239CDA00F36349 /* YouhuiListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YouhuiListViewController.h; sourceTree = "<group>"; };
@@ -821,6 +831,12 @@
 				44F02A311C1EA24500EF9218 /* PlayerDongtaiTableViewCell.m */,
 				44F02A331C1EA4CE00EF9218 /* PlayerTableViewCell4.h */,
 				44F02A341C1EA4CE00EF9218 /* PlayerTableViewCell4.m */,
+				44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */,
+				44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */,
+				44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */,
+				44E679F11C2A4E0300A510E6 /* YueTaTableViewCell.h */,
+				44E679F21C2A4E0300A510E6 /* YueTaTableViewCell.m */,
+				44E679F31C2A4E0300A510E6 /* YueTaTableViewCell.xib */,
 			);
 			path = play;
 			sourceTree = "<group>";
@@ -1382,6 +1398,7 @@
 				44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */,
 				44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */,
 				5A2A762B1BE9BA7F00C5FD2F /* Main.storyboard in Resources */,
+				44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */,
 				44000BF51C1AA49E00DF8FC4 /* Address.plist in Resources */,
 				5A35FBA61C12B68400427364 /* MJRefresh.bundle in Resources */,
 				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
@@ -1393,6 +1410,7 @@
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44F02A241C1E97F100EF9218 /* EditMyInfoTextViewController.xib in Resources */,
 				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
+				44E679F51C2A4E0300A510E6 /* YueTaTableViewCell.xib in Resources */,
 				44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
@@ -1408,6 +1426,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44E679F41C2A4E0300A510E6 /* YueTaTableViewCell.m in Sources */,
 				444E58B41C15217000D77C63 /* NSException+Trace.m in Sources */,
 				5A35FB8B1C12B68400427364 /* IQUITextFieldView+Additions.m in Sources */,
 				44E6E10D1C23B2D800F36349 /* LishiYouhuiListTableViewController.m in Sources */,
@@ -1490,6 +1509,7 @@
 				44F02A281C1E97F100EF9218 /* PhoneBindTableViewController.m in Sources */,
 				44FB14E81C17B58A009855DC /* UIView+Nib.m in Sources */,
 				44F02A1B1C1E97F100EF9218 /* AccountTableViewController.m in Sources */,
+				44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */,
 				444E58BF1C15217000D77C63 /* NSObject+Runtime.m in Sources */,
 				5A35FB941C12B68400427364 /* IQTitleBarButtonItem.m in Sources */,
 				5A5C30FC1BF06F640047A016 /* Register1ViewController.m in Sources */,
