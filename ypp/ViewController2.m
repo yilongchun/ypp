@@ -13,6 +13,9 @@
 
 @interface ViewController2 (){
     JYSlideSegmentController *slideSegmentController;
+    
+    CGRect btnFrame;
+    UIButton *addBtn;
 }
 
 @end
@@ -33,6 +36,28 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showAddBtn)
+                                                 name:@"showAddBtn" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(hideAddBtn)
+                                                 name:@"hideAddBtn" object:nil];
+    
+}
+
+-(void)showAddBtn{
+    [UIView beginAnimations:nil context:nil];
+    addBtn.frame = btnFrame;
+    [UIView commitAnimations];
+}
+
+-(void)hideAddBtn{
+    [UIView beginAnimations:nil context:nil];
+    CGRect tmppingFrame = addBtn.frame;
+    tmppingFrame.origin.y = 1000;
+    addBtn.frame = tmppingFrame;
+    [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -128,6 +153,11 @@
         [rightItem2 setTintColor:[UIColor whiteColor]];
         slideSegmentController.navigationItem.rightBarButtonItems = @[rightItem2,rightItem];
         
+        addBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [addBtn setImage:[UIImage imageNamed:@"createGroup"] forState:UIControlStateNormal];
+        [addBtn setFrame:CGRectMake(Main_Screen_Width - 80, Main_Screen_Height - 140, 60, 60)];
+        [slideSegmentController.view addSubview:addBtn];
+        btnFrame = addBtn.frame;
         [self.navigationController pushViewController:slideSegmentController animated:YES];
         
         

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DongtaiViewController : UIViewController{
+@interface DongtaiViewController : UIViewController<UIScrollViewDelegate>{
     NSMutableArray *dataSource;
 }
 

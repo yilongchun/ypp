@@ -368,7 +368,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iZ6-uZ-h8n">
-                                <rect key="frame" x="0.0" y="160" width="320" height="120"/>
+                                <rect key="frame" x="0.0" y="235" width="320" height="120"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -381,14 +381,13 @@
                                 </connections>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jBC-Ka-ImF">
-                                <rect key="frame" x="110" y="40" width="100" height="100"/>
+                                <rect key="frame" x="73" y="40" width="175" height="175"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="09i-Wq-Kbe"/>
-                                    <constraint firstAttribute="height" constant="100" id="wz6-J8-pIp"/>
+                                    <constraint firstAttribute="width" constant="175" id="09i-Wq-Kbe"/>
+                                    <constraint firstAttribute="height" constant="175" id="wz6-J8-pIp"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="compose_pic_add"/>
-                                <state key="highlighted" backgroundImage="compose_pic_add_highlighted"/>
+                                <state key="normal" backgroundImage="fabudongtai_image_default_bg"/>
                                 <connections>
                                     <action selector="chooseImage:" destination="LPs-T0-9kH" eventType="touchUpInside" id="hp8-ub-Cli"/>
                                 </connections>
@@ -2901,12 +2900,11 @@
     </scenes>
     <resources>
         <image name="avatar_su" width="106" height="106"/>
-        <image name="compose_pic_add" width="70" height="70"/>
-        <image name="compose_pic_add_highlighted" width="70" height="70"/>
         <image name="dongtaiShare" width="18" height="18"/>
         <image name="dongtailist_heart_empty" width="16" height="16"/>
         <image name="dt_comment" width="16" height="13"/>
         <image name="dt_dashang" width="14" height="18"/>
+        <image name="fabudongtai_image_default_bg" width="173" height="173"/>
         <image name="gallery_default" width="72" height="72"/>
         <image name="hot-icon" width="19" height="19"/>
         <image name="s0" width="320" height="480"/>

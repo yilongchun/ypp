@@ -739,15 +739,14 @@
             startTime = [NSString stringWithFormat:@"%@ %02d:%02d",startTime1,[startTime2 intValue],[startTime3 intValue]];
         }
         [self hideMyPicker];
-        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:5 inSection:0];
-        [self.mytableview reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        [self.mytableview reloadData];
     }
     if (type == 2) {
         NSNumber *duration = [durationArr objectAtIndex:[self.myPicker selectedRowInComponent:0]];
         shichang = duration;
         [self hideMyPicker];
-        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:6 inSection:0];
-        [self.mytableview reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.mytableview reloadData];
     }
 }
 
