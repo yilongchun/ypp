@@ -32,7 +32,7 @@
     NSString *cityname;   //陪玩城市
     NSString *storeid;   //默认地点（选择城市下的门店）
     NSString *storename;  //默认地点（选择城市下的门店）
-    NSString *pirce;   //陪玩单价
+    NSString *price;   //陪玩单价
     NSString *tag;  //标签
     NSString *showphone;  //是否显示联系方式   0 1
     NSString *phone;  //如果是，联系方式 手机号码
@@ -247,7 +247,7 @@
         [self showHint:@"请选择地点"];
         return;
     }
-    if (pirce == nil) {
+    if (price == nil) {
         [self showHint:@"请选择单价"];
         return;
     }
@@ -267,8 +267,8 @@
         [self showHint:@"请填写等级"];
         return;
     }
-    if([chosedImages count] != 4){
-        [self showHint:@"请上传4张图片"];
+    if([chosedImages count] == 0){
+        [self showHint:@"请上传图片"];
         return;
     }
     
@@ -352,7 +352,7 @@
     [parameters setValue:cityname forKey:@"cityname"];//陪玩城市
     [parameters setValue:storeid forKey:@"storeid"];//陪玩地点 门店id
     [parameters setValue:storename forKey:@"storename"];//陪玩地点 门店名称
-    [parameters setValue:pirce forKey:@"pirce"];//陪玩单价
+    [parameters setValue:price forKey:@"price"];//陪玩单价
     [parameters setValue:tag forKey:@"tag"];//标签
     if ([showphone isEqualToString:@"显示手机号码"]) {
         [parameters setValue:@"1" forKey:@"showphone"];//联系方式
@@ -487,7 +487,7 @@
             return width + 20 + textSize.height + 10;
         }
     }
-    return 55;
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -587,7 +587,7 @@
                 break;
             case 3:
                 cell.textLabel.text = @"陪玩单价";//39 59 99 129 199
-                cell.detailTextLabel.text = pirce;
+                cell.detailTextLabel.text = price;
                 break;
             case 4:
                 cell.textLabel.text = @"标签(选填)";
@@ -807,7 +807,7 @@
 }
 
 - (IBAction)ensure:(id)sender {
-    pirce = [priceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
+    price = [priceArray objectAtIndex:[self.myPicker selectedRowInComponent:0]];
     [self hideMyPicker];
     NSIndexPath *indexpath = [NSIndexPath indexPathForRow:3 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[indexpath] withRowAnimation:UITableViewRowAnimationFade];

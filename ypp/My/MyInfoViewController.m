@@ -237,15 +237,15 @@
                                               attributes:attributes
                                                  context:nil].size;
             }
-            if (textSize.height + 17 +17 > 55) {
+            if (textSize.height + 17 +17 > 50) {
                 return textSize.height + 17 + 17;
             }else{
-                return 55;
+                return 50;
             }
         }
     }
     
-    return 55;
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

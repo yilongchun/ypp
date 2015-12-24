@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 @property (strong, nonatomic) NSDictionary *userinfo;
+@property (strong, nonatomic) NSDictionary *youshenInfo;
 
 @property (strong, nonatomic) IBOutlet UIPickerView *myPicker;
 @property (strong, nonatomic) IBOutlet UIView *pickerBgView;

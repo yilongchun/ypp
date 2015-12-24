@@ -12,5 +12,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 @property (strong, nonatomic) NSString *userid;
+@property (strong, nonatomic) NSDictionary *youshenInfo;
 
 @end

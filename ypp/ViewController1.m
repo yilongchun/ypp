@@ -192,7 +192,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 110;
+    return 85;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -266,6 +266,7 @@
         vc.hidesBottomBarWhenPushed = YES;
         vc.userid = [info objectForKey:@"userid"];
         vc.title = [info objectForKey:@"user_name"];
+        vc.youshenInfo = info;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }

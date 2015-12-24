@@ -28,6 +28,7 @@
     UIScrollView *topImageScrollView;
     
     NSDictionary *dongtaiDic;
+    
 }
 
 @end
@@ -240,8 +241,9 @@
                 NSArray *arr = [dic objectForKey:@"message"];
                 if ([arr count] > 0) {
                     dongtaiDic = [arr objectAtIndex:0];
-                    NSIndexSet *sets = [NSIndexSet indexSetWithIndex:1];
-                    [_mytableview reloadSections:sets withRowAnimation:UITableViewRowAnimationFade];
+                    [_mytableview reloadData];
+//                    NSIndexSet *sets = [NSIndexSet indexSetWithIndex:1];
+//                    [_mytableview reloadSections:sets withRowAnimation:UITableViewRowAnimationFade];
                 }
             }else{
 //                NSString *message = [dic objectForKey:@"message"];
@@ -340,6 +342,7 @@
 -(void)yueta{
     YueTaViewController *vc = [[YueTaViewController alloc] init];
     vc.userinfo = userinfo;
+    vc.youshenInfo = _youshenInfo;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -353,6 +356,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 2) {
+        return 10;
+    }
     return 5;
 }
 
@@ -401,17 +407,18 @@
                                               attributes:attributes
                                                  context:nil].size;
             }
-            if (textSize.height + 12 +13 > 55) {
+            
+            if (textSize.height + 12 +13 > 50) {
                 return textSize.height + 12 + 13;
             }else{
-                return 55;
+                return 50;
             }
         }else if (indexPath.row == 1){
             return 148;
         }
     }
     
-    return 55;
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

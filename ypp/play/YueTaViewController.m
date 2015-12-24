@@ -12,15 +12,18 @@
 #import "GameAndShopTableViewController.h"
 #import "NSDate+Addition.h"
 #import "NSDate+Extension.h"
+#import "ChooseYouhuiTableViewController.h"
 
 @interface YueTaViewController (){
     UIButton *applyBtn;
     
+    NSString *lineType;//线上线下
     NSString *storeid;   //默认地点（选择城市下的门店）
     NSString *storename;  //默认地点（选择城市下的门店）
     
     NSString *startTime;//开始时间
     NSNumber *shichang;//时长
+    NSNumber *total;//总共
     
     int type;//1开始时间 2时长
     NSMutableArray *durationArr;//时长数组
@@ -28,6 +31,9 @@
     NSMutableArray *startTimeArr2;//小时
     NSMutableArray *startTimeArr3;//分钟
     int picksection;
+    
+    NSDictionary *youhuiInfo;//优惠信息
+    NSNumber *discountprice;//优惠金额
 }
 
 @end
@@ -67,7 +73,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setValue:)
                                                  name:@"setValue" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setYouhuiInfo:)   name:@"setYouhuiInfo" object:nil];
 
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter  defaultCenter] removeObserver:self  name:@"setYouhuiInfo" object:nil];
 }
 
 -(void)initData{
@@ -85,6 +97,33 @@
     
 }
 
+/**
+ * 选择线上线下
+ */
+-(void)chooseLineUpAndDown{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"请选择" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"线上" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        lineType = @"线上";
+        [self.mytableview reloadData];
+    }];
+    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"线下" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        lineType = @"线下";
+        [self.mytableview reloadData];
+    }];
+    [alert addAction:action1];
+    [alert addAction:action2];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+-(void)setYouhuiInfo:(NSNotification *)text{
+    DLog(@"%@",text.object);
+    youhuiInfo = text.object;
+    if (youhuiInfo == nil) {
+        discountprice = nil;
+    }
+    [self.mytableview reloadData];
+}
+
 - (void)setValue:(NSNotification *)text{
     
     NSString *column = text.userInfo[@"column"];
@@ -100,8 +139,85 @@
     [self.mytableview reloadData];
 }
 
+/**
+ *  提交订单
+ */
 -(void)save{
+    if (lineType == nil) {
+        [self showHint:@"请选择线上线下"];
+        return;
+    }
+    if (storeid == nil) {
+        [self showHint:@"请选择陪练地点"];
+        return;
+    }
+    if (startTime == nil) {
+        [self showHint:@"请选择陪练时间"];
+        return;
+    }
+    if (shichang == nil) {
+        [self showHint:@"请选择陪练时长"];
+        return;
+    }
     
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
+    [parameters setValue:[_youshenInfo objectForKey:@"id"] forKey:@"vipuserid"];
+    [parameters setValue:lineType forKey:@"isline"];
+    [parameters setValue:storeid forKey:@"storied"];
+    [parameters setValue:storename forKey:@"storename"];
+    [parameters setValue:startTime forKey:@"begin"];
+    [parameters setValue:shichang forKey:@"hours"];
+    NSString *price = [_youshenInfo objectForKey:@"price"];
+    
+    [parameters setValue:[NSNumber numberWithDouble:[price doubleValue] *  [shichang intValue]] forKey:@"payprice"];
+    if (discountprice == nil) {
+        [parameters setValue:[NSNumber numberWithDouble:0] forKey:@"discountprice"];
+    }else{
+        [parameters setValue:[NSNumber numberWithDouble:[discountprice doubleValue]] forKey:@"discountprice"];
+    }
+    
+    [parameters setValue:[NSNumber numberWithDouble:[total doubleValue]] forKey:@"actualprice"];
+    [parameters setValue:@"1" forKey:@"paymentid"];
+    DLog(@"%@",parameters);
+//    return;
+    
+    
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUETA];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self hideHud];
+        NSLog(@"JSON: %@", operation.responseString);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+                
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -136,7 +252,7 @@
     if (indexPath.section == 2 && indexPath.row == 3) {
         return 70;
     }
-    return 55;
+    return 50;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -144,7 +260,7 @@
         return 1;
     }
     if (section == 1) {
-        return 3;
+        return 4;
     }
     return 4;
 }
@@ -178,9 +294,22 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
         }
         switch (indexPath.row) {
             case 0:{
+                cell.textLabel.text = @"线上线下";
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                if (lineType != nil) {
+                    cell.detailTextLabel.text = lineType;
+                    cell.detailTextLabel.textColor = [UIColor blackColor];
+                }else{
+                    cell.detailTextLabel.text = @"请选择";
+                }
+            }
+                break;
+            case 1:{
                 cell.textLabel.text = @"陪练地点";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 if (storeid != nil) {
@@ -191,7 +320,7 @@
                 }
             }
                 break;
-            case 1:{
+            case 2:{
                 cell.textLabel.text = @"开始时间";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 if (startTime != nil) {
@@ -202,7 +331,7 @@
                 }
             }
                 break;
-            case 2:{
+            case 3:{
                 cell.textLabel.text = @"陪练时长";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 if (shichang != nil) {
@@ -221,22 +350,70 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
         }
         switch (indexPath.row) {
             case 0:{
                 cell.textLabel.text = @"陪练费用";
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                NSString *price = [_youshenInfo objectForKey:@"price"];
+                if (shichang == nil) {
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元",price];
+                    cell.detailTextLabel.textColor = [UIColor blackColor];
+                }else{
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@元*%d",price,[shichang intValue]];
+                    cell.detailTextLabel.textColor = [UIColor blackColor];
+                }
             }
                 break;
             case 1:{
                 cell.textLabel.text = @"优惠费用";
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-                cell.detailTextLabel.text = @"使用优惠劵";
+                
+                if (youhuiInfo != nil) {
+                    NSNumber *total_fee = [youhuiInfo objectForKey:@"youhui_total_fee"];//满多少
+                    NSString *price = [_youshenInfo objectForKey:@"price"];
+                    NSNumber *total_price = [NSNumber numberWithDouble:[price doubleValue] * [shichang doubleValue]];
+                    if ([total_price doubleValue] >= [total_fee doubleValue]) {
+                        discountprice = [youhuiInfo objectForKey:@"discountprice"];//金额
+                        cell.detailTextLabel.text = [NSString stringWithFormat:@"-%d元",[discountprice intValue]];
+                        cell.detailTextLabel.textColor = [UIColor blackColor];
+                    }else{
+                        cell.detailTextLabel.text = @"使用优惠劵";
+                        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+                        youhuiInfo = nil;
+                        discountprice = nil;
+                        [self showHint:@"该优惠劵不满足使用条件"];
+                    }
+                }else{
+                    cell.detailTextLabel.text = @"使用优惠劵";
+                    cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+                }
             }
                 break;
             case 2:{
                 cell.textLabel.text = @"总共";
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                NSString *price = [_youshenInfo objectForKey:@"price"];
+                if (shichang == nil) {
+                    total = [NSNumber numberWithDouble:[price doubleValue]];
+                    
+                    if (discountprice != nil) {
+                        total = [NSNumber numberWithDouble:[total doubleValue] - [discountprice doubleValue]];
+                    }
+                    
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f元",[total doubleValue]];
+                    cell.detailTextLabel.textColor = [UIColor blackColor];
+                }else{
+                    total = [NSNumber numberWithDouble:[price doubleValue] * [shichang doubleValue]];
+                    if (discountprice != nil) {
+                        total = [NSNumber numberWithDouble:[total doubleValue] - [discountprice doubleValue]];
+                    }
+                    cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2f元",[total doubleValue]];
+                    cell.detailTextLabel.textColor = [UIColor blackColor];
+                }
+                
             }
                 break;
             case 3:{
@@ -275,7 +452,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 1) {
-        if (indexPath.row == 0) {//地点
+        if (indexPath.row == 0) {
+            [self chooseLineUpAndDown];
+        }
+        if (indexPath.row == 1) {//地点
             GameAndShopTableViewController *vc = [[GameAndShopTableViewController alloc] init];
             vc.type = 2;
             vc.title = @"选择地点";
@@ -285,12 +465,12 @@
             vc.columnValue = storename;
             [self.navigationController pushViewController:vc animated:YES];
         }
-        if (indexPath.row == 1) {//开始
+        if (indexPath.row == 2) {//开始
             type = 1;
             [self.myPicker reloadAllComponents];
             [self showMyPicker];
         }
-        if (indexPath.row == 2) {//时长
+        if (indexPath.row == 3) {//时长
             type = 2;
             [self.myPicker reloadAllComponents];
             [self showMyPicker];
@@ -298,7 +478,8 @@
     }
     if (indexPath.section == 2) {
         if (indexPath.row == 1) {//优惠劵
-            
+            ChooseYouhuiTableViewController *vc = [[ChooseYouhuiTableViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
 }

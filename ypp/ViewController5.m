@@ -135,7 +135,7 @@
     if (indexPath.section == 0) {
         return 100;
     }
-    return 55;
+    return 50;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -359,7 +359,7 @@
                 DLog(@"审核通过");
             }
             if ([is_daren isEqualToString:@"3"]) {//审核不通过
-                
+                DLog(@"审核不通过，需要重新申请");
             }
         }
     }

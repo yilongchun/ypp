@@ -52,6 +52,8 @@
 		444E58CB1C15217000D77C63 /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A21C15217000D77C63 /* NSTimer+Blocks.m */; };
 		444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58A51C15217000D77C63 /* NSURL+Param.m */; };
 		449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */; };
+		44CC05161C2BA2B900BF515F /* ChooseYouhuiTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC05141C2BA2B900BF515F /* ChooseYouhuiTableViewController.m */; };
+		44CC05171C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44CC05151C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib */; };
 		44E19CA31C22445800E00B0F /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA11C22445800E00B0F /* TagViewController.m */; };
 		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
 		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
@@ -281,6 +283,9 @@
 		444E58A51C15217000D77C63 /* NSURL+Param.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Param.m"; sourceTree = "<group>"; };
 		449546F41C157DFB000C41C2 /* UITextView+PlaceHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+PlaceHolder.h"; sourceTree = "<group>"; };
 		449546F51C157DFB000C41C2 /* UITextView+PlaceHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+PlaceHolder.m"; sourceTree = "<group>"; };
+		44CC05131C2BA2B900BF515F /* ChooseYouhuiTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseYouhuiTableViewController.h; sourceTree = "<group>"; };
+		44CC05141C2BA2B900BF515F /* ChooseYouhuiTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseYouhuiTableViewController.m; sourceTree = "<group>"; };
+		44CC05151C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseYouhuiTableViewController.xib; sourceTree = "<group>"; };
 		44E19CA01C22445800E00B0F /* TagViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		44E19CA11C22445800E00B0F /* TagViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
 		44E19CA21C22445800E00B0F /* TagViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagViewController.xib; sourceTree = "<group>"; };
@@ -837,6 +842,9 @@
 				44E679F11C2A4E0300A510E6 /* YueTaTableViewCell.h */,
 				44E679F21C2A4E0300A510E6 /* YueTaTableViewCell.m */,
 				44E679F31C2A4E0300A510E6 /* YueTaTableViewCell.xib */,
+				44CC05131C2BA2B900BF515F /* ChooseYouhuiTableViewController.h */,
+				44CC05141C2BA2B900BF515F /* ChooseYouhuiTableViewController.m */,
+				44CC05151C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib */,
 			);
 			path = play;
 			sourceTree = "<group>";
@@ -1412,6 +1420,7 @@
 				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
 				44E679F51C2A4E0300A510E6 /* YueTaTableViewCell.xib in Resources */,
 				44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */,
+				44CC05171C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
@@ -1498,6 +1507,7 @@
 				444E58C11C15217000D77C63 /* NSString+DictionaryValue.m in Sources */,
 				5A6662181BEB786A003FEC29 /* UserTableViewCell.m in Sources */,
 				5A35FB8A1C12B68400427364 /* IQNSArray+Sort.m in Sources */,
+				44CC05161C2BA2B900BF515F /* ChooseYouhuiTableViewController.m in Sources */,
 				44F02A2A1C1E97F100EF9218 /* UserStatusTableViewController.m in Sources */,
 				444E58B81C15217000D77C63 /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				44F02A201C1E97F100EF9218 /* EditHangyeTableViewController.m in Sources */,

@@ -109,7 +109,7 @@
     CGFloat width = (Main_Screen_Width - 40) / 3;
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(15, 15, 20, 40)];
-    label.font = [UIFont systemFontOfSize:17];
+    label.font = [UIFont systemFontOfSize:16];
     label.text = @"陪练价格";
     [label sizeToFit];
     NSIndexPath *indexPath = [NSIndexPath indexPathForItem:3 inSection:0];
@@ -124,7 +124,7 @@
     btn1.layer.masksToBounds = YES;
     btn1.layer.cornerRadius = 20;
     [btn1 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn1.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn1.titleLabel.font = [UIFont systemFontOfSize:16];
     btn1.tag = 1;
     [btn1 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn1];
@@ -137,7 +137,7 @@
     btn2.layer.masksToBounds = YES;
     btn2.layer.cornerRadius = 20;
     [btn2 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn2.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn2.titleLabel.font = [UIFont systemFontOfSize:16];
     btn2.tag = 2;
     [btn2 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn2];
@@ -150,7 +150,7 @@
     btn3.layer.masksToBounds = YES;
     btn3.layer.cornerRadius = 20;
     [btn3 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn3.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn3.titleLabel.font = [UIFont systemFontOfSize:16];
     btn3.tag = 3;
     [btn3 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn3];
@@ -163,7 +163,7 @@
     btn4.layer.masksToBounds = YES;
     btn4.layer.cornerRadius = 20;
     [btn4 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn4.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn4.titleLabel.font = [UIFont systemFontOfSize:16];
     btn4.tag = 4;
     [btn4 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn4];
@@ -176,7 +176,7 @@
     btn5.layer.masksToBounds = YES;
     btn5.layer.cornerRadius = 20;
     [btn5 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn5.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn5.titleLabel.font = [UIFont systemFontOfSize:16];
     btn5.tag = 5;
     [btn5 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn5];
@@ -189,7 +189,7 @@
     btn6.layer.masksToBounds = YES;
     btn6.layer.cornerRadius = 20;
     [btn6 setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    btn6.titleLabel.font = [UIFont systemFontOfSize:17];
+    btn6.titleLabel.font = [UIFont systemFontOfSize:16];
     btn6.tag = 6;
     [btn6 addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [cell.contentView addSubview:btn6];
@@ -383,7 +383,7 @@
     if (indexPath.row == 3) {
         return 150;
     }
-    return 55;
+    return 50;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -399,6 +399,8 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
         }
         cell.textLabel.text = @"线上线下";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -413,6 +415,8 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
         }
         cell.textLabel.text = @"游戏类别";
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -427,6 +431,8 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+            cell.textLabel.font = [UIFont systemFontOfSize:16];
+            cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
         }
         
         cell.textLabel.text = @"陪练性别";
@@ -458,6 +464,8 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             }
             
             cell.textLabel.text = @"陪练地点";
@@ -474,6 +482,8 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             }
             
             cell.textLabel.text = @"开始时间";
@@ -489,6 +499,8 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             }
             cell.textLabel.text = @"陪练时长";
             
@@ -506,6 +518,8 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             }
             
             cell.textLabel.text = @"开始时间";
@@ -521,6 +535,8 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             if (cell == nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
+                cell.textLabel.font = [UIFont systemFontOfSize:16];
+                cell.detailTextLabel.font = [UIFont systemFontOfSize:16];
             }
             cell.textLabel.text = @"陪练时长";
             

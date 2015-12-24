@@ -304,13 +304,13 @@
         }
         
         if (zanArr != nil && zanArr.count > 0) {
-            return height + textSize.height;
+            return height + textSize.height - 15;
         }else{
             return height + textSize.height - 62;
         }
     }else{
         
-        CGFloat height = 31;
+        CGFloat height = 26;
         
         NSDictionary *infoDic = [pinglunArr objectAtIndex:indexPath.row - 1];
         NSString *content = [infoDic objectForKey:@"content"];
@@ -338,10 +338,10 @@
         }
         
         
-        if (textSize.height + height > 83) {
+        if (textSize.height + height > 70) {
             return height + textSize.height;
         }else{
-            return 83;
+            return 70;
         }
     }
     
@@ -432,7 +432,7 @@
             [cell.bottomLabel setHidden:NO];
             
             if (zanScrollView == nil) {
-                zanScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, cell.bottomLabel.frame.origin.y + 6 + textSize.height - 18, Main_Screen_Width, 50)];
+                zanScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, cell.bottomLabel.frame.origin.y + 6 + textSize.height - 18, Main_Screen_Width, 35)];
                 [cell.contentView addSubview:zanScrollView];
                 
                 int x = 10;
@@ -440,7 +440,7 @@
                 for (int i = 0 ; i < zanArr.count; i++) {
                     NSDictionary *user = [zanArr objectAtIndex:i];
                     NSString *avatar = [user objectForKey:@"avatar"];
-                    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, 50, 50)];
+                    UIImageView *userImage = [[UIImageView alloc] initWithFrame:CGRectMake(x, 0, 35, 35)];
                     [userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
                     userImage.layer.masksToBounds = YES;
                     userImage.layer.cornerRadius = 5;
@@ -449,15 +449,15 @@
                     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserDetail:)];
                     [userImage addGestureRecognizer:tap];
                     UIImageView *heartImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"dongtailist_heart_full"]];
-                    [heartImageView setFrame:CGRectMake(x + 43, 18, 14, 14)];
+                    [heartImageView setFrame:CGRectMake(x + 28, 11, 14, 14)];
                     [zanScrollView addSubview:userImage];
                     [zanScrollView addSubview:heartImageView];
                     
-                    scrollviewWidth = x+60;
-                    x += 60;
+                    scrollviewWidth = x+45;
+                    x += 45;
                 }
                 zanScrollView.showsHorizontalScrollIndicator = false;
-                [zanScrollView setContentSize:CGSizeMake(scrollviewWidth, 50)];
+                [zanScrollView setContentSize:CGSizeMake(scrollviewWidth, 35)];
             }
         }else{
             [cell.bottomLabel setHidden:YES];
