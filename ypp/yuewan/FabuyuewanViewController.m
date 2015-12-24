@@ -321,6 +321,57 @@
         return;
     }
     
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
+    [parameters setValue:lineType forKey:@"isline"];//线上线下
+    [parameters setValue:gameid forKey:@"gameid"];
+    [parameters setValue:gamename forKey:@"gamename"];
+    [parameters setValue:sex forKey:@"sex"];//游神性别
+    
+    NSMutableArray *priceArr = [NSMutableArray array];
+    for (int i = 0; i < choosedBtn.count; i++) {
+        [priceArr addObject:[(UIButton *)[choosedBtn objectAtIndex:i] currentTitle]];
+    }
+    [parameters setValue:[priceArr componentsJoinedByString:@","] forKey:@"price"];//陪玩单价
+    [parameters setValue:storeid forKey:@"storeid"];
+    if ([lineType isEqualToString:@"线下"]) {
+     [parameters setValue:storename forKey:@"storename"];//陪玩地点（线下）
+    }
+    [parameters setValue:startTime forKey:@"begin"];//开始时间
+    [parameters setValue:shichang forKey:@"hours"];//陪玩时长
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUE];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self hideHud];
+        NSLog(@"JSON: %@", operation.responseString);
+        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                
+                
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+    }];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

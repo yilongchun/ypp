@@ -104,12 +104,12 @@
     
     ViewController1 *vc1_2 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
     vc1_2.title = @"热度";
-    vc1_1.type = 1;
+    vc1_2.type = 1;
     [vcs addObject:vc1_2];
     
     ViewController1 *vc1_3 = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController1"];
     vc1_3.title = @"新人";
-    vc1_1.type = 2;
+    vc1_3.type = 2;
     [vcs addObject:vc1_3];
     
     JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];

@@ -253,7 +253,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-    NSString *userid = [info objectForKey:@"id"];
+    NSString *userid = [info objectForKey:@"userid"];
     NSString *loginedUserId = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"];
     
     if ([userid isEqualToString:loginedUserId]) {//是自己
@@ -264,7 +264,7 @@
     }else{
         PlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
         vc.hidesBottomBarWhenPushed = YES;
-        vc.userid = [info objectForKey:@"id"];
+        vc.userid = [info objectForKey:@"userid"];
         vc.title = [info objectForKey:@"user_name"];
         [self.navigationController pushViewController:vc animated:YES];
     }

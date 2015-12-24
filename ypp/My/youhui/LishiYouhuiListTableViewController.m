@@ -113,7 +113,7 @@
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YOUSHENLIST];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YOUHUI_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
