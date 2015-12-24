@@ -10,6 +10,7 @@
 #import "GameAndShopTableViewController.h"
 #import "NSDate+Addition.h"
 #import "NSDate+Extension.h"
+#import "NSObject+Blocks.h"
 
 @interface FabuyuewanViewController (){
     NSString *lineType;//线上线下
@@ -359,8 +360,12 @@
         }else{
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
                 
-                
+                [self performBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:1.5];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
