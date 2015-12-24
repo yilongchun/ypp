@@ -102,8 +102,6 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_GETURL @"app1/index.php?action=geturl"
 //优惠券列表
 #define API_YOUHUI_LIST @"app1/index.php?action=youhuilist"
-
-
 //约
 #define API_YUE @"app1/index.php?action=yue"
 

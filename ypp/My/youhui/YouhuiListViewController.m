@@ -9,6 +9,7 @@
 #import "YouhuiListViewController.h"
 #import "LishiYouhuiListTableViewController.h"
 #import "YouhuijuanTableViewCell.h"
+#import "NSDate+Addition.h"
 
 @interface YouhuiListViewController (){
     NSMutableArray *dataSource;
@@ -52,9 +53,9 @@
         [self loadData];
     }];
     
-    [dataSource addObject:@"1"];
-    [dataSource addObject:@"1"];
-    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
     
     [self showHudInView:self.view];
     [self loadData];
@@ -129,7 +130,7 @@
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     
     
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YOUSHENLIST];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YOUHUI_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -195,14 +196,12 @@
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
         }
-        
         cell.textLabel.text = @"历史优惠劵";
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:14];
         cell.textLabel.textColor = [UIColor darkGrayColor];
         cell.backgroundColor = [UIColor clearColor];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         return cell;
     }else{
         
@@ -212,7 +211,16 @@
         if (cell == nil){
             cell= (YouhuijuanTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"YouhuijuanTableViewCell" owner:self options:nil]  lastObject];
         }
+        NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
+        NSNumber *end_time = [info objectForKey:@"end_time"];
+        NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[end_time doubleValue]];//截止日期
+        cell.dateLabel.text = [NSString stringWithFormat:@"有效期至%@",[confromTimesp dateWithFormat:@"yyyy-MM-dd"]];
         
+        NSString *total_fee = [info objectForKey:@"total_fee"];//满多少
+        cell.xianzhiLabel.text = [NSString stringWithFormat:@"满%@使用",total_fee];
+        
+        NSString *discountprice = [info objectForKey:@"discountprice"];//金额
+        cell.moneyLabel.text = discountprice;
         return cell;
     }
     

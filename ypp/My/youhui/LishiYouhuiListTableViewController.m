@@ -8,6 +8,7 @@
 
 #import "LishiYouhuiListTableViewController.h"
 #import "YouhuijuanTableViewCell.h"
+#import "NSDate+Addition.h"
 
 @interface LishiYouhuiListTableViewController (){
     NSMutableArray *dataSource;
@@ -44,9 +45,9 @@
         [self loadData];
     }];
     
-    [dataSource addObject:@"1"];
-    [dataSource addObject:@"1"];
-    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
+//    [dataSource addObject:@"1"];
     
     [self showHudInView:self.view];
     [self loadData];
@@ -192,6 +193,17 @@
     cell.youhuijuanLabel.textColor = RGB(210, 210, 210);
     cell.dateLabel.textColor = RGB(210, 210, 210);
     cell.xianzhiLabel.textColor = RGB(210, 210, 210);
+    
+    NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
+    NSNumber *end_time = [info objectForKey:@"end_time"];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[end_time doubleValue]];//截止日期
+    cell.dateLabel.text = [NSString stringWithFormat:@"有效期至%@",[confromTimesp dateWithFormat:@"yyyy-MM-dd"]];
+    
+    NSString *total_fee = [info objectForKey:@"total_fee"];//满多少
+    cell.xianzhiLabel.text = [NSString stringWithFormat:@"满%@使用",total_fee];
+    
+    NSString *discountprice = [info objectForKey:@"discountprice"];//金额
+    cell.moneyLabel.text = discountprice;
     
     return cell;
 }
