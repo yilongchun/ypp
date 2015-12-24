@@ -104,9 +104,9 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_YOUHUI_LIST @"app1/index.php?action=youhuilist"
 //约
 #define API_YUE @"app1/index.php?action=yue"
-
 //约TA
 #define API_YUETA @"app1/index.php?action=yueTA"
+
 //充值列表
 #define API_RECHARGE_LIST @"app1/index.php?action=rechargelist"
 //绑定YY账号

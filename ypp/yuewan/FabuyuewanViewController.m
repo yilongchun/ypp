@@ -325,7 +325,11 @@
     [self showHudInView:self.view];
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
-    [parameters setValue:lineType forKey:@"isline"];//线上线下
+    if ([lineType isEqualToString:@"线上"]) {
+        [parameters setValue:@"1" forKey:@"isline"];//线下0 ，线上1
+    }else{
+        [parameters setValue:@"0" forKey:@"isline"];//线下0 ，线上1
+    }
     [parameters setValue:gameid forKey:@"gameid"];
     [parameters setValue:gamename forKey:@"gamename"];
     [parameters setValue:sex forKey:@"sex"];//游神性别

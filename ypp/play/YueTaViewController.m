@@ -13,6 +13,7 @@
 #import "NSDate+Addition.h"
 #import "NSDate+Extension.h"
 #import "ChooseYouhuiTableViewController.h"
+#import "NSObject+Blocks.h"
 
 @interface YueTaViewController (){
     UIButton *applyBtn;
@@ -164,7 +165,14 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
     [parameters setValue:[_youshenInfo objectForKey:@"id"] forKey:@"vipuserid"];
-    [parameters setValue:lineType forKey:@"isline"];
+    
+    if ([lineType isEqualToString:@"线上"]) {
+        [parameters setValue:@"1" forKey:@"isline"];//线下0 ，线上1
+    }else{
+        [parameters setValue:@"0" forKey:@"isline"];//线下0 ，线上1
+    }
+    
+    
     [parameters setValue:storeid forKey:@"storied"];
     [parameters setValue:storename forKey:@"storename"];
     [parameters setValue:startTime forKey:@"begin"];
@@ -179,12 +187,9 @@
     }
     
     [parameters setValue:[NSNumber numberWithDouble:[total doubleValue]] forKey:@"actualprice"];
-    [parameters setValue:@"1" forKey:@"paymentid"];
+    [parameters setValue:@"1" forKey:@"paymentid"];//支付方式
     DLog(@"%@",parameters);
-//    return;
-    
-    
-    
+
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUETA];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -205,7 +210,9 @@
             if ([status intValue] == ResultCodeSuccess) {
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
-                
+                [self performBlock:^{
+                    [self.navigationController popViewControllerAnimated:YES];
+                } afterDelay:1.5];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
