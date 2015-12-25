@@ -199,7 +199,7 @@
     NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[end_time doubleValue]];//截止日期
     cell.dateLabel.text = [NSString stringWithFormat:@"有效期至%@",[confromTimesp dateWithFormat:@"yyyy-MM-dd"]];
     
-    NSString *total_fee = [info objectForKey:@"total_fee"];//满多少
+    NSString *total_fee = [info objectForKey:@"youhui_total_fee"];//满多少
     cell.xianzhiLabel.text = [NSString stringWithFormat:@"满%@使用",total_fee];
     
     NSString *discountprice = [info objectForKey:@"discountprice"];//金额
