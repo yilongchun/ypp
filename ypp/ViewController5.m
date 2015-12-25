@@ -20,6 +20,7 @@
 #import "ApplyResultViewController.h"
 #import "YouhuiListViewController.h"
 #import "WebViewController.h"
+#import "ApplyPlayerTableViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -46,6 +47,10 @@
                                              selector:@selector(loadUser:)
                                                  name:@"loadUser" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toApply)
+                                                 name:@"toApply" object:nil];
+    
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 //    [self.mytableview registerClass:[MyInfoTableViewCell class] forCellReuseIdentifier:@"myimgcell"];
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
@@ -70,6 +75,12 @@
     userinfo = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull];
     
     [self loadUser:nil];
+}
+
+-(void)toApply{
+    ApplyPlayerTableViewController *vc = [[ApplyPlayerTableViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:NO];
 }
 
 -(void)loadUser:(NSNotification *)text{
@@ -351,15 +362,22 @@
             if ([is_daren isEqualToString:@"1"]) {//审核中
                 DLog(@"审核中");
                 ApplyResultViewController *vc = [[ApplyResultViewController alloc] init];
+                vc.resultCode = is_daren;
                 vc.title = @"申请陪练";
                 vc.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:vc animated:YES];
             }
             if ([is_daren isEqualToString:@"2"]) {//审核通过
                 DLog(@"审核通过");
+                
             }
             if ([is_daren isEqualToString:@"3"]) {//审核不通过
                 DLog(@"审核不通过，需要重新申请");
+                ApplyResultViewController *vc = [[ApplyResultViewController alloc] init];
+                vc.resultCode = is_daren;
+                vc.title = @"申请陪练";
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
             }
         }
     }
