@@ -19,7 +19,8 @@
     NSString *storeid;   //默认地点（选择城市下的门店）
     NSString *storename;  //默认地点（选择城市下的门店）
     NSNumber *sex;//性别
-    NSString *startTime;//开始时间
+    NSString *startTime;//开始时间用于显示
+    NSString *begin;//开始时间存数据库
     NSNumber *shichang;//时长
     
     
@@ -144,7 +145,7 @@
     
     btn3 = [UIButton buttonWithType:UIButtonTypeSystem];
     [btn3 setFrame:CGRectMake(CGRectGetMaxX(btn2.frame) + 10, CGRectGetMaxY(label.frame) + 10, width, 40)];
-    [btn3 setTitle:@"柔情39元" forState:UIControlStateNormal];
+    [btn3 setTitle:@"柔情69元" forState:UIControlStateNormal];
     btn3.layer.borderColor = RGB(220, 220, 220).CGColor;
     btn3.layer.borderWidth = 1.0;
     btn3.layer.masksToBounds = YES;
@@ -313,7 +314,7 @@
         }
     }
     
-    if (startTime == nil || [startTime isEqualToString:@""]) {
+    if (begin == nil || [begin isEqualToString:@""]) {
         [self showHint:@"请选择开始时间"];
         return;
     }
@@ -335,17 +336,40 @@
     [parameters setValue:sex forKey:@"sex"];//游神性别
     
     NSMutableArray *priceArr = [NSMutableArray array];
-    for (int i = 0; i < choosedBtn.count; i++) {
-        [priceArr addObject:[(UIButton *)[choosedBtn objectAtIndex:i] currentTitle]];
+    
+    if ([choosedBtn containsObject:btn1]) {
+        
+        [parameters setValue:@"" forKey:@"price"];//陪玩单价
+    }else{
+        if ([choosedBtn containsObject:btn2]) {
+            [priceArr addObject:@"39"];
+        }
+        if ([choosedBtn containsObject:btn3]) {
+            [priceArr addObject:@"69"];
+        }
+        if ([choosedBtn containsObject:btn4]) {
+            [priceArr addObject:@"99"];
+        }
+        if ([choosedBtn containsObject:btn5]) {
+            [priceArr addObject:@"129"];
+        }
+        if ([choosedBtn containsObject:btn6]) {
+            [priceArr addObject:@"199"];
+        }
+        [parameters setValue:[priceArr componentsJoinedByString:@","] forKey:@"price"];//陪玩单价
     }
-    [parameters setValue:[priceArr componentsJoinedByString:@","] forKey:@"price"];//陪玩单价
+    
+//    for (int i = 0; i < choosedBtn.count; i++) {
+//        [priceArr addObject:[(UIButton *)[choosedBtn objectAtIndex:i] currentTitle]];
+//    }
+    
     [parameters setValue:storeid forKey:@"storeid"];
     if ([lineType isEqualToString:@"线下"]) {
      [parameters setValue:storename forKey:@"storename"];//陪玩地点（线下）
     }
-    [parameters setValue:startTime forKey:@"begin"];//开始时间
+    [parameters setValue:begin forKey:@"begin"];//开始时间
     [parameters setValue:shichang forKey:@"hours"];//陪玩时长
-    
+    DLog(@"%@",parameters);
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUE];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -794,13 +818,17 @@
             NSString *startTime1 = [startTimeArr1 objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             startTime = startTime1;
             DLog(@"%@",startTime1);
+            
+            NSString *currentDateStr = [NSDate currentDateStringWithFormat:@"yyyy-MM-dd hh:mm"];
+            begin = currentDateStr;
+            
         }else{
             NSString *startTime1 = [startTimeArr1 objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             NSNumber *startTime2 = [startTimeArr2 objectAtIndex:[self.myPicker selectedRowInComponent:1]];
             NSNumber *startTime3 = [startTimeArr3 objectAtIndex:[self.myPicker selectedRowInComponent:2]];
             
             if ([self.myPicker selectedRowInComponent:0] == 1) {//今天
-                startTime1 = [NSDate currentDateStringWithFormat:@"yyyy年MM月dd日"];
+                startTime1 = [NSDate currentDateStringWithFormat:@"yyyy-MM-dd"];
             }
             if ([self.myPicker selectedRowInComponent:0] == 2) {//明天
                 startTime1 = [NSDate stringWithDate:[[NSDate date] dateByAddingDays:1] format:@"yyyy-MM-dd"];
@@ -813,9 +841,13 @@
             DLog(@"%02d",[startTime3 intValue]);
             
             startTime = [NSString stringWithFormat:@"%@ %02d:%02d",startTime1,[startTime2 intValue],[startTime3 intValue]];
+            begin = startTime;
+            
+            
+            
         }
         [self hideMyPicker];
-        
+        DLog(@"%@",begin);
         [self.mytableview reloadData];
     }
     if (type == 2) {

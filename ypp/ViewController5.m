@@ -21,6 +21,8 @@
 #import "YouhuiListViewController.h"
 #import "WebViewController.h"
 #import "ApplyPlayerTableViewController.h"
+#import "JYSlideSegmentController.h"
+#import "DingdanTableViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -81,6 +83,35 @@
     ApplyPlayerTableViewController *vc = [[ApplyPlayerTableViewController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:NO];
+}
+/**
+ *  我的订单
+ */
+-(void)toMyDingdan{
+    NSMutableArray *vcs = [NSMutableArray array];
+    
+    DingdanTableViewController *vc1 = [[DingdanTableViewController alloc] init];
+    vc1.title = @"进行中";
+    vc1.type = @"0";
+    [vcs addObject:vc1];
+    
+    DingdanTableViewController *vc2 = [[DingdanTableViewController alloc] init];
+    vc2.title = @"已完成";
+    vc2.type = @"1";
+    [vcs addObject:vc2];
+    
+    DingdanTableViewController *vc3 = [[DingdanTableViewController alloc] init];
+    vc3.title = @"已取消";
+    vc3.type = @"2";
+    [vcs addObject:vc3];
+    
+    JYSlideSegmentController *slideSegmentController = [[JYSlideSegmentController alloc] initWithViewControllers:vcs];
+    slideSegmentController.title = @"陪练记录";
+    slideSegmentController.indicatorInsets = UIEdgeInsetsMake(0, 8, 0, 8);
+    slideSegmentController.indicatorColor = RGBA(200,22,34,1);
+    
+    slideSegmentController.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:slideSegmentController animated:YES];
 }
 
 -(void)loadUser:(NSNotification *)text{
@@ -222,6 +253,8 @@
                     cell4.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
                     cell4.scoreLabel.text = [userinfo objectForKey:@"score"];
                     
+                    NSNumber *youhuinum = [userinfo objectForKey:@"youhuinum"];
+                    cell4.youhuiquanLabel.text = [youhuinum stringValue];
                     cell4.moneyLabel.userInteractionEnabled = YES;
                     cell4.moneyLabel2.userInteractionEnabled = YES;
                     cell4.scoreLabel.userInteractionEnabled = YES;
@@ -241,7 +274,8 @@
                     NSNumber *money = [userinfo objectForKey:@"money"];
                     cell3.moneyLabel.text = [NSString stringWithFormat:@"%.2f",[money floatValue]];
                     cell3.scoreLabel.text = [userinfo objectForKey:@"score"];
-                    
+                    NSNumber *youhuinum = [userinfo objectForKey:@"youhuinum"];
+                    cell3.youhuiquanLabel.text = [youhuinum stringValue];
                     cell3.moneyLabel.userInteractionEnabled = YES;
                     cell3.moneyLabel2.userInteractionEnabled = YES;
                     cell3.scoreLabel.userInteractionEnabled = YES;
@@ -350,6 +384,8 @@
             vc.hidesBottomBarWhenPushed = YES;
             vc.title = @"我的视频";
             [self.navigationController pushViewController:vc animated:YES];
+        }else if (indexPath.row == 2){//订单中心
+            [self toMyDingdan];
         }if (indexPath.row == 3) {
             
             NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过

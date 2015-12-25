@@ -107,6 +107,17 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //约TA
 #define API_YUETA @"app1/index.php?action=yueTA"
 
+
+//取消约单 orderid  订单id
+#define API_CANCELYUE @"app1/index.php?action=cancelyue"
+//陪玩记录
+//userid
+//type    //0进行中，1已完成，2已取消
+//page  默认1
+#define API_ORDER_LIST @"app1/index.php?action=orderlist"
+
+
+
 //充值列表
 #define API_RECHARGE_LIST @"app1/index.php?action=rechargelist"
 //绑定YY账号

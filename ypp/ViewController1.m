@@ -31,17 +31,17 @@
     
     
     
-    if(self.mytableview){
-        if (self.navigationController.navigationBar.isOpaque){
-            float topInset = self.navigationController.navigationBar.frame.size.height;
-            
-            self.mytableview.contentInset = UIEdgeInsetsMake(topInset + self.mytableview.contentInset.top,
-                                                                         self.mytableview.contentInset.left,
-                                                                         self.mytableview.contentInset.bottom,
-                                                                         self.mytableview.contentInset.right);
-        }
-        self.originalInsets = self.mytableview.contentInset;
-    }
+//    if(self.mytableview){
+//        if (self.navigationController.navigationBar.isOpaque){
+//            float topInset = self.navigationController.navigationBar.frame.size.height;
+//            
+//            self.mytableview.contentInset = UIEdgeInsetsMake(topInset + self.mytableview.contentInset.top,
+//                                                                         self.mytableview.contentInset.left,
+//                                                                         self.mytableview.contentInset.bottom,
+//                                                                         self.mytableview.contentInset.right);
+//        }
+//        self.originalInsets = self.mytableview.contentInset;
+//    }
     
     
 //    if (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1) {

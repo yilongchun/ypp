@@ -22,7 +22,8 @@
     NSString *storeid;   //默认地点（选择城市下的门店）
     NSString *storename;  //默认地点（选择城市下的门店）
     
-    NSString *startTime;//开始时间
+    NSString *startTime;//开始时间显示
+    NSString *begin;//开始时间存数据库
     NSNumber *shichang;//时长
     NSNumber *total;//总共
     
@@ -152,7 +153,7 @@
         [self showHint:@"请选择陪练地点"];
         return;
     }
-    if (startTime == nil) {
+    if (begin == nil) {
         [self showHint:@"请选择陪练时间"];
         return;
     }
@@ -175,7 +176,7 @@
     
     [parameters setValue:storeid forKey:@"storied"];
     [parameters setValue:storename forKey:@"storename"];
-    [parameters setValue:startTime forKey:@"begin"];
+    [parameters setValue:begin forKey:@"begin"];
     [parameters setValue:shichang forKey:@"hours"];
     NSString *price = [_youshenInfo objectForKey:@"price"];
     
@@ -618,13 +619,15 @@
             NSString *startTime1 = [startTimeArr1 objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             startTime = startTime1;
             DLog(@"%@",startTime1);
+            NSString *currentDateStr = [NSDate currentDateStringWithFormat:@"yyyy-MM-dd hh:mm"];
+            begin = currentDateStr;
         }else{
             NSString *startTime1 = [startTimeArr1 objectAtIndex:[self.myPicker selectedRowInComponent:0]];
             NSNumber *startTime2 = [startTimeArr2 objectAtIndex:[self.myPicker selectedRowInComponent:1]];
             NSNumber *startTime3 = [startTimeArr3 objectAtIndex:[self.myPicker selectedRowInComponent:2]];
             
             if ([self.myPicker selectedRowInComponent:0] == 1) {//今天
-                startTime1 = [NSDate currentDateStringWithFormat:@"yyyy年MM月dd日"];
+                startTime1 = [NSDate currentDateStringWithFormat:@"yyyy-MM-dd"];
             }
             if ([self.myPicker selectedRowInComponent:0] == 2) {//明天
                 startTime1 = [NSDate stringWithDate:[[NSDate date] dateByAddingDays:1] format:@"yyyy-MM-dd"];
@@ -637,6 +640,7 @@
             DLog(@"%02d",[startTime3 intValue]);
             
             startTime = [NSString stringWithFormat:@"%@ %02d:%02d",startTime1,[startTime2 intValue],[startTime3 intValue]];
+            begin = startTime;
         }
         [self hideMyPicker];
         

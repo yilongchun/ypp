@@ -393,7 +393,7 @@
         }
         cell.contentLabel.text = content;
         if (pic != nil && ![pic isEqualToString:@""]) {
-            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]]  placeholderImage:nil];
+            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]]  placeholderImage:[UIImage imageNamed:@"dongtai_default"]];
         }
         
         NSNumber *distance = [info objectForKey:@"distance"];

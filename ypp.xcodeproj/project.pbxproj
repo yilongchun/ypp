@@ -108,6 +108,12 @@
 		44F02A351C1EA4CE00EF9218 /* PlayerTableViewCell4.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F02A341C1EA4CE00EF9218 /* PlayerTableViewCell4.m */; };
 		44F02A371C1EAF2400EF9218 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F02A361C1EAF2400EF9218 /* CoreLocation.framework */; };
 		44F02A3E1C1EB69600EF9218 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44F02A3D1C1EB69600EF9218 /* MapKit.framework */; };
+		44F1DE461C2CE22300C7C17C /* DingdanTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F1DE441C2CE22300C7C17C /* DingdanTableViewController.m */; };
+		44F1DE471C2CE22300C7C17C /* DingdanTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE451C2CE22300C7C17C /* DingdanTableViewController.xib */; };
+		44F1DE4B1C2CE55C00C7C17C /* DingdanTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F1DE491C2CE55C00C7C17C /* DingdanTableViewCell.m */; };
+		44F1DE4C1C2CE55C00C7C17C /* DingdanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE4A1C2CE55C00C7C17C /* DingdanTableViewCell.xib */; };
+		44F1DE501C2D1F1A00C7C17C /* DingdanDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */; };
+		44F1DE511C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */; };
 		44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */; };
 		44FB14E51C17B58A009855DC /* UIView+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D71C17B58A009855DC /* UIView+Debug.m */; };
 		44FB14E61C17B58A009855DC /* UIView+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D91C17B58A009855DC /* UIView+Find.m */; };
@@ -376,6 +382,15 @@
 		44F02A341C1EA4CE00EF9218 /* PlayerTableViewCell4.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerTableViewCell4.m; sourceTree = "<group>"; };
 		44F02A361C1EAF2400EF9218 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		44F02A3D1C1EB69600EF9218 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		44F1DE431C2CE22300C7C17C /* DingdanTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingdanTableViewController.h; sourceTree = "<group>"; };
+		44F1DE441C2CE22300C7C17C /* DingdanTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingdanTableViewController.m; sourceTree = "<group>"; };
+		44F1DE451C2CE22300C7C17C /* DingdanTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingdanTableViewController.xib; sourceTree = "<group>"; };
+		44F1DE481C2CE55C00C7C17C /* DingdanTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingdanTableViewCell.h; sourceTree = "<group>"; };
+		44F1DE491C2CE55C00C7C17C /* DingdanTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingdanTableViewCell.m; sourceTree = "<group>"; };
+		44F1DE4A1C2CE55C00C7C17C /* DingdanTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingdanTableViewCell.xib; sourceTree = "<group>"; };
+		44F1DE4D1C2D1F1A00C7C17C /* DingdanDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingdanDetailTableViewController.h; sourceTree = "<group>"; };
+		44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingdanDetailTableViewController.m; sourceTree = "<group>"; };
+		44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingdanDetailTableViewController.xib; sourceTree = "<group>"; };
 		44FB14D41C17B58A009855DC /* UIView+BlockGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlockGesture.h"; sourceTree = "<group>"; };
 		44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlockGesture.m"; sourceTree = "<group>"; };
 		44FB14D61C17B58A009855DC /* UIView+Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Debug.h"; sourceTree = "<group>"; };
@@ -901,6 +916,7 @@
 				4401E0761C278BC500A48051 /* WebViewController.h */,
 				4401E0771C278BC500A48051 /* WebViewController.m */,
 				4401E0781C278BC500A48051 /* WebViewController.xib */,
+				44F1DE421C2CE20900C7C17C /* dingdan */,
 				44E6E1041C239C8A00F36349 /* youhui */,
 				44E972A91C20F6B70014E301 /* peilian */,
 				44F02A121C1E97F100EF9218 /* setting */,
@@ -933,6 +949,22 @@
 			);
 			name = Frameworks;
 			path = ypp;
+			sourceTree = "<group>";
+		};
+		44F1DE421C2CE20900C7C17C /* dingdan */ = {
+			isa = PBXGroup;
+			children = (
+				44F1DE431C2CE22300C7C17C /* DingdanTableViewController.h */,
+				44F1DE441C2CE22300C7C17C /* DingdanTableViewController.m */,
+				44F1DE451C2CE22300C7C17C /* DingdanTableViewController.xib */,
+				44F1DE481C2CE55C00C7C17C /* DingdanTableViewCell.h */,
+				44F1DE491C2CE55C00C7C17C /* DingdanTableViewCell.m */,
+				44F1DE4A1C2CE55C00C7C17C /* DingdanTableViewCell.xib */,
+				44F1DE4D1C2D1F1A00C7C17C /* DingdanDetailTableViewController.h */,
+				44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */,
+				44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */,
+			);
+			path = dingdan;
 			sourceTree = "<group>";
 		};
 		44FB14D31C17B58A009855DC /* UIView */ = {
@@ -1412,6 +1444,7 @@
 				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
 				44E6E1091C239CDA00F36349 /* YouhuiListViewController.xib in Resources */,
 				44E6E10E1C23B2D800F36349 /* LishiYouhuiListTableViewController.xib in Resources */,
+				44F1DE511C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib in Resources */,
 				44F02A2B1C1E97F100EF9218 /* UserStatusTableViewController.xib in Resources */,
 				44E972B01C21177E0014E301 /* AppIcon1024x1024.png in Resources */,
 				44E972BA1C213CDA0014E301 /* ApplyPlayerTableViewController.xib in Resources */,
@@ -1420,11 +1453,13 @@
 				44E972C91C216C440014E301 /* HelpViewController.xib in Resources */,
 				44E679F51C2A4E0300A510E6 /* YueTaTableViewCell.xib in Resources */,
 				44E6E1131C23BB2A00F36349 /* YouhuijuanTableViewCell.xib in Resources */,
+				44F1DE4C1C2CE55C00C7C17C /* DingdanTableViewCell.xib in Resources */,
 				44CC05171C2BA2B900BF515F /* ChooseYouhuiTableViewController.xib in Resources */,
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
 				44E972C41C2160420014E301 /* TextViewController.xib in Resources */,
+				44F1DE471C2CE22300C7C17C /* DingdanTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1457,6 +1492,7 @@
 				444E58AC1C15217000D77C63 /* NSDate+TimeAgo.m in Sources */,
 				4401E0791C278BC500A48051 /* WebViewController.m in Sources */,
 				44FB14E51C17B58A009855DC /* UIView+Debug.m in Sources */,
+				44F1DE4B1C2CE55C00C7C17C /* DingdanTableViewCell.m in Sources */,
 				44F02A2F1C1E9E3500EF9218 /* QianmingTableViewCell.m in Sources */,
 				5A35FB961C12B68400427364 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				5A35FC051C12B68400427364 /* UIViewController+Visible.m in Sources */,
@@ -1486,6 +1522,7 @@
 				5A35FC141C12C81900427364 /* Util.m in Sources */,
 				5A35FB9B1C12B68400427364 /* MJRefreshFooter.m in Sources */,
 				5A35FB9C1C12B68400427364 /* MJRefreshHeader.m in Sources */,
+				44F1DE461C2CE22300C7C17C /* DingdanTableViewController.m in Sources */,
 				5A35FB911C12B68400427364 /* IQSegmentedNextPrevious.m in Sources */,
 				444E58C01C15217000D77C63 /* NSSet+Block.m in Sources */,
 				5A35FB991C12B68400427364 /* MJRefreshBackFooter.m in Sources */,
@@ -1509,6 +1546,7 @@
 				5A35FB8A1C12B68400427364 /* IQNSArray+Sort.m in Sources */,
 				44CC05161C2BA2B900BF515F /* ChooseYouhuiTableViewController.m in Sources */,
 				44F02A2A1C1E97F100EF9218 /* UserStatusTableViewController.m in Sources */,
+				44F1DE501C2D1F1A00C7C17C /* DingdanDetailTableViewController.m in Sources */,
 				444E58B81C15217000D77C63 /* NSManagedObjectContext+FetchRequestsConstructors.m in Sources */,
 				44F02A201C1E97F100EF9218 /* EditHangyeTableViewController.m in Sources */,
 				444E58AB1C15217000D77C63 /* NSDate+Extension.m in Sources */,
