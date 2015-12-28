@@ -64,12 +64,15 @@
     if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
     }
+    
+    [self loadData];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear: animated];
-    [self jisuan];
-    
+    if (flag) {
+        [self startAnimation];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -103,6 +106,10 @@
 
 //计算时间
 -(void)jisuan{
+    
+    
+    
+    
     NSNumber *create_time = [_dingdanInfo objectForKey:@"create_time"];
     NSDate *startDate = [NSDate dateWithTimeIntervalSince1970:[create_time doubleValue]];
     
@@ -247,6 +254,7 @@
 //    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
 //    [parameters setValue:_type forKey:@"type"];
     
+    //大神列表
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_ORDER_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
@@ -270,8 +278,15 @@
                 [self.mytableview reloadData];
                 
             }else{
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+            }
+            if (dataSource == nil || [dataSource count] == 0) {
+                timeLabel.text = @"等待更多大神";
+                flag = YES;
+                [self startAnimation];
+            }else{
+                [self jisuan];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -297,7 +312,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [dataSource count] + 2;
+    return [dataSource count];
 }
 
 

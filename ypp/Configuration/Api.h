@@ -111,8 +111,6 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_YUE @"app1/index.php?action=yue"
 //约TA
 #define API_YUETA @"app1/index.php?action=yueTA"
-
-
 //取消约单 orderid  订单id
 #define API_CANCELYUE @"app1/index.php?action=cancelyue"
 //陪玩记录

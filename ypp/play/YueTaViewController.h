@@ -23,4 +23,7 @@
 @property (strong, nonatomic) IBOutlet UIView *pickerBgView;
 @property (strong, nonatomic) UIView *maskView;
 
+@property (strong, nonatomic) IBOutlet UIView *myBottomView;
+@property (strong, nonatomic) UIView *myMaskView;
+
 @end

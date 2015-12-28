@@ -71,6 +71,7 @@
     }
     
     [self initView];
+    [self initMyBottomView];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(setValue:)
@@ -145,6 +146,10 @@
  *  提交订单
  */
 -(void)save{
+    
+    [self showMyBottomView];
+    return;
+    
     if (lineType == nil) {
         [self showHint:@"请选择线上线下"];
         return;
@@ -574,6 +579,40 @@
         }
     }
 }
+
+#pragma mark - my bottom view
+
+-(void)initMyBottomView{
+    self.myMaskView = [[UIView alloc] initWithFrame:kScreen_Frame];
+    self.myMaskView.backgroundColor = [UIColor blackColor];
+    self.myMaskView.alpha = 0.3;
+    [self.myMaskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyBottomView)]];
+    self.myBottomView.width = Main_Screen_Width;
+}
+
+#pragma mark - private method
+- (void)showMyBottomView {
+    [self.view addSubview:self.myMaskView];
+    [self.view addSubview:self.myBottomView];
+    self.myMaskView.alpha = 0;
+    self.myBottomView.top = self.view.height;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.myMaskView.alpha = 0.4;
+        self.myBottomView.bottom = self.view.height;
+    }];
+}
+
+- (void)hideMyBottomView {
+    [UIView animateWithDuration:0.3 animations:^{
+        self.myMaskView.alpha = 0;
+        self.myBottomView.top = self.view.height;
+    } completion:^(BOOL finished) {
+        [self.myMaskView removeFromSuperview];
+        [self.myBottomView removeFromSuperview];
+    }];
+}
+
 
 #pragma mark - init view
 - (void)initView {
