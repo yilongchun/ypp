@@ -53,6 +53,10 @@
                                              selector:@selector(toApply)
                                                  name:@"toApply" object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toMyDingdan)
+                                                 name:@"toMyDingdan2" object:nil];
+    
 //    [self.mytableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
 //    [self.mytableview registerClass:[MyInfoTableViewCell class] forCellReuseIdentifier:@"myimgcell"];
     if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {

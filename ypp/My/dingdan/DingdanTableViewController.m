@@ -10,6 +10,7 @@
 #import "DingdanTableViewCell.h"
 #import "NSDate+Extension.h"
 #import "DingdanDetailTableViewController.h"
+#import "ChooseDashenViewController.h"
 
 @interface DingdanTableViewController (){
     NSMutableArray *dataSource;
@@ -47,6 +48,9 @@
     
     //    [self.mytableview registerClass:[UserTableViewCell class] forCellReuseIdentifier:@"cell"];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loadData)
+                                                 name:@"loadDingdanData" object:nil];
     
     [self showHudInView:self.view];
     [self loadData];
@@ -83,8 +87,10 @@
                 [self.tableView reloadData];
                 
             }else{
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
+//                NSString *message = [dic objectForKey:@"message"];
+                dataSource = nil;
+                [self.tableView reloadData];
+//                [self showHint:message];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -206,9 +212,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-    DingdanDetailTableViewController *vc = [[DingdanDetailTableViewController alloc] init];
-    vc.info = info;
-    [self.navigationController pushViewController:vc animated:YES];
+    
+    NSString *yuestatus = [info objectForKey:@"yuestatus"];
+    
+    if ([yuestatus isEqualToString:@"0"]) {//待选择
+        ChooseDashenViewController *vc = [[ChooseDashenViewController alloc] init];
+        vc.dingdanInfo = info;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([yuestatus isEqualToString:@"1"]) {//已完成
+        
+    }
+    if ([yuestatus isEqualToString:@"2"]) {//已取消
+        DingdanDetailTableViewController *vc = [[DingdanDetailTableViewController alloc] init];
+        vc.info = info;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    
+
+    
 }
 
 @end

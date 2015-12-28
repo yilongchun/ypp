@@ -11,6 +11,8 @@
 		4401E0791C278BC500A48051 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4401E0771C278BC500A48051 /* WebViewController.m */; };
 		4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4401E0781C278BC500A48051 /* WebViewController.xib */; };
 		4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */; };
+		442816FB1C2D3F5C00593DC1 /* DashenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 442816F91C2D3F5C00593DC1 /* DashenTableViewCell.m */; };
+		442816FC1C2D3F5C00593DC1 /* DashenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442816FA1C2D3F5C00593DC1 /* DashenTableViewCell.xib */; };
 		4435CF041C22ADF000B1E7C9 /* ApplyResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */; };
 		4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */; };
 		444E58481C15164F00D77C63 /* Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 444E58471C15164F00D77C63 /* Api.m */; };
@@ -114,6 +116,8 @@
 		44F1DE4C1C2CE55C00C7C17C /* DingdanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE4A1C2CE55C00C7C17C /* DingdanTableViewCell.xib */; };
 		44F1DE501C2D1F1A00C7C17C /* DingdanDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */; };
 		44F1DE511C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */; };
+		44F1DE5A1C2D2B4800C7C17C /* ChooseDashenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44F1DE581C2D2B4800C7C17C /* ChooseDashenViewController.m */; };
+		44F1DE5B1C2D2B4800C7C17C /* ChooseDashenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44F1DE591C2D2B4800C7C17C /* ChooseDashenViewController.xib */; };
 		44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */; };
 		44FB14E51C17B58A009855DC /* UIView+Debug.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D71C17B58A009855DC /* UIView+Debug.m */; };
 		44FB14E61C17B58A009855DC /* UIView+Find.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FB14D91C17B58A009855DC /* UIView+Find.m */; };
@@ -208,6 +212,9 @@
 		4401E0781C278BC500A48051 /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
 		4403CF361C1FBD5C00C2CA46 /* PinglunTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinglunTableViewCell.h; sourceTree = "<group>"; };
 		4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinglunTableViewCell.m; sourceTree = "<group>"; };
+		442816F81C2D3F5C00593DC1 /* DashenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashenTableViewCell.h; sourceTree = "<group>"; };
+		442816F91C2D3F5C00593DC1 /* DashenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashenTableViewCell.m; sourceTree = "<group>"; };
+		442816FA1C2D3F5C00593DC1 /* DashenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashenTableViewCell.xib; sourceTree = "<group>"; };
 		4435CF011C22ADF000B1E7C9 /* ApplyResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyResultViewController.h; sourceTree = "<group>"; };
 		4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyResultViewController.m; sourceTree = "<group>"; };
 		4435CF031C22ADF000B1E7C9 /* ApplyResultViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ApplyResultViewController.xib; sourceTree = "<group>"; };
@@ -391,6 +398,9 @@
 		44F1DE4D1C2D1F1A00C7C17C /* DingdanDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DingdanDetailTableViewController.h; sourceTree = "<group>"; };
 		44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DingdanDetailTableViewController.m; sourceTree = "<group>"; };
 		44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DingdanDetailTableViewController.xib; sourceTree = "<group>"; };
+		44F1DE571C2D2B4800C7C17C /* ChooseDashenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseDashenViewController.h; sourceTree = "<group>"; };
+		44F1DE581C2D2B4800C7C17C /* ChooseDashenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseDashenViewController.m; sourceTree = "<group>"; };
+		44F1DE591C2D2B4800C7C17C /* ChooseDashenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChooseDashenViewController.xib; sourceTree = "<group>"; };
 		44FB14D41C17B58A009855DC /* UIView+BlockGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlockGesture.h"; sourceTree = "<group>"; };
 		44FB14D51C17B58A009855DC /* UIView+BlockGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlockGesture.m"; sourceTree = "<group>"; };
 		44FB14D61C17B58A009855DC /* UIView+Debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Debug.h"; sourceTree = "<group>"; };
@@ -963,6 +973,12 @@
 				44F1DE4D1C2D1F1A00C7C17C /* DingdanDetailTableViewController.h */,
 				44F1DE4E1C2D1F1A00C7C17C /* DingdanDetailTableViewController.m */,
 				44F1DE4F1C2D1F1A00C7C17C /* DingdanDetailTableViewController.xib */,
+				44F1DE571C2D2B4800C7C17C /* ChooseDashenViewController.h */,
+				44F1DE581C2D2B4800C7C17C /* ChooseDashenViewController.m */,
+				44F1DE591C2D2B4800C7C17C /* ChooseDashenViewController.xib */,
+				442816F81C2D3F5C00593DC1 /* DashenTableViewCell.h */,
+				442816F91C2D3F5C00593DC1 /* DashenTableViewCell.m */,
+				442816FA1C2D3F5C00593DC1 /* DashenTableViewCell.xib */,
 			);
 			path = dingdan;
 			sourceTree = "<group>";
@@ -1434,6 +1450,7 @@
 			files = (
 				5A2A762D1BE9BA7F00C5FD2F /* Assets.xcassets in Resources */,
 				44F02A1F1C1E97F100EF9218 /* EditAddressViewController.xib in Resources */,
+				442816FC1C2D3F5C00593DC1 /* DashenTableViewCell.xib in Resources */,
 				444E58AE1C15217000D77C63 /* NSDateTimeAgo.bundle in Resources */,
 				44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */,
 				44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */,
@@ -1459,6 +1476,7 @@
 				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
 				44E972AE1C20F6DD0014E301 /* XieyiViewController.xib in Resources */,
 				44E972C41C2160420014E301 /* TextViewController.xib in Resources */,
+				44F1DE5B1C2D2B4800C7C17C /* ChooseDashenViewController.xib in Resources */,
 				44F1DE471C2CE22300C7C17C /* DingdanTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1587,6 +1605,8 @@
 				5A35FB791C12B68400427364 /* AFHTTPRequestOperation.m in Sources */,
 				5A35FBA01C12B68400427364 /* MJRefreshBackGifFooter.m in Sources */,
 				5A35FB8D1C12B68400427364 /* IQUIViewController+Additions.m in Sources */,
+				44F1DE5A1C2D2B4800C7C17C /* ChooseDashenViewController.m in Sources */,
+				442816FB1C2D3F5C00593DC1 /* DashenTableViewCell.m in Sources */,
 				5A35FB881C12B68400427364 /* UIRefreshControl+AFNetworking.m in Sources */,
 				5A35FB811C12B68400427364 /* AFURLSessionManager.m in Sources */,
 				444E58C41C15217000D77C63 /* NSString+HXAddtions.m in Sources */,

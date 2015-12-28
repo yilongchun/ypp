@@ -107,6 +107,12 @@
 + (NSDate *)offsetHours:(int)numHours fromDate:(NSDate *)fromDate;
 
 /**
+ * 返回numSeconds秒后的日期
+ */
+- (NSDate *)offsetSeconds:(int)seconds;
++ (NSDate *)offsetSeconds:(int)numSeconds fromDate:(NSDate *)fromDate;
+
+/**
  * 距离该日期前几天
  */
 - (NSUInteger)daysAgo;

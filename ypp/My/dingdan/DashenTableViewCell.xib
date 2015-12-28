@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dashencell" id="KGk-i7-Jjw" customClass="DashenTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery_default" translatesAutoresizingMaskIntoConstraints="NO" id="uEJ-Oz-VbP">
+                        <rect key="frame" x="8" y="7" width="65" height="65"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="65" id="Q7C-jl-Hp1"/>
+                            <constraint firstAttribute="height" constant="65" id="exj-04-wg7"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="牙白白" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQe-Mh-Xcr">
+                        <rect key="frame" x="81" y="9" width="48" height="20"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赛欧啦啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLn-K8-w6N">
+                        <rect key="frame" x="81" y="32" width="52" height="16"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="198元" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ph2-ox-ztL">
+                        <rect key="frame" x="255" y="27" width="57" height="26"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="285.1km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-o5-6i0">
+                        <rect key="frame" x="260" y="11" width="52" height="16"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5Xn-Or-jjJ">
+                        <rect key="frame" x="81" y="54" width="15" height="15"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="4dr-J6-RW9"/>
+                            <constraint firstAttribute="height" constant="15" id="j5j-G2-Ey2"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1967" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e12-by-KjK">
+                        <rect key="frame" x="101" y="53" width="32" height="17"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.96470588239999999" green="0.63137254899999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="单价99/h|接单6次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GYU-8C-6jl">
+                        <rect key="frame" x="206" y="54" width="106" height="16"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="usercell_girl" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-vE-fn4">
+                        <rect key="frame" x="139" y="12" width="33" height="14"/>
+                        <animations/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="33" id="9fF-yf-7Kk"/>
+                            <constraint firstAttribute="height" constant="14" id="aIF-gx-CgZ"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dYX-er-aJ5">
+                        <rect key="frame" x="150" y="12" width="22" height="14"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <animations/>
+                <constraints>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="centerY" secondItem="HQe-Mh-Xcr" secondAttribute="centerY" id="8OJ-TC-MQQ"/>
+                    <constraint firstItem="HQe-Mh-Xcr" firstAttribute="leading" secondItem="uEJ-Oz-VbP" secondAttribute="trailing" constant="8" id="9vY-WV-73u"/>
+                    <constraint firstItem="GYU-8C-6jl" firstAttribute="trailing" secondItem="Ph2-ox-ztL" secondAttribute="trailing" id="HmW-aa-98f"/>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="trailing" secondItem="dYX-er-aJ5" secondAttribute="trailing" id="ICP-N3-JHG"/>
+                    <constraint firstItem="uEJ-Oz-VbP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="IMG-TZ-A3S"/>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="leading" secondItem="dYX-er-aJ5" secondAttribute="leading" constant="-11" id="MyI-Mh-Bmr"/>
+                    <constraint firstItem="e12-by-KjK" firstAttribute="leading" secondItem="5Xn-Or-jjJ" secondAttribute="trailing" constant="5" id="PJG-Fa-7iC"/>
+                    <constraint firstItem="wLn-K8-w6N" firstAttribute="centerY" secondItem="uEJ-Oz-VbP" secondAttribute="centerY" id="PaL-FL-6jX"/>
+                    <constraint firstItem="GYU-8C-6jl" firstAttribute="centerY" secondItem="e12-by-KjK" secondAttribute="centerY" id="YeZ-j2-mQI"/>
+                    <constraint firstItem="uEJ-Oz-VbP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cM8-Gt-o5i"/>
+                    <constraint firstItem="04j-o5-6i0" firstAttribute="centerY" secondItem="HQe-Mh-Xcr" secondAttribute="centerY" id="eia-Pl-8Sb"/>
+                    <constraint firstItem="04j-o5-6i0" firstAttribute="trailing" secondItem="Ph2-ox-ztL" secondAttribute="trailing" id="fKg-uX-LhC"/>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="leading" secondItem="HQe-Mh-Xcr" secondAttribute="trailing" constant="10" id="ik3-oa-hf4"/>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="bottom" secondItem="dYX-er-aJ5" secondAttribute="bottom" id="jXN-M0-WgD"/>
+                    <constraint firstItem="Ph2-ox-ztL" firstAttribute="centerY" secondItem="uEJ-Oz-VbP" secondAttribute="centerY" id="kec-lh-YWF"/>
+                    <constraint firstItem="3UT-vE-fn4" firstAttribute="top" secondItem="dYX-er-aJ5" secondAttribute="top" id="l0H-tN-rUn"/>
+                    <constraint firstItem="e12-by-KjK" firstAttribute="centerY" secondItem="5Xn-Or-jjJ" secondAttribute="centerY" id="nqy-2r-pNC"/>
+                    <constraint firstItem="wLn-K8-w6N" firstAttribute="leading" secondItem="HQe-Mh-Xcr" secondAttribute="leading" id="pUW-7T-kE6"/>
+                    <constraint firstItem="5Xn-Or-jjJ" firstAttribute="bottom" secondItem="uEJ-Oz-VbP" secondAttribute="bottom" constant="-3" id="rQo-fg-fd8"/>
+                    <constraint firstItem="5Xn-Or-jjJ" firstAttribute="leading" secondItem="wLn-K8-w6N" secondAttribute="leading" id="set-4e-zYe"/>
+                    <constraint firstItem="HQe-Mh-Xcr" firstAttribute="top" secondItem="uEJ-Oz-VbP" secondAttribute="top" constant="2" id="tCY-Hn-g59"/>
+                    <constraint firstAttribute="trailing" secondItem="Ph2-ox-ztL" secondAttribute="trailing" constant="8" id="xA0-Zs-nUb"/>
+                </constraints>
+            </tableViewCellContentView>
+            <animations/>
+            <point key="canvasLocation" x="262" y="287"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="gallery_default" width="72" height="72"/>
+        <image name="hot-icon" width="19" height="19"/>
+        <image name="usercell_girl" width="33" height="14"/>
+    </resources>
+</document>

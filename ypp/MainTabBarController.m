@@ -38,6 +38,10 @@
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(toMyDingdan)
+                                                 name:@"toMyDingdan" object:nil];
+    
     //去除阴影线
 //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
 //    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];
@@ -285,6 +289,12 @@
 -(void)shaixuan{
     NSLog(@"筛选");
     
+}
+
+-(void)toMyDingdan{
+    self.selectedIndex = 4;
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"toMyDingdan2" object:nil];
 }
 
 #pragma mark - myaction

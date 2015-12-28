@@ -25,6 +25,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //org_name：szhcyj
 //app_name：yuewanba
 
+//微信公众号身份的唯一标识AppID(应用ID)：wx2e859f58fc844b4f
+//APPSECRET = '6065bf2aaffd5acac555384d07a4c454';
+//受理商MCHID：1278642501
+//商户支付密钥KEY ：weyidaweyidaweyidaweyidaweyidaok
+
 #define LOGOUT @"logout"
 
 //已登录账号密码

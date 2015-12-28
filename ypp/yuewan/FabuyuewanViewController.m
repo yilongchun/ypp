@@ -392,7 +392,9 @@
                 [self showHint:message];
                 
                 [self performBlock:^{
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [self.navigationController popViewControllerAnimated:NO];
+                    [[NSNotificationCenter defaultCenter]
+                     postNotificationName:@"toMyDingdan" object:nil];
                 } afterDelay:1.5];
             }else{
                 NSString *message = [dic objectForKey:@"message"];

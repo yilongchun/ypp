@@ -611,4 +611,31 @@
                                       toDate:fromDate
                                      options:0];
 }
+
+- (NSDate *)offsetSeconds:(int)seconds {
+    return [NSDate offsetSeconds:seconds fromDate:self];
+}
+
++ (NSDate *)offsetSeconds:(int)numSeconds fromDate:(NSDate *)fromDate {
+    if (fromDate == nil) {
+        return nil;
+    }
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
+    // NSDayCalendarUnit
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+#else
+    NSCalendar *gregorian = [[NSCalendar alloc]
+                             initWithCalendarIdentifier:NSGregorianCalendar];
+#endif
+    
+    
+    NSDateComponents *offsetComponents = [[NSDateComponents alloc] init];
+    [offsetComponents setSecond:numSeconds];
+    
+    return [gregorian dateByAddingComponents:offsetComponents
+                                      toDate:fromDate
+                                     options:0];
+}
 @end
