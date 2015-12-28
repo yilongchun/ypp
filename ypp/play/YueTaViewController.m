@@ -588,17 +588,45 @@
     self.myMaskView.alpha = 0.3;
     [self.myMaskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyBottomView)]];
     self.myBottomView.width = Main_Screen_Width;
+    
+    
+    
+    
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.yue addGestureRecognizer:tap];
+    
+    
+    
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.weixin addGestureRecognizer:tap2];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.zhifubao addGestureRecognizer:tap3];
+}
+
+-(void)setPayInfo{
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    [self.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    self.userImage.layer.masksToBounds = YES;
+    self.userImage.layer.cornerRadius = 5.0;
+    
+    NSString *username = [userinfo objectForKey:@"user_name"];
+    self.username.text = username;
+    
+    [self.zhifuButton setTitle:[NSString stringWithFormat:@"支付%.2f元",[total doubleValue]] forState:UIControlStateNormal];
 }
 
 #pragma mark - private method
 - (void)showMyBottomView {
+    [self setPayInfo];
+    
     [self.view addSubview:self.myMaskView];
     [self.view addSubview:self.myBottomView];
     self.myMaskView.alpha = 0;
     self.myBottomView.top = self.view.height;
     
     [UIView animateWithDuration:0.3 animations:^{
-        self.myMaskView.alpha = 0.4;
+        self.myMaskView.alpha = 0.5;
         self.myBottomView.bottom = self.view.height;
     }];
 }
@@ -613,6 +641,31 @@
     }];
 }
 
+-(void)choosePayType:(UITapGestureRecognizer *)recognizer{
+    if (recognizer.view.tag == 1) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+    }
+    if (recognizer.view.tag == 2) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+    }
+    if (recognizer.view.tag == 3) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+    }
+}
+
+- (IBAction)mycancel:(id)sender {
+    [self hideMyBottomView];
+}
+
+- (IBAction)myensure:(id)sender {
+    [self hideMyBottomView];
+}
 
 #pragma mark - init view
 - (void)initView {
