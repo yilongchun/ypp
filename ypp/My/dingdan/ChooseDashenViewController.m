@@ -11,6 +11,8 @@
 #import "DashenTableViewCell.h"
 #import "NSDate+Extension.h"
 #import "DingdanDetailTableViewController.h"
+#import "ChooseYouhuiTableViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface ChooseDashenViewController (){
     UILabel *topLabel;
@@ -18,6 +20,9 @@
     NSMutableArray *dataSource;
     dispatch_source_t _timer;
     BOOL flag;
+    
+    int payType;//支付类型 1余额 2微信 3支付宝
+    NSDictionary *youhuiInfo;//优惠信息
 }
 
 @end
@@ -64,6 +69,10 @@
     if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
         [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setYouhuiInfo:)   name:@"setYouhuiInfo" object:nil];
+    
+    [self initMyBottomView];
     
     [self loadData];
 }
@@ -340,6 +349,134 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self showMyBottomView];
+}
+
+#pragma mark - my bottom view
+
+-(void)initMyBottomView{
+    self.myMaskView = [[UIView alloc] initWithFrame:kScreen_Frame];
+    self.myMaskView.backgroundColor = [UIColor blackColor];
+    self.myMaskView.alpha = 0.3;
+    [self.myMaskView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMyBottomView)]];
+    self.myBottomView.width = Main_Screen_Width;
+    
+    UITapGestureRecognizer *youhuiTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(chooseYouhuijuan)];
+    [self.chooseYouhui addGestureRecognizer:youhuiTap];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.yue addGestureRecognizer:tap];
+    UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.weixin addGestureRecognizer:tap2];
+    UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(choosePayType:)];
+    [self.zhifubao addGestureRecognizer:tap3];
+    
+    payType = 1;
+}
+
+-(void)setPayInfo{
+//    NSString *avatar = [userinfo objectForKey:@"avatar"];
+//    [self.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    self.userImage.layer.masksToBounds = YES;
+    self.userImage.layer.cornerRadius = 5.0;
+    
+//    NSString *username = [userinfo objectForKey:@"user_name"];
+//    self.username.text = username;
+    
+//    [self.zhifuButton setTitle:[NSString stringWithFormat:@"支付%.2f元",[total doubleValue]] forState:UIControlStateNormal];
+}
+
+#pragma mark - private method
+- (void)showMyBottomView {
+    [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    [self setPayInfo];
+    
+    [self.view addSubview:self.myMaskView];
+    [self.view addSubview:self.myBottomView];
+    self.myMaskView.alpha = 0;
+    self.myBottomView.top = self.view.height;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.myMaskView.alpha = 0.5;
+        self.myBottomView.bottom = self.view.height;
+    }];
+}
+
+- (void)hideMyBottomView {
+    [self.navigationItem.rightBarButtonItem setEnabled:YES];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.myMaskView.alpha = 0;
+        self.myBottomView.top = self.view.height;
+    } completion:^(BOOL finished) {
+        [self.myMaskView removeFromSuperview];
+        [self.myBottomView removeFromSuperview];
+    }];
+}
+
+//选择优惠劵
+-(void)chooseYouhuijuan{
+    ChooseYouhuiTableViewController *vc = [[ChooseYouhuiTableViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+-(void)setYouhuiInfo:(NSNotification *)text{
+    DLog(@"%@",text.object);
+    youhuiInfo = text.object;
+    
+    if (youhuiInfo != nil) {
+//        NSNumber *total_fee = [youhuiInfo objectForKey:@"youhui_total_fee"];//满多少
+////        NSString *price = [_youshenInfo objectForKey:@"price"];
+////        NSNumber *total_price = [NSNumber numberWithDouble:[price doubleValue] * [shichang doubleValue]];
+//        if ([total_price doubleValue] >= [total_fee doubleValue]) {
+            NSNumber *discountprice = [youhuiInfo objectForKey:@"discountprice"];//金额
+    self.youhuiNum.text = [NSString stringWithFormat:@"-%d元",[discountprice intValue]];
+//            cell.detailTextLabel.text = [NSString stringWithFormat:@"-%d元",[discountprice intValue]];
+//            cell.detailTextLabel.textColor = [UIColor blackColor];
+//        }else{
+//            cell.detailTextLabel.text = @"使用优惠劵";
+//            cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+//            youhuiInfo = nil;
+//            discountprice = nil;
+//            [self showHint:@"该优惠劵不满足使用条件"];
+//        }
+    }
+        else{
+            self.youhuiNum.text = @"不使用优惠劵";
+//        cell.detailTextLabel.text = @"使用优惠劵";
+//        cell.detailTextLabel.textColor = [UIColor lightGrayColor];
+    }
+    
+}
+
+//支付类型
+-(void)choosePayType:(UITapGestureRecognizer *)recognizer{
+    if (recognizer.view.tag == 1) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        payType = 1;
+    }
+    if (recognizer.view.tag == 2) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        payType = 2;
+    }
+    if (recognizer.view.tag == 3) {
+        [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        payType = 3;
+    }
+}
+
+- (IBAction)mycancel:(id)sender {
+    [self hideMyBottomView];
+}
+
+- (IBAction)myensure:(id)sender {
+    [self hideMyBottomView];
 }
 
 @end

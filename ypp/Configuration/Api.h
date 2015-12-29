@@ -111,15 +111,21 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 #define API_YUE @"app1/index.php?action=yue"
 //约TA
 #define API_YUETA @"app1/index.php?action=yueTA"
-//取消约单 orderid  订单id
+//取消约单
 #define API_CANCELYUE @"app1/index.php?action=cancelyue"
 //陪玩记录
-//userid
-//type    //0进行中，1已完成，2已取消
-//page  默认1
 #define API_ORDER_LIST @"app1/index.php?action=orderlist"
 
-
+//查询游神参与应约了的约单，分页
+#define API_GET_ORDER_BY_VIP @"app1/index.php?action=getOrderbyvip"
+//游神应约操作
+#define API_JOIN_ORDER @"app1/index.php?action=joinorder"
+//查询参与会员约单并应约了的游神列表，分页
+#define API_GET_VIP_LIST @"app1/index.php?action=getviplist"
+//约单发布者 选择完游神，付款确认
+#define API_CONFIRM_YUE @"app1/index.php?action=confirmyue"
+//修改约单状态，１已完成，２已取消
+#define API_UPDATE_STATUS @"app1/index.php?action=updatestatus"
 
 //充值列表
 #define API_RECHARGE_LIST @"app1/index.php?action=rechargelist"

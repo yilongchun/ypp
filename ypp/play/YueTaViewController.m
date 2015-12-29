@@ -33,7 +33,7 @@
     NSMutableArray *startTimeArr2;//小时
     NSMutableArray *startTimeArr3;//分钟
     int picksection;
-    
+    int payType;
     NSDictionary *youhuiInfo;//优惠信息
     NSNumber *discountprice;//优惠金额
 }
@@ -583,6 +583,7 @@
 #pragma mark - my bottom view
 
 -(void)initMyBottomView{
+    payType = 1;
     self.myMaskView = [[UIView alloc] initWithFrame:kScreen_Frame];
     self.myMaskView.backgroundColor = [UIColor blackColor];
     self.myMaskView.alpha = 0.3;
@@ -605,14 +606,6 @@
 }
 
 -(void)setPayInfo{
-    NSString *avatar = [userinfo objectForKey:@"avatar"];
-    [self.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-    self.userImage.layer.masksToBounds = YES;
-    self.userImage.layer.cornerRadius = 5.0;
-    
-    NSString *username = [userinfo objectForKey:@"user_name"];
-    self.username.text = username;
-    
     [self.zhifuButton setTitle:[NSString stringWithFormat:@"支付%.2f元",[total doubleValue]] forState:UIControlStateNormal];
 }
 
@@ -646,16 +639,19 @@
         [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
         [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
         [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        payType = 1;
     }
     if (recognizer.view.tag == 2) {
         [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
         [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
         [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
+        payType = 2;
     }
     if (recognizer.view.tag == 3) {
         [self.yueRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
         [self.weixinRightImage setImage:[UIImage imageNamed:@"iconfontgouEmpty"]];
         [self.zhifubaoRightImage setImage:[UIImage imageNamed:@"iconfontgou"]];
+        payType = 3;
     }
 }
 

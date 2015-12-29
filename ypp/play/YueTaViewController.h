@@ -26,10 +26,7 @@
 @property (strong, nonatomic) IBOutlet UIView *myBottomView;
 @property (strong, nonatomic) UIView *myMaskView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *userImage;
-@property (weak, nonatomic) IBOutlet UILabel *username;
-@property (weak, nonatomic) IBOutlet UIView *chooseYouhui;
-@property (weak, nonatomic) IBOutlet UILabel *youhuiNum;
+
 @property (weak, nonatomic) IBOutlet UIView *yue;
 @property (weak, nonatomic) IBOutlet UIView *weixin;
 @property (weak, nonatomic) IBOutlet UIView *zhifubao;
