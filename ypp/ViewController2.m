@@ -175,7 +175,7 @@
 -(void)fabu{
     FabudongtaiViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"FabudongtaiViewController"];
     UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:vc];
-    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+    nc.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [slideSegmentController presentViewController:nc animated:YES completion:nil];
 }
 

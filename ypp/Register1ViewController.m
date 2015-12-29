@@ -36,7 +36,7 @@
     [self.view setBackgroundColor:RGBA(235,235,235,1)];
     
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor] , NSFontAttributeName : [UIFont boldSystemFontOfSize:19]};
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(25, 0, 40, 55)];
