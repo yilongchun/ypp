@@ -207,10 +207,9 @@
                 [self showHint:message];
                 [self performBlock:^{
                     [self.navigationController popToRootViewControllerAnimated:YES];
-                    [self performBlock:^{
-                        [[NSNotificationCenter defaultCenter]
+                    [[NSNotificationCenter defaultCenter]
                          postNotificationName:@"tologin" object:nil];
-                    } afterDelay:1.5];
+                    
                 } afterDelay:1.5];
             }else{
                 NSString *message = [dic objectForKey:@"message"];

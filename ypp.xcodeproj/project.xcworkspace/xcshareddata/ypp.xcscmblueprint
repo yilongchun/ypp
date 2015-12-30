@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C0D055B20EBFD8EB04723DB70F687E0607EAAAF4",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "CA59206E14808EF3FA88B049798D0EE8747F2ADE" : 0,
+    "C0D055B20EBFD8EB04723DB70F687E0607EAAAF4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C6A0100A-5CA2-48A3-B3D4-4BFF8FD4A7CB",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "CA59206E14808EF3FA88B049798D0EE8747F2ADE" : "..\/resource\/sdkdemoapp3.0_ios",
+    "C0D055B20EBFD8EB04723DB70F687E0607EAAAF4" : "ypp\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ypp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ypp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/yilongchun\/ypp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C0D055B20EBFD8EB04723DB70F687E0607EAAAF4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/easemob\/sdkdemoapp3.0_ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "CA59206E14808EF3FA88B049798D0EE8747F2ADE"
+    }
+  ]
+}

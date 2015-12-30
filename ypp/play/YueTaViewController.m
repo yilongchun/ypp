@@ -148,87 +148,87 @@
 -(void)save{
     
     [self showMyBottomView];
-    return;
-    
-    if (lineType == nil) {
-        [self showHint:@"请选择线上线下"];
-        return;
-    }
-    if (storeid == nil) {
-        [self showHint:@"请选择陪练地点"];
-        return;
-    }
-    if (begin == nil) {
-        [self showHint:@"请选择陪练时间"];
-        return;
-    }
-    if (shichang == nil) {
-        [self showHint:@"请选择陪练时长"];
-        return;
-    }
-    
-    [self showHudInView:self.view];
-    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
-    [parameters setValue:[_youshenInfo objectForKey:@"id"] forKey:@"vipuserid"];
-    
-    if ([lineType isEqualToString:@"线上"]) {
-        [parameters setValue:@"1" forKey:@"isline"];//线下0 ，线上1
-    }else{
-        [parameters setValue:@"0" forKey:@"isline"];//线下0 ，线上1
-    }
     
     
-    [parameters setValue:storeid forKey:@"storied"];
-    [parameters setValue:storename forKey:@"storename"];
-    [parameters setValue:begin forKey:@"begin"];
-    [parameters setValue:shichang forKey:@"hours"];
-    NSString *price = [_youshenInfo objectForKey:@"price"];
-    
-    [parameters setValue:[NSNumber numberWithDouble:[price doubleValue] *  [shichang intValue]] forKey:@"payprice"];
-    if (discountprice == nil) {
-        [parameters setValue:[NSNumber numberWithDouble:0] forKey:@"discountprice"];
-    }else{
-        [parameters setValue:[NSNumber numberWithDouble:[discountprice doubleValue]] forKey:@"discountprice"];
-    }
-    
-    [parameters setValue:[NSNumber numberWithDouble:[total doubleValue]] forKey:@"actualprice"];
-    [parameters setValue:@"1" forKey:@"paymentid"];//支付方式
-    DLog(@"%@",parameters);
-
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUETA];
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
-    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        [self hideHud];
-        NSLog(@"JSON: %@", operation.responseString);
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        NSError *error;
-        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
-        if (dic == nil) {
-            
-            NSLog(@"json parse failed \r\n");
-        }else{
-            NSNumber *status = [dic objectForKey:@"status"];
-            if ([status intValue] == ResultCodeSuccess) {
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-                [self performBlock:^{
-                    [self.navigationController popViewControllerAnimated:YES];
-                } afterDelay:1.5];
-            }else{
-                NSString *message = [dic objectForKey:@"message"];
-                [self showHint:message];
-            }
-        }
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"发生错误！%@",error);
-        [self hideHud];
-        [self showHint:@"连接失败"];
-    }];
+//    if (lineType == nil) {
+//        [self showHint:@"请选择线上线下"];
+//        return;
+//    }
+//    if (storeid == nil) {
+//        [self showHint:@"请选择陪练地点"];
+//        return;
+//    }
+//    if (begin == nil) {
+//        [self showHint:@"请选择陪练时间"];
+//        return;
+//    }
+//    if (shichang == nil) {
+//        [self showHint:@"请选择陪练时长"];
+//        return;
+//    }
+//    
+//    [self showHudInView:self.view];
+//    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+//    [parameters setValue:[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"] forKey:@"userid"];
+//    [parameters setValue:[_youshenInfo objectForKey:@"id"] forKey:@"vipuserid"];
+//    
+//    if ([lineType isEqualToString:@"线上"]) {
+//        [parameters setValue:@"1" forKey:@"isline"];//线下0 ，线上1
+//    }else{
+//        [parameters setValue:@"0" forKey:@"isline"];//线下0 ，线上1
+//    }
+//    
+//    
+//    [parameters setValue:storeid forKey:@"storied"];
+//    [parameters setValue:storename forKey:@"storename"];
+//    [parameters setValue:begin forKey:@"begin"];
+//    [parameters setValue:shichang forKey:@"hours"];
+//    NSString *price = [_youshenInfo objectForKey:@"price"];
+//    
+//    [parameters setValue:[NSNumber numberWithDouble:[price doubleValue] *  [shichang intValue]] forKey:@"payprice"];
+//    if (discountprice == nil) {
+//        [parameters setValue:[NSNumber numberWithDouble:0] forKey:@"discountprice"];
+//    }else{
+//        [parameters setValue:[NSNumber numberWithDouble:[discountprice doubleValue]] forKey:@"discountprice"];
+//    }
+//    
+//    [parameters setValue:[NSNumber numberWithDouble:[total doubleValue]] forKey:@"actualprice"];
+//    [parameters setValue:@"1" forKey:@"paymentid"];//支付方式
+//    DLog(@"%@",parameters);
+//
+//    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_YUETA];
+//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+//    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+//    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        
+//        [self hideHud];
+//        NSLog(@"JSON: %@", operation.responseString);
+//        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+//        NSError *error;
+//        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+//        if (dic == nil) {
+//            
+//            NSLog(@"json parse failed \r\n");
+//        }else{
+//            NSNumber *status = [dic objectForKey:@"status"];
+//            if ([status intValue] == ResultCodeSuccess) {
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+//                [self performBlock:^{
+//                    [self.navigationController popViewControllerAnimated:YES];
+//                } afterDelay:1.5];
+//            }else{
+//                NSString *message = [dic objectForKey:@"message"];
+//                [self showHint:message];
+//            }
+//        }
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"发生错误！%@",error);
+//        [self hideHud];
+//        [self showHint:@"连接失败"];
+//    }];
     
 
 }

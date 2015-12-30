@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "MainTabBarController.h"
+#import "EaseUI.h"
 
 @interface LoginViewController ()
 
@@ -102,18 +103,29 @@
                 [[NSUserDefaults standardUserDefaults] setObject:_passwordTextField.text forKey:LOGINED_PASSWORD];
                 [[NSUserDefaults standardUserDefaults] setObject:info forKey:LOGINED_USER];
                 
-                NSLog(@"info:\t%@",info);
+                [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:[NSString stringWithFormat:@"hx_%@",[info objectForKey:@"id"]] password:@"123456" completion:^(NSDictionary *loginInfo, EMError *error) {
+                    if (!error && loginInfo) {
+                        //设置自动登录
+                        [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                        //获取数据库中数据
+                        [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                        //获取群组列表
+                        [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                        
+                        NSLog(@"登陆成功 %@",loginInfo);
+//                        MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
+//                        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//                        [self presentViewController:vc animated:YES completion:^{
+//                            [self removeFromParentViewController];
+//                        }];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                    }else{
+                        NSLog(@"登陆失败 %@",error.description);
+                        [self showHint:[NSString stringWithFormat:@"登陆失败 %@",error.description]];
+                    }
+                } onQueue:nil];
                 
-                    MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
-                    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
                 
-                    //UIModalTransitionStyleCoverVertical 从下往上
-                    //UIModalTransitionStyleFlipHorizontal 翻转
-                    //UIModalTransitionStyleCrossDissolve 渐变
-                    //UIModalTransitionStylePartialCurl 翻书
-                    [self presentViewController:vc animated:YES completion:^{
-                        [self removeFromParentViewController];
-                    }];
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];

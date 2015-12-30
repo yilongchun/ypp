@@ -24,6 +24,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //client_secret：UueEQ_o53sR3rZmprjSNP18I9E
 //org_name：szhcyj
 //app_name：yuewanba
+//https://console.easemob.com/app_users.html           szhcyj  1qazxsw2
 
 //微信公众号身份的唯一标识AppID(应用ID)：wx2e859f58fc844b4f
 //APPSECRET = '6065bf2aaffd5acac555384d07a4c454';

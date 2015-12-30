@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
+#import "EaseUI.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    
+    [[EaseSDKHelper shareHelper] easemobApplication:application
+                      didFinishLaunchingWithOptions:launchOptions
+                                             appkey:@"szhcyj#yuewanba"
+                                       apnsCertName:@""
+                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    //注册登录状态监听
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:KNOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    
+    //获取数据库中数据
+    [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+    //获取群组列表
+    [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(logout)
                                                  name:LOGOUT object:nil];
@@ -35,30 +54,61 @@
     
     [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(-233, -230) forBarMetrics:UIBarMetricsDefault];
     
-    NSString *account = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PHONE];
-    NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PASSWORD];
+//    NSString *account = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PHONE];
+//    NSString *password = [[NSUserDefaults standardUserDefaults] stringForKey:LOGINED_PASSWORD];
+//    
+//    BOOL isLoggedIn;
+//    
+//    if (account.length>=6 && password.length>=6) {
+//        isLoggedIn = YES;
+//    }else{
+//        isLoggedIn = NO;
+//    }
+//    
+//    NSString *storyboardId = isLoggedIn ? @"MainTabBarController" : @"initNc";
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window.rootViewController = vc;
+//    [self.window makeKeyAndVisible];
     
-    BOOL isLoggedIn;
-    
-    if (account.length>=6 && password.length>=6) {
-        isLoggedIn = YES;
-    }else{
-        isLoggedIn = NO;
-    }
-    
-    NSString *storyboardId = isLoggedIn ? @"MainTabBarController" : @"initNc";
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = vc;
-    [self.window makeKeyAndVisible];
+    [self loginStateChange:nil];
     
     
     return YES;
 }
 
+#pragma mark - login changed
+
+- (void)loginStateChange:(NSNotification *)notification{
+    
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    BOOL loginSuccess = [notification.object boolValue];
+    NSString *storyboardId;
+    if (isAutoLogin || loginSuccess) {//登陆成功加载主窗口控制器
+        storyboardId = @"MainTabBarController";
+    }
+    else{//登陆失败加载登陆页面控制器
+        storyboardId = @"initNc";
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PHONE];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PASSWORD];
+    }
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.rootViewController = vc;
+    [self.window makeKeyAndVisible];
+}
+
 //退出登录
 -(void)logout{
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        if (!error && info) {
+            NSLog(@"退出成功");
+        }
+    } onQueue:nil];
     
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_USER];
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PHONE];

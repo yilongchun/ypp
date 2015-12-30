@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EaseMob.h"
 
-@interface MainTabBarController : UITabBarController<UITabBarControllerDelegate>
+@interface MainTabBarController : UITabBarController<UITabBarControllerDelegate>{
+    EMConnectionState _connectionState;
+}
 
 @end

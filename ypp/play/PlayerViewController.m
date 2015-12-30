@@ -18,6 +18,7 @@
 #import "PlayerTableViewCell4.h"
 #import "DongtaiViewController.h"
 #import "YueTaViewController.h"
+#import "ChatViewController.h"
 
 @interface PlayerViewController (){
     NSDictionary *userinfo;
@@ -201,6 +202,7 @@
     chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
     chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
     chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+    [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:chatBtn];
     
     yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -333,6 +335,13 @@
         [self hideHud];
         [self showHint:@"连接失败"];
     }];
+}
+
+//聊天
+-(void)chat{
+    ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]] conversationType:eConversationTypeChat];
+    chatController.title = [NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]];
+    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 /**

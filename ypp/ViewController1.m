@@ -153,7 +153,7 @@
     [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         [self hideHud];
         
-        NSLog(@"JSON: %@", operation.responseString);
+//        NSLog(@"JSON: %@", operation.responseString);
         
         NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
         NSError *error;
