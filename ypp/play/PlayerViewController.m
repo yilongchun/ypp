@@ -19,6 +19,7 @@
 #import "DongtaiViewController.h"
 #import "YueTaViewController.h"
 #import "ChatViewController.h"
+#import "DBUtil.h"
 
 @interface PlayerViewController (){
     NSDictionary *userinfo;
@@ -340,7 +341,17 @@
 //聊天
 -(void)chat{
     ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]] conversationType:eConversationTypeChat];
-    chatController.title = [NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]];
+    
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    [DBUtil queryUserInfoFromDB:extDic];
+    
+    chatController.title = user_name;
     [self.navigationController pushViewController:chatController animated:YES];
 }
 

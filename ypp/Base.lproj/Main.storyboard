@@ -37,10 +37,8 @@
                             <constraint firstItem="MwT-Xb-J5s" firstAttribute="leading" secondItem="Wdr-yO-7i4" secondAttribute="leading" id="YSe-0m-dNS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="t0" id="NpF-5M-Tlx"/>
                     <connections>
                         <outlet property="mytableview" destination="MwT-Xb-J5s" id="vqJ-J7-w7a"/>
-                        <outlet property="tabBarItem" destination="NpF-5M-Tlx" id="f9M-AC-0qS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5jR-EM-sGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -61,11 +59,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="yue" id="sjw-gB-vdf"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="tabBarItem" destination="sjw-gB-vdf" id="5sM-aO-Nnf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oc6-Fb-6Ri" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -755,11 +749,7 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="t3" id="muc-f3-JrR"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="tabBarItem" destination="muc-f3-JrR" id="eci-pe-TYv"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xl1-gk-diV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1077,11 +1067,9 @@
                             <constraint firstItem="HLX-7V-3I1" firstAttribute="top" secondItem="Sp0-xs-zLG" secondAttribute="bottom" id="oXW-SF-UST"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="t4" id="7D9-1c-hFO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mytableview" destination="HLX-7V-3I1" id="nZk-E1-nD7"/>
-                        <outlet property="tabBarItem" destination="7D9-1c-hFO" id="8mv-Dw-ZYq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xc0-IN-8uY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2909,12 +2897,8 @@
         <image name="hot-icon" width="19" height="19"/>
         <image name="s0" width="320" height="480"/>
         <image name="sGod" width="26" height="26"/>
-        <image name="t0" width="80" height="50"/>
         <image name="t2" width="80" height="50"/>
-        <image name="t3" width="80" height="50"/>
-        <image name="t4" width="80" height="50"/>
         <image name="usercell_girl" width="33" height="14"/>
         <image name="yu" width="79" height="47"/>
-        <image name="yue" width="64" height="64"/>
     </resources>
 </document>

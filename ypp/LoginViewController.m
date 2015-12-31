@@ -10,6 +10,7 @@
 #import "ForgetPasswordViewController.h"
 #import "MainTabBarController.h"
 #import "EaseUI.h"
+#import "DBUtil.h"
 
 @interface LoginViewController ()
 
@@ -113,6 +114,17 @@
                         [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
                         
                         NSLog(@"登陆成功 %@",loginInfo);
+                        
+                        NSString *userid = [info objectForKey:@"id"];
+                        NSString *avatar = [info objectForKey:@"avatar"];
+                        NSString *user_name = [info objectForKey:@"user_name"];
+                        NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
+                        [extDic setValue:userid forKey:@"userid"];
+                        [extDic setValue:avatar forKey:@"userimage"];
+                        [extDic setValue:user_name forKey:@"username"];
+                        [DBUtil queryUserInfoFromDB:extDic];
+                        
+                        
 //                        MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
 //                        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //                        [self presentViewController:vc animated:YES completion:^{

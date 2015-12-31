@@ -23,6 +23,7 @@
 #import "ApplyPlayerTableViewController.h"
 #import "JYSlideSegmentController.h"
 #import "DingdanTableViewController.h"
+#import "DBUtil.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -145,6 +146,15 @@
                 [[NSUserDefaults standardUserDefaults] setObject:userinfo forKey:LOGINED_USER];
                 [_mytableview reloadData];
                 
+                NSString *userid = [userinfo objectForKey:@"id"];
+                NSString *avatar = [userinfo objectForKey:@"avatar"];
+                NSString *user_name = [userinfo objectForKey:@"user_name"];
+                NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
+                [extDic setValue:userid forKey:@"userid"];
+                [extDic setValue:avatar forKey:@"userimage"];
+                [extDic setValue:user_name forKey:@"username"];
+                [DBUtil queryUserInfoFromDB:extDic];
+                
                 if ([text.userInfo[@"refershPhone"] isEqualToString:@"refershPhone"]) {
                     [[NSNotificationCenter defaultCenter]
                      postNotificationName:@"refershPhone" object:nil];
@@ -165,14 +175,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
-        return 10;
+        return 0.1;
     }
     return 5;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     if(section == 4){
-        return 10;
+        return 20;
     }
     return 5;
 }

@@ -306,7 +306,18 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     EMMessage *message = [[EMMessage alloc] initWithReceiver:toUser bodies:[NSArray arrayWithObject:body]];
     message.requireEncryption = requireEncryption;
     message.messageType = messageType;
-    message.ext = messageExt;
+    
+    
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    
+    message.ext = extDic;
     EMMessage *retMessage = [[EaseMob sharedInstance].chatManager asyncSendMessage:message
                                                                           progress:nil];
     
@@ -326,7 +337,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     EMMessage *message = [[EMMessage alloc] initWithReceiver:to bodies:[NSArray arrayWithObject:body]];
     message.requireEncryption = requireEncryption;
     message.messageType = messageType;
-    message.ext = messageExt;
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    
+    message.ext = extDic;
     EMMessage *retMessage = [[EaseMob sharedInstance].chatManager asyncSendMessage:message
                                                                           progress:nil];
     
@@ -360,7 +380,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     EMMessage *message = [[EMMessage alloc] initWithReceiver:to bodies:[NSArray arrayWithObject:body]];
     message.requireEncryption = requireEncryption;
     message.messageType = messageType;
-    message.ext = messageExt;
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    
+    message.ext = extDic;
     EMMessage *retMessage = [[EaseMob sharedInstance].chatManager asyncSendMessage:message
                                                                           progress:progress];
     
@@ -381,7 +410,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     EMMessage *message = [[EMMessage alloc] initWithReceiver:to bodies:[NSArray arrayWithObject:body]];
     message.requireEncryption = requireEncryption;
     message.messageType = messageType;
-    message.ext = messageExt;
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    
+    message.ext = extDic;
     EMMessage *retMessage = [[EaseMob sharedInstance].chatManager asyncSendMessage:message
                                                                           progress:progress];
     
@@ -400,7 +438,16 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
     EMMessage *message = [[EMMessage alloc] initWithReceiver:to bodies:[NSArray arrayWithObject:body]];
     message.requireEncryption = requireEncryption;
     message.messageType = messageType;
-    message.ext = messageExt;
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    NSString *userid = [userinfo objectForKey:@"id"];
+    NSString *avatar = [userinfo objectForKey:@"avatar"];
+    NSString *user_name = [userinfo objectForKey:@"user_name"];
+    NSMutableDictionary *extDic = [NSMutableDictionary dictionaryWithDictionary:messageExt];
+    [extDic setValue:userid forKey:@"userid"];
+    [extDic setValue:avatar forKey:@"userimage"];
+    [extDic setValue:user_name forKey:@"username"];
+    
+    message.ext = extDic;
     EMMessage *retMessage = [[EaseMob sharedInstance].chatManager asyncSendMessage:message
                                                                           progress:progress];
     

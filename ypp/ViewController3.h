@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController3 : UIViewController
-@property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
+
 @end

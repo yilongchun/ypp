@@ -11,6 +11,7 @@
 #import "ChatViewController.h"
 #import "NSDate+Category.h"
 #import "EMCDDeviceManager.h"
+#import "DBUtil.h"
 
 
 @interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource>
@@ -139,7 +140,7 @@
                                     modelForConversation:(EMConversation *)conversation
 {
     EaseConversationModel *model = [[EaseConversationModel alloc] initWithConversation:conversation];
-//    if (model.conversation.conversationType == eConversationTypeChat) {
+    if (model.conversation.conversationType == eConversationTypeChat) {
 //        if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
 //            model.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
 //        } else {
@@ -149,7 +150,13 @@
 //                model.avatarURLPath = profileEntity.imageUrl;
 //            }
 //        }
-//    } else
+        NSDictionary *userinfo = [DBUtil queryUserFromDbById:[model.conversation.chatter substringFromIndex:3]];
+        if (userinfo != nil) {
+            model.title = [userinfo objectForKey:@"username"];
+            model.avatarURLPath = [NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[userinfo objectForKey:@"userimage"]];
+        }
+        
+    } else
         if (model.conversation.conversationType == eConversationTypeGroupChat) {
         NSString *imageName = @"groupPublicHeader";
         if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])

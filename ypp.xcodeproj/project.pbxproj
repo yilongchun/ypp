@@ -63,6 +63,12 @@
 		44DBB9241C33B75E004406F1 /* EMBubbleView+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9231C33B75E004406F1 /* EMBubbleView+Gif.m */; };
 		44DBB9271C33B7FA004406F1 /* UIImageView+HeadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9261C33B7FA004406F1 /* UIImageView+HeadImage.m */; };
 		44DBB93F1C33BF7C004406F1 /* EMGifImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB93E1C33BF7C004406F1 /* EMGifImage.m */; };
+		44DBB94C1C33CD64004406F1 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9421C33CD64004406F1 /* FMDatabase.m */; };
+		44DBB94D1C33CD64004406F1 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9441C33CD64004406F1 /* FMDatabaseAdditions.m */; };
+		44DBB94E1C33CD64004406F1 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9461C33CD64004406F1 /* FMDatabasePool.m */; };
+		44DBB94F1C33CD64004406F1 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9481C33CD64004406F1 /* FMDatabaseQueue.m */; };
+		44DBB9501C33CD64004406F1 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB94B1C33CD64004406F1 /* FMResultSet.m */; };
+		44DBB9531C33D51E004406F1 /* DBUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 44DBB9521C33D51E004406F1 /* DBUtil.m */; };
 		44DE99221C32278400B14903 /* libEaseMobClientSDKLite_arm64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE991B1C32278400B14903 /* libEaseMobClientSDKLite_arm64.a */; };
 		44DE99231C32278400B14903 /* libEaseMobClientSDKLite_armv7.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE991C1C32278400B14903 /* libEaseMobClientSDKLite_armv7.a */; };
 		44DE99241C32278400B14903 /* libEaseMobClientSDKLite_armv7s.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44DE991D1C32278400B14903 /* libEaseMobClientSDKLite_armv7s.a */; };
@@ -606,6 +612,19 @@
 		44DBB9361C33BACE004406F1 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		44DBB93D1C33BF7C004406F1 /* EMGifImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMGifImage.h; sourceTree = "<group>"; };
 		44DBB93E1C33BF7C004406F1 /* EMGifImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMGifImage.m; sourceTree = "<group>"; };
+		44DBB9411C33CD64004406F1 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		44DBB9421C33CD64004406F1 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		44DBB9431C33CD64004406F1 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		44DBB9441C33CD64004406F1 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		44DBB9451C33CD64004406F1 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		44DBB9461C33CD64004406F1 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		44DBB9471C33CD64004406F1 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		44DBB9481C33CD64004406F1 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		44DBB9491C33CD64004406F1 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
+		44DBB94A1C33CD64004406F1 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		44DBB94B1C33CD64004406F1 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		44DBB9511C33D51E004406F1 /* DBUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUtil.h; sourceTree = "<group>"; };
+		44DBB9521C33D51E004406F1 /* DBUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUtil.m; sourceTree = "<group>"; };
 		44DE98B61C32278400B14903 /* EMCallManagerCallDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerCallDelegate.h; sourceTree = "<group>"; };
 		44DE98B71C32278400B14903 /* EMCallManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCallManagerDelegate.h; sourceTree = "<group>"; };
 		44DE98B81C32278400B14903 /* EaseMob+CallService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMob+CallService.h"; sourceTree = "<group>"; };
@@ -1631,6 +1650,24 @@
 				44DBB93E1C33BF7C004406F1 /* EMGifImage.m */,
 			);
 			path = GifImage;
+			sourceTree = "<group>";
+		};
+		44DBB9401C33CD64004406F1 /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				44DBB9411C33CD64004406F1 /* FMDatabase.h */,
+				44DBB9421C33CD64004406F1 /* FMDatabase.m */,
+				44DBB9431C33CD64004406F1 /* FMDatabaseAdditions.h */,
+				44DBB9441C33CD64004406F1 /* FMDatabaseAdditions.m */,
+				44DBB9451C33CD64004406F1 /* FMDatabasePool.h */,
+				44DBB9461C33CD64004406F1 /* FMDatabasePool.m */,
+				44DBB9471C33CD64004406F1 /* FMDatabaseQueue.h */,
+				44DBB9481C33CD64004406F1 /* FMDatabaseQueue.m */,
+				44DBB9491C33CD64004406F1 /* FMDB.h */,
+				44DBB94A1C33CD64004406F1 /* FMResultSet.h */,
+				44DBB94B1C33CD64004406F1 /* FMResultSet.m */,
+			);
+			path = fmdb;
 			sourceTree = "<group>";
 		};
 		44DE98B11C32278400B14903 /* EaseMobSDK */ = {
@@ -3116,6 +3153,7 @@
 		5A35FA171C12B68400427364 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				44DBB9401C33CD64004406F1 /* fmdb */,
 				44DBB93C1C33BF7C004406F1 /* GifImage */,
 				44DE9D331C32833200B14903 /* Chat */,
 				44DE9B171C322F8D00B14903 /* EaseUI */,
@@ -3314,6 +3352,8 @@
 			children = (
 				5A35FC121C12C81900427364 /* Util.h */,
 				5A35FC131C12C81900427364 /* Util.m */,
+				44DBB9511C33D51E004406F1 /* DBUtil.h */,
+				44DBB9521C33D51E004406F1 /* DBUtil.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -3630,6 +3670,7 @@
 				44F029F21C1E97D000EF9218 /* DongtaiDetailViewController.m in Sources */,
 				44DE9C8D1C322F8D00B14903 /* EaseRecordView.m in Sources */,
 				44DE9C871C322F8D00B14903 /* EaseChatToolbarItem.m in Sources */,
+				44DBB9531C33D51E004406F1 /* DBUtil.m in Sources */,
 				44DE9C7E1C322F8D00B14903 /* EaseMessageTimeCell.m in Sources */,
 				44DE9C611C322F8D00B14903 /* PSTGridLayoutRow.m in Sources */,
 				444E58B51C15217000D77C63 /* NSFileManager+Paths.m in Sources */,
@@ -3671,6 +3712,7 @@
 				44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */,
 				44DE9B0D1C322E7800B14903 /* MJRefreshBackGifFooter.m in Sources */,
 				44DE9C7D1C322F8D00B14903 /* EaseMessageCell.m in Sources */,
+				44DBB9501C33CD64004406F1 /* FMResultSet.m in Sources */,
 				5A35FC021C12B68400427364 /* UIViewController+DismissKeyboard.m in Sources */,
 				5A35FB7D1C12B68400427364 /* AFSecurityPolicy.m in Sources */,
 				44F02A2C1C1E97F100EF9218 /* UpdatePhoneViewController.m in Sources */,
@@ -3759,6 +3801,7 @@
 				44DE9C461C322F8D00B14903 /* EMSDImageCache.m in Sources */,
 				5A2A76221BE9BA7F00C5FD2F /* main.m in Sources */,
 				44FB14EA1C17B58A009855DC /* UIView+Screenshot.m in Sources */,
+				44DBB94D1C33CD64004406F1 /* FMDatabaseAdditions.m in Sources */,
 				44DE9B151C322E7800B14903 /* UIScrollView+MJRefresh.m in Sources */,
 				444E58BA1C15217000D77C63 /* NSObject+AddProperty.m in Sources */,
 				44DE9C821C322F8D00B14903 /* EaseBubbleView+Text.m in Sources */,
@@ -3777,6 +3820,7 @@
 				5A35FB891C12B68400427364 /* UIWebView+AFNetworking.m in Sources */,
 				44F029F41C1E97D000EF9218 /* DongtaiViewController.m in Sources */,
 				444E58BD1C15217000D77C63 /* NSObject+Blocks.m in Sources */,
+				44DBB94F1C33CD64004406F1 /* FMDatabaseQueue.m in Sources */,
 				44E972B91C213CDA0014E301 /* ApplyPlayerTableViewController.m in Sources */,
 				444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */,
 				44F029F31C1E97D000EF9218 /* DongtaiTableViewCell.m in Sources */,
@@ -3812,6 +3856,7 @@
 				44DE9C671C322F8D00B14903 /* EaseUserModel.m in Sources */,
 				440843AE1C312D6C00C5D8FF /* MyBottomView.m in Sources */,
 				44E972C31C2160420014E301 /* TextViewController.m in Sources */,
+				44DBB94C1C33CD64004406F1 /* FMDatabase.m in Sources */,
 				44FB14E41C17B58A009855DC /* UIView+BlockGesture.m in Sources */,
 				5A35FB7F1C12B68400427364 /* AFURLRequestSerialization.m in Sources */,
 				44DE9B051C322E7800B14903 /* MJRefreshAutoFooter.m in Sources */,
@@ -3852,6 +3897,7 @@
 				444E58B71C15217000D77C63 /* NSManagedObjectContext+Fetching.m in Sources */,
 				5A35FB861C12B68400427364 /* UIImageView+AFNetworking.m in Sources */,
 				444E58B21C15217000D77C63 /* NSDictionary+Merge.m in Sources */,
+				44DBB94E1C33CD64004406F1 /* FMDatabasePool.m in Sources */,
 				5A35FB921C12B68400427364 /* IQTextView.m in Sources */,
 				444E58BB1C15217000D77C63 /* NSObject+AssociatedObject.m in Sources */,
 				44F02A251C1E97F100EF9218 /* EditMyInfoViewController.m in Sources */,

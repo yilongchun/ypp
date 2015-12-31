@@ -10,7 +10,7 @@
 
 @interface ViewController5 : UIViewController
 
-@property (strong, nonatomic) IBOutlet UITabBarItem *tabBarItem;
+
 @property (strong, nonatomic) IBOutlet UITableView *mytableview;
 
 @end

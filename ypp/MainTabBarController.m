@@ -18,7 +18,10 @@
 #import "ConversationListController.h"
 #import "EMCDDeviceManager.h"
 #import "ChatViewController.h"
+#import "DBUtil.h"
 
+
+#define FMDBQuickCheck(SomeBool) { if (!(SomeBool)) { NSLog(@"Failure on line %d", __LINE__); abort(); } }
 //两次提示的默认间隔
 static const CGFloat kDefaultPlaySoundInterval = 3.0;
 static NSString *kMessageType = @"MessageType";
@@ -84,11 +87,22 @@ static NSString *kGroupName = @"GroupName";
     self.delegate = self;
     
     self.tabBar.superview.backgroundColor = [UIColor whiteColor];
+    [self.tabBar setTintColor:RGB(200, 22, 34)];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                            [UIFont fontWithName:@"Helvetica" size:12.0], NSFontAttributeName,
+                                             nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                       [UIFont fontWithName:@"Helvetica" size:15.0], NSFontAttributeName,
+                                                       nil] forState:UIControlStateHighlighted];
+//
+//    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                             RGB(200, 22, 34), NSForegroundColorAttributeName,
+//                                             nil] forState:UIControlStateHighlighted];
     
     UIImage *img1 = [UIImage imageNamed:@"t2.png"];
     UIImage *img1_h = [UIImage imageNamed:@"t2h.png"];
     
-    UIImage *img2 = [UIImage imageNamed:@"t0.png"];
+    UIImage *img2 = [UIImage imageNamed:@"t0"];
     UIImage *img2_h = [UIImage imageNamed:@"t0h"];
     
     UIImage *img3 = [UIImage imageNamed:@""];
@@ -175,14 +189,16 @@ static NSString *kGroupName = @"GroupName";
         UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:img1 selectedImage:img1_h];
         [item1 setTag:0];
         slideSegmentController.tabBarItem = item1;
-        slideSegmentController.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        slideSegmentController.tabBarItem.title = @"陪练";
+//        slideSegmentController.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
 //        vc1.tabBarItem = item1;
 //        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:img2 selectedImage:img2_h];
         [item2 setTag:1];
         vc2.tabBarItem = item2;
-        vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        vc2.tabBarItem.title = @"广场";
+//        vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:nil image:img3 selectedImage:img3_h];
         [item3 setTag:2];
@@ -192,34 +208,40 @@ static NSString *kGroupName = @"GroupName";
         UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:nil image:img4 selectedImage:img4_h];
         [item4 setTag:3];
         _chatListVC.tabBarItem = item4;
-        _chatListVC.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        _chatListVC.tabBarItem.title = @"消息";
+//        _chatListVC.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:nil image:img5 selectedImage:img5_h];
         [item5 setTag:4];
         vc5.tabBarItem = item5;
-        vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        vc5.tabBarItem.title = @"我的";
+//        vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
     }else{
         UITabBarItem *item1 = [[UITabBarItem alloc] initWithTitle:nil image:img1 tag:0];
         slideSegmentController.tabBarItem = item1;
+        slideSegmentController.tabBarItem.title = @"陪练";
         slideSegmentController.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
 //        vc1.tabBarItem = item1;
 //        vc1.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item2 = [[UITabBarItem alloc] initWithTitle:nil image:img2 tag:1];
         vc2.tabBarItem = item2;
-        vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        vc2.tabBarItem.title = @"广场";
+//        vc2.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item3 = [[UITabBarItem alloc] initWithTitle:nil image:img3 tag:2];
         vc3.tabBarItem = item3;
-        vc3.tabBarItem.imageInsets = UIEdgeInsetsMake(-offset2, 0, offset2, 0);
+//        vc3.tabBarItem.imageInsets = UIEdgeInsetsMake(-offset2, 0, offset2, 0);
         
         UITabBarItem *item4 = [[UITabBarItem alloc] initWithTitle:nil image:img4 tag:3];
         _chatListVC.tabBarItem = item4;
-        _chatListVC.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        _chatListVC.tabBarItem.title = @"消息";
+//        _chatListVC.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
         
         UITabBarItem *item5 = [[UITabBarItem alloc] initWithTitle:nil image:img5 tag:4];
         vc5.tabBarItem = item5;
-        vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
+        vc5.tabBarItem.title = @"我的";
+//        vc5.tabBarItem.imageInsets = UIEdgeInsetsMake(offset, 0, -offset, 0);
     }
     
     
@@ -459,16 +481,19 @@ static NSString *kGroupName = @"GroupName";
 // 收到消息回调
 -(void)didReceiveMessage:(EMMessage *)message
 {
+    
+    [DBUtil queryUserInfoFromDB:message.ext];
+    
     BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;
     if (needShowNotification) {
 #if !TARGET_IPHONE_SIMULATOR
         
-        //        BOOL isAppActivity = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
-        //        if (!isAppActivity) {
-        //            [self showNotificationWithMessage:message];
-        //        }else {
-        //            [self playSoundAndVibration];
-        //        }
+        BOOL isAppActivity = [[UIApplication sharedApplication] applicationState] == UIApplicationStateActive;
+        if (!isAppActivity) {
+            [self showNotificationWithMessage:message];
+        }else {
+            [self playSoundAndVibration];
+        }
         UIApplicationState state = [[UIApplication sharedApplication] applicationState];
         switch (state) {
             case UIApplicationStateActive:
@@ -985,5 +1010,9 @@ static NSString *kGroupName = @"GroupName";
         [self setSelectedViewController:_chatListVC];
     }
 }
+
+#pragma mark - private
+
+
 
 @end

@@ -9,6 +9,7 @@
 #import "ChatViewController.h"
 #import "EaseUI.h"
 #import "CustomMessageCell.h"
+#import "DBUtil.h"
 
 
 
@@ -86,11 +87,11 @@
 
 - (void)_setupBarButtonItem
 {
-//    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    [self.navigationItem setLeftBarButtonItem:backItem];
+    UIButton *backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 23, 21)];
+    [backButton setImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    [self.navigationItem setLeftBarButtonItem:backItem];
     
     //单聊
     if (self.conversation.conversationType == eConversationTypeChat) {
@@ -254,6 +255,13 @@
 //        model.avatarURLPath = profileEntity.imageUrl;
 //    }
     DLog(@"设置头像2");
+    
+    NSDictionary *userinfo = [DBUtil queryUserFromDbById:[model.nickname substringFromIndex:3]];
+    if (userinfo != nil) {
+        model.nickname = [userinfo objectForKey:@"username"];
+        model.avatarURLPath = [NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[userinfo objectForKey:@"userimage"]];
+    }
+    
     
     model.failImageName = @"imageDownloadFail";
     return model;
