@@ -604,7 +604,7 @@ static NSString *kGroupName = @"GroupName";
     }
     
 #warning 去掉注释会显示[本地]开头, 方便在开发中区分是否为本地推送
-    //notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
+    notification.alertBody = [[NSString alloc] initWithFormat:@"[本地]%@", notification.alertBody];
     
     notification.alertAction = NSLocalizedString(@"open", @"Open");
     notification.timeZone = [NSTimeZone defaultTimeZone];
@@ -805,7 +805,7 @@ static NSString *kGroupName = @"GroupName";
                            reason:(NSString *)reason
 {
     NSString *message = [NSString stringWithFormat:NSLocalizedString(@"friend.beRefusedToAdd", @"you are shameless refused by '%@'"), username];
-    DLog(@"%@",message);
+    [self showHint:message];
 //    TTAlertNoTitle(message);
 }
 
@@ -932,6 +932,7 @@ static NSString *kGroupName = @"GroupName";
 
 - (void)didReceiveLocalNotification:(UILocalNotification *)notification
 {
+    DLog(@"didReceiveLocalNotification %@",notification.userInfo);
     NSDictionary *userInfo = notification.userInfo;
     if (userInfo)
     {

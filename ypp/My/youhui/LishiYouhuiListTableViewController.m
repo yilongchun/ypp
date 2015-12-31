@@ -49,8 +49,7 @@
 //    [dataSource addObject:@"1"];
 //    [dataSource addObject:@"1"];
     
-    [self showHudInView:self.view];
-    [self loadData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 -(void)loadData{

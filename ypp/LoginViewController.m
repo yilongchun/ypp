@@ -124,6 +124,8 @@
                         [extDic setValue:user_name forKey:@"username"];
                         [DBUtil queryUserInfoFromDB:extDic];
                         
+                        [[EaseMob sharedInstance].chatManager setApnsNickname:user_name];
+                        
                         
 //                        MainTabBarController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MainTabBarController"];
 //                        vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;

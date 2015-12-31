@@ -32,8 +32,7 @@
         [self loadData];
     }];
     
-    [self showHudInView:self.view];
-    [self loadData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 -(void)save{

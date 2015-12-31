@@ -61,8 +61,7 @@
     
     
     
-    [self showHudInView:self.view];
-    [self loadData];
+    [_mytableview.mj_header beginRefreshing];
 }
 
 -(void)loadData{

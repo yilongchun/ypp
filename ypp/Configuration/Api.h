@@ -19,6 +19,7 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
     ResultCodeFail = 431//
 };
 
+//环信推送证书密码 123456
 //环信相关参数：
 //client_id：YXA6Rg0AQJmHEeWSNTHvoCMYcw
 //client_secret：UueEQ_o53sR3rZmprjSNP18I9E

@@ -69,11 +69,12 @@
         [self loadMore];
     }];
     
+    
 //    [self.mytableview registerClass:[UserTableViewCell class] forCellReuseIdentifier:@"cell"];
     
-    
-    [self showHudInView:self.view];
-    [self loadData];
+    [_mytableview.mj_header beginRefreshing];
+//    [self showHudInView:self.view];
+//    [self loadData];
 }
 
 -(void)loadData{

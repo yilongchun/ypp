@@ -19,20 +19,35 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
-    
-    [[EaseSDKHelper shareHelper] easemobApplication:application
-                      didFinishLaunchingWithOptions:launchOptions
-                                             appkey:@"szhcyj#yuewanba"
-                                       apnsCertName:@""
-                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
-    
     //注册登录状态监听
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginStateChange:)
                                                  name:KNOTIFICATION_LOGINCHANGE
                                                object:nil];
     
+//    [self registerRemoteNotification];
+    
+    NSString *apnsCertName = nil;
+#if DEBUG
+    apnsCertName = @"ypp_push2_dev";
+#else
+    apnsCertName = @"ypp_push_pro";
+#endif
+    
+    [[EaseSDKHelper shareHelper] easemobApplication:application
+                      didFinishLaunchingWithOptions:launchOptions
+                                             appkey:@"szhcyj#yuewanba"
+                                       apnsCertName:apnsCertName
+                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    
+//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"szhcyj#yuewanba" apnsCertName:apnsCertName];
+//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    
+    
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     //获取数据库中数据
     [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
     //获取群组列表
@@ -141,6 +156,85 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+#pragma mark - register apns
+
+//// 注册推送
+//- (void)registerRemoteNotification
+//{
+//    UIApplication *application = [UIApplication sharedApplication];
+//    application.applicationIconBadgeNumber = 0;
+//    
+//    if([application respondsToSelector:@selector(registerUserNotificationSettings:)])
+//    {
+//        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+//        [application registerUserNotificationSettings:settings];
+//    }
+//    
+//#if !TARGET_IPHONE_SIMULATOR
+//    //iOS8 注册APNS
+//    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+//        [application registerForRemoteNotifications];
+//    }else{
+//        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+//        UIRemoteNotificationTypeSound |
+//        UIRemoteNotificationTypeAlert;
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+//    }
+//#endif
+//}
+
+#pragma mark - App Delegate
+
+// 将得到的deviceToken传给SDK
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+//    NSString *result = [[NSString alloc] initWithData:deviceToken  encoding:NSUTF8StringEncoding];
+//    DLog(@"%@",result);
+    NSString *str = [NSString
+                     stringWithFormat:@"Device Token=%@",deviceToken];
+    NSLog(@"%@",str);
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+}
+
+// 注册deviceToken失败，此处失败，与环信SDK无关，一般是您的环境配置或者证书配置有误
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    [[EaseMob sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"apns.failToRegisterApns", Fail to register apns)
+                                                    message:error.description
+                                                   delegate:nil
+                                          cancelButtonTitle:NSLocalizedString(@"ok", @"OK")
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma mark - push
+- (void)didBindDeviceWithError:(EMError *)error
+{
+    if (error) {
+        NSLog(@"消息推送与设备绑定失败");
+    }
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+    [application registerForRemoteNotifications];
+}
+
+//系统方法
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    //SDK方法调用
+    [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
+}
+//系统方法
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    //SDK方法调用
+    [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
 }
 
 @end

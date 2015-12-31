@@ -378,6 +378,7 @@
 		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
 		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
 		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
+		44E2D4E31C3501C600BD60D2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */; };
 		44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */; };
 		44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */; };
 		44E679F41C2A4E0300A510E6 /* YueTaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679F21C2A4E0300A510E6 /* YueTaTableViewCell.m */; };
@@ -1154,6 +1155,7 @@
 		44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAndShopTableViewController.h; sourceTree = "<group>"; };
 		44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAndShopTableViewController.m; sourceTree = "<group>"; };
 		44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameAndShopTableViewController.xib; sourceTree = "<group>"; };
+		44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaViewController.h; sourceTree = "<group>"; };
 		44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaViewController.m; sourceTree = "<group>"; };
 		44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YueTaViewController.xib; sourceTree = "<group>"; };
@@ -1948,6 +1950,7 @@
 			children = (
 				44DE9ADA1C322E7800B14903 /* Base */,
 				44DE9AE51C322E7800B14903 /* Custom */,
+				44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */,
 				44DE9AFC1C322E7800B14903 /* MJRefresh.h */,
 				44DE9AFD1C322E7800B14903 /* MJRefreshConst.h */,
 				44DE9AFE1C322E7800B14903 /* MJRefreshConst.m */,
@@ -3398,7 +3401,7 @@
 				TargetAttributes = {
 					5A2A761C1BE9BA7F00C5FD2F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = YVY8NF8R54;
+						DevelopmentTeam = Q9E5LZCG29;
 					};
 				};
 			};
@@ -3554,6 +3557,7 @@
 				44DE9E6E1C32891F00B14903 /* chatBar_colorMore_photoSelected@2x.png in Resources */,
 				44DE9E271C32891F00B14903 /* VoiceSearchFeedback015.png in Resources */,
 				44DE9E861C32891F00B14903 /* chat_receiver_bg@2x.png in Resources */,
+				44E2D4E31C3501C600BD60D2 /* MJRefresh.bundle in Resources */,
 				44DE9E4C1C32891F00B14903 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				5A35FB971C12B68400427364 /* IQKeyboardManager.bundle in Resources */,
 				44DE9E241C32891F00B14903 /* VoiceSearchFeedback013@2x.png in Resources */,
@@ -4043,7 +4047,7 @@
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = weyida.ypp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -4072,7 +4076,7 @@
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = weyida.ypp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -49,8 +49,7 @@
     self.navigationItem.rightBarButtonItem = rightItem;
     
     
-    [self showHudInView:self.view];
-    [self loadData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 //不使用优惠劵

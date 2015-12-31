@@ -52,8 +52,7 @@
                                              selector:@selector(loadData)
                                                  name:@"loadDingdanData" object:nil];
     
-    [self showHudInView:self.view];
-    [self loadData];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 -(void)loadData{
