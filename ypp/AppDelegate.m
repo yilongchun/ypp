@@ -25,11 +25,9 @@
                                                  name:KNOTIFICATION_LOGINCHANGE
                                                object:nil];
     
-//    [self registerRemoteNotification];
-    
     NSString *apnsCertName = nil;
 #if DEBUG
-    apnsCertName = @"ypp_push2_dev";
+    apnsCertName = @"ypp_push_dev";
 #else
     apnsCertName = @"ypp_push_pro";
 #endif
@@ -40,12 +38,11 @@
                                        apnsCertName:apnsCertName
                                         otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
     
+    //以下一行代码的方法里实现了自动登录，异步登录，需要监听[didLoginWithInfo: error:]
+    //demo中此监听方法在MainViewController中
+    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
     
-//    [[EaseMob sharedInstance] registerSDKWithAppKey:@"szhcyj#yuewanba" apnsCertName:apnsCertName];
-//    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
-    
-    
-    
+    //注册为SDK的ChatManager的delegate (及时监听到申请和通知)
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     //获取数据库中数据
@@ -96,12 +93,13 @@
 #pragma mark - login changed
 
 - (void)loginStateChange:(NSNotification *)notification{
-    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
     BOOL loginSuccess = [notification.object boolValue];
     NSString *storyboardId;
     if (isAutoLogin || loginSuccess) {//登陆成功加载主窗口控制器
         storyboardId = @"MainTabBarController";
+//        _mainTabBarController = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     }
     else{//登陆失败加载登陆页面控制器
         storyboardId = @"initNc";
@@ -109,7 +107,7 @@
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PHONE];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:LOGINED_PASSWORD];
     }
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    
     UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:storyboardId];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.rootViewController = vc;
@@ -158,44 +156,11 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-#pragma mark - register apns
-
-//// 注册推送
-//- (void)registerRemoteNotification
-//{
-//    UIApplication *application = [UIApplication sharedApplication];
-//    application.applicationIconBadgeNumber = 0;
-//    
-//    if([application respondsToSelector:@selector(registerUserNotificationSettings:)])
-//    {
-//        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
-//        [application registerUserNotificationSettings:settings];
-//    }
-//    
-//#if !TARGET_IPHONE_SIMULATOR
-//    //iOS8 注册APNS
-//    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
-//        [application registerForRemoteNotifications];
-//    }else{
-//        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
-//        UIRemoteNotificationTypeSound |
-//        UIRemoteNotificationTypeAlert;
-//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
-//    }
-//#endif
-//}
-
 #pragma mark - App Delegate
 
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-//    NSString *result = [[NSString alloc] initWithData:deviceToken  encoding:NSUTF8StringEncoding];
-//    DLog(@"%@",result);
-    NSString *str = [NSString
-                     stringWithFormat:@"Device Token=%@",deviceToken];
-    NSLog(@"%@",str);
     [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
@@ -220,15 +185,28 @@
     }
 }
 
+#ifdef __IPHONE_8_0
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
     [application registerForRemoteNotifications];
 }
+#endif
 
 //系统方法
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
+    
     //SDK方法调用
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
+//    if (_mainTabBarController) {
+//        NSLog(@"userInfo == %@",userInfo);
+//        NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil ,nil];
+//        
+//        [alert show];
+//        [_mainTabBarController jumpToChatList];
+//    }
+    
 }
 //系统方法
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification

@@ -60,6 +60,8 @@ static NSString *kGroupName = @"GroupName";
                                              selector:@selector(toMyDingdan)
                                                  name:@"toMyDingdan" object:nil];
     
+    
+    
     //去除阴影线
 //    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
 //    [[UITabBar appearance] setBackgroundImage:[[UIImage alloc]init]];

@@ -13,4 +13,6 @@
     EMConnectionState _connectionState;
 }
 
+- (void)jumpToChatList;
+
 @end

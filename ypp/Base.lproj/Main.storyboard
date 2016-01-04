@@ -2897,7 +2897,7 @@
         <image name="hot-icon" width="19" height="19"/>
         <image name="s0" width="320" height="480"/>
         <image name="sGod" width="26" height="26"/>
-        <image name="t2" width="80" height="50"/>
+        <image name="t2" width="30" height="30"/>
         <image name="usercell_girl" width="33" height="14"/>
         <image name="yu" width="79" height="47"/>
     </resources>

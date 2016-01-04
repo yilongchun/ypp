@@ -45,40 +45,43 @@
     FMDatabase *db     = [FMDatabase databaseWithPath:dbPath];
     [self createTable:db];
     
+    if (userinfo != nil && [userinfo objectForKey:@"userid"] != nil) {
+        NSString *userid = [userinfo objectForKey:@"userid"];
+        if ([db executeUpdate:@"DELETE FROM userinfo where userid = ?", userid]) {
+            DLog(@"删除成功");
+        }else{
+            DLog(@"删除失败");
+        }
+        NSString *username = [userinfo objectForKey:@"username"];
+        NSString *userimage = [userinfo objectForKey:@"userimage"];
+        if ([db executeUpdate:@"INSERT INTO userinfo (userid, username, userimage) VALUES (?, ?, ?)", userid,username,userimage]) {
+            DLog(@"插入成功");
+        }else{
+            DLog(@"插入失败");
+        }
+        
+        //    NSLog(@"%d: %@", [db lastErrorCode], [db lastErrorMessage]);
+        FMResultSet *rs = [db executeQuery:@"SELECT userid, username, userimage FROM userinfo where userid = ?",userid];
+        if ([rs next]) {
+            NSString *userid = [rs stringForColumn:@"userid"];
+            NSString *username = [rs stringForColumn:@"username"];
+            NSString *userimage = [rs stringForColumn:@"userimage"];
+            DLog(@"查询一个 %@ %@ %@",userid,username,userimage);
+        }
+        
+        rs = [db executeQuery:@"SELECT userid, username, userimage FROM userinfo"];
+        while ([rs next]) {
+            NSString *userid = [rs stringForColumn:@"userid"];
+            NSString *username = [rs stringForColumn:@"username"];
+            NSString *userimage = [rs stringForColumn:@"userimage"];
+            DLog(@"查询所有 %@ %@ %@",userid,username,userimage);
+        }
+        [rs close];
+        //    NSLog(@"%d: %@", [db lastErrorCode], [db lastErrorMessage]);
+        [db close];
+    }
     
-    NSString *userid = [userinfo objectForKey:@"userid"];
-    if ([db executeUpdate:@"DELETE FROM userinfo where userid = ?", userid]) {
-        DLog(@"删除成功");
-    }else{
-        DLog(@"删除失败");
-    }
-    NSString *username = [userinfo objectForKey:@"username"];
-    NSString *userimage = [userinfo objectForKey:@"userimage"];
-    if ([db executeUpdate:@"INSERT INTO userinfo (userid, username, userimage) VALUES (?, ?, ?)", userid,username,userimage]) {
-        DLog(@"插入成功");
-    }else{
-        DLog(@"插入失败");
-    }
     
-//    NSLog(@"%d: %@", [db lastErrorCode], [db lastErrorMessage]);
-    FMResultSet *rs = [db executeQuery:@"SELECT userid, username, userimage FROM userinfo where userid = ?",userid];
-    if ([rs next]) {
-        NSString *userid = [rs stringForColumn:@"userid"];
-        NSString *username = [rs stringForColumn:@"username"];
-        NSString *userimage = [rs stringForColumn:@"userimage"];
-        DLog(@"查询一个 %@ %@ %@",userid,username,userimage);
-    }
-    
-    rs = [db executeQuery:@"SELECT userid, username, userimage FROM userinfo"];
-    while ([rs next]) {
-        NSString *userid = [rs stringForColumn:@"userid"];
-        NSString *username = [rs stringForColumn:@"username"];
-        NSString *userimage = [rs stringForColumn:@"userimage"];
-        DLog(@"查询所有 %@ %@ %@",userid,username,userimage);
-    }
-    [rs close];
-//    NSLog(@"%d: %@", [db lastErrorCode], [db lastErrorMessage]);
-    [db close];
     
 }
 
