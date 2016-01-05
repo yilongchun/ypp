@@ -345,9 +345,25 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
                 
-                NSNumber *fav_count = [info objectForKey:@"fav_count"];
-                [btn setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue] + 1] forState:UIControlStateNormal];
-                [btn setImage:[UIImage imageNamed:@"dongtailist_heart_full"] forState:UIControlStateNormal];
+                [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+                    [btn.imageView.layer setValue:@(1.7) forKeyPath:@"transform.scale"];
+                } completion:^(BOOL finished) {
+                    
+                    NSNumber *fav_count = [info objectForKey:@"fav_count"];
+                    [btn setTitle:[NSString stringWithFormat:@"(%d)",[fav_count intValue] + 1] forState:UIControlStateNormal];
+                    [btn setImage:[UIImage imageNamed:@"dongtailist_heart_full"] forState:UIControlStateNormal];
+                    [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+                        [btn.imageView.layer setValue:@(0.9) forKeyPath:@"transform.scale"];
+                    } completion:^(BOOL finished) {
+                        [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut animations:^{
+                            [btn.imageView.layer setValue:@(1) forKeyPath:@"transform.scale"];
+                        } completion:^(BOOL finished) {
+                        }];
+                    }];
+                }];
+                
+                
+                
             }else{
                 NSString *message = [dic objectForKey:@"message"];
                 [self showHint:message];
