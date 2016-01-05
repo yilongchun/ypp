@@ -198,12 +198,12 @@
     //SDK方法调用
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 //    if (_mainTabBarController) {
-//        NSLog(@"userInfo == %@",userInfo);
-//        NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
-//        
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil ,nil];
-//        
-//        [alert show];
+        NSLog(@"userInfo == %@",userInfo);
+        NSString *message = [[userInfo objectForKey:@"aps"]objectForKey:@"alert"];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil ,nil];
+        
+        [alert show];
 //        [_mainTabBarController jumpToChatList];
 //    }
     

@@ -15,6 +15,7 @@
 #import "PinglunTableViewCell.h"
 #import "PlayerViewController.h"
 #import "MyInfoViewController.h"
+#import "YYWebImage.h"
 
 @interface DongtaiDetailViewController (){
     NSMutableArray *zanArr;
@@ -361,9 +362,15 @@
         NSString *content = [info objectForKey:@"content"];
         NSString *pic = [info objectForKey:@"pic"];
         
-        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+//        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
         cell.userImage.layer.masksToBounds = YES;
         cell.userImage.layer.cornerRadius = 5;
+        
+        [cell.userImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+//        [cell.userImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation progress:nil transform:^UIImage *(UIImage *image, NSURL *url) {
+//            return [image yy_imageByRoundCornerRadius:5.0];
+//        } completion:nil];
+        
         
         cell.userImage.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showUserDetail3:)];
@@ -393,7 +400,8 @@
         }
         cell.contentLabel.text = content;
         if (pic != nil && ![pic isEqualToString:@""]) {
-            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]]  placeholderImage:[UIImage imageNamed:@"dongtai_default"]];
+//            [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]]  placeholderImage:[UIImage imageNamed:@"dongtai_default"]];
+            [cell.bigImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
         }
         
         NSNumber *distance = [info objectForKey:@"distance"];
@@ -476,7 +484,10 @@
         NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[create_time doubleValue]];
         cell.nameLabel.text = username;
         cell.contentLabel.text = content;
-        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+//        [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+        
+        [cell.userImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+        
         cell.userImage.layer.masksToBounds = YES;
         cell.userImage.layer.cornerRadius = 5;
         cell.userImage.tag = indexPath.row - 1;

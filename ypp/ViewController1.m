@@ -13,6 +13,7 @@
 #import "NSDate+TimeAgo.h"
 #import "PlayerViewController.h"
 #import "MyInfoViewController.h"
+#import "YYWebImage.h"
 
 @interface ViewController1 (){
     int page;
@@ -209,7 +210,24 @@
     NSString *avatar = [info objectForKey:@"avatar"];
     NSNumber *sex = [info objectForKey:@"sex"];
     cell.usernameLabel.text = user_name;
-    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+//    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    
+    [cell.userimage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    
+//    [cell.userimage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+//        float progress = (float)receivedSize / expectedSize;
+//        DLog(@"%f",progress);
+//    } transform:^UIImage *(UIImage *image, NSURL *url) {
+//        image = [image yy_imageByResizeToSize:CGSizeMake(100, 100) contentMode:UIViewContentModeCenter];
+//        return [image yy_imageByRoundCornerRadius:10];
+//    } completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
+//        if (from == YYWebImageFromDiskCache) {
+//            NSLog(@"load from disk cache");
+//        }
+//    }];
+//    [cell.userimage yy_setImageWithURL:url options:YYWebImageOptionProgressiveBlur ｜ YYWebImageOptionSetImageWithFadeAnimation];
+    
+    
     
     cell.userimage.layer.masksToBounds = YES;
     cell.userimage.layer.cornerRadius = 5.0;

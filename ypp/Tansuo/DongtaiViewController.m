@@ -12,6 +12,7 @@
 #import "NSDate+Addition.h"
 #import "NSDate+TimeAgo.h"
 #import "DongtaiDetailViewController.h"
+#import "YYWebImage.h"
 
 @interface DongtaiViewController (){
     int page;
@@ -231,7 +232,14 @@
     NSString *content = [info objectForKey:@"content"];
     NSString *pic = [info objectForKey:@"pic"];
     
-    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+//    [cell.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    
+//    [cell.userImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    
+    [cell.userImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation|YYWebImageOptionShowNetworkActivity|YYWebImageOptionProgressiveBlur progress:nil transform:^UIImage *(UIImage *image, NSURL *url) {
+        return [image yy_imageByRoundCornerRadius:5.0];
+    } completion:nil];
+    
     cell.userImage.layer.masksToBounds = YES;
     cell.userImage.layer.cornerRadius = 5;
     cell.username.text = user_name;
@@ -258,7 +266,7 @@
     }
     cell.contentLabel.text = content;
     if (pic != nil && ![pic isEqualToString:@""]) {
-        [cell.bigImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]] placeholderImage:[UIImage imageNamed:@"dongtai_default"]];
+        [cell.bigImage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,pic]] options:YYWebImageOptionProgressiveBlur|YYWebImageOptionSetImageWithFadeAnimation];
     }
     
     NSNumber *distance = [info objectForKey:@"distance"];
