@@ -12,6 +12,7 @@
 #import "NSDate+Category.h"
 #import "EMCDDeviceManager.h"
 #import "DBUtil.h"
+#import "QiangViewController.h"
 
 
 @interface ConversationListController ()<EaseConversationListViewControllerDelegate, EaseConversationListViewControllerDataSource>
@@ -117,16 +118,21 @@
     if (conversationModel) {
         EMConversation *conversation = conversationModel.conversation;
         if (conversation) {
-//            if ([[RobotManager sharedInstance] isRobotWithUsername:conversation.chatter]) {
+            if ([conversation.chatter isEqualToString:@"qiang"]) {//我要抢单
+                QiangViewController *vc = [[QiangViewController alloc] init];
+                vc.title = @"我要抢单";
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.navigationController pushViewController:vc animated:YES];
+                
 //                RobotChatViewController *chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
 //                chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
 //                [self.navigationController pushViewController:chatController animated:YES];
-//            } else {
+            } else {
                 ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = conversationModel.title;
             chatController.hidesBottomBarWhenPushed = YES;
                 [self.navigationController pushViewController:chatController animated:YES];
-//            }
+            }
             
             
             
@@ -150,7 +156,7 @@
 //                model.avatarURLPath = profileEntity.imageUrl;
 //            }
 //        }
-        NSDictionary *userinfo = [DBUtil queryUserFromDbById:[model.conversation.chatter substringFromIndex:3]];
+        NSDictionary *userinfo = [DBUtil queryUserFromDbById:model.conversation.chatter];
         if (userinfo != nil) {
             model.title = [userinfo objectForKey:@"username"];
             model.avatarURLPath = [NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[userinfo objectForKey:@"userimage"]];

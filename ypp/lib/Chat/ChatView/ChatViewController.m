@@ -43,7 +43,7 @@
     
     
     [[EaseBaseMessageCell appearance] setAvatarSize:40.f];
-    [[EaseBaseMessageCell appearance] setAvatarCornerRadius:20.f];
+    [[EaseBaseMessageCell appearance] setAvatarCornerRadius:5.f];
     
     [[EaseChatBarMoreView appearance] setMoreViewBackgroundColor:[UIColor colorWithRed:240 / 255.0 green:242 / 255.0 blue:247 / 255.0 alpha:1.0]];
     
@@ -256,7 +256,7 @@
 //    }
     DLog(@"设置头像2");
     
-    NSDictionary *userinfo = [DBUtil queryUserFromDbById:[model.nickname substringFromIndex:3]];
+    NSDictionary *userinfo = [DBUtil queryUserFromDbById:model.nickname];
     if (userinfo != nil) {
         model.nickname = [userinfo objectForKey:@"username"];
         model.avatarURLPath = [NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,[userinfo objectForKey:@"userimage"]];

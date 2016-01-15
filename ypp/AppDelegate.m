@@ -9,8 +9,9 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import "EaseUI.h"
+#import "WXApi.h"
 
-@interface AppDelegate ()
+@interface AppDelegate ()<WXApiDelegate>
 
 @end
 
@@ -19,6 +20,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+//    [WXApi registerApp:@"wx2e859f58fc844b4f" withDescription:@"weixinPay"];
+    
+    
     //注册登录状态监听
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(loginStateChange:)
@@ -27,16 +32,21 @@
     
     NSString *apnsCertName = nil;
 #if DEBUG
-    apnsCertName = @"ypp_push_dev";
+    apnsCertName = @"ypp_push_dev2";
 #else
     apnsCertName = @"ypp_push_pro";
 #endif
     
-    [[EaseSDKHelper shareHelper] easemobApplication:application
-                      didFinishLaunchingWithOptions:launchOptions
-                                             appkey:@"szhcyj#yuewanba"
-                                       apnsCertName:apnsCertName
-                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+//    [[EaseSDKHelper shareHelper] easemobApplication:application
+//                      didFinishLaunchingWithOptions:launchOptions
+//                                             appkey:@"szhcyj#yuewanba"
+//                                       apnsCertName:apnsCertName
+//                                        otherConfig:@{kSDKConfigEnableConsoleLogger:[NSNumber numberWithBool:YES]}];
+    
+    
+    [self registerRemoteNotification];
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"szhcyj#yuewanba" apnsCertName:apnsCertName];
+    
     
     //以下一行代码的方法里实现了自动登录，异步登录，需要监听[didLoginWithInfo: error:]
     //demo中此监听方法在MainViewController中
@@ -49,7 +59,9 @@
     [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
     //获取群组列表
     [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
-
+    EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+    options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(logout)
                                                  name:LOGOUT object:nil];
@@ -161,6 +173,7 @@
 // 将得到的deviceToken传给SDK
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
+    DLog(@"divickToken:%@",deviceToken);
     [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
@@ -185,11 +198,12 @@
     }
 }
 
-#ifdef __IPHONE_8_0
+
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings{
+     NSLog(@"%@",notificationSettings);
     [application registerForRemoteNotifications];
 }
-#endif
+
 
 //系统方法
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
@@ -213,6 +227,98 @@
 {
     //SDK方法调用
     [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
+}
+
+- (void)registerRemoteNotification{
+
+    UIApplication *application = [UIApplication sharedApplication];
+    
+//    //iOS8 注册APNS
+//    if ([application respondsToSelector:@selector(registerForRemoteNotifications)]) {
+//        [application registerForRemoteNotifications];
+//        UIUserNotificationType notificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+//        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:notificationTypes categories:nil];
+//        [application registerUserNotificationSettings:settings];
+//    }else{
+//        UIRemoteNotificationType notificationTypes = UIRemoteNotificationTypeBadge |
+//        UIRemoteNotificationTypeSound |
+//        UIRemoteNotificationTypeAlert;
+//        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:notificationTypes];
+//    }
+    
+//    [[UIApplication sharedApplication] registerUserNotificationSettings:[UIUserNotificationSettings
+//                                                                       settingsForTypes:(UIUserNotificationTypeSound |UIUserNotificationTypeAlert | UIUserNotificationTypeBadge)
+//                                                                       categories:nil]];
+//    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
+
+//    if ([application respondsToSelector:@selector(isRegisteredForRemoteNotifications)])
+//    {
+//        //IOS8
+//        //创建UIUserNotificationSettings，并设置消息的显示类类型
+//        UIUserNotificationSettings *notiSettings = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeAlert | UIUserNotificationTypeSound) categories:nil];
+//        
+//        [application registerUserNotificationSettings:notiSettings];
+//        
+//    } else{ // ios7
+//        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge                                       |UIRemoteNotificationTypeSound                                      |UIRemoteNotificationTypeAlert)];
+//    }
+    
+    //注册推送功能
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIUserNotificationType types =
+        UIUserNotificationTypeBadge|
+        UIUserNotificationTypeSound|
+        UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:types categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    } else {
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:
+         UIRemoteNotificationTypeAlert |
+         UIRemoteNotificationTypeBadge|
+         UIRemoteNotificationTypeSound];
+    }
+    
+}
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+- (void)onResp:(BaseResp *)resp
+{
+    if ([resp isKindOfClass:[PayResp class]])
+    {
+        PayResp *response = (PayResp *)resp;
+        
+        NSString *strTitle = [NSString stringWithFormat:@"支付结果"];
+        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", response.errCode];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
+                                                        message:strMsg
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil, nil];
+        [alert show];
+        
+        switch (response.errCode) {
+            case WXSuccess: {
+//                NSNotification *notification = [NSNotification notificationWithName:ORDER_PAY_NOTIFICATION object:@"success"];
+//                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                break;
+            }
+                
+            default: {
+//                NSNotification *notification = [NSNotification notificationWithName:ORDER_PAY_NOTIFICATION object:@"fail"];
+//                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                break;
+            }
+        }
+    }
 }
 
 @end

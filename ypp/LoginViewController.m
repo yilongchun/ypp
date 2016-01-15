@@ -119,7 +119,7 @@
                         NSString *avatar = [info objectForKey:@"avatar"];
                         NSString *user_name = [info objectForKey:@"user_name"];
                         NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
-                        [extDic setValue:userid forKey:@"userid"];
+                        [extDic setValue:[NSString stringWithFormat:@"hx_%@",userid] forKey:@"userid"];
                         [extDic setValue:avatar forKey:@"userimage"];
                         [extDic setValue:user_name forKey:@"username"];
                         [DBUtil queryUserInfoFromDB:extDic];

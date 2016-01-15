@@ -68,6 +68,7 @@
     // Configure the cell...
     if (cell == nil) {
         cell = [[EaseConversationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell.avatarView.imageCornerRadius = 5;
     }
     
     id<IConversationModel> model = [self.dataArray objectAtIndex:indexPath.row];

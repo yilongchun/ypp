@@ -11,7 +11,7 @@
 #import "EMConversation.h"
 #import "UIImageView+EMWebCache.h"
 
-CGFloat const EaseConversationCellPadding = 10;
+CGFloat const EaseConversationCellPadding = 6;
 
 @interface EaseConversationCell()
 

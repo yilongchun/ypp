@@ -13,6 +13,8 @@
 		4403CF381C1FBD5C00C2CA46 /* PinglunTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4403CF371C1FBD5C00C2CA46 /* PinglunTableViewCell.m */; };
 		440843AE1C312D6C00C5D8FF /* MyBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 440843AD1C312D6C00C5D8FF /* MyBottomView.m */; };
 		440843B01C312D8000C5D8FF /* MyBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 440843AF1C312D8000C5D8FF /* MyBottomView.xib */; };
+		4420E53E1C433AC000EBEAF8 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4420E5391C433AC000EBEAF8 /* libWeChatSDK.a */; };
+		4420E53F1C433AC000EBEAF8 /* read_me.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4420E53A1C433AC000EBEAF8 /* read_me.txt */; };
 		442816FB1C2D3F5C00593DC1 /* DashenTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 442816F91C2D3F5C00593DC1 /* DashenTableViewCell.m */; };
 		442816FC1C2D3F5C00593DC1 /* DashenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 442816FA1C2D3F5C00593DC1 /* DashenTableViewCell.xib */; };
 		4435CF041C22ADF000B1E7C9 /* ApplyResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4435CF021C22ADF000B1E7C9 /* ApplyResultViewController.m */; };
@@ -378,6 +380,8 @@
 		44E19CA41C22445800E00B0F /* TagViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA21C22445800E00B0F /* TagViewController.xib */; };
 		44E19CA81C2259C700E00B0F /* GameAndShopTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */; };
 		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
+		44E1A0831C487EB6002E3775 /* QiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A0811C487EB6002E3775 /* QiangViewController.m */; };
+		44E1A0841C487EB6002E3775 /* QiangViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0821C487EB6002E3775 /* QiangViewController.xib */; };
 		44E2D4E31C3501C600BD60D2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */; };
 		44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */; };
 		44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */; };
@@ -539,6 +543,11 @@
 		440843AC1C312D6C00C5D8FF /* MyBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyBottomView.h; sourceTree = "<group>"; };
 		440843AD1C312D6C00C5D8FF /* MyBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyBottomView.m; sourceTree = "<group>"; };
 		440843AF1C312D8000C5D8FF /* MyBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyBottomView.xib; sourceTree = "<group>"; };
+		4420E5391C433AC000EBEAF8 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		4420E53A1C433AC000EBEAF8 /* read_me.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = read_me.txt; sourceTree = "<group>"; };
+		4420E53B1C433AC000EBEAF8 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
+		4420E53C1C433AC000EBEAF8 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		4420E53D1C433AC000EBEAF8 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		442816F81C2D3F5C00593DC1 /* DashenTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DashenTableViewCell.h; sourceTree = "<group>"; };
 		442816F91C2D3F5C00593DC1 /* DashenTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DashenTableViewCell.m; sourceTree = "<group>"; };
 		442816FA1C2D3F5C00593DC1 /* DashenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DashenTableViewCell.xib; sourceTree = "<group>"; };
@@ -1179,6 +1188,9 @@
 		44E19CA51C2259C700E00B0F /* GameAndShopTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameAndShopTableViewController.h; sourceTree = "<group>"; };
 		44E19CA61C2259C700E00B0F /* GameAndShopTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameAndShopTableViewController.m; sourceTree = "<group>"; };
 		44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GameAndShopTableViewController.xib; sourceTree = "<group>"; };
+		44E1A0801C487EB6002E3775 /* QiangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiangViewController.h; sourceTree = "<group>"; };
+		44E1A0811C487EB6002E3775 /* QiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiangViewController.m; sourceTree = "<group>"; };
+		44E1A0821C487EB6002E3775 /* QiangViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QiangViewController.xib; sourceTree = "<group>"; };
 		44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaViewController.h; sourceTree = "<group>"; };
 		44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaViewController.m; sourceTree = "<group>"; };
@@ -1464,6 +1476,7 @@
 			files = (
 				44F8E3921C3B9F5800548777 /* Accelerate.framework in Frameworks */,
 				44F8E3901C3B9F5200548777 /* ImageIO.framework in Frameworks */,
+				4420E53E1C433AC000EBEAF8 /* libWeChatSDK.a in Frameworks */,
 				44F8E38E1C3B9F4800548777 /* AssetsLibrary.framework in Frameworks */,
 				44F8E38C1C3B9F4200548777 /* QuartzCore.framework in Frameworks */,
 				44F8E38A1C3B9F3A00548777 /* CoreFoundation.framework in Frameworks */,
@@ -1491,6 +1504,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4420E5381C433AC000EBEAF8 /* SDK1.6.2 */ = {
+			isa = PBXGroup;
+			children = (
+				4420E5391C433AC000EBEAF8 /* libWeChatSDK.a */,
+				4420E53A1C433AC000EBEAF8 /* read_me.txt */,
+				4420E53B1C433AC000EBEAF8 /* WechatAuthSDK.h */,
+				4420E53C1C433AC000EBEAF8 /* WXApi.h */,
+				4420E53D1C433AC000EBEAF8 /* WXApiObject.h */,
+			);
+			path = SDK1.6.2;
+			sourceTree = "<group>";
+		};
 		444E58401C1514EF00D77C63 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
@@ -2932,6 +2957,16 @@
 			path = tabbar;
 			sourceTree = "<group>";
 		};
+		44E1A07F1C487E8F002E3775 /* qiang */ = {
+			isa = PBXGroup;
+			children = (
+				44E1A0801C487EB6002E3775 /* QiangViewController.h */,
+				44E1A0811C487EB6002E3775 /* QiangViewController.m */,
+				44E1A0821C487EB6002E3775 /* QiangViewController.xib */,
+			);
+			path = qiang;
+			sourceTree = "<group>";
+		};
 		44E6E1041C239C8A00F36349 /* youhui */ = {
 			isa = PBXGroup;
 			children = (
@@ -3265,6 +3300,7 @@
 				5A2A76441BE9D29000C5FD2F /* ViewController3.m */,
 				5A2A76461BE9D29A00C5FD2F /* ViewController4.h */,
 				5A2A76471BE9D29A00C5FD2F /* ViewController4.m */,
+				44E1A07F1C487E8F002E3775 /* qiang */,
 				5A2A76491BE9D2A400C5FD2F /* ViewController5.h */,
 				5A2A764A1BE9D2A400C5FD2F /* ViewController5.m */,
 				44F029F61C1E97F100EF9218 /* My */,
@@ -3303,6 +3339,7 @@
 		5A35FA171C12B68400427364 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				4420E5381C433AC000EBEAF8 /* SDK1.6.2 */,
 				44F8E34C1C3B9ED100548777 /* YYWebImage */,
 				44DBB9401C33CD64004406F1 /* fmdb */,
 				44DBB93C1C33BF7C004406F1 /* GifImage */,
@@ -3746,6 +3783,7 @@
 				44DE9E7F1C32891F00B14903 /* messageToolbarBg@2x.png in Resources */,
 				44DE9E501C32891F00B14903 /* faceDelete@2x.png in Resources */,
 				4401E07A1C278BC500A48051 /* WebViewController.xib in Resources */,
+				4420E53F1C433AC000EBEAF8 /* read_me.txt in Resources */,
 				44DE9E771C32891F00B14903 /* chatBar_more_location.png in Resources */,
 				44DE9E561C32891F00B14903 /* chatBar_faceSelected@2x.png in Resources */,
 				44DE9E2A1C32891F00B14903 /* VoiceSearchFeedback016@2x.png in Resources */,
@@ -3763,6 +3801,7 @@
 				44DE9E4E1C32891F00B14903 /* chat_location_preview@2x.png in Resources */,
 				44DE9E9E1C32891F00B14903 /* groupPrivateHeader@2x.png in Resources */,
 				44DE9E761C32891F00B14903 /* chatBar_more_cameraSelected@2x.png in Resources */,
+				44E1A0841C487EB6002E3775 /* QiangViewController.xib in Resources */,
 				44DE9E3B1C32891F00B14903 /* callBg@2x.png in Resources */,
 				44DE9E641C32891F00B14903 /* chatBar_recordSelected@2x.png in Resources */,
 				44DE9E911C32891F00B14903 /* password@2x.png in Resources */,
@@ -3828,6 +3867,7 @@
 				444E58B51C15217000D77C63 /* NSFileManager+Paths.m in Sources */,
 				44DE9C8E1C322F8D00B14903 /* EaseConversationCell.m in Sources */,
 				44F02A271C1E97F100EF9218 /* MyInfoViewController.m in Sources */,
+				44E1A0831C487EB6002E3775 /* QiangViewController.m in Sources */,
 				44DE9C751C322F8D00B14903 /* EaseConversationListViewController.m in Sources */,
 				44DE9B101C322E7800B14903 /* MJRefreshGifHeader.m in Sources */,
 				44FB14EB1C17B58A009855DC /* UIView+Toast.m in Sources */,
@@ -4211,6 +4251,7 @@
 					"$(PROJECT_DIR)/ypp/lib/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ypp/lib/SDK1.6.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
@@ -4240,6 +4281,7 @@
 					"$(PROJECT_DIR)/ypp/lib/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/ypp/lib/EaseUI/EMUIKit/3rdparty/DeviceHelper/VoiceConvert/opencore-amrwb",
+					"$(PROJECT_DIR)/ypp/lib/SDK1.6.2",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
