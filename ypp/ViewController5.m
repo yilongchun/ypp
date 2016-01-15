@@ -26,6 +26,7 @@
 #import "DBUtil.h"
 #import "MyWalletViewController.h"
 #import "JifenViewController.h"
+#import "MyAccountViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -258,7 +259,8 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }else{
-                
+                UITapGestureRecognizer *tap1 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYue)];
+                UITapGestureRecognizer *tap1_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYue)];
                 
                 UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJifen)];
                 UITapGestureRecognizer *tap2_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJifen)];
@@ -285,6 +287,9 @@
                     cell4.peilianLabel.userInteractionEnabled = YES;
                     cell4.peilianLabel2.userInteractionEnabled = YES;
                     
+                    [cell4.moneyLabel addGestureRecognizer:tap1];
+                    [cell4.moneyLabel2 addGestureRecognizer:tap1_2];
+                    
                     [cell4.scoreLabel addGestureRecognizer:tap2];
                     [cell4.scoreLabel2 addGestureRecognizer:tap2_2];
                     
@@ -305,6 +310,9 @@
                     cell3.scoreLabel2.userInteractionEnabled = YES;
                     cell3.youhuiquanLabel.userInteractionEnabled = YES;
                     cell3.youhuiquanLabel2.userInteractionEnabled = YES;
+                    
+                    [cell3.moneyLabel addGestureRecognizer:tap1];
+                    [cell3.moneyLabel2 addGestureRecognizer:tap1_2];
                     
                     [cell3.scoreLabel addGestureRecognizer:tap2];
                     [cell3.scoreLabel2 addGestureRecognizer:tap2_2];
@@ -480,6 +488,9 @@
     if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [tableView setLayoutMargins:UIEdgeInsetsZero];
     }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -562,6 +573,16 @@
         [self hideHud];
         [self showHint:error.description];
     }];
+}
+
+/**
+ *  查看余额
+ */
+-(void)showYue{
+    MyAccountViewController *vc = [[MyAccountViewController alloc] init];
+    vc.title = @"我的账户";
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**

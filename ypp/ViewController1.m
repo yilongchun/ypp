@@ -290,13 +290,15 @@
     }
 }
 
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
+        [tableView setSeparatorInset:UIEdgeInsetsZero];
     }
-    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
+    if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
+        [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 

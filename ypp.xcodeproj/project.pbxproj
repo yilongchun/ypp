@@ -386,6 +386,12 @@
 		44E1A0891C48924E002E3775 /* MyWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0871C48924E002E3775 /* MyWalletViewController.xib */; };
 		44E1A08D1C489634002E3775 /* JifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A08B1C489634002E3775 /* JifenViewController.m */; };
 		44E1A08E1C489634002E3775 /* JifenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A08C1C489634002E3775 /* JifenViewController.xib */; };
+		44E1A0921C4899A5002E3775 /* MyAccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A0901C4899A5002E3775 /* MyAccountViewController.m */; };
+		44E1A0931C4899A5002E3775 /* MyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0911C4899A5002E3775 /* MyAccountViewController.xib */; };
+		44E1A0971C48A072002E3775 /* ChongzhiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A0951C48A072002E3775 /* ChongzhiViewController.m */; };
+		44E1A0981C48A072002E3775 /* ChongzhiViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0961C48A072002E3775 /* ChongzhiViewController.xib */; };
+		44E1A09C1C48C4F0002E3775 /* YuETableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A09A1C48C4F0002E3775 /* YuETableViewCell.m */; };
+		44E1A09D1C48C4F0002E3775 /* YuETableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A09B1C48C4F0002E3775 /* YuETableViewCell.xib */; };
 		44E2D4E31C3501C600BD60D2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */; };
 		44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */; };
 		44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */; };
@@ -1201,6 +1207,15 @@
 		44E1A08A1C489634002E3775 /* JifenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenViewController.h; sourceTree = "<group>"; };
 		44E1A08B1C489634002E3775 /* JifenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenViewController.m; sourceTree = "<group>"; };
 		44E1A08C1C489634002E3775 /* JifenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JifenViewController.xib; sourceTree = "<group>"; };
+		44E1A08F1C4899A5002E3775 /* MyAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAccountViewController.h; sourceTree = "<group>"; };
+		44E1A0901C4899A5002E3775 /* MyAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAccountViewController.m; sourceTree = "<group>"; };
+		44E1A0911C4899A5002E3775 /* MyAccountViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyAccountViewController.xib; sourceTree = "<group>"; };
+		44E1A0941C48A072002E3775 /* ChongzhiViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChongzhiViewController.h; sourceTree = "<group>"; };
+		44E1A0951C48A072002E3775 /* ChongzhiViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChongzhiViewController.m; sourceTree = "<group>"; };
+		44E1A0961C48A072002E3775 /* ChongzhiViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChongzhiViewController.xib; sourceTree = "<group>"; };
+		44E1A0991C48C4F0002E3775 /* YuETableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YuETableViewCell.h; sourceTree = "<group>"; };
+		44E1A09A1C48C4F0002E3775 /* YuETableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YuETableViewCell.m; sourceTree = "<group>"; };
+		44E1A09B1C48C4F0002E3775 /* YuETableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YuETableViewCell.xib; sourceTree = "<group>"; };
 		44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaViewController.h; sourceTree = "<group>"; };
 		44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaViewController.m; sourceTree = "<group>"; };
@@ -3103,6 +3118,15 @@
 				44E1A08A1C489634002E3775 /* JifenViewController.h */,
 				44E1A08B1C489634002E3775 /* JifenViewController.m */,
 				44E1A08C1C489634002E3775 /* JifenViewController.xib */,
+				44E1A08F1C4899A5002E3775 /* MyAccountViewController.h */,
+				44E1A0901C4899A5002E3775 /* MyAccountViewController.m */,
+				44E1A0911C4899A5002E3775 /* MyAccountViewController.xib */,
+				44E1A0941C48A072002E3775 /* ChongzhiViewController.h */,
+				44E1A0951C48A072002E3775 /* ChongzhiViewController.m */,
+				44E1A0961C48A072002E3775 /* ChongzhiViewController.xib */,
+				44E1A0991C48C4F0002E3775 /* YuETableViewCell.h */,
+				44E1A09A1C48C4F0002E3775 /* YuETableViewCell.m */,
+				44E1A09B1C48C4F0002E3775 /* YuETableViewCell.xib */,
 				44F1DE421C2CE20900C7C17C /* dingdan */,
 				44E6E1041C239C8A00F36349 /* youhui */,
 				44E972A91C20F6B70014E301 /* peilian */,
@@ -3688,6 +3712,7 @@
 				44DE9E311C32891F00B14903 /* VoiceSearchFeedback020.png in Resources */,
 				44DE9E511C32891F00B14903 /* imageDownloadFail@2x.png in Resources */,
 				44DE9E1B1C32891F00B14903 /* VoiceSearchFeedback009.png in Resources */,
+				44E1A0931C4899A5002E3775 /* MyAccountViewController.xib in Resources */,
 				44DE9E9F1C32891F00B14903 /* groupPublicHeader@2x.png in Resources */,
 				4435CF051C22ADF000B1E7C9 /* ApplyResultViewController.xib in Resources */,
 				44DE9EA71C32891F00B14903 /* tabbar_contacts@2x.png in Resources */,
@@ -3723,6 +3748,7 @@
 				44DE9E6C1C32891F00B14903 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				44DE9E891C32891F00B14903 /* chat_sender_audio_playing_002@2x.png in Resources */,
 				44DE9E1F1C32891F00B14903 /* VoiceSearchFeedback011.png in Resources */,
+				44E1A09D1C48C4F0002E3775 /* YuETableViewCell.xib in Resources */,
 				44DE9E221C32891F00B14903 /* VoiceSearchFeedback012@2x.png in Resources */,
 				44DE9EA61C32891F00B14903 /* tabbar_contacts.png in Resources */,
 				44DE9E2B1C32891F00B14903 /* VoiceSearchFeedback017.png in Resources */,
@@ -3753,6 +3779,7 @@
 				44DE9E841C32891F00B14903 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				44DE9E931C32891F00B14903 /* back@2x.png in Resources */,
 				44DE9E611C32891F00B14903 /* chatBar_recordBg.png in Resources */,
+				44E1A0981C48A072002E3775 /* ChongzhiViewController.xib in Resources */,
 				44DE9E4D1C32891F00B14903 /* chat_location_preview.png in Resources */,
 				44DE9E4A1C32891F00B14903 /* chat_location_detail_disclosure@2x.png in Resources */,
 				44DE9E6E1C32891F00B14903 /* chatBar_colorMore_photoSelected@2x.png in Resources */,
@@ -3978,6 +4005,7 @@
 				44DE9B121C322E7800B14903 /* MJRefreshStateHeader.m in Sources */,
 				44DE9C621C322F8D00B14903 /* PSTGridLayoutSection.m in Sources */,
 				449546F61C157DFB000C41C2 /* UITextView+PlaceHolder.m in Sources */,
+				44E1A09C1C48C4F0002E3775 /* YuETableViewCell.m in Sources */,
 				44DE9C3D1C322F8D00B14903 /* MWCaptionView.m in Sources */,
 				44DE9C711C322F8D00B14903 /* EaseEmoji.m in Sources */,
 				44F02A281C1E97F100EF9218 /* PhoneBindTableViewController.m in Sources */,
@@ -4130,6 +4158,7 @@
 				444E58BB1C15217000D77C63 /* NSObject+AssociatedObject.m in Sources */,
 				44F02A251C1E97F100EF9218 /* EditMyInfoViewController.m in Sources */,
 				44F029F11C1E97D000EF9218 /* DongtaiDetailTableViewCell.m in Sources */,
+				44E1A0971C48A072002E3775 /* ChongzhiViewController.m in Sources */,
 				44F8E37E1C3B9ED100548777 /* UIImageView+YYWebImage.m in Sources */,
 				5A2A76481BE9D29A00C5FD2F /* ViewController4.m in Sources */,
 				44F8E37D1C3B9ED100548777 /* UIImage+YYWebImage.m in Sources */,
@@ -4141,6 +4170,7 @@
 				44DE9B0E1C322E7800B14903 /* MJRefreshBackNormalFooter.m in Sources */,
 				44DE9C8A1C322F8D00B14903 /* EaseFaceView.m in Sources */,
 				44DE9C5A1C322F8D00B14903 /* PSTCollectionViewData.m in Sources */,
+				44E1A0921C4899A5002E3775 /* MyAccountViewController.m in Sources */,
 				44F02A351C1EA4CE00EF9218 /* PlayerTableViewCell4.m in Sources */,
 				444E58B01C15217000D77C63 /* NSDictionary+Category.m in Sources */,
 				444E58AF1C15217000D77C63 /* NSDateFormatter+Make.m in Sources */,

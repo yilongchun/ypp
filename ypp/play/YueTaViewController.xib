@@ -159,7 +159,7 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfontgou" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-Er-551">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="iconfontgou" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-Er-551">
                             <rect key="frame" x="284" y="14" width="21" height="22"/>
                             <animations/>
                         </imageView>

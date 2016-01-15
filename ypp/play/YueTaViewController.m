@@ -460,6 +460,9 @@
     if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [tableView setLayoutMargins:UIEdgeInsetsZero];
     }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

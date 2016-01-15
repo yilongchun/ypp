@@ -9,6 +9,7 @@
 #import "MyWalletViewController.h"
 #import "YouhuiListViewController.h"
 #import "JifenViewController.h"
+#import "MyAccountViewController.h"
 
 @interface MyWalletViewController ()
 
@@ -26,14 +27,15 @@
         self.extendedLayoutIncludesOpaqueBars = YES;
     }
     
-    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.mytableview setSeparatorInset:UIEdgeInsetsZero];
-    }
-    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.mytableview setLayoutMargins:UIEdgeInsetsZero];
-    }
+//    if ([self.mytableview respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [self.mytableview setSeparatorInset:UIEdgeInsetsMake(-15, 0, 0, 0)];
+//    }
+//    if ([self.mytableview respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [self.mytableview setLayoutMargins:UIEdgeInsetsMake(-15, 0, 0, 0)];
+//    }
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -91,13 +93,23 @@
     if ([tableView respondsToSelector:@selector(setSeparatorInset:)]) {
         [tableView setSeparatorInset:UIEdgeInsetsZero];
     }
+    
     if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (indexPath.row == 0) {//余额
+        MyAccountViewController *vc = [[MyAccountViewController alloc] init];
+        vc.title = @"我的账户";
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     if (indexPath.row == 1) {//积分
         JifenViewController *vc = [[JifenViewController alloc] init];
         vc.title = @"积分";
