@@ -382,6 +382,10 @@
 		44E19CA91C2259C700E00B0F /* GameAndShopTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E19CA71C2259C700E00B0F /* GameAndShopTableViewController.xib */; };
 		44E1A0831C487EB6002E3775 /* QiangViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A0811C487EB6002E3775 /* QiangViewController.m */; };
 		44E1A0841C487EB6002E3775 /* QiangViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0821C487EB6002E3775 /* QiangViewController.xib */; };
+		44E1A0881C48924E002E3775 /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A0861C48924E002E3775 /* MyWalletViewController.m */; };
+		44E1A0891C48924E002E3775 /* MyWalletViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A0871C48924E002E3775 /* MyWalletViewController.xib */; };
+		44E1A08D1C489634002E3775 /* JifenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E1A08B1C489634002E3775 /* JifenViewController.m */; };
+		44E1A08E1C489634002E3775 /* JifenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E1A08C1C489634002E3775 /* JifenViewController.xib */; };
 		44E2D4E31C3501C600BD60D2 /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */; };
 		44E679EF1C2A47BA00A510E6 /* YueTaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */; };
 		44E679F01C2A47BA00A510E6 /* YueTaViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 44E679EE1C2A47BA00A510E6 /* YueTaViewController.xib */; };
@@ -1191,6 +1195,12 @@
 		44E1A0801C487EB6002E3775 /* QiangViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiangViewController.h; sourceTree = "<group>"; };
 		44E1A0811C487EB6002E3775 /* QiangViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiangViewController.m; sourceTree = "<group>"; };
 		44E1A0821C487EB6002E3775 /* QiangViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QiangViewController.xib; sourceTree = "<group>"; };
+		44E1A0851C48924E002E3775 /* MyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewController.h; sourceTree = "<group>"; };
+		44E1A0861C48924E002E3775 /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
+		44E1A0871C48924E002E3775 /* MyWalletViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyWalletViewController.xib; sourceTree = "<group>"; };
+		44E1A08A1C489634002E3775 /* JifenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JifenViewController.h; sourceTree = "<group>"; };
+		44E1A08B1C489634002E3775 /* JifenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JifenViewController.m; sourceTree = "<group>"; };
+		44E1A08C1C489634002E3775 /* JifenViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JifenViewController.xib; sourceTree = "<group>"; };
 		44E2D4E21C3501C600BD60D2 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		44E679EC1C2A47BA00A510E6 /* YueTaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YueTaViewController.h; sourceTree = "<group>"; };
 		44E679ED1C2A47BA00A510E6 /* YueTaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YueTaViewController.m; sourceTree = "<group>"; };
@@ -3087,6 +3097,12 @@
 				4401E0761C278BC500A48051 /* WebViewController.h */,
 				4401E0771C278BC500A48051 /* WebViewController.m */,
 				4401E0781C278BC500A48051 /* WebViewController.xib */,
+				44E1A0851C48924E002E3775 /* MyWalletViewController.h */,
+				44E1A0861C48924E002E3775 /* MyWalletViewController.m */,
+				44E1A0871C48924E002E3775 /* MyWalletViewController.xib */,
+				44E1A08A1C489634002E3775 /* JifenViewController.h */,
+				44E1A08B1C489634002E3775 /* JifenViewController.m */,
+				44E1A08C1C489634002E3775 /* JifenViewController.xib */,
 				44F1DE421C2CE20900C7C17C /* dingdan */,
 				44E6E1041C239C8A00F36349 /* youhui */,
 				44E972A91C20F6B70014E301 /* peilian */,
@@ -3776,6 +3792,7 @@
 				44F02A1D1C1E97F100EF9218 /* BirthdayViewController.xib in Resources */,
 				44DE9E961C32891F00B14903 /* titleBar.png in Resources */,
 				44DE9E9A1C32891F00B14903 /* group_invitee_delete@2x.png in Resources */,
+				44E1A0891C48924E002E3775 /* MyWalletViewController.xib in Resources */,
 				44DE9E881C32891F00B14903 /* chat_sender_audio_playing_001@2x.png in Resources */,
 				44DE9E6B1C32891F00B14903 /* chatBar_colorMore_location@2x.png in Resources */,
 				44DE9E781C32891F00B14903 /* chatBar_more_location@2x.png in Resources */,
@@ -3812,6 +3829,7 @@
 				44DE9E741C32891F00B14903 /* chatBar_more_camera@2x.png in Resources */,
 				44DE9E541C32891F00B14903 /* chatBar_face@2x.png in Resources */,
 				44DE9E2F1C32891F00B14903 /* VoiceSearchFeedback019.png in Resources */,
+				44E1A08E1C489634002E3775 /* JifenViewController.xib in Resources */,
 				44DE9E801C32891F00B14903 /* chat_receiver_audio_playing000@2x.png in Resources */,
 				44DE9E731C32891F00B14903 /* chatBar_more_camera.png in Resources */,
 				44DE9E651C32891F00B14903 /* chatBar_recordSelectedBg.png in Resources */,
@@ -3846,6 +3864,7 @@
 				44DE9C6F1C322F8D00B14903 /* EaseConvertToCommonEmoticonsHelper.m in Sources */,
 				44DE9C811C322F8D00B14903 /* EaseBubbleView+Location.m in Sources */,
 				44DE9B111C322E7800B14903 /* MJRefreshNormalHeader.m in Sources */,
+				44E1A0881C48924E002E3775 /* MyWalletViewController.m in Sources */,
 				44DE9C481C322F8D00B14903 /* EMSDWebImageDecoder.m in Sources */,
 				44DE9C8B1C322F8D00B14903 /* EaseFacialView.m in Sources */,
 				44DE9C501C322F8D00B14903 /* UIImage+EMGIF.m in Sources */,
@@ -4022,6 +4041,7 @@
 				44DBB94F1C33CD64004406F1 /* FMDatabaseQueue.m in Sources */,
 				44E972B91C213CDA0014E301 /* ApplyPlayerTableViewController.m in Sources */,
 				444E58CC1C15217000D77C63 /* NSURL+Param.m in Sources */,
+				44E1A08D1C489634002E3775 /* JifenViewController.m in Sources */,
 				44F029F31C1E97D000EF9218 /* DongtaiTableViewCell.m in Sources */,
 				44DE9C6E1C322F8D00B14903 /* EaseChineseToPinyin.m in Sources */,
 				44DBB9241C33B75E004406F1 /* EMBubbleView+Gif.m in Sources */,

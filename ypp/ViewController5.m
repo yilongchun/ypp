@@ -24,6 +24,8 @@
 #import "JYSlideSegmentController.h"
 #import "DingdanTableViewController.h"
 #import "DBUtil.h"
+#import "MyWalletViewController.h"
+#import "JifenViewController.h"
 
 @interface ViewController5 (){
     NSDictionary *userinfo;
@@ -256,6 +258,11 @@
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }else{
+                
+                
+                UITapGestureRecognizer *tap2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJifen)];
+                UITapGestureRecognizer *tap2_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showJifen)];
+                
                 UITapGestureRecognizer *tap3 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYouhui)];
                 UITapGestureRecognizer *tap3_2 = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(showYouhui)];
                 
@@ -278,6 +285,8 @@
                     cell4.peilianLabel.userInteractionEnabled = YES;
                     cell4.peilianLabel2.userInteractionEnabled = YES;
                     
+                    [cell4.scoreLabel addGestureRecognizer:tap2];
+                    [cell4.scoreLabel2 addGestureRecognizer:tap2_2];
                     
                     [cell4.youhuiquanLabel addGestureRecognizer:tap3];
                     [cell4.youhuiquanLabel2 addGestureRecognizer:tap3_2];
@@ -297,6 +306,8 @@
                     cell3.youhuiquanLabel.userInteractionEnabled = YES;
                     cell3.youhuiquanLabel2.userInteractionEnabled = YES;
                     
+                    [cell3.scoreLabel addGestureRecognizer:tap2];
+                    [cell3.scoreLabel2 addGestureRecognizer:tap2_2];
                     
                     [cell3.youhuiquanLabel addGestureRecognizer:tap3];
                     [cell3.youhuiquanLabel2 addGestureRecognizer:tap3_2];
@@ -384,6 +395,15 @@
         vc.hidesBottomBarWhenPushed = YES;
         vc.title = @"账号绑定";
         [self.navigationController pushViewController:vc animated:YES];
+    }
+    if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            MyWalletViewController *vc = [[MyWalletViewController alloc] init];
+            vc.title = @"我的钱包";
+            vc.userinfo = userinfo;
+            vc.hidesBottomBarWhenPushed = YES;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     }
     if (indexPath.section == 3) {
         if (indexPath.row == 0) {
@@ -542,6 +562,17 @@
         [self hideHud];
         [self showHint:error.description];
     }];
+}
+
+/**
+ *  查看积分
+ */
+-(void)showJifen{
+    JifenViewController *vc = [[JifenViewController alloc] init];
+    vc.title = @"积分";
+    vc.jifen = [userinfo objectForKey:@"score"];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 /**
