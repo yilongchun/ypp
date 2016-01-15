@@ -49,7 +49,7 @@
     UIView *v = [[UIView alloc] initWithFrame:CGRectZero];
     [self.mytableview setTableFooterView:v];
     
-    self.mytableview.separatorColor = RGB(243, 243, 243);
+    self.mytableview.separatorColor = RGB(230, 230, 230);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -165,6 +165,9 @@
     }
     if ([tableView respondsToSelector:@selector(setLayoutMargins:)]) {
         [tableView setLayoutMargins:UIEdgeInsetsZero];
+    }
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
     }
 }
 
