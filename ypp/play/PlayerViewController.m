@@ -61,7 +61,7 @@
     
     [self loadData];
     [self loadDongtai];
-    [self loadGuanzhu];
+    
 }
 
 -(void)loadData{
@@ -94,7 +94,7 @@
                 self.title = username;
                 [_mytableview reloadData];
                 [self addImages];
-                
+                [self loadGuanzhu];
                 
             }else{
                 NSString *message = [dic objectForKey:@"message"];
@@ -171,10 +171,54 @@
         [yueBtn removeFromSuperview];
     }
     
+    NSString *is_daren = [userinfo objectForKey:@"is_daren"];//0默认 1审核中 2通过 3不通过
+    
+    
     CGFloat x = 0;
     CGFloat width = 60;
     if (flag) {//已关注
         width = 120;
+        
+        if ([is_daren isEqualToString:@"2"]) {//游神
+            chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, width, 50)];
+            chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            chatBtn.layer.borderWidth = 1;
+            [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
+            chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+            [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+            chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+            chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+            chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+            [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:chatBtn];
+            
+            yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [yueBtn setFrame:CGRectMake(118, Main_Screen_Height - 50 - 64, Main_Screen_Width - 118, 50)];
+            yueBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            yueBtn.layer.borderWidth = 1;
+            [yueBtn setTitle:@"约TA" forState:UIControlStateNormal];
+            yueBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+            [yueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [yueBtn setBackgroundColor:RGBA(200,22,34,1)];
+            [yueBtn addTarget:self action:@selector(yueta) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:yueBtn];
+        }else{
+            chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, Main_Screen_Width, 50)];
+            chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            chatBtn.layer.borderWidth = 1;
+            [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
+            chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+            [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+            chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+            chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+            chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+            [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:chatBtn];
+        }
     }else{//未关注
         guanzhuBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [guanzhuBtn setFrame:CGRectMake(0, Main_Screen_Height - 50 - 64, 60, 50)];
@@ -190,32 +234,50 @@
         [guanzhuBtn addTarget:self action:@selector(guanzhu) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:guanzhuBtn];
         x = 59;
+        
+        if ([is_daren isEqualToString:@"2"]) {//游神
+            chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, width, 50)];
+            chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            chatBtn.layer.borderWidth = 1;
+            [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
+            chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+            [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+            chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+            chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+            chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+            [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:chatBtn];
+            
+            yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [yueBtn setFrame:CGRectMake(118, Main_Screen_Height - 50 - 64, Main_Screen_Width - 118, 50)];
+            yueBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            yueBtn.layer.borderWidth = 1;
+            [yueBtn setTitle:@"约TA" forState:UIControlStateNormal];
+            yueBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+            [yueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [yueBtn setBackgroundColor:RGBA(200,22,34,1)];
+            [yueBtn addTarget:self action:@selector(yueta) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:yueBtn];
+        }else{
+            chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, width, Main_Screen_Width - x - width)];
+            chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
+            chatBtn.layer.borderWidth = 1;
+            [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
+            chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
+            [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
+            [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
+            chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
+            chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
+            chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
+            [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:chatBtn];
+        }
     }
     
-    chatBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [chatBtn setFrame:CGRectMake(x, Main_Screen_Height - 50 - 64, width, 50)];
-    chatBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
-    chatBtn.layer.borderWidth = 1;
-    [chatBtn setTitle:@"聊天" forState:UIControlStateNormal];
-    chatBtn.titleLabel.font = [UIFont systemFontOfSize:12];
-    [chatBtn setTitleColor:RGBA(200,22,34,1) forState:UIControlStateNormal];
-    [chatBtn setImage:[UIImage imageNamed:@"chat"] forState:UIControlStateNormal];
-    chatBtn.imageEdgeInsets = UIEdgeInsetsMake(-13, 0, 0, -25);//设置image在button上的位置（上top，左left，下bottom，右right）这里可以写负值，对上写－5，那么image就象上移动5个像素
-    chatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;//设置title的字体居中
-    chatBtn.titleEdgeInsets = UIEdgeInsetsMake(3, -25, -24, 0);//设置title在button上的位置（上top，左left，下bottom，右right）
-    [chatBtn addTarget:self action:@selector(chat) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:chatBtn];
     
-    yueBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [yueBtn setFrame:CGRectMake(118, Main_Screen_Height - 50 - 64, Main_Screen_Width - 118, 50)];
-    yueBtn.layer.borderColor = RGBA(200,22,34,1).CGColor;
-    yueBtn.layer.borderWidth = 1;
-    [yueBtn setTitle:@"约TA" forState:UIControlStateNormal];
-    yueBtn.titleLabel.font = [UIFont boldSystemFontOfSize:16];
-    [yueBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [yueBtn setBackgroundColor:RGBA(200,22,34,1)];
-    [yueBtn addTarget:self action:@selector(yueta) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:yueBtn];
 }
 //加载最新一条动态
 -(void)loadDongtai{
@@ -340,19 +402,34 @@
 
 //聊天
 -(void)chat{
-    ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]] conversationType:eConversationTypeChat];
     
-    NSString *userid = [userinfo objectForKey:@"id"];
-    NSString *avatar = [userinfo objectForKey:@"avatar"];
-    NSString *user_name = [userinfo objectForKey:@"user_name"];
-    NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
-    [extDic setValue:[NSString stringWithFormat:@"hx_%@",userid] forKey:@"userid"];
-    [extDic setValue:avatar forKey:@"userimage"];
-    [extDic setValue:user_name forKey:@"username"];
-    [DBUtil queryUserInfoFromDB:extDic];
+    BOOL flag = NO;
     
-    chatController.title = user_name;
-    [self.navigationController pushViewController:chatController animated:YES];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if([vc isKindOfClass:[ChatViewController class]]){
+            flag = YES;
+            [self.navigationController popToViewController:vc animated:YES];
+            break;
+        }
+    }
+    
+    if (!flag) {
+        ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:[NSString stringWithFormat:@"hx_%@",[userinfo objectForKey:@"id"]] conversationType:eConversationTypeChat];
+        
+        NSString *userid = [userinfo objectForKey:@"id"];
+        NSString *avatar = [userinfo objectForKey:@"avatar"];
+        NSString *user_name = [userinfo objectForKey:@"user_name"];
+        NSMutableDictionary *extDic = [NSMutableDictionary dictionary];
+        [extDic setValue:[NSString stringWithFormat:@"hx_%@",userid] forKey:@"userid"];
+        [extDic setValue:avatar forKey:@"userimage"];
+        [extDic setValue:user_name forKey:@"username"];
+        [DBUtil queryUserInfoFromDB:extDic];
+        
+        chatController.title = user_name;
+        
+        [self.navigationController pushViewController:chatController animated:YES];
+    }
+    
 }
 
 /**

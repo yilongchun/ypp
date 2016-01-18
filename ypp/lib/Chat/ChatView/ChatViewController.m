@@ -10,7 +10,7 @@
 #import "EaseUI.h"
 #import "CustomMessageCell.h"
 #import "DBUtil.h"
-
+#import "PlayerViewController.h"
 
 
 @interface ChatViewController ()<UIAlertViewDelegate, EaseMessageViewControllerDelegate, EaseMessageViewControllerDataSource>
@@ -181,7 +181,45 @@
    didSelectAvatarMessageModel:(id<IMessageModel>)messageModel
 {
     //点击个人头像
-    DLog(@"点击个人头像");
+    DLog(@"点击个人头像 %@ %@ %@ %d",messageModel.message.conversationChatter,messageModel.message.from,messageModel.message.to,messageModel.isSender);
+    
+    if (messageModel.isSender) {//如果是发送者
+        
+    }else{
+        NSString *hxuserid = messageModel.message.from;
+        if ([hxuserid hasPrefix:@"hx_"]) {
+            NSString *userid = [hxuserid substringFromIndex:3];
+            DLog(@"%@",userid);
+            
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+            PlayerViewController *vc = [story instantiateViewControllerWithIdentifier:@"PlayerViewController"];
+//            vc.hidesBottomBarWhenPushed = YES;
+            vc.userid = userid;
+            vc.title = messageModel.nickname;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
+    
+    
+    
+//    NSString *userid = [info objectForKey:@"userid"];
+//    NSString *loginedUserId = [[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] objectForKey:@"id"];
+//    
+//    if ([userid isEqualToString:loginedUserId]) {//是自己
+//        MyInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"MyInfoViewController"];
+//        vc.userid = userid;
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }else{
+//        PlayerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"PlayerViewController"];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        vc.userid = [info objectForKey:@"userid"];
+//        vc.title = [info objectForKey:@"user_name"];
+//        vc.youshenInfo = info;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
+    
+    
 //    UserProfileViewController *userprofile = [[UserProfileViewController alloc] initWithUsername:messageModel.nickname];
 //    [self.navigationController pushViewController:userprofile animated:YES];
 }
