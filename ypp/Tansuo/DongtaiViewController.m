@@ -391,20 +391,24 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     int currentPostion = scrollView.contentOffset.y;
-    if (currentPostion - lastPosition > 25) {
+    DLog(@"%d",currentPostion);
+    
+    if (currentPostion - lastPosition > 60) {
         lastPosition = currentPostion;
         NSLog(@"ScrollUp now");
         
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"hideAddBtn" object:nil];
     }
-    else if (lastPosition - currentPostion > 25)
+    else if (lastPosition - currentPostion > 60)
     {
         lastPosition = currentPostion;
         NSLog(@"ScrollDown now");
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"showAddBtn" object:nil];
     }
+    
+    
 }
 //将要开始拖拽，手指已经放在view上并准备拖动的那一刻
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{    //将要停止前的坐标
