@@ -10,4 +10,6 @@
 
 @interface QiangViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UITableView *mytableview;
+
 @end

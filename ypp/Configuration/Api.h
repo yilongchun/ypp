@@ -118,6 +118,11 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //陪玩记录
 #define API_ORDER_LIST @"app1/index.php?action=orderlist"
 
+
+//查询约单列表
+#define API_MY_YUE_LIST @"app1/index.php?action=myyuelist"
+
+
 //查询游神参与应约了的约单，分页
 #define API_GET_ORDER_BY_VIP @"app1/index.php?action=getOrderbyvip"
 //游神应约操作
