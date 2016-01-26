@@ -8,6 +8,9 @@
 
 #import "QiangViewController.h"
 #import "QiangTableViewCell.h"
+#import "YYWebImage.h"
+#import "NSDate+TimeAgo.h"
+#import "NSDate+Extension.h"
 
 @interface QiangViewController (){
     int page;
@@ -32,9 +35,9 @@
     _mytableview.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self loadData];
     }];
-    _mytableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [self loadMore];
-    }];
+//    _mytableview.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [self loadMore];
+//    }];
     
     [_mytableview.mj_header beginRefreshing];
 }
@@ -78,13 +81,13 @@
             NSNumber *status = [dic objectForKey:@"status"];
             if ([status intValue] == ResultCodeSuccess) {
                 
-//                NSArray *array = [dic objectForKey:@"message"];
-//                
+                NSArray *array = [dic objectForKey:@"message"];
+//
 ////                [dataSource removeAllObjects];
 ////                [dataSource addObjectsFromArray:array];
 //                if(array != nil && array != NULL && [array count] != 0){
-//                    dataSource = [NSMutableArray arrayWithArray:array];
-//                    [_mytableview reloadData];
+                    dataSource = [NSMutableArray arrayWithArray:array];
+                    [_mytableview reloadData];
 //                }
             }else{
                 NSString *message = [dic objectForKey:@"message"];
@@ -169,7 +172,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [dataSource count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -177,72 +180,69 @@
     QiangTableViewCell *cell = (QiangTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil){
         cell= (QiangTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"QiangTableViewCell" owner:self options:nil]  lastObject];
+        cell.avatar.layer.masksToBounds = YES;
+        cell.avatar.layer.cornerRadius = 5.0;
     }
     
+    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
+    NSString *avatar = [info objectForKey:@"avatar"];
+//    NSString *orderid = [info objectForKey:@"orderid"];
     
+    NSString *begin = [info objectForKey:@"begin"];
+    NSString *hours = [info objectForKey:@"hours"];
+//    NSString *gamename = [info objectForKey:@"gamename"];
+//    NSString *storeid = [info objectForKey:@"storeid"];
+    NSString *storename = [info objectForKey:@"storename"];
+//    NSString *price = [info objectForKey:@"price"];
+    NSString *vipprice = [info objectForKey:@"vipprice"];
     
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(qiang:)];
+    cell.orderStatus.tag = indexPath.row;
+    [cell.orderStatus addGestureRecognizer:tap];
     
-//    NSDictionary *info = [[dataSource objectAtIndex:indexPath.row] cleanNull];
-//    
-//    NSString *user_name = [info objectForKey:@"user_name"];
-//    NSString *avatar = [info objectForKey:@"avatar"];
-//    NSNumber *sex = [info objectForKey:@"sex"];
-//    cell.usernameLabel.text = user_name;
-//    //    [cell.userimage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
-//    
-//    [cell.userimage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    if (![avatar isEqualToString:@""]) {
+        [cell.avatar yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    }
     
-    //    [cell.userimage yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-    //        float progress = (float)receivedSize / expectedSize;
-    //        DLog(@"%f",progress);
-    //    } transform:^UIImage *(UIImage *image, NSURL *url) {
-    //        image = [image yy_imageByResizeToSize:CGSizeMake(100, 100) contentMode:UIViewContentModeCenter];
-    //        return [image yy_imageByRoundCornerRadius:10];
-    //    } completion:^(UIImage *image, NSURL *url, YYWebImageFromType from, YYWebImageStage stage, NSError *error) {
-    //        if (from == YYWebImageFromDiskCache) {
-    //            NSLog(@"load from disk cache");
-    //        }
-    //    }];
-    //    [cell.userimage yy_setImageWithURL:url options:YYWebImageOptionProgressiveBlur ｜ YYWebImageOptionSetImageWithFadeAnimation];
+    cell.address.text = storename;
     
+    NSNumber *totalPrice = [NSNumber numberWithDouble:[vipprice doubleValue] * [hours intValue]];
     
+    cell.price.text = [NSString stringWithFormat:@"%d",[totalPrice intValue]];
+    cell.dateLabel.text = begin;
     
-//    cell.userimage.layer.masksToBounds = YES;
-//    cell.userimage.layer.cornerRadius = 5.0;
-//    if ([sex intValue] == 0) {
-//        [cell.sexImage setHidden:NO];
-//        [cell.sexImage setImage:[UIImage imageNamed:@"usercell_girl"]];
-//        NSNumber *byear = [info objectForKey:@"byear"];
-//        NSNumber *bmonth = [info objectForKey:@"bmonth"];
-//        NSNumber *bday = [info objectForKey:@"bday"];
-//        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
-//        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
-//        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
-//    }else if ([sex intValue] == 1){
-//        [cell.sexImage setHidden:NO];
-//        [cell.sexImage setImage:[UIImage imageNamed:@"usercell_boy"]];
-//        NSNumber *byear = [info objectForKey:@"byear"];
-//        NSNumber *bmonth = [info objectForKey:@"bmonth"];
-//        NSNumber *bday = [info objectForKey:@"bday"];
-//        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
-//        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
-//        cell.ageLabel.text = [NSString stringWithFormat:@"%ld",(long)age];
-//    }else{
-//        [cell.sexImage setHidden:YES];
-//    }
-//    
-//    NSNumber *distance = [info objectForKey:@"distance"];
-//    NSString *dis = [NSString stringWithFormat:@"%.2fkm",[distance floatValue] / 1000];
-//    NSNumber *update_time = [info objectForKey:@"update_time"];
-//    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[update_time doubleValue]];
-//    cell.otherInfo.text = [NSString stringWithFormat:@"%@|%@",dis,[confromTimesp timeAgo]];
-//    
-//    NSNumber *hotcount = [info objectForKey:@"hotcount"];
-//    if (hotcount != nil) {
-//        cell.numLabel.text = [NSString stringWithFormat:@"%d",[hotcount intValue]];
-//    }else{
-//        cell.numLabel.text = @"0";
-//    }
+    NSNumber *order_create_time = [info objectForKey:@"order_create_time"];
+    NSDate *confromTimesp = [NSDate dateWithTimeIntervalSince1970:[order_create_time doubleValue]];
+    cell.orderTime.text = [NSString stringWithFormat:@"%@",[confromTimesp timeAgo]];
+    
+    NSDate *beginDate = [NSDate dateWithString:begin format:@"yyyy-MM-dd hh:mm"];
+    NSDate *endDate = [beginDate offsetHours:[hours intValue]];
+    cell.dateLabel.text = [NSString stringWithFormat:@"%@ %@~%@",[beginDate stringWithFormat:@"MM月dd日"],[beginDate stringWithFormat:@"hh:mm"],[endDate stringWithFormat:@"hh:mm"]];
+    
+    NSString *vipuserid = [info objectForKey:@"vipuserid"];//订单选定的游神id
+    NSString *revipids = [info objectForKey:@"revipids"];//应约的游神id数组
+    if (vipuserid != nil && ![vipuserid isEqualToString:@""]) {//已经选择了游神
+        NSString *vipid = [[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull] objectForKey:@"id"];
+        
+        if ([vipuserid isEqualToString:vipid]) {//抢单成功
+            cell.orderStatus.image = [UIImage imageNamed:@"qiangdanchenggong"];
+        }else{//已被抢
+            cell.orderStatus.image = [UIImage imageNamed:@"beiqiang"];
+        }
+    }else{
+        if (revipids != nil && ![revipids isEqualToString:@""]) {
+            NSString *vipid = [[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull] objectForKey:@"id"];
+            
+            NSArray *vipids = [revipids componentsSeparatedByString:@","];
+            if ([vipids containsObject:vipid]) {//已抢待筛选
+                cell.orderStatus.image = [UIImage imageNamed:@"yiqiang"];
+            }else{
+                cell.orderStatus.image = [UIImage imageNamed:@"qiang"];
+            }
+        }else{//待抢
+            cell.orderStatus.image = [UIImage imageNamed:@"qiang"];
+        }
+    }
     return cell;
 }
 
@@ -278,6 +278,85 @@
     if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
         [cell setLayoutMargins:UIEdgeInsetsZero];
     }
+}
+
+#pragma mark
+
+-(void)qiang:(UITapGestureRecognizer *)recognizer{
+    NSDictionary *info = [[dataSource objectAtIndex:recognizer.view.tag] cleanNull];
+    NSString *orderid = [info objectForKey:@"orderid"];
+    NSString *vipid = [[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull] objectForKey:@"id"];
+    
+    
+    NSString *vipuserid = [info objectForKey:@"vipuserid"];//订单选定的游神id
+    NSString *revipids = [info objectForKey:@"revipids"];//应约的游神id数组
+    if (vipuserid != nil && ![vipuserid isEqualToString:@""]) {//已经选择了游神
+        NSString *vipid = [[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull] objectForKey:@"id"];
+        
+        if ([vipuserid isEqualToString:vipid]) {//抢单成功
+            
+        }else{//已被抢
+            
+        }
+    }else{
+        if (revipids != nil && ![revipids isEqualToString:@""]) {
+            NSString *vipid = [[[[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER] cleanNull] objectForKey:@"id"];
+            
+            NSArray *vipids = [revipids componentsSeparatedByString:@","];
+            if ([vipids containsObject:vipid]) {//已抢待筛选
+                
+            }else{//待抢
+                [self qiang:orderid vipid:vipid];
+            }
+        }else{//待抢
+            [self qiang:orderid vipid:vipid];
+        }
+    }
+}
+
+/**
+ *  抢单
+ */
+-(void)qiang:(NSString *)orderid vipid:(NSString *)vipid{
+    
+    [self showHudInView:self.view];
+    
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:vipid forKey:@"vipid"];
+    [parameters setValue:orderid forKey:@"orderid"];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_JOIN_ORDER];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHud];
+        
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                
+                [self loadData];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        
+        [self hideHud];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 @end

@@ -127,6 +127,10 @@
 //                RobotChatViewController *chatController = [[RobotChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
 //                chatController.title = [[RobotManager sharedInstance] getRobotNickWithUsername:conversation.chatter];
 //                [self.navigationController pushViewController:chatController animated:YES];
+                
+                //conversation markMessageWithId:<#(NSString *)#> asRead:<#(BOOL)#>
+                [conversation markAllMessagesAsRead:YES];
+                
             } else {
                 ChatViewController *chatController = [[ChatViewController alloc] initWithConversationChatter:conversation.chatter conversationType:conversation.conversationType];
                 chatController.title = conversationModel.title;

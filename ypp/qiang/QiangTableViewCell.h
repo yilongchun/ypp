@@ -10,4 +10,10 @@
 
 @interface QiangTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *orderTime;
+@property (weak, nonatomic) IBOutlet UIImageView *avatar;
+@property (weak, nonatomic) IBOutlet UILabel *price;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *address;
+@property (weak, nonatomic) IBOutlet UIImageView *orderStatus;
 @end

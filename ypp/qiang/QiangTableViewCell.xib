@@ -39,6 +39,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ib6-2S-kbW">
                         <rect key="frame" x="9" y="30" width="70" height="70"/>
                         <animations/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="70" id="2oc-eQ-dSB"/>
                             <constraint firstAttribute="height" constant="70" id="49U-QR-twe"/>
@@ -83,7 +84,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qiangdanchenggong" translatesAutoresizingMaskIntoConstraints="NO" id="804-dT-85g">
+                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qiang" translatesAutoresizingMaskIntoConstraints="NO" id="804-dT-85g">
                         <rect key="frame" x="262" y="50" width="50" height="50"/>
                         <animations/>
                         <constraints>
@@ -97,10 +98,10 @@
                     <constraint firstItem="FPI-LE-pga" firstAttribute="leading" secondItem="ib6-2S-kbW" secondAttribute="trailing" constant="8" id="6Gt-r9-VT5"/>
                     <constraint firstItem="WHR-b5-N7S" firstAttribute="top" secondItem="ib6-2S-kbW" secondAttribute="top" id="7gx-Y7-UBC"/>
                     <constraint firstItem="FS6-bI-TCm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="8XO-a7-ZxI"/>
+                    <constraint firstItem="Q0B-Pz-VHH" firstAttribute="top" secondItem="ib6-2S-kbW" secondAttribute="top" constant="1" id="Aie-rF-b8a"/>
                     <constraint firstItem="FS6-bI-TCm" firstAttribute="top" secondItem="804-dT-85g" secondAttribute="bottom" constant="8" id="Esx-HF-bQv"/>
                     <constraint firstItem="FPI-LE-pga" firstAttribute="centerY" secondItem="ib6-2S-kbW" secondAttribute="centerY" constant="3" id="GMh-gK-n4o"/>
                     <constraint firstItem="W57-Zi-JmQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="IDe-sr-stP"/>
-                    <constraint firstItem="Q0B-Pz-VHH" firstAttribute="centerY" secondItem="WHR-b5-N7S" secondAttribute="centerY" id="LCS-qE-OfF"/>
                     <constraint firstItem="9mk-ku-Vzb" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="MiQ-i2-fVD"/>
                     <constraint firstItem="WHR-b5-N7S" firstAttribute="leading" secondItem="ib6-2S-kbW" secondAttribute="trailing" constant="8" id="NXq-Lb-2Jb"/>
                     <constraint firstAttribute="trailing" secondItem="FS6-bI-TCm" secondAttribute="trailing" id="Vr7-fq-dsr"/>
@@ -118,10 +119,18 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="address" destination="uFB-66-K5Z" id="qTp-aa-l9q"/>
+                <outlet property="avatar" destination="ib6-2S-kbW" id="Nv1-hv-Jqe"/>
+                <outlet property="dateLabel" destination="FPI-LE-pga" id="9cW-I6-rhQ"/>
+                <outlet property="orderStatus" destination="804-dT-85g" id="WQp-rv-L91"/>
+                <outlet property="orderTime" destination="W57-Zi-JmQ" id="faU-h4-uW2"/>
+                <outlet property="price" destination="WHR-b5-N7S" id="6ez-IQ-rs8"/>
+            </connections>
             <point key="canvasLocation" x="296" y="292"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="qiangdanchenggong" width="50" height="49"/>
+        <image name="qiang" width="104" height="104"/>
     </resources>
 </document>
