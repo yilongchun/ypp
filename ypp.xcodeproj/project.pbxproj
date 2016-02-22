@@ -4316,7 +4316,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ef65f44a-a5ce-462d-9347-eee4a519c959";
 			};
 			name = Debug;
 		};
@@ -4346,7 +4346,7 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.szsc.ypp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "ef65f44a-a5ce-462d-9347-eee4a519c959";
 			};
 			name = Release;
 		};
