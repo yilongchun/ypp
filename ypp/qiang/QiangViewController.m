@@ -86,7 +86,12 @@
 ////                [dataSource removeAllObjects];
 ////                [dataSource addObjectsFromArray:array];
 //                if(array != nil && array != NULL && [array count] != 0){
+                
+                if (array != nil && ![array isKindOfClass:[NSNull class]]) {
                     dataSource = [NSMutableArray arrayWithArray:array];
+                }
+                
+                
                     [_mytableview reloadData];
 //                }
             }else{
