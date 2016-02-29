@@ -485,6 +485,7 @@ static NSString *kGroupName = @"GroupName";
 {
     
     [DBUtil queryUserInfoFromDB:message.ext];
+    DLog(@"%@",message.ext);
     
     BOOL needShowNotification = (message.messageType != eMessageTypeChat) ? [self needShowNotification:message.conversationChatter] : YES;
     if (needShowNotification) {

@@ -60,6 +60,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     [parameters setValue:_type forKey:@"type"];
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_ORDER_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
@@ -107,7 +109,8 @@
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
     [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
     [parameters setValue:_type forKey:@"type"];
-    
+    NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+    [parameters setValue:[NSString stringWithFormat:@"%@",[userinfo objectForKey:@"id"]] forKey:@"userid"];
     
     NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_ORDER_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];

@@ -260,11 +260,12 @@
 -(void)loadData{
 
     NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-//    [parameters setValue:[NSNumber numberWithInt:page] forKey:@"page"];
+    [parameters setValue:[NSNumber numberWithInt:1] forKey:@"page"];
 //    [parameters setValue:_type forKey:@"type"];
+    [parameters setValue:[_dingdanInfo objectForKey:@"id"] forKey:@"orderid"];
     
     //大神列表
-    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_ORDER_LIST];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_GET_VIP_LIST];
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer = [AFHTTPRequestSerializer serializer];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
@@ -293,9 +294,9 @@
             if (dataSource == nil || [dataSource count] == 0) {
                 timeLabel.text = @"等待更多大神";
                 flag = YES;
-                [self startAnimation];
+//                [self startAnimation];
             }else{
-                [self jisuan];
+//                [self jisuan];
             }
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -332,6 +333,14 @@
     if (cell == nil){
         cell= (DashenTableViewCell *)[[[NSBundle  mainBundle]  loadNibNamed:@"DashenTableViewCell" owner:self options:nil]  lastObject];
     }
+    
+    NSDictionary *info = [dataSource objectAtIndex:indexPath.row];
+    NSString *avatar = [info objectForKey:@"avatar"];
+    NSString *user_name = [info objectForKey:@"user_name"];
+    NSNumber *price = [info objectForKey:@"price"];
+    NSNumber *hours = [_dingdanInfo objectForKey:@"hours"];
+    
+    DLog(@"%@",info);
    
     return cell;
 }
