@@ -13,6 +13,7 @@
 #import "DingdanDetailTableViewController.h"
 #import "ChooseYouhuiTableViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "WXApi.h"
 
 @interface ChooseDashenViewController (){
     UILabel *topLabel;
@@ -486,6 +487,87 @@
 
 - (IBAction)myensure:(id)sender {
     [self hideMyBottomView];
+}
+
+#pragma mark - 微信支付
+- (void)WeiXinPay{
+    if([WXApi isWXAppInstalled]) // 判断 用户是否安装微信
+    {
+        
+//        HUD.delegate = self;
+//        HUD.labelText = @"正在为您支付...";
+//        [HUD show:YES];
+        
+        
+//        NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
+//        NSString *ipAdress = [MyHttpDownload GetIPAddress:YES];
+//        NSLog(@"ipAdress%@",ipAdress);
+//        NSLog(@"self.order_orderinfoid%@",self.order_orderinfoid);
+//        NSLog(@"提交地址%@",[NSString stringWithFormat:TESTWXPayUrl,userID,self.order_orderinfoid,_WXPayStyleStr,ipAdress]);
+//        NSDictionary *dict = @{@"uid":userID,@"orderinfo_id":self.order_orderinfoid,@"type":_WXPayStyleStr,@"ip":ipAdress};
+//        [MyHttpDownload GetDownload:WXPayUrl param:dict finish:^(NSData *data, NSDictionary *obj, NSError *error) {
+//            if ([obj[@"data"] isKindOfClass:[NSDictionary class]]) {
+//                NSDictionary *dataDict = obj[@"data"];
+//                NSLog(@"respose信息--》%@",dataDict);
+//                if (obj != nil) {
+//                    [self WXPayRequest:dataDict[@"appid"] nonceStr:dataDict[@"noncestr"] package:dataDict[@"package"] partnerId:dataDict[@"partnerid"] prepayId:dataDict[@"prepayid"] timeStamp:dataDict[@"timestamp"] sign:dataDict[@"sign"]];
+//                }else{
+//                    [HUD hide:YES];
+//                    FlyAlertView *alert = [[FlyAlertView alloc] initWithTitle:@"提示" contentText:@"网络有误" leftButtonTitle:nil rightButtonTitle:@"确定"];
+//                    [alert show];
+//                }
+//            }else{
+//                [HUD hide:YES];
+//                NSString *mess = [NSString stringWithFormat:@"%@,退出重试!",obj[@"data"]];
+//                [self alert:@"提示" msg:mess];
+//            }
+//        }];
+    }else{
+//        [HUD hide:YES];
+        [self alert:@"提示" msg:@"您未安装微信!"];
+    }
+    
+}
+#pragma mark - 发起支付请求
+- (void)WXPayRequest:(NSString *)appId nonceStr:(NSString *)nonceStr package:(NSString *)package partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId timeStamp:(NSString *)timeStamp sign:(NSString *)sign{
+    //调起微信支付
+    PayReq* wxreq             = [[PayReq alloc] init];
+    wxreq.openID              = @"wx2e859f58fc844b4f";
+    wxreq.partnerId           = partnerId;
+    wxreq.prepayId            = prepayId;
+    wxreq.nonceStr            = nonceStr;
+    wxreq.timeStamp           = [timeStamp intValue];
+    wxreq.package             = package;
+    wxreq.sign                = sign;
+    [WXApi sendReq:wxreq];
+}
+
+#pragma mark - 通知信息
+- (void)getOrderPayResult:(NSNotification *)notification{
+    if ([notification.object isEqualToString:@"success"])
+    {
+//        [HUD hide:YES];
+        [self alert:@"恭喜" msg:@"您已成功支付啦!"];
+//        payStatusStr           = @"YES";
+//        _successPayView.hidden = NO;
+//        _toPayView.hidden      = YES;
+//        [self creatPaySuccess];
+        NSLog(@"支付成功");
+    }
+    else
+    {
+        NSLog(@"支付失败");
+//        [HUD hide:YES];
+        [self alert:@"提示" msg:@"支付失败"];
+        
+    }
+}
+
+//客户端提示信息
+- (void)alert:(NSString *)title msg:(NSString *)msg
+{
+    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alter show];
 }
 
 @end

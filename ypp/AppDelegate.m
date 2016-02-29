@@ -21,7 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [WXApi registerApp:@"wx2e859f58fc844b4f" withDescription:@"weixinPay"];
+    [WXApi registerApp:@"wx2e859f58fc844b4f" withDescription:@"weixinPay"];
     
     
     //注册登录状态监听
