@@ -14,6 +14,8 @@
 #import "ChooseYouhuiTableViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "WXApi.h"
+#import "YYWebImage.h"
+#import "NSDate+Addition.h"
 
 @interface ChooseDashenViewController (){
     UILabel *topLabel;
@@ -24,6 +26,7 @@
     
     int payType;//支付类型 1余额 2微信 3支付宝
     NSDictionary *youhuiInfo;//优惠信息
+    NSIndexPath *selected;
 }
 
 @end
@@ -72,6 +75,7 @@
     }
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setYouhuiInfo:)   name:@"setYouhuiInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getOrderPayResult:)   name:@"getOrderPayResult" object:nil];
     
     [self initMyBottomView];
     
@@ -340,9 +344,46 @@
     NSString *user_name = [info objectForKey:@"user_name"];
     NSNumber *price = [info objectForKey:@"price"];
     NSNumber *hours = [_dingdanInfo objectForKey:@"hours"];
-    
+    NSNumber *sex = [info objectForKey:@"sex"];
     DLog(@"%@",info);
-   
+    
+    [cell.avatar yy_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholder:[UIImage imageNamed:@"gallery_default"] options:YYWebImageOptionSetImageWithFadeAnimation completion:nil];
+    cell.username.text = user_name;
+    cell.price.text = [NSString stringWithFormat:@"%d元",[price intValue] * [hours intValue]];
+    cell.other.text = [NSString stringWithFormat:@"单价%d元/h",[price intValue]];
+    if ([sex intValue] == 0) {
+        [cell.sex setHidden:NO];
+        [cell.sex setImage:[UIImage imageNamed:@"usercell_girl"]];
+        NSNumber *byear = [info objectForKey:@"byear"];
+        NSNumber *bmonth = [info objectForKey:@"bmonth"];
+        NSNumber *bday = [info objectForKey:@"bday"];
+        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+        cell.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+    }else if ([sex intValue] == 1){
+        [cell.sex setHidden:NO];
+        [cell.sex setImage:[UIImage imageNamed:@"usercell_boy"]];
+        NSNumber *byear = [info objectForKey:@"byear"];
+        NSNumber *bmonth = [info objectForKey:@"bmonth"];
+        NSNumber *bday = [info objectForKey:@"bday"];
+        NSDate *birthday = [NSDate dateWithYear:[byear integerValue] month:[bmonth integerValue] day:[bday integerValue]];
+        NSInteger age = [NSDate ageWithDateOfBirth:birthday];
+        cell.age.text = [NSString stringWithFormat:@"%ld",(long)age];
+    }else{
+        [cell.sex setHidden:YES];
+    }
+    
+//    NSNumber *distance = [info objectForKey:@"distance"];
+//    NSString *dis = [NSString stringWithFormat:@"%.2fkm",[distance floatValue] / 1000];
+//    cell.juli.text = [NSString stringWithFormat:@"%@",dis];
+    
+//    NSNumber *hotcount = [info objectForKey:@"hotcount"];
+//    if (hotcount != nil) {
+//        cell.hotCount.text = [NSString stringWithFormat:@"%d",[hotcount intValue]];
+//    }else{
+//        cell.hotCount.text = @"0";
+//    }
+    
     return cell;
 }
 
@@ -359,6 +400,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    selected = indexPath;
     [self showMyBottomView];
 }
 
@@ -385,15 +427,22 @@
 }
 
 -(void)setPayInfo{
+    NSDictionary *info = [dataSource objectAtIndex:selected.row];
+    NSString *avatar = [info objectForKey:@"avatar"];
+    NSString *user_name = [info objectForKey:@"user_name"];
+    
 //    NSString *avatar = [userinfo objectForKey:@"avatar"];
-//    [self.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
+    [self.userImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",QINIU_IMAGE_URL,avatar]] placeholderImage:[UIImage imageNamed:@"gallery_default"]];
     self.userImage.layer.masksToBounds = YES;
     self.userImage.layer.cornerRadius = 5.0;
     
 //    NSString *username = [userinfo objectForKey:@"user_name"];
-//    self.username.text = username;
+    self.username.text = user_name;
     
-//    [self.zhifuButton setTitle:[NSString stringWithFormat:@"支付%.2f元",[total doubleValue]] forState:UIControlStateNormal];
+    NSNumber *price = [info objectForKey:@"price"];
+    NSNumber *hours = [_dingdanInfo objectForKey:@"hours"];
+    
+    [self.zhifuButton setTitle:[NSString stringWithFormat:@"支付%d元",[price intValue] * [hours intValue]] forState:UIControlStateNormal];
 }
 
 #pragma mark - private method
@@ -486,6 +535,9 @@
 }
 
 - (IBAction)myensure:(id)sender {
+    if (payType == 2) {//微信支付
+        [self WeiXinPay];
+    }
     [self hideMyBottomView];
 }
 
@@ -494,37 +546,46 @@
     if([WXApi isWXAppInstalled]) // 判断 用户是否安装微信
     {
         
-//        HUD.delegate = self;
-//        HUD.labelText = @"正在为您支付...";
-//        [HUD show:YES];
+        [self showHudInView:self.view];
         
         
-//        NSString *userID = [[NSUserDefaults standardUserDefaults] objectForKey:@"userID"];
-//        NSString *ipAdress = [MyHttpDownload GetIPAddress:YES];
-//        NSLog(@"ipAdress%@",ipAdress);
-//        NSLog(@"self.order_orderinfoid%@",self.order_orderinfoid);
-//        NSLog(@"提交地址%@",[NSString stringWithFormat:TESTWXPayUrl,userID,self.order_orderinfoid,_WXPayStyleStr,ipAdress]);
-//        NSDictionary *dict = @{@"uid":userID,@"orderinfo_id":self.order_orderinfoid,@"type":_WXPayStyleStr,@"ip":ipAdress};
-//        [MyHttpDownload GetDownload:WXPayUrl param:dict finish:^(NSData *data, NSDictionary *obj, NSError *error) {
-//            if ([obj[@"data"] isKindOfClass:[NSDictionary class]]) {
-//                NSDictionary *dataDict = obj[@"data"];
-//                NSLog(@"respose信息--》%@",dataDict);
-//                if (obj != nil) {
-//                    [self WXPayRequest:dataDict[@"appid"] nonceStr:dataDict[@"noncestr"] package:dataDict[@"package"] partnerId:dataDict[@"partnerid"] prepayId:dataDict[@"prepayid"] timeStamp:dataDict[@"timestamp"] sign:dataDict[@"sign"]];
-//                }else{
-//                    [HUD hide:YES];
-//                    FlyAlertView *alert = [[FlyAlertView alloc] initWithTitle:@"提示" contentText:@"网络有误" leftButtonTitle:nil rightButtonTitle:@"确定"];
-//                    [alert show];
-//                }
-//            }else{
-//                [HUD hide:YES];
-//                NSString *mess = [NSString stringWithFormat:@"%@,退出重试!",obj[@"data"]];
-//                [self alert:@"提示" msg:mess];
-//            }
-//        }];
+        NSDictionary *info = [dataSource objectAtIndex:selected.row];
+        
+        NSNumber *price = [info objectForKey:@"price"];
+        NSNumber *hours = [_dingdanInfo objectForKey:@"hours"];
+        
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        NSDictionary *userinfo = [[NSUserDefaults standardUserDefaults] objectForKey:LOGINED_USER];
+        [param setObject:[userinfo objectForKey:@"id"] forKey:@"userId"];
+        [param setObject:[_dingdanInfo objectForKey:@"id"] forKey:@"orderId"];
+        [param setObject:[NSNumber numberWithInt:[price intValue] * [hours intValue]] forKey:@"orderPrice"];
+        
+        NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,WX_PREPAY_URL];
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+        [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            [self hideHud];
+            NSLog(@"JSON: %@", operation.responseString);
+            
+            NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+            NSError *error;
+            NSDictionary *dataDict= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+            if (dataDict == nil) {
+                NSLog(@"json parse failed \r\n");
+            }else{
+                [self WXPayRequest:dataDict[@"appid"] nonceStr:dataDict[@"noncestr"] package:dataDict[@"package"] partnerId:dataDict[@"partnerid"] prepayId:dataDict[@"prepayid"] timeStamp:dataDict[@"timestamp"] sign:dataDict[@"sign"]];
+            }
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"发生错误！%@",error);
+            [self hideHud];
+            [self showHint:@"连接失败"];
+            
+        }];
     }else{
-//        [HUD hide:YES];
-        [self alert:@"提示" msg:@"您未安装微信!"];
+        [self hideHud];
+        [self alert:@"提示" msg:@"您未安装微信,请用其他支付方式!"];
     }
     
 }
@@ -532,7 +593,7 @@
 - (void)WXPayRequest:(NSString *)appId nonceStr:(NSString *)nonceStr package:(NSString *)package partnerId:(NSString *)partnerId prepayId:(NSString *)prepayId timeStamp:(NSString *)timeStamp sign:(NSString *)sign{
     //调起微信支付
     PayReq* wxreq             = [[PayReq alloc] init];
-    wxreq.openID              = @"wx2e859f58fc844b4f";
+    wxreq.openID              = WX_APP_ID;
     wxreq.partnerId           = partnerId;
     wxreq.prepayId            = prepayId;
     wxreq.nonceStr            = nonceStr;
@@ -547,26 +608,87 @@
     if ([notification.object isEqualToString:@"success"])
     {
 //        [HUD hide:YES];
-        [self alert:@"恭喜" msg:@"您已成功支付啦!"];
+//        [self alert:@"恭喜" msg:@"您已支付成功!"];
 //        payStatusStr           = @"YES";
 //        _successPayView.hidden = NO;
 //        _toPayView.hidden      = YES;
 //        [self creatPaySuccess];
         NSLog(@"支付成功");
+        [self confirmyue];
     }
     else
     {
         NSLog(@"支付失败");
 //        [HUD hide:YES];
-        [self alert:@"提示" msg:@"支付失败"];
-        
+//        [self alert:@"提示" msg:@"支付失败"];
+//        [self showHint:@"支付失败"];
+        [self confirmyue];
     }
+}
+
+//确认订单
+-(void)confirmyue{
+    [self showHudInView:self.view];
+    NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
+    [parameters setValue:[_dingdanInfo objectForKey:@"id"] forKey:@"orderid"];
+    
+    NSDictionary *info = [dataSource objectAtIndex:selected.row];
+    [parameters setValue:[info objectForKey:@"userid"] forKey:@"vipuserid"];//游神ID
+    NSNumber *price = [info objectForKey:@"price"];
+    NSNumber *hours = [_dingdanInfo objectForKey:@"hours"];
+    
+    NSNumber *payprice = [NSNumber numberWithInt:[price intValue] * [hours intValue]];
+    
+    [parameters setValue:payprice forKey:@"payprice"];//陪玩费用
+    [parameters setValue:@"" forKey:@"couponid"];//优惠券id
+    [parameters setValue:@"" forKey:@"coupon"];//优惠券名称
+    [parameters setValue:@"" forKey:@"discountprice"];//优惠费用
+    
+    [parameters setValue:[NSNumber numberWithInt:[price intValue] * [hours intValue]] forKey:@"actualprice"];//支付金额
+    if (payType == 2) {
+        [parameters setValue:@"2" forKey:@"paymentid"];//支付类型（1支付宝、2微信）
+        [parameters setValue:@"微信" forKey:@"paymentname"];//支付类型*/
+    }else if (payType == 3){
+        [parameters setValue:@"1" forKey:@"paymentid"];//支付类型（1支付宝、2微信）
+        [parameters setValue:@"支付宝" forKey:@"paymentname"];//支付类型*/
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@%@",HOST,API_CONFIRM_YUE];
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer = [AFHTTPRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json",@"text/json", @"text/plain", @"text/html", nil];
+    [manager POST:urlString parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [self hideHud];
+        NSLog(@"JSON: %@", operation.responseString);
+        
+        NSString *result = [NSString stringWithFormat:@"%@",[operation responseString]];
+        NSError *error;
+        NSDictionary *dic= [NSJSONSerialization JSONObjectWithData:[result dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+        if (dic == nil) {
+            NSLog(@"json parse failed \r\n");
+        }else{
+            NSNumber *status = [dic objectForKey:@"status"];
+            if ([status intValue] == ResultCodeSuccess) {
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }else{
+                NSString *message = [dic objectForKey:@"message"];
+                [self showHint:message];
+            }
+        }
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"发生错误！%@",error);
+        [self hideHud];
+        [self showHint:@"连接失败"];
+        
+    }];
 }
 
 //客户端提示信息
 - (void)alert:(NSString *)title msg:(NSString *)msg
 {
-    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *alter = [[UIAlertView alloc] initWithTitle:title message:msg delegate:nil cancelButtonTitle:@"好" otherButtonTitles:nil];
     [alter show];
 }
 

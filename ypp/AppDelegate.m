@@ -21,8 +21,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    [WXApi registerApp:@"wx2e859f58fc844b4f" withDescription:@"weixinPay"];
-    
+    BOOL b = [WXApi registerApp:WX_APP_ID withDescription:@"weixinPay"];
+    DLog(@"注册微信支付%d",b);
     
     //注册登录状态监听
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -295,26 +295,26 @@
     {
         PayResp *response = (PayResp *)resp;
         
-        NSString *strTitle = [NSString stringWithFormat:@"支付结果"];
-        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", response.errCode];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
-                                                        message:strMsg
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil, nil];
-        [alert show];
+//        NSString *strTitle = [NSString stringWithFormat:@"支付结果"];
+//        NSString *strMsg = [NSString stringWithFormat:@"errcode:%d", response.errCode];
+//        
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:strTitle
+//                                                        message:strMsg
+//                                                       delegate:self
+//                                              cancelButtonTitle:@"OK"
+//                                              otherButtonTitles:nil, nil];
+//        [alert show];
         
         switch (response.errCode) {
             case WXSuccess: {
-//                NSNotification *notification = [NSNotification notificationWithName:ORDER_PAY_NOTIFICATION object:@"success"];
-//                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                NSNotification *notification = [NSNotification notificationWithName:@"getOrderPayResult" object:@"success"];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
                 break;
             }
                 
             default: {
-//                NSNotification *notification = [NSNotification notificationWithName:ORDER_PAY_NOTIFICATION object:@"fail"];
-//                [[NSNotificationCenter defaultCenter] postNotification:notification];
+                NSNotification *notification = [NSNotification notificationWithName:@"getOrderPayResult" object:@"fail"];
+                [[NSNotificationCenter defaultCenter] postNotification:notification];
                 break;
             }
         }

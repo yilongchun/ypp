@@ -29,8 +29,8 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赛欧啦啦" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLn-K8-w6N">
-                        <rect key="frame" x="81" y="32" width="52" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLn-K8-w6N">
+                        <rect key="frame" x="81" y="40" width="0.0" height="0.0"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,13 +43,6 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="285.1km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-o5-6i0">
-                        <rect key="frame" x="260" y="11" width="52" height="16"/>
-                        <animations/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hot-icon" translatesAutoresizingMaskIntoConstraints="NO" id="5Xn-Or-jjJ">
                         <rect key="frame" x="81" y="54" width="15" height="15"/>
                         <animations/>
@@ -58,8 +51,8 @@
                             <constraint firstAttribute="height" constant="15" id="j5j-G2-Ey2"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1967" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e12-by-KjK">
-                        <rect key="frame" x="101" y="53" width="32" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e12-by-KjK">
+                        <rect key="frame" x="101" y="53" width="9" height="17"/>
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.96470588239999999" green="0.63137254899999995" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,6 +78,13 @@
                         <animations/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="04j-o5-6i0">
+                        <rect key="frame" x="312" y="19" width="0.0" height="0.0"/>
+                        <animations/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
@@ -115,6 +115,17 @@
                 </constraints>
             </tableViewCellContentView>
             <animations/>
+            <connections>
+                <outlet property="age" destination="dYX-er-aJ5" id="q3G-bG-vC3"/>
+                <outlet property="avatar" destination="uEJ-Oz-VbP" id="dRh-yj-R18"/>
+                <outlet property="hotCount" destination="e12-by-KjK" id="oKy-iJ-MmO"/>
+                <outlet property="jianjie" destination="wLn-K8-w6N" id="Bcx-va-Q6H"/>
+                <outlet property="juli" destination="04j-o5-6i0" id="lHp-dX-0Gn"/>
+                <outlet property="other" destination="GYU-8C-6jl" id="IJW-dK-e2e"/>
+                <outlet property="price" destination="Ph2-ox-ztL" id="WUY-Rz-CFp"/>
+                <outlet property="sex" destination="3UT-vE-fn4" id="kqT-Bx-Ujx"/>
+                <outlet property="username" destination="HQe-Mh-Xcr" id="27H-HP-jZe"/>
+            </connections>
             <point key="canvasLocation" x="262" y="287"/>
         </tableViewCell>
     </objects>

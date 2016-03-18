@@ -27,10 +27,22 @@ typedef NS_ENUM(NSInteger, ResultCodeType){
 //app_name：yuewanba
 //https://console.easemob.com/app_users.html           szhcyj  1qazxsw2
 
-//微信公众号身份的唯一标识AppID(应用ID)：wx2e859f58fc844b4f
-//APPSECRET = '6065bf2aaffd5acac555384d07a4c454';
-//受理商MCHID：1278642501
-//商户支付密钥KEY ：weyidaweyidaweyidaweyidaweyidaok
+
+//微信公众号身份的唯一标识AppID(应用ID)：
+#define WX_APP_ID @"wxc1cbee2d78d4c06a"
+//APPSECRET = '61551771f596db8f42d80532c5b51cf7';
+//受理商MCHID：1323105401
+//商户支付密钥KEY ：hcyjhcyjhcyjhcyjhcyjhcyjhcyjhcyj
+
+#define WX_PREPAY_URL @"app1/wxpay.php"
+
+//支付宝参数
+//(1)PID 2088121057432667
+//APPID: 2016031701220292
+//APP SECRET: b41cf8b42db54db59a95429d35850f17
+//支付宝公钥：MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB
+//（4）、生成商户私钥【MAC生成方法】
+//（5）、生成用户公钥及网页填充
 
 #define LOGOUT @"logout"
 
