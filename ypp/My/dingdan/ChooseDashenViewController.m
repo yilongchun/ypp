@@ -621,8 +621,8 @@
         NSLog(@"支付失败");
 //        [HUD hide:YES];
 //        [self alert:@"提示" msg:@"支付失败"];
-//        [self showHint:@"支付失败"];
-        [self confirmyue];
+        [self showHint:@"支付失败"];
+//        [self confirmyue];
     }
 }
 
